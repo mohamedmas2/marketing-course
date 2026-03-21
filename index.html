@@ -31,37 +31,20 @@ body {
 <div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
 
 <script>
-const lectures = [
-  {
-    title: "المحاضرة الأولى",
-    desc: "المفهوم التسويقي وأهميته",
-    file: "lectures/lecture1.html"
-  },
-  {
-    title: "المحاضرة الثانية",
-    desc: "تجربة النظام",
-    file: "lectures/lecture2.html"
-  },
-  {
-    title: "المحاضرة الثالثة",
-    desc: "عنوان جديد",
-    file: "lectures/lecture3.html"
-  }
-];
+// نقرأ JSON من GitHub مباشرة
+fetch('https://raw.githubusercontent.com/mohamedmas2/marketing-course/main/data/lectures.json')
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById('lecturesContainer');
 
-
-
-    
-
-const container = document.getElementById('lecturesContainer');
-
-lectures.forEach(lec => {
-  container.innerHTML += `
-    <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
-        <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
-        <p class="text-gray-600">${lec.desc}</p>
-    </a>
-  `;
+    data.lectures.forEach(lec => {
+        container.innerHTML += `
+        <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
+            <p class="text-gray-600">${lec.desc}</p>
+        </a>
+        `;
+    });
 });
 </script>
 
