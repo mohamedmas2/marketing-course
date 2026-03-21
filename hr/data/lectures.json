@@ -1,0 +1,9 @@
+{
+  "lectures": [
+    {
+      "title": "المحاضرة الأولى",
+      "desc": "أهمية المورد البشري",
+      "file": "lectures/lecture1.html"
+    }
+  ]
+}
