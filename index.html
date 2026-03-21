@@ -3,7 +3,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>منصة إدارة التسويق</title>
+<title>المنصة التعليمية</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,63 +24,25 @@ body {
 
 <body class="p-10">
 
-<h1 class="text-3xl font-bold text-sky-800 text-center mb-10">
-📚 منصة إدارة التسويق
+<h1 class="text-3xl font-bold text-center text-sky-800 mb-10">
+🎓 المنصة التعليمية
 </h1>
 
-<!-- البحث -->
+<div class="grid md:grid-cols-2 gap-6">
 
-<input 
-type="text" 
-id="searchInput" 
-placeholder="ابحث عن محاضرة..." 
-class="w-full p-3 mb-6 border rounded-lg"
-/>
+```
+<a href="marketing/index.html" class="card bg-white p-6 rounded-xl shadow border border-sky-100 text-center">
+    <h2 class="text-xl font-bold mb-2">📊 إدارة التسويق</h2>
+    <p class="text-gray-600">محاضرات التسويق كاملة</p>
+</a>
 
-<!-- المحاضرات -->
+<a href="hr/index.html" class="card bg-white p-6 rounded-xl shadow border border-green-100 text-center">
+    <h2 class="text-xl font-bold mb-2">👥 الموارد البشرية</h2>
+    <p class="text-gray-600">محاضرات HR</p>
+</a>
+```
 
-<div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
-
-<script>
-
-let lecturesData = [];
-
-// تحميل البيانات من JSON
-fetch('https://raw.githubusercontent.com/mohamedmas2/marketing-course/main/data/lectures.json')
-.then(res => res.json())
-.then(data => {
-    lecturesData = data.lectures;
-    displayLectures(lecturesData);
-});
-
-// عرض المحاضرات
-function displayLectures(lectures) {
-    const container = document.getElementById('lecturesContainer');
-    container.innerHTML = "";
-
-    lectures.forEach(lec => {
-        container.innerHTML += `
-        <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
-            <p class="text-gray-600">${lec.desc}</p>
-        </a>
-        `;
-    });
-}
-
-// البحث
-document.getElementById('searchInput').addEventListener('input', function() {
-    const value = this.value.toLowerCase();
-
-    const filtered = lecturesData.filter(lec =>
-        lec.title.toLowerCase().includes(value) ||
-        lec.desc.toLowerCase().includes(value)
-    );
-
-    displayLectures(filtered);
-});
-
-</script>
+</div>
 
 </body>
 </html>
