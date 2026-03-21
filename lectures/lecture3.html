@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة التسويق - المحاضرة الثالثة</title>
+    <title>إدارة التسويق - التخطيط الإستراتيجي التسويقي</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -49,15 +49,17 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8; 
         }
-        .quiz-option.correct {
-            background-color: #10B981;
-            color: white;
-            border-color: #10B981;
+        /* Custom classes for quiz */
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
         }
-        .quiz-option.wrong {
-            background-color: #EF4444;
-            color: white;
-            border-color: #EF4444;
+        .quiz-answer.show {
+            max-height: 200px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -66,35 +68,36 @@
     <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
         <div class="p-6 border-b border-gray-100">
             <div class="mb-6 text-center">
-            <a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-xl font-bold hover:bg-blue-700 transition text-sm w-full text-center">
-                ⬅ الرجوع إلى المحاضرات
-            </a>
-        </div>
+                <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
             <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
-            <p class="text-sm text-amber-600 font-semibold mb-4">الماجستير المهني - المحاضرة الثالثة</p>
+            <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الثالثة</p>
+        </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1">
-                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مقدمة وأهمية التخطيط</button></li>
-                <li><button onclick="scrollToSection('concept')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">متطلبات التخطيط الناجح</button></li>
-                <li><button onclick="scrollToSection('markets')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التحليل البيئي (داخلي/خارجي)</button></li>
-                <li><button onclick="scrollToSection('mix')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحليل سوات (SWOT)</button></li>
-                <li><button onclick="scrollToSection('evolution')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">فوائد التخطيط الإستراتيجي</button></li>
-                <li><button onclick="scrollToSection('challenges')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المتغيرات البيئية</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-emerald-50 transition-colors font-bold text-emerald-700">اختبر نفسك </button></li>
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أهمية التخطيط الإستراتيجي</button></li>
+                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">فوائد التخطيط الإستراتيجي</button></li>
+                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المتطلبات والخطوات</button></li>
+                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحليل SWOT التسويقي</button></li>
+                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مراحل التنفيذ</button></li>
+                <li><button onclick="scrollToSection('macro_chart')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مزيج التخطيط</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك</button></li>
             </ul>
         </nav>
         <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
             <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700">
-                <option value="intro">مقدمة وأهمية التخطيط</option>
-                <option value="concept">متطلبات التخطيط الناجح</option>
-                <option value="markets">التحليل البيئي (داخلي/خارجي)</option>
-                <option value="mix">تحليل سوات (SWOT)</option>
-                <option value="evolution">فوائد التخطيط الإستراتيجي</option>
-                <option value="challenges">المتغيرات البيئية</option>
+                <option value="intro">أهمية التخطيط الإستراتيجي</option>
+                <option value="internal">فوائد التخطيط الإستراتيجي</option>
+                <option value="external">المتطلبات والخطوات</option>
+                <option value="reasons">تحليل SWOT التسويقي</option>
+                <option value="philosophies">مراحل التنفيذ</option>
+                <option value="macro_chart">مزيج التخطيط</option>
                 <option value="quiz">اختبر نفسك</option>
             </select>
         </div>
-        <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block mt-auto">
+        <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block">
             <p>أ.د/ ألفت إبراهيم جاد الرب</p>
             <p>7 مارس 2026</p>
         </div>
@@ -102,131 +105,161 @@
 
     <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
         
+        <!-- Section 1: Intro -->
         <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">التخطيط الإستراتيجي التسويقي</h2>
                     <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                        التخطيط الإستراتيجي هو أسلوب عمل متكامل لتحقيق الأهداف الموضوعية للمنظمة وللمستهلك من خلال مختلف عناصر المزيج التسويقي، وفي ضوء الموارد (المالية، المادية، البشرية) المتاحة بالمنظمة لتجاوز التحديات المستقبلية.
+                        يتناول هذا الفصل التخطيط الإستراتيجي التسويقي وأهميته، متطلباته، خطواته، وتحليل نقاط القوة والضعف والفرص والتحديات، بالإضافة إلى فوائده للمنظمة.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
-                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب (أستاذ إدارة الأعمال، جامعة الأزهر)</div>
+                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
                         <div class="flex items-center gap-2"><span>📅</span> السبت 7 مارس 2026م</div>
-                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة ترقيات الأساتذة</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
                         <div class="flex items-center gap-2"><span>📧</span> Dr.olfat@azhar.edu.eg</div>
                     </div>
                 </div>
 
-                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🌟</span> أهمية التخطيط الإستراتيجي</h3>
-                <p class="mb-6 text-gray-600">تكمن أهمية التخطيط الإستراتيجي للتسويق في مساعدة المنظمات على الاستعداد للمستقبل من خلال:</p>
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🌟</span> ما هو التخطيط الإستراتيجي؟</h3>
+                <p class="mb-6 text-gray-600">هو أسلوب عمل متكامل لتحقيق الأهداف الموضوعية للمنظمة وللمستهلك من خلال مختلف عناصر المزيج التسويقي، وفي ضوء الموارد المتاحة.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
-                        <div class="text-4xl mb-4">🌍</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">تحليل المتغيرات البيئية</h4>
-                        <p class="text-gray-600 text-sm mb-3">فهم التغيرات التكنولوجية والسياسية والاقتصادية وكيفية تأثيرها.</p>
-                        <div class="bg-sky-50 text-sky-800 p-3 rounded-lg text-sm border-r-2 border-sky-400">
-                            <strong>مثال واقعي:</strong> تخطيط "نوكيا" الضعيف للمتغير التكنولوجي (ظهور الهواتف الذكية) أدى لخروجها من المنافسة.
+                        <div class="text-4xl mb-4">🧩</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">أسلوب عمل متكامل</h4>
+                        <p class="text-gray-600 mb-3">شرح: التخطيط ليس خطوة واحدة بل نظام شامل يربط كل أجزاء الشركة معاً نحو رؤية موحدة للمستقبل.</p>
+                        <div class="bg-sky-50 p-3 rounded text-sm text-sky-800 border-r-2 border-sky-400">
+                            <strong>مثال واقعي:</strong> وضع خطة خمسية لشركة سامسونج تشمل تطوير الإنتاج والتسويق معاً لاكتساح السوق الموبايلات.
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
                         <div class="text-4xl mb-4">🎯</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">تحديد الأسواق المستهدفة</h4>
-                        <p class="text-gray-600 text-sm mb-3">اختيار القطاعات السوقية المناسبة بدقة وتوجيه الجهود نحوها.</p>
-                        <div class="bg-amber-50 text-amber-800 p-3 rounded-lg text-sm border-r-2 border-amber-400">
-                            <strong>مثال واقعي:</strong> تركيز شركة "رولكس" جهودها على قطاع الأثرياء فقط وعدم التشتت في أسواق أخرى.
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">تحقيق الأهداف</h4>
+                        <p class="text-gray-600 mb-3">شرح: الهدف هو إرضاء المستهلك وتحقيق أرباح للمنظمة في نفس الوقت من خلال رؤية واضحة.</p>
+                        <div class="bg-amber-50 p-3 rounded text-sm text-amber-800 border-r-2 border-amber-400">
+                            <strong>مثال واقعي:</strong> هدف شركة نتفليكس زيادة المشتركين 20%، وتخطط لذلك بإنتاج مسلسلات حصرية محلية.
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-colors">
-                        <div class="text-4xl mb-4">⚙️</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">تصميم المزيج التسويقي</h4>
-                        <p class="text-gray-600 text-sm mb-3">صياغة مزيج فعال (منتج، سعر، توزيع، ترويج) يلائم احتياجات المستهلك.</p>
-                        <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg text-sm border-r-2 border-emerald-400">
-                            <strong>مثال واقعي:</strong> مزيج "ماكدونالدز" يعتمد على توحيد الطعم (منتج) والسرعة (توزيع) بأسعار تنافسية.
+                        <div class="text-4xl mb-4">📦</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">توظيف المزيج التسويقي</h4>
+                        <p class="text-gray-600 mb-3">شرح: التخطيط يشمل التعديل على (المنتج، السعر، التوزيع، الترويج) لضمان التوافق مع السوق.</p>
+                        <div class="bg-emerald-50 p-3 rounded text-sm text-emerald-800 border-r-2 border-emerald-400">
+                            <strong>مثال واقعي:</strong> تخطيط ماكدونالدز لإضافة منتجات نباتية (تعديل منتج) وتخفيض أسعارها (تعديل سعر) لجذب فئة جديدة.
                         </div>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-300 transition-colors">
-                        <div class="text-4xl mb-4">🔮</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">التنبؤ بالمستقبل</h4>
-                        <p class="text-gray-600 text-sm mb-3">الاستعداد للمخاطر وتوقع الاتجاهات المستقبلية مبكراً.</p>
-                        <div class="bg-purple-50 text-purple-800 p-3 rounded-lg text-sm border-r-2 border-purple-400">
-                            <strong>مثال واقعي:</strong> تنبؤ "نتفليكس" المبكر بنهاية عصر أشرطة الفيديو والتحول للبث المباشر (Streaming).
+                        <div class="text-4xl mb-4">💎</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">في ضوء الموارد المتاحة</h4>
+                        <p class="text-gray-600 mb-3">شرح: الخطة الناجحة هي التي لا تتجاوز الموارد المالية والبشرية والمادية المتاحة داخل المنظمة.</p>
+                        <div class="bg-purple-50 p-3 rounded text-sm text-purple-800 border-r-2 border-purple-400">
+                            <strong>مثال واقعي:</strong> شركة ناشئة تخطط للتسويق عبر وسائل التواصل الاجتماعي (مورد قليل التكلفة) بدلاً من التلفزيون.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="concept" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <!-- Section 2: Internal Environment (Adapted for Benefits) -->
+        <section id="internal" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">متطلبات الخطة الإستراتيجية الناجحة</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">لكي تكون الخطة الإستراتيجية التسويقية فعالة وتحقق أهدافها، يجب أن يتوافر بها مجموعة من المتطلبات الأساسية. انقر على كل عنصر للتفاصيل.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">فوائد التخطيط الإستراتيجي التسويقي</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">يوفر التخطيط السليم العديد من المزايا القوية التي تضمن تفوق المنظمة. انقر على كل فائدة لمعرفة تفاصيلها.</p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-4 mb-8" id="conceptButtons">
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="internalButtons">
+                    <!-- Buttons generated by JS -->
                 </div>
 
-                <div id="conceptDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[200px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
-                    <div class="text-5xl mb-4">💡</div>
-                    <h3 class="text-2xl font-bold text-sky-800 mb-2">اختر أحد المتطلبات أعلاه</h3>
-                    <p class="text-gray-600 text-lg">لاستكشاف الركائز الأساسية التي تضمن نجاح التخطيط الإستراتيجي التسويقي.</p>
+                <div id="internalDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[200px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">📈</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">اختر إحدى الفوائد أعلاه</h3>
+                    <p class="text-gray-600 text-lg">لاستكشاف دور التخطيط الإستراتيجي في تحسين أداء المنظمة التسويقي.</p>
                 </div>
             </div>
         </section>
 
-        <section id="markets" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- Section 3: External Environment (Adapted for Requirements & Steps) Tabs -->
+        <section id="external" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
-                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">خطوات التخطيط والتحليل البيئي</h2>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2"><span>📝</span> خطوات التخطيط الأساسية</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white p-5 rounded-lg shadow-sm border-r-4 border-sky-500">
-                                <p class="text-gray-700"><strong>1. تحديد رسالة المنظمة:</strong> الغرض الأساسي من وجود المنظمة في السوق وماذا تقدم للمجتمع.</p>
-                            </div>
-                            <div class="bg-white p-5 rounded-lg shadow-sm border-r-4 border-amber-500">
-                                <p class="text-gray-700"><strong>2. تحديد الأهداف:</strong> أهداف واضحة، قابلة للقياس، واقعية، ومحددة بوقت معين.</p>
-                            </div>
-                            <div class="bg-white p-5 rounded-lg shadow-sm border-r-4 border-emerald-500">
-                                <p class="text-gray-700"><strong>3. التحليل البيئي:</strong> دراسة العوامل الداخلية والخارجية التي تؤثر على قرارات التسويق.</p>
-                            </div>
-                            <div class="bg-white p-5 rounded-lg shadow-sm border-r-4 border-purple-500">
-                                <p class="text-gray-700"><strong>4. التنفيذ والرقابة:</strong> وضع الخطة موضع التنفيذ مع متابعة وتقييم الأداء باستمرار للتصحيح.</p>
-                            </div>
-                        </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">المتطلبات والخطوات</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">لنجاح الإستراتيجية التسويقية، يجب توفر متطلبات محددة قبل البدء، ثم اتباع خطوات علمية مرتبة.</p>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('micro')" id="btn-micro" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">المتطلبات (Requirements)</button>
+                        <button onclick="switchTab('macro')" id="btn-macro" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">الخطوات (Steps)</button>
                     </div>
-                    
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden h-full">
-                        <div class="flex border-b border-gray-200">
-                            <button onclick="switchTab('goods')" id="btn-goods" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">البيئة الداخلية</button>
-                            <button onclick="switchTab('services')" id="btn-services" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">البيئة الخارجية</button>
-                        </div>
-                        <div class="p-8">
-                            <div id="content-goods" class="block">
-                                <h4 class="text-xl font-bold text-sky-800 mb-4">تحليل البيئة الداخلية (Internal)</h4>
-                                <p class="text-gray-600 mb-4">هي العوامل التي تقع <strong>داخل سيطرة</strong> إدارة المنظمة وتحدد إمكانياتها الذاتية.</p>
-                                <ul class="space-y-3 mb-6">
-                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">✔️</span> <strong>الموارد المالية:</strong> حجم الميزانية والتدفقات النقدية.</li>
-                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">✔️</span> <strong>الموارد البشرية:</strong> مهارات وكفاءة العاملين بالمنظمة.</li>
-                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">✔️</span> <strong>القدرات الإنتاجية:</strong> التكنولوجيا المستخدمة في خطوط الإنتاج.</li>
-                                </ul>
-                                <div class="bg-sky-50 p-4 rounded-lg border-r-4 border-sky-400 text-sm">
-                                    <strong class="text-sky-800">مثال واقعي:</strong> اكتشاف شركة "المراعي" أن لديها شبكة توزيع ومهارات لوجستية (بيئة داخلية قوية) مكنتها من التوسع السريع.
+                    <div class="p-8">
+                        <!-- Micro Environment (Requirements) -->
+                        <div id="content-micro" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">متطلبات الإستراتيجية التسويقية الناجحة</h4>
+                            <p class="text-gray-600 mb-6">هي الأسس التي يجب أن ترتكز عليها الإدارة لضمان وضع خطة قابلة للتنفيذ.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">👑</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">1. دعم الإدارة العليا</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح: التخطيط يحتاج إلى موافقة ودعم مالي ومعنوي من قادة المنظمة.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال: موافقة رئيس مجلس الإدارة على ميزانية إطلاق خط إنتاج جديد.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">📊</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">2. توافر المعلومات الدقيقة</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح: الاعتماد على بحوث التسويق لفهم السوق والمنافسين وليس التخمين.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال: استخدام بيانات المبيعات السابقة لتوقع حجم الطلب في رمضان القادم.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">🤸‍♂️</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">3. المرونة القابلة للتعديل</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح: القدرة على تعديل الخطة إذا تغيرت الظروف البيئية فجأة.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال: تعديل خطة التسويق للتحول للأونلاين فوراً عند حدوث أزمة مثل كورونا.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">🤝</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">4. المشاركة والتنسيق</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح: ضرورة اشتراك كافة الأقسام (الإنتاج، التمويل، الموارد البشرية) في التخطيط.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال: تنسيق التسويق مع الإنتاج لضمان توفر الكميات الكافية قبل إطلاق الإعلان.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="content-services" class="hidden">
-                                <h4 class="text-xl font-bold text-amber-600 mb-4">تحليل البيئة الخارجية (External)</h4>
-                                <p class="text-gray-600 mb-4">هي العوامل التي تقع <strong>خارج سيطرة</strong> الإدارة ولكنها تؤثر بشدة على فرصها وتهديداتها.</p>
-                                <ul class="space-y-3 mb-6">
-                                    <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">🌍</span> <strong>البيئة الاقتصادية:</strong> التضخم، القوة الشرائية، والضرائب.</li>
-                                    <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">👥</span> <strong>البيئة التنافسية:</strong> سياسات المنافسين وأسعارهم.</li>
-                                    <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">📜</span> <strong>البيئة القانونية:</strong> التشريعات وقوانين حماية المستهلك.</li>
-                                </ul>
-                                <div class="bg-amber-50 p-4 rounded-lg border-r-4 border-amber-400 text-sm">
-                                    <strong class="text-amber-800">مثال واقعي:</strong> أزمة الرقائق الإلكترونية العالمية (بيئة خارجية) التي أجبرت شركات السيارات على تقليل إنتاجها رغم وجود طلب.
+                        </div>
+                        
+                        <!-- Macro Environment (Steps) -->
+                        <div id="content-macro" class="hidden">
+                            <h4 class="text-xl font-bold text-amber-600 mb-4">خطوات التخطيط الإستراتيجي التسويقي</h4>
+                            <p class="text-gray-600 mb-6">مراحل متسلسلة يجب المرور بها للخروج بخطة إستراتيجية قوية وفعالة.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-amber-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>1️⃣</span> تحديد رسالة المنظمة وأهدافها</h5>
+                                    <p class="text-sm text-gray-600 mt-1">معرفة سبب وجود الشركة وماذا تريد أن تصل إليه مستقبلاً.</p>
+                                    <p class="text-xs text-amber-700 mt-2 font-bold">مثال: رسالة جوجل "تنظيم معلومات العالم وجعلها متاحة ومفيدة للجميع".</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-emerald-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>2️⃣</span> تحليل الموقف (SWOT)</h5>
+                                    <p class="text-sm text-gray-600 mt-1">دراسة البيئة الداخلية (نقاط قوة وضعف) والخارجية (فرص وتهديدات).</p>
+                                    <p class="text-xs text-emerald-700 mt-2 font-bold">مثال: دراسة قوة علامة تجارية مقابل تهديد دخول منافس صيني جديد.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-blue-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>3️⃣</span> صياغة الإستراتيجيات</h5>
+                                    <p class="text-sm text-gray-600 mt-1">تطوير الخطط والبدائل لتحقيق الأهداف بناءً على التحليل السابق.</p>
+                                    <p class="text-xs text-blue-700 mt-2 font-bold">مثال: إستراتيجية التوسع بفتح فروع جديدة في دول الخليج.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-purple-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>4️⃣</span> تصميم المزيج التسويقي والتنفيذ</h5>
+                                    <p class="text-sm text-gray-600 mt-1">وضع السياسات للمنتج، السعر، التوزيع، والترويج، والبدء في التنفيذ والرقابة.</p>
+                                    <p class="text-xs text-purple-700 mt-2 font-bold">مثال: إطلاق المنتج بالسعر المخطط له، وبدء حملة الترويج ومراقبة المبيعات.</p>
                                 </div>
                             </div>
                         </div>
@@ -235,86 +268,113 @@
             </div>
         </section>
 
-        <section id="mix" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <!-- Section 4: SWOT Analysis -->
+        <section id="reasons" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">تحليل سوات (SWOT Analysis)</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">أداة تخطيط استراتيجي تُستخدم لتقييم نقاط القوة والضعف (عوامل داخلية)، والفرص والتهديدات (عوامل خارجية) المرتبطة بالمشروع.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">تحليل الموقف (SWOT) ودور التسويق</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">تحليل نقاط القوة والضعف (بيئة داخلية) والفرص والتحديات (بيئة خارجية)، وما هو دور رجال التسويق للتعامل معها.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     <div class="mix-card bg-gradient-to-br from-emerald-50 to-white p-8 rounded-2xl border border-emerald-100 transition-all duration-300 cursor-pointer group">
                         <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">S</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">نقاط القوة <span class="text-emerald-600 text-lg ml-2">(Strengths)</span></h3>
-                        <p class="text-gray-600 mb-3">ميزات داخلية إيجابية تمنح المنظمة تفوقاً على منافسيها (مثل: علامة تجارية قوية، براءات اختراع).</p>
-                        <p class="text-sm bg-emerald-100 text-emerald-800 p-2 rounded"><strong>مثال:</strong> ولاء العملاء العالي لمنتجات شركة آبل.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">نقاط القوة (Strengths)</h3>
+                        <p class="text-gray-600 mb-3">شرح: الميزات التي تمتلكها المنظمة داخلياً مثل سمعة جيدة، فريق قوي، أو تقنية فريدة.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-emerald-800 font-medium">
+                            <span class="font-bold">دور التسويق:</span> الحفاظ على هذه النقاط، وإبرازها في الإعلانات، واستغلالها لزيادة المبيعات.
+                        </div>
                     </div>
                     <div class="mix-card bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl border border-red-100 transition-all duration-300 cursor-pointer group">
                         <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-red-500 group-hover:text-white transition-colors">W</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">نقاط الضعف <span class="text-red-600 text-lg ml-2">(Weaknesses)</span></h3>
-                        <p class="text-gray-600 mb-3">عوامل داخلية سلبية تعيق أداء المنظمة وتقلل من تنافسيتها (مثل: ضعف التمويل، تكنولوجيا قديمة).</p>
-                        <p class="text-sm bg-red-100 text-red-800 p-2 rounded"><strong>مثال:</strong> بطء سلسلة التوريد وتسليم المنتجات.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">نقاط الضعف (Weaknesses)</h3>
+                        <p class="text-gray-600 mb-3">شرح: العيوب الداخلية مثل نقص التمويل، أو ضعف مهارات رجال البيع، أو آلات قديمة.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-red-800 font-medium">
+                            <span class="font-bold">دور التسويق:</span> وضع برامج علاجية، مثل تدريب القوى العاملة ورجال البيع لمواجهة هذه المشكلات.
+                        </div>
                     </div>
-                    <div class="mix-card bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-sky-100 transition-all duration-300 cursor-pointer group">
-                        <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-sky-500 group-hover:text-white transition-colors">O</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">الفرص <span class="text-sky-600 text-lg ml-2">(Opportunities)</span></h3>
-                        <p class="text-gray-600 mb-3">ظروف خارجية إيجابية يمكن للمنظمة استغلالها لتحقيق نمو وأرباح (مثل: الدخول لأسواق جديدة).</p>
-                        <p class="text-sm bg-sky-100 text-sky-800 p-2 rounded"><strong>مثال:</strong> التصدير لأسواق خارجية بسبب انخفاض قيمة العملة المحلية.</p>
+                    <div class="mix-card bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border border-blue-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-blue-500 group-hover:text-white transition-colors">O</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">الفرص الممكنة (Opportunities)</h3>
+                        <p class="text-gray-600 mb-3">شرح: ظروف خارجية يمكن استغلالها مثل: التصدير لأسواق أخرى، الحصول على قروض بفوائد جيدة، مركز مالي قوي.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-blue-800 font-medium">
+                            <span class="font-bold">دور التسويق:</span> معرفة أذواق المستهلكين في الأسواق الجديدة، وإعادة النظر في توزيع الموارد المالية لزيادة الربحية.
+                        </div>
                     </div>
                     <div class="mix-card bg-gradient-to-br from-amber-50 to-white p-8 rounded-2xl border border-amber-100 transition-all duration-300 cursor-pointer group">
                         <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">T</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">التهديدات <span class="text-amber-600 text-lg ml-2">(Threats)</span></h3>
-                        <p class="text-gray-600 mb-3">تحديات أو مخاطر خارجية قد تضر بالمنظمة (مثل: منافسون جدد، قوانين مقيدة).</p>
-                        <p class="text-sm bg-amber-100 text-amber-800 p-2 rounded"><strong>مثال:</strong> ظهور تكنولوجيا بديلة رخيصة تلغي الحاجة لمنتجك.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">التهديدات (Threats)</h3>
+                        <p class="text-gray-600 mb-3">شرح: ظروف خارجية تضر المنظمة مثل: قوانين جديدة، اتفاقيات وبروتوكولات مقيدة، منافس شرس.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-amber-800 font-medium">
+                            <span class="font-bold">دور التسويق:</span> تعديل المزيج التسويقي لجعله أكثر قدرة على المنافسة في الأسواق المحلية والخارجية.
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="evolution" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- Section 5: Implementation Timeline -->
+        <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
-                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">فوائد التخطيط الإستراتيجي التسويقي</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التسلسل الزمني لتنفيذ الخطة الإستراتيجية</h2>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>📈</span> تأثير التخطيط على الأداء</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>⏳</span> مراحل التخطيط والتنفيذ</h3>
                         <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
                             <div class="relative">
-                                <div class="absolute -right-[34px] bg-sky-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
-                                <h4 class="text-xl font-bold text-gray-800">1. تقليل التهديدات البيئية</h4>
-                                <p class="text-gray-600 mt-1">تحديد التغييرات التي تحدث وأثرها على السوق والمنافسين مبكراً لحماية المنظمة.</p>
+                                <div class="absolute -right-[34px] bg-gray-400 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">1. تحديد الاتجاه الاستراتيجي</h4>
+                                <p class="text-gray-600 mt-1">تحديد الرؤية والرسالة والأهداف الكبرى التي تطمح المنظمة للوصول إليها.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: شركة سيارات تقرر التوجه نحو السيارات الكهربائية بالكامل بحلول 2030.</p>
                             </div>
                             <div class="relative">
-                                <div class="absolute -right-[34px] bg-sky-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
-                                <h4 class="text-xl font-bold text-gray-800">2. زيادة فاعلية الإعلان</h4>
-                                <p class="text-gray-600 mt-1">توصيل الرسالة للعملاء الحاليين والمرتقبين بدقة ومقابلة احتياجاتهم الحقيقية.</p>
+                                <div class="absolute -right-[34px] bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">2. دراسة البيئة التسويقية</h4>
+                                <p class="text-gray-600 mt-1">استخدام تحليل SWOT لتحديد وضع المنظمة الحالي بالنسبة للمنافسين والسوق.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: اكتشاف أن التكلفة العالية للبطاريات تمثل نقطة ضعف (W).</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">3. صياغة الاستراتيجيات والبرامج</h4>
+                                <p class="text-gray-600 mt-1">ترجمة الأهداف إلى خطط عملية وتكتيكات وتحديد الميزانيات المطلوبة لها.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: رصد ميزانية 10 ملايين لإنشاء مصنع بطاريات لخفض التكلفة.</p>
                             </div>
                             <div class="relative">
                                 <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow animate-pulse"></div>
-                                <h4 class="text-xl font-bold text-sky-700">3. تطوير سياسات التسعير والمنتج</h4>
-                                <p class="text-gray-600 mt-1">تطوير استراتيجية التسعير لتحقيق أعلى الفوائد، وتحديث المنتج ليواكب العصر.</p>
+                                <h4 class="text-xl font-bold text-sky-700">4. التنفيذ والرقابة</h4>
+                                <p class="text-gray-600 mt-1">تطبيق المزيج التسويقي على أرض الواقع ومتابعة النتائج لتصحيح الأخطاء.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-sky-50 p-2 inline-block rounded border border-sky-200">مثال: إطلاق السيارات الجديدة ومتابعة المبيعات شهرياً وتعديل الأسعار إن لزم الأمر.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-2xl font-bold text-amber-600 mb-6 flex items-center gap-2"><span>🏢</span> النقلة النوعية للمنظمة</h3>
+                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>🎯</span> جوهر التخطيط الإستراتيجي</h3>
                         
                         <div class="space-y-6">
-                            <div class="p-4 bg-gray-50 rounded-lg border-r-4 border-gray-400">
-                                <h4 class="font-bold text-gray-800 mb-1">بدون تخطيط استراتيجي</h4>
-                                <p class="text-sm text-gray-600">عشوائية في اتخاذ القرارات، تفاعل برد فعل (Reactive) مع الأزمات، إهدار للموارد المالية في حملات غير موجهة.</p>
+                            <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200 text-center">
+                                <h4 class="font-bold text-emerald-800 text-xl mb-3">التوازن الإستراتيجي المثالي</h4>
+                                <p class="text-gray-700 mb-4">يعتمد نجاح أي خطة تسويقية إستراتيجية على إيجاد التوافق التام بين قدرات الشركة واحتياجات السوق الحقيقية.</p>
+                                
+                                <div class="flex justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-4">
+                                    <div class="bg-white p-2 rounded shadow-sm border">الموارد والإمكانيات</div>
+                                    <div class="text-xl">↔️</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border">أهداف المنظمة</div>
+                                    <div class="text-xl">↔️</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border">فرص السوق</div>
+                                </div>
                             </div>
-                            <div class="text-center text-gray-400 text-xl">⬇️</div>
-                            <div class="p-4 bg-sky-50 rounded-lg border-r-4 border-sky-400">
-                                <h4 class="font-bold text-gray-800 mb-1">العملية التخطيطية</h4>
-                                <p class="text-sm text-gray-600">دراسة الموقف، جمع البيانات، تحليل SWOT، توجيه وتدريب رجال البيع والقوى العاملة.</p>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                                <h4 class="font-bold text-gray-800 mb-1">شرح مبسط:</h4>
+                                <p class="text-sm text-gray-600">لا يمكن وضع أهداف ضخمة إذا كانت الموارد ضعيفة، ولا فائدة من موارد ضخمة إذا لم تكن هناك فرصة حقيقية في السوق.</p>
                             </div>
-                            <div class="text-center text-sky-400 text-xl">⬇️</div>
-                            <div class="p-4 bg-emerald-50 rounded-lg border-r-4 border-emerald-500">
-                                <h4 class="font-bold text-emerald-800 mb-1">النتيجة: الريادة بالسوق</h4>
-                                <p class="text-sm text-gray-700">فعل استباقي (Proactive)، كفاءة في الإنفاق، ولاء من العملاء، ومركز مالي قوي قادر على النمو وجذب الاستثمار.</p>
+                            
+                            <div class="p-4 bg-sky-50 rounded-lg border-l-4 border-sky-400">
+                                <h4 class="font-bold text-sky-800 mb-1">مثال من الحياة الواقعية:</h4>
+                                <p class="text-sm text-gray-700">شركة "كوداك" كان لديها موارد هائلة وأهداف كبيرة، ولكنها فشلت في التخطيط الإستراتيجي لأنها تجاهلت "فرص وتغيرات السوق" المتعلقة بالتصوير الرقمي، فاختل التوازن وسقطت الشركة.</p>
                             </div>
                         </div>
                     </div>
@@ -323,297 +383,270 @@
             </div>
         </section>
 
-        <section id="challenges" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+        <!-- Section 6: Radar Chart (Marketing Mix) -->
+        <section id="macro_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">المتغيرات البيئية المؤثرة في الخطة الإستراتيجية</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">يوضح هذا الرسم البياني أبرز المتغيرات البيئية الكلية التي يجب مراعاتها أثناء التخطيط لتجنب المخاطر واستغلال الفرص.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">عناصر المزيج التسويقي المستهدفة بالتخطيط</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">التخطيط الإستراتيجي التسويقي يهدف في النهاية إلى التحكم وتعديل هذه العناصر الستة لتناسب ظروف السوق وتتغلب على التهديدات.</p>
                 </div>
 
                 <div class="chart-container">
-                    <canvas id="challengesChart"></canvas>
+                    <canvas id="macroChart"></canvas>
                 </div>
                 
                 <div class="mt-8 text-center text-sm text-gray-500">
-                    <p>المصدر: ملخص المحاضرة الثالثة - إدارة التسويق (التحليل البيئي)</p>
+                    <p>المصدر: المحاضرة الثالثة - التخطيط الإستراتيجي التسويقي</p>
                 </div>
             </div>
         </section>
 
-        <!-- Quiz Section (Expanded to 20 Questions) -->
-        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-sky-50 flex flex-col justify-center">
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-4">📝 اختبر نفسك</h2>
-                    <p class="text-lg text-gray-600">20 سؤال شامل لتأكيد فهمك لمفاهيم المحاضرة الثالثة.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">تأكد من استيعابك لمفاهيم التخطيط الإستراتيجي التسويقي من خلال هذه الأسئلة.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">1. يعتبر "ظهور تقنية ذكاء اصطناعي جديدة في السوق" في تحليل SWOT بمثابة:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) نقطة قوة (Strength)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) نقطة ضعف (Weakness)</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) فرصة أو تهديد (Opportunity/Threat)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) بيئة داخلية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: ما هو المفهوم الذي يعبر عن أسلوب عمل متكامل لتحقيق أهداف المنظمة والمستهلك عبر المزيج التسويقي وفي ضوء الموارد المتاحة؟</h3>
+                        <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans1" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التخطيط الإستراتيجي التسويقي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هذا هو التعريف الشامل الذي ذكرته أ.د/ ألفت إبراهيم في المحاضرة.</p>
                         </div>
                     </div>
 
                     <!-- Q2 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">2. التخطيط الإستراتيجي التسويقي يساعد المنظمة على التفاعل باستباقية بدلاً من رد الفعل العشوائي.</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) عبارة صحيحة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) عبارة خاطئة</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: من فوائد التخطيط الإستراتيجي تقليل الـ......... التي تتعرض لها المنظمة.</h3>
+                        <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans2" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التهديدات (Threats).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التخطيط يساعد على التنبؤ بالتغيرات في البيئة والمنافسة وتقليل أثرها السلبي.</p>
                         </div>
                     </div>
 
                     <!-- Q3 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">3. من أهم فوائد التخطيط الإستراتيجي للتسويق:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) القضاء التام على المنافسين</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) تقليل الموارد البشرية للمنظمة</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تقليل التهديدات وزيادة فاعلية الإعلان</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التركيز فقط على جودة الإنتاج</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: كيف يساعد التخطيط الإستراتيجي التسويقي في مجال "الإعلان"؟</h3>
+                        <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans3" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: زيادة فاعلية الإعلان في توصيل الرسالة للعملاء الحاليين والمرتقبين.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التخطيط يحدد الجمهور المستهدف بدقة مما يجعل الإعلان موجهاً ومؤثراً.</p>
                         </div>
                     </div>
 
                     <!-- Q4 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">4. ما هي أول خطوة في خطوات التخطيط الإستراتيجي التسويقي؟</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التنفيذ والرقابة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) التحليل البيئي</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تحديد رسالة المنظمة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) تصميم المزيج التسويقي</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: في تحليل SWOT، وجود "فريق عمل مدرب ومتميز" يعتبر ضمن...</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: نقاط القوة (Strengths).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها ميزة داخلية تمتلكها المنظمة وتتجاوز بها منافسيها.</p>
                         </div>
                     </div>
 
                     <!-- Q5 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">5. الموارد المالية والبشرية والقدرات الإنتاجية تصنف ضمن:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) البيئة الداخلية (Internal Environment)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة الخارجية (External Environment)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) الفرص التسويقية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التهديدات البيئية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س5: ما هو دور رجل التسويق تجاه نقاط الضعف (Weaknesses) في المنظمة؟</h3>
+                        <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans5" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: تدريب القوى العاملة ورجال البيع لاكتساب مهارات لمواجهة المشكلات وتلبية حاجات العملاء.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: بناءً على المرفق، التدريب هو الحل الجوهري لنقاط الضعف الداخلية المتعلقة بالبشر.</p>
                         </div>
                     </div>
 
                     <!-- Q6 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">6. المتطلب الذي يعني "قدرة الخطة على التكيف لمواجهة التغيرات المفاجئة في البيئة" هو:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الشمولية</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) المرونة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) الاستمرارية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الواقعية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س6: التصدير إلى الأسواق الأخرى والحصول على قروض بفوائد جيدة، يعتبر في تحليل SWOT...</h3>
+                        <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans6" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: فرص (Opportunities).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي ظروف خارجية إيجابية يمكن للمنظمة استغلالها للنمو والتوسع.</p>
                         </div>
                     </div>
 
                     <!-- Q7 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">7. التضخم والقوة الشرائية والضرائب تعتبر أمثلة على:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) البيئة التكنولوجية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة التنافسية</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) البيئة الاقتصادية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) البيئة الداخلية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س7: ما هو دور التسويق عند وجود فرصة تصدير لأسواق خارجية؟</h3>
+                        <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans7" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: معرفة أذواق المستهلكين في تلك الأسواق، والبحث عن استخدامات مربحة للنقدية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لا يمكن دخول سوق جديد دون دراسة أذواق مستهلكيه لتعديل المنتج لهم.</p>
                         </div>
                     </div>
 
                     <!-- Q8 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">8. "بناء الخطة بناءً على احتياجات ورغبات المستهلكين بدلاً من التركيز على المنتج فقط" يعكس متطلب:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الواقعية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) الرؤية الواضحة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) القابلية للقياس</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">د) التوجه بالسوق</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س8: فرض الدولة لاتفاقيات أو بروتوكولات جديدة تقيد حركة التجارة، يُصنف في التخطيط على أنه...</h3>
+                        <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans8" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: تهديدات (Threats).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها قوى بيئية خارجية تفرض قيوداً وتصعب عمل المنظمة.</p>
                         </div>
                     </div>
 
                     <!-- Q9 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">9. ميزات داخلية إيجابية تمنح المنظمة تفوقاً على منافسيها تعبر في تحليل SWOT عن:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) نقاط القوة (Strengths)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) الفرص (Opportunities)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) نقاط الضعف (Weaknesses)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التهديدات (Threats)</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س9: كيف يواجه رجل التسويق التهديدات مثل الاتفاقيات أو المنافسة الشرسة؟</h3>
+                        <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans9" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: عبر تعديل المزيج التسويقي لجعله أكثر قدرة على المنافسة محلياً وخارجياً.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: سلاح المسوق هو المزيج التسويقي (تغيير السعر، تحسين المنتج، تكثيف الترويج).</p>
                         </div>
                     </div>
 
                     <!-- Q10 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">10. امتلاك المنظمة لآلات إنتاج قديمة وبطيئة يمثل في تحليل SWOT:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) تهديد خارجي</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) نقطة ضعف داخلية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) نقطة قوة داخلية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) فرصة خارجية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س10: تطوير استراتيجية التسعير لتحقيق أعلى فوائد منها، هو من...</h3>
+                        <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans10" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: فوائد التخطيط الإستراتيجي التسويقي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التخطيط المسبق يتيح للمنظمة مرونة وذكاء في وضع أسعار تزيد من أرباحها ورضا العملاء.</p>
                         </div>
                     </div>
 
                     <!-- Q11 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">11. وضع مؤشرات أداء (KPIs) لتقييم مدى نجاح الخطة وتصحيحها يعكس متطلب:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الشمولية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) المرونة</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) القابلية للقياس</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الاستمرارية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س11: هل يركز التخطيط الإستراتيجي التسويقي على أهداف المنظمة فقط؟</h3>
+                        <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans11" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: لا، يركز على تحقيق أهداف المنظمة والمستهلك معاً.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الإشباع المتبادل هو جوهر التسويق الحديث كما جاء في تعريف التخطيط.</p>
                         </div>
                     </div>
 
                     <!-- Q12 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">12. قوانين حماية المستهلك والتشريعات الحكومية تندرج تحت:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) البيئة التشريعية والقانونية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة الديموجرافية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) البيئة التنافسية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) البيئة الداخلية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س12: من الخطوات الأساسية في التخطيط الإستراتيجي إجراء تحليل "SWOT"، إلى ماذا ترمز هذه الحروف؟</h3>
+                        <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans12" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: Strengths, Weaknesses, Opportunities, Threats.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: أي نقاط القوة، الضعف، الفرص، والتهديدات.</p>
                         </div>
                     </div>
 
                     <!-- Q13 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">13. الإدارة التي تخطط استراتيجياً تتميز بأن فعلها ومواجهتها للتحديات يكون:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) رد فعل عشوائي (Reactive)</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) فعل استباقي (Proactive)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) فعل متأخر</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) لا يوجد إجابة صحيحة</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س13: يتم وضع الخطة الإستراتيجية التسويقية في ضوء أمر مهم جداً داخل المنظمة لضمان واقعيتها، ما هو؟</h3>
+                        <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans13" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: في ضوء الموارد المالية والمادية والبشرية المتاحة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الخطة التي تتجاهل حدود الموارد المتاحة تفشل عند التنفيذ.</p>
                         </div>
                     </div>
 
                     <!-- Q14 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">14. التخطيط الإستراتيجي التسويقي يقتصر فقط على قسم التسويق ولا يحتاج لدمج الإدارات الأخرى كالتمويل والإنتاج.</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) عبارة صحيحة</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) عبارة خاطئة (يخالف متطلب الشمولية)</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س14: تطوير الإستراتيجية الخاصة بالمنتج يعتبر من...</h3>
+                        <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans14" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: فوائد التخطيط الإستراتيجي التسويقي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التخطيط يجعل المنظمة استباقية في تطوير منتجاتها لمواكبة السوق.</p>
                         </div>
                     </div>
 
                     <!-- Q15 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">15. "اختيار القطاعات السوقية المناسبة بدقة وتوجيه الجهود نحوها" يشير إلى:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التنبؤ بالمستقبل</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) تصميم المزيج التسويقي</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تحديد الأسواق المستهدفة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) تحليل البيئة التكنولوجية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س15: التمتع بمركز مالي قوي للشركة يصنف تحت أي بند في تحليل الموقف؟</h3>
+                        <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans15" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: يعتبر من الفرص الممكنة (أو نقاط القوة إذا كان نابعاً من الإدارة الذاتية، ولكن في سياق المحاضرة صُنف ضمن الفرص المتاحة للتوسع).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: المركز المالي القوي يتيح للشركة استغلال الفرص الخارجية كشراء منافسين أو التصدير.</p>
                         </div>
                     </div>
 
                     <!-- Q16 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">16. وفقاً لخطوات التخطيط، الأهداف الناجحة للمنظمة يجب أن تكون:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) واضحة وقابلة للقياس</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) واقعية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) محددة بوقت معين</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">د) جميع ما سبق</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س16: التغيرات التي تحدث في السوق والمنافسين تعتبر جزء من...</h3>
+                        <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans16" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة المحيطة بالمنظمة (والتي قد تشكل تهديدات أو فرصاً).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها قوى خارجة عن السيطرة المباشرة للمنظمة ولكن تؤثر عليها بقوة.</p>
                         </div>
                     </div>
 
                     <!-- Q17 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">17. سياسات المنافسين وأسعارهم في السوق تمثل البيئة التنافسية، والتي تقع:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) داخل سيطرة الإدارة بالكامل</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) خارج سيطرة الإدارة (بيئة خارجية)</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) ضمن الموارد البشرية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) ضمن القدرات الإنتاجية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س17: ما هو العنصر الأساسي الذي يستخدمه مدير التسويق لتنفيذ الخطة الإستراتيجية والوصول للعميل؟</h3>
+                        <button onclick="toggleAnswer('ans17', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans17" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: عناصر المزيج التسويقي (المنتج، السعر، التوزيع، الترويج).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: المزيج التسويقي هو الأداة التنفيذية والأسلحة التي يواجه بها المسوق السوق.</p>
                         </div>
                     </div>
 
                     <!-- Q18 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">18. أي مما يلي يُعد من النتائج الإيجابية المباشرة لتطبيق التخطيط الإستراتيجي التسويقي؟</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) تطوير سياسات التسعير والمنتج بشكل فعال</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) زيادة التكاليف العشوائية</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) تجاهل تدريب القوى العاملة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الانعزال عن دراسة السوق</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س18: "البحث عن استخدامات مربحة جديدة للنقدية بالمنظمة" هو من أدوار رجال التسويق عند التعامل مع...</h3>
+                        <button onclick="toggleAnswer('ans18', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans18" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الفرص الممكنة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: استثمار السيولة الزائدة في ابتكار منتجات أو دخول أسواق جديدة هو استغلال أمثل للفرص.</p>
                         </div>
                     </div>
 
                     <!-- Q19 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">19. متطلب "الشمولية" في الخطة الإستراتيجية يعني:</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التركيز على المنتجات فقط</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) المرونة في التعديل وقت الأزمات</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) أن تغطي الخطة كافة جوانب المنظمة المترابطة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) المراجعة الدورية السنوية</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س19: (صح أم خطأ) التخطيط الإستراتيجي التسويقي هو عمل قصير الأجل لحل أزمة حالية.</h3>
+                        <button onclick="toggleAnswer('ans19', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans19" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">❌ الإجابة: خطأ.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هو "أسلوب عمل متكامل" طويل الأجل لتحقيق أهداف مستقبلية واستراتيجية للمنظمة.</p>
                         </div>
                     </div>
 
                     <!-- Q20 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">20. التخطيط الإستراتيجي عملية لمرة واحدة فقط تُكتب في بداية المشروع ولا يتم العودة إليها أبداً.</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) عبارة صحيحة</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) عبارة خاطئة (التخطيط عملية مستمرة)</button>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س20: ما هو الترتيب المنطقي: تحديد الأهداف، التنفيذ، تحليل الموقف (SWOT)؟</h3>
+                        <button onclick="toggleAnswer('ans20', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans20" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: 1- تحديد الأهداف، 2- تحليل الموقف، 3- التنفيذ.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لا يمكن التنفيذ قبل دراسة الوضع الحالي (SWOT) بناءً على الهدف المنشود.</p>
                         </div>
                     </div>
-
                 </div>
-
-                <!-- Back to Lectures Button at the bottom of the quiz -->
-                <div class="mt-12 text-center">
-                    <a href="../index.html" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg text-lg">
-                        ⬅ الرجوع إلى المحاضرات
-                    </a>
-                </div>
-
             </div>
         </section>
 
     </main>
 
     <script>
-        // Updated data for Lecture 3 (Strategic Planning Requirements)
-        const conceptData = [
-            { id: 1, name: 'الرؤية الواضحة', eng: 'Clear Vision', icon: '🔭', desc: 'تحديد مسار مستقبلي واضح لما تريد المنظمة تحقيقه على المدى البعيد.', example: '<strong class="text-sky-700">مثال واقعي:</strong> رؤية ديزني الواضحة "إسعاد الناس" تقود كل خططها الترفيهية والتسويقية.' },
-            { id: 2, name: 'الواقعية', eng: 'Realism', icon: '⚖️', desc: 'أن تكون الأهداف قابلة للتحقيق وتتناسب مع الإمكانيات والموارد الفعلية للمنظمة.', example: '<strong class="text-sky-700">مثال واقعي:</strong> شركة ناشئة لا تضع خطة للاستحواذ على 50% من السوق العالمي في سنتها الأولى.' },
-            { id: 3, name: 'المرونة', eng: 'Flexibility', icon: '🔄', desc: 'قدرة الخطة على التكيف والتعديل لمواجهة التغيرات المفاجئة في البيئة الخارجية.', example: '<strong class="text-sky-700">مثال واقعي:</strong> مرونة المطاعم في تحويل خططها نحو التوصيل فقط (Delivery) خلال أزمة جائحة كورونا.' },
-            { id: 4, name: 'الشمولية', eng: 'Comprehensiveness', icon: '🧩', desc: 'أن تغطي الخطة كافة جوانب المنظمة وتدمج بين الإنتاج، التمويل، والموارد البشرية والتسويق.', example: '<strong class="text-sky-700">مثال واقعي:</strong> خطة إطلاق سيارة جديدة لا تقتصر على الإعلان، بل تشمل قدرة المصنع وتدريب فرق الصيانة.' },
-            { id: 5, name: 'الاستمرارية', eng: 'Continuity', icon: '⏳', desc: 'التخطيط ليس عملية لمرة واحدة، بل نشاط مستمر يتم مراجعته وتحديثه دورياً.', example: '<strong class="text-sky-700">مثال واقعي:</strong> تقوم شركات التكنولوجيا مثل جوجل بتحديث خططها الاستراتيجية كل ربع سنة لمواكبة التطور.' },
-            { id: 6, name: 'التوجه بالسوق', eng: 'Market Orientation', icon: '🎯', desc: 'بناء الخطة بناءً على احتياجات ورغبات المستهلكين بدلاً من التركيز على المنتج فقط.', example: '<strong class="text-sky-700">مثال واقعي:</strong> تحول بعض البنوك لتقديم خدمات رقمية وتطبيقات هاتف لأن العميل المعاصر يفضل ذلك.' },
-            { id: 7, name: 'القابلية للقياس', eng: 'Measurability', icon: '📏', desc: 'وضع مؤشرات أداء (KPIs) تتيح للإدارة تقييم مدى نجاح الخطة وتقدمها.', example: '<strong class="text-sky-700">مثال واقعي:</strong> هدف "زيادة المبيعات" غير كافٍ، الأفضل: "زيادة المبيعات بنسبة 15% خلال 6 أشهر".' }
+        // Updated data for Benefits of Strategic Planning based on PDF
+        const benefitsData = [
+            { id: 1, name: 'تقليل التهديدات', icon: '🛡️', desc: 'يقلل من التهديدات وتحديد التغييرات التي تحدث وأثرها على السوق والمنافسين والبيئة المحيطة.', example: '<strong class="text-sky-700">مثال واقعي:</strong> شركة طيران تتنبأ بارتفاع أسعار الوقود (تهديد) فتخطط مبكراً لشراء طائرات موفرة للطاقة.' },
+            { id: 2, name: 'فاعلية الإعلان', icon: '📢', desc: 'زيادة فاعلية الإعلان في توصيل الرسالة للعملاء الحاليين والمرتقبين ومقابلة احتياجاتهم.', example: '<strong class="text-sky-700">مثال واقعي:</strong> التخطيط يوجه ميزانية الإعلان لـ "تيك توك" بدلاً من التلفزيون إذا كان الهدف الوصول لفئة الشباب.' },
+            { id: 3, name: 'تدريب العاملين', icon: '👨‍🏫', desc: 'تدريب القوى العاملة ورجال البيع لاكتساب مهارات مقابلة حاجات العملاء ومواجهة المشكلات.', example: '<strong class="text-sky-700">مثال واقعي:</strong> خطة لعمل ورش عمل لمندوبي المبيعات لتعلم كيفية إقناع العميل المتردد.' },
+            { id: 4, name: 'إستراتيجية التسعير', icon: '💵', desc: 'تطوير استراتيجية التسعير لتحقيق أعلى فوائد وأرباح للمنظمة.', example: '<strong class="text-sky-700">مثال واقعي:</strong> التخطيط لتسعير مرن (ديناميكي) لتطبيقات التوصيل ليرتفع السعر في أوقات الذروة.' },
+            { id: 5, name: 'إستراتيجية المنتج', icon: '📦', desc: 'تطوير الاستراتيجية الخاصة بالمنتج ليتوافق مع تطورات ورغبات السوق.', example: '<strong class="text-sky-700">مثال واقعي:</strong> التخطيط لتحسين تغليف المنتج ليكون صديقاً للبيئة تلبية لطلبات المستهلكين الواعين.' }
         ];
 
-        // Functions for Concept Section
-        function initConceptSection() {
-            const container = document.getElementById('conceptButtons');
-            conceptData.forEach(item => {
+        function initInternalSection() {
+            const container = document.getElementById('internalButtons');
+            benefitsData.forEach(item => {
                 const btn = document.createElement('button');
                 btn.className = 'px-6 py-3 bg-white border border-sky-200 text-sky-800 rounded-full font-bold hover:bg-sky-50 hover:border-sky-400 transition-all shadow-sm focus:ring-2 focus:ring-sky-300 outline-none';
                 btn.innerHTML = `${item.name}`;
-                btn.onclick = () => showConceptDetail(item);
+                btn.onclick = () => showInternalDetail(item);
                 container.appendChild(btn);
             });
         }
 
-        function showConceptDetail(item) {
-            const detailContainer = document.getElementById('conceptDetail');
+        function showInternalDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
             detailContainer.style.opacity = '0';
             
             setTimeout(() => {
                 detailContainer.innerHTML = `
                     <div class="text-5xl mb-4">${item.icon}</div>
                     <div class="flex items-center gap-3 mb-3 justify-center">
-                        <span class="bg-sky-200 text-sky-800 px-3 py-1 rounded-full text-sm font-bold">متطلب رقم ${item.id}</span>
                         <h3 class="text-3xl font-bold text-sky-800">${item.name}</h3>
-                        <span class="text-xl text-gray-500 font-normal">(${item.eng})</span>
                     </div>
-                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mt-4">${item.desc}</p>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mt-4"><strong>الأهمية:</strong> ${item.desc}</p>
                     <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-500 shadow-sm text-right w-full max-w-3xl mx-auto transition-all">
                         <p class="text-gray-700 text-lg leading-relaxed">${item.example}</p>
                     </div>
@@ -622,16 +655,15 @@
             }, 150);
         }
 
-        // Functions for Tabs (Reused for Internal/External Environment)
         function switchTab(tabId) {
-            document.getElementById('content-goods').classList.add('hidden');
-            document.getElementById('content-services').classList.add('hidden');
+            document.getElementById('content-micro').classList.add('hidden');
+            document.getElementById('content-macro').classList.add('hidden');
             
-            document.getElementById('btn-goods').classList.remove('active', 'bg-sky-700', 'text-white');
-            document.getElementById('btn-goods').classList.add('bg-gray-100', 'text-gray-600');
+            document.getElementById('btn-micro').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-micro').classList.add('bg-gray-100', 'text-gray-600');
             
-            document.getElementById('btn-services').classList.remove('active', 'bg-sky-700', 'text-white');
-            document.getElementById('btn-services').classList.add('bg-gray-100', 'text-gray-600');
+            document.getElementById('btn-macro').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-macro').classList.add('bg-gray-100', 'text-gray-600');
 
             document.getElementById('content-' + tabId).classList.remove('hidden');
             
@@ -639,18 +671,17 @@
             activeBtn.classList.add('active');
             activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
             
-            if(tabId === 'goods') {
+            if(tabId === 'micro') {
                 activeBtn.style.backgroundColor = '#0369A1';
                 activeBtn.style.color = 'white';
-                document.getElementById('btn-services').style.backgroundColor = '';
+                document.getElementById('btn-macro').style.backgroundColor = '';
             } else {
                 activeBtn.style.backgroundColor = '#0369A1';
                 activeBtn.style.color = 'white';
-                document.getElementById('btn-goods').style.backgroundColor = '';
+                document.getElementById('btn-micro').style.backgroundColor = '';
             }
         }
 
-        // Navigation & Scroll
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -692,22 +723,20 @@
             });
         }
 
-        // Chart.js Setup (Adapted for Environmental Factors)
         function initChart() {
-            const ctx = document.getElementById('challengesChart').getContext('2d');
+            const ctx = document.getElementById('macroChart').getContext('2d');
             
             Chart.defaults.font.family = "'Tajawal', sans-serif";
             Chart.defaults.font.size = 14;
 
+            // Updated labels for Marketing Mix related to Strategic Planning
             const challengesLabels = [
-                ['البيئة', 'الاقتصادية'],
-                ['البيئة', 'التكنولوجية'],
-                ['البيئة', 'التشريعية والقانونية'],
-                ['البيئة', 'الاجتماعية والثقافية'],
-                ['البيئة', 'التنافسية'],
-                ['البيئة', 'الدولية (العالمية)'],
-                ['البيئة', 'الديموجرافية (السكان)'],
-                ['البيئة', 'السياسية']
+                ['المنتج', 'Product'],
+                ['التسعير', 'Price'],
+                ['التوزيع', 'Place'],
+                ['الترويج', 'Promotion'],
+                ['الأفراد', 'People'],
+                ['العمليات', 'Process']
             ];
 
             new Chart(ctx, {
@@ -715,17 +744,15 @@
                 data: {
                     labels: challengesLabels,
                     datasets: [{
-                        label: 'مستوى التأثير',
-                        data: [100, 100, 100, 100, 100, 100, 100, 100],
+                        label: 'عناصر التخطيط التسويقي',
+                        data: [100, 100, 100, 100, 100, 100],
                         backgroundColor: [
-                            'rgba(3, 105, 161, 0.7)',   
-                            'rgba(217, 119, 6, 0.7)',   
-                            'rgba(16, 185, 129, 0.7)',  
-                            'rgba(139, 92, 246, 0.7)',  
-                            'rgba(239, 68, 68, 0.7)',   
-                            'rgba(14, 165, 233, 0.7)',  
-                            'rgba(245, 158, 11, 0.7)',  
-                            'rgba(71, 85, 105, 0.7)'    
+                            'rgba(217, 119, 6, 0.7)',  // Amber
+                            'rgba(16, 185, 129, 0.7)', // Emerald
+                            'rgba(22, 163, 74, 0.7)',  // Green
+                            'rgba(59, 130, 246, 0.7)', // Blue
+                            'rgba(239, 68, 68, 0.7)',  // Red
+                            'rgba(168, 85, 247, 0.7)'  // Purple
                         ],
                         borderColor: 'white',
                         borderWidth: 2
@@ -760,7 +787,7 @@
                             rtl: true,
                             callbacks: {
                                 label: function(context) {
-                                    return 'متغير خارجي يؤثر على المنظمة ويجب تحليله';
+                                    return 'يتم تعديله وتخطيطه لمواجهة التهديدات';
                                 }
                             }
                         }
@@ -769,43 +796,25 @@
             });
         }
 
-        // Quiz Logic
-        function checkAnswer(btnElement, isCorrect) {
-            // Find parent container to disable other buttons
-            const parent = btnElement.parentElement;
-            const buttons = parent.querySelectorAll('button');
-            
-            // Disable all buttons in this question once answered
-            buttons.forEach(btn => {
-                btn.disabled = true;
-                btn.classList.add('opacity-50', 'cursor-not-allowed');
-                btn.classList.remove('hover:bg-gray-50');
-            });
-
-            // Mark the selected button
-            if (isCorrect) {
-                btnElement.classList.add('correct');
-                btnElement.classList.remove('opacity-50');
-                btnElement.innerHTML += ' ✅ (إجابة صحيحة)';
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+                btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
+                btnElement.classList.replace('text-gray-700', 'text-sky-800');
             } else {
-                btnElement.classList.add('wrong');
-                btnElement.classList.remove('opacity-50');
-                btnElement.innerHTML += ' ❌ (إجابة خاطئة)';
-                
-                // Highlight the correct one
-                buttons.forEach(btn => {
-                    if (btn.getAttribute('onclick').includes('true')) {
-                        btn.classList.add('correct');
-                        btn.classList.remove('opacity-50');
-                    }
-                });
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+                btnElement.classList.replace('bg-sky-100', 'bg-gray-200');
+                btnElement.classList.replace('text-sky-800', 'text-gray-700');
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initConceptSection();
+            initInternalSection();
             initScrollSpy();
-            switchTab('goods'); // Reused tab function initializes here
+            switchTab('micro');
             initChart();
         });
     </script>
