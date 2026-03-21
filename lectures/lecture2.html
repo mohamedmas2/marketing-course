@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
-   
+        body {
             font-family: 'Tajawal', sans-serif;
             background-color: #F9FAFB;
             color: #1F2937;
@@ -61,36 +61,17 @@
             border-top: 1px solid #e5e7eb;
             margin-top: 1rem;
         }
-        /* AI Feature Styles */
-        .ai-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 50;
-            justify-content: center;
-            align-items: center;
-        }
-        .ai-modal.show { display: flex; }
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #0ea5e9;
-            border-radius: 50%;
-            width: 24px; height: 24px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
-<div class="p-4">
-  <a href="../index.html" class="text-blue-600 font-bold">
-    ⬅ الرجوع إلى المحاضرات
-  </a>
-</div>
+
     <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
         <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
             <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
             <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الثانية</p>
         </div>
@@ -434,80 +415,215 @@
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك</h2>
-                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم السابقة من خلال هذه الأسئلة البسيطة. اضغط على "إظهار الإجابة" بعد التفكير.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم السابقة من خلال هذه الأسئلة الشاملة للمحاضرة بالكامل.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: شركة ركزت كل جهودها على تقليل تكلفة تصنيع الهاتف وتوزيعه في كل مكان دون الاهتمام بإضافة كاميرا متطورة رغم طلب السوق. ما هو المفهوم الذي تتبناه؟</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: مجموعة الظروف والقيود التي تحيط بالمنظمة ويصعب التحكم فيها وتحدد سلوكها، تسمى بـ...</h3>
                         <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
                         <div id="ans1" class="quiz-answer">
-                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المفهوم الإنتاجي.</p>
-                            <p class="text-gray-600 text-sm mt-1">السبب: تركيزها انصب على "الإنتاج" وخفض التكلفة والتوزيع، وتجاهلت احتياجات ورغبات المستهلك.</p>
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة التسويقية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هذا هو التعريف الأساسي للبيئة التسويقية كقوى محيطة بالمنظمة تؤثر على قدراتها.</p>
                         </div>
                     </div>
 
                     <!-- Q2 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: قوانين الضرائب الجديدة التي تفرضها الحكومة على الشركات. هل تعتبر ضمن البيئة الداخلية، أم الجزئية، أم الكلية؟</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: إلى كم مستوى تنقسم البيئة التسويقية من حيث التأثير والشمولية؟</h3>
                         <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
                         <div id="ans2" class="quiz-answer">
-                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة الكلية (البيئة السياسية والقانونية).</p>
-                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها قوى كبرى مفروضة على الشركة من الخارج ولا يمكن للشركة السيطرة عليها أو التحكم بها.</p>
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: ثلاثة مستويات.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: البيئة تشمل المستوى القومي (العام)، المستوى المرتبط بالمنظمة (الخاص)، والمستوى التفاعلي.</p>
                         </div>
                     </div>
 
                     <!-- Q3 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: قامت شركة سيارات بدراسة رغبة العملاء في سيارات موفرة، فأنتجت سيارة اقتصادية جداً، ولكنها تتسبب في تلوث بيئي كبير. هل حققت المفهوم الاجتماعي للتسويق؟</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: في إطار البيئة الداخلية، ما هي الإدارة المسؤولة عن توفير الأموال اللازمة لتنفيذ الخطة التسويقية؟</h3>
                         <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
                         <div id="ans3" class="quiz-answer">
-                            <p class="text-red-600 font-bold text-lg">❌ الإجابة: لا، لم تحققه.</p>
-                            <p class="text-gray-600 text-sm mt-1">السبب: المفهوم الاجتماعي يشترط تحقيق التوازن بين (أرباح الشركة + رغبات المستهلك + رفاهية ومصلحة المجتمع). إنتاج سيارة تلوث البيئة يضر بالضلع الثالث (المجتمع).</p>
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: إدارة التمويل.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: قسم التمويل هو الذي يعتمد ميزانيات الحملات التسويقية ويوفر السيولة اللازمة.</p>
                         </div>
                     </div>
 
-                    <!-- AI Quiz Generator ✨ -->
-                    <div class="bg-sky-50 p-6 rounded-2xl shadow-sm border border-sky-200 text-center mt-8">
-                        <h3 class="text-xl font-bold text-sky-800 mb-2 flex justify-center items-center gap-2"><span>🤖</span> هل تريد المزيد من الأسئلة؟</h3>
-                        <p class="text-gray-600 text-sm mb-4">قم بتوليد أسئلة جديدة ومختلفة في كل مرة لاختبار فهمك باستخدام الذكاء الاصطناعي المتقدم.</p>
-                        <button onclick="generateAIQuiz()" id="btn-ai-quiz" class="bg-sky-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-700 transition-colors shadow-md flex items-center justify-center gap-2 mx-auto">
-                            <span>توليد سؤال بالذكاء الاصطناعي ✨</span>
-                        </button>
-                        <div id="ai-quiz-container" class="mt-6 text-right hidden bg-white p-6 rounded-xl border border-sky-100 shadow-inner">
-                            <!-- AI Quiz content will be injected here -->
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: عندما يكتشف قسم التسويق حاجة العملاء لمنتج جديد بمواصفات معينة، أي إدارة تتولى تحويل هذه الفكرة إلى تصميم منتج فعلي؟</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: إدارة البحوث والتطوير (R&D).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي المسؤولة عن الابتكار وتصميم المنتجات لتلائم المواصفات التي يطلبها التسويق.</p>
                         </div>
                     </div>
 
+                    <!-- Q5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س5: تقوم إحدى الإدارات بقياس التكاليف وحساب الأرباح لمعرفة مدى جدوى الحملة التسويقية. ما هي هذه الإدارة؟</h3>
+                        <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans5" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: إدارة المحاسبة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي المسؤولة عن الجانب الرقمي والتحليلي لحساب العوائد وتكلفة الأنشطة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س6: من هي الجهة في البيئة الجزئية التي يقع على عاتقها إمداد المنظمة بالمواد الخام اللازمة للإنتاج؟</h3>
+                        <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans6" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الموردون (Suppliers).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: يعتبرون بداية سلسلة الإمداد وبدونهم يتوقف إنتاج الشركة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س7: تجار الجملة والتجزئة وشركات النقل التي تساعد المنظمة في إيصال منتجاتها للمستهلك، يُطلق عليهم مصطلح...</h3>
+                        <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans7" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الوسطاء (Intermediaries).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنهم يتوسطون العملية بين الشركة المنتجة والمستهلك النهائي لتسهيل التوزيع.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س8: السوق المستهدف، والذي يتكون من الأفراد الذين تسعى المنظمة لإشباع حاجاتهم ورغباتهم، يمثلون عنصر...</h3>
+                        <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans8" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: العملاء (Customers).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هم المحور الأساسي الذي تدور حوله كافة الأنشطة التسويقية للشركة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س9: شركتان تقدمان نفس المشروب الغازي وتستهدفان نفس الشريحة من العملاء. يمثل كل منهما للآخر...</h3>
+                        <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans9" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: منافساً (Competitors).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: يتنافسان في نفس البيئة الجزئية للحصول على حصة أكبر من السوق.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س10: دراسة التغيرات في السن، الجنس، والتوزيع الجغرافي للسكان، تندرج تحت دراسة أي مكون من البيئة الكلية؟</h3>
+                        <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans10" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة الديموجرافية (السكانية).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: علم الديموجرافيا يختص بدراسة خصائص السكان التي تؤثر بشكل مباشر على حجم ونوع الطلب.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س11: عندما تدرس الشركة مستوى الدخل والتضخم والقدرة الشرائية للعملاء، فهي تحلل البيئة...</h3>
+                        <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans11" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة الاقتصادية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: العوامل الاقتصادية تحدد مدى توافر الأموال وقدرة ورغبة الناس في الإنفاق.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س12: نقص الموارد مثل المياه الجوفية أو زيادة التلوث البيئي وتأثيره على نشاط المصانع، يمثل عوامل تابعة للبيئة...</h3>
+                        <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans12" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة الطبيعية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: تتعلق بالموارد الطبيعية والمناخ التي تؤثر على المدخلات الإنتاجية للمنظمة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س13: ظهور التجارة الإلكترونية وتطبيقات الهواتف الذكية وتأثيرها على طريقة البيع، يُعد تغييراً في البيئة...</h3>
+                        <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans13" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة التكنولوجية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأن الابتكارات التقنية تفتح قنوات تسويقية وطرق إنتاج جديدة ومختلفة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س14: التشريعات الحكومية وقوانين حماية المستهلك والضرائب تعتبر جزءاً من البيئة...</h3>
+                        <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans14" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة السياسية (والقانونية).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: قرارات الدولة والقوانين المنظمة للعمل التجاري تُفرض من البيئة السياسية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س15: العادات والتقاليد والقيم الاجتماعية التي تمنع أو تشجع شراء منتج معين تنبع من البيئة...</h3>
+                        <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans15" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيئة الثقافية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: ثقافة المجتمع هي المحرك القوي لسلوكيات أفراده الشرائية وتفضيلاتهم.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س16: من أسباب دراسة البيئة التسويقية: معرفة ما سيحدث لتجهيز الخطط المناسبة وتجنب المفاجآت السيئة. هذا يُعرف بـ...</h3>
+                        <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans16" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التنبؤ بالمتغيرات المستقبلية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الإدارة الاستباقية تستعد للمستقبل بدلاً من مجرد الرد على الأحداث بعد وقوعها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س17: شركة تركز فقط على إنتاج كميات هائلة من المنتج لخفض تكلفته وإتاحته في كل مكان دون الاهتمام بتطويره، تتبنى المفهوم...</h3>
+                        <button onclick="toggleAnswer('ans17', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans17" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المفهوم الإنتاجي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هذا المفهوم القديم يركز على وفرة العرض وتقليل التكلفة للإنتاج الضخم.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س18: شركة تصنع منتجاً عالي الجودة جداً ولكن بسعر مرتفع لا يناسب السوق ولا يطلبه أحد، هذه الشركة تتبنى المفهوم...</h3>
+                        <button onclick="toggleAnswer('ans18', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans18" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المفهوم السلعي (المنتج).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: تركيزها انصب فقط على "جودة السلعة" وتجاهلت دراسة احتياجات وقدرات المستهلك الفعلية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س19: الاعتماد المكثف على الإعلانات والترويج لتصريف المنتجات والمخزون المتراكم بأي طريقة، يعكس المفهوم...</h3>
+                        <button onclick="toggleAnswer('ans19', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans19" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المفهوم البيعي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأن هدف هذا المفهوم هو الدفع بالمنتج للمستهلك والضغط عليه لشرائه للتخلص من المخزون.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س20: المفهوم الحديث الذي يوازن بين (أرباح الشركة + رغبات المستهلك + رفاهية المجتمع وحمايته) يُعرف باسم...</h3>
+                        <button onclick="toggleAnswer('ans20', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans20" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المفهوم الاجتماعي للتسويق.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هذا المفهوم الشامل يحافظ على مصلحة المستهلك والمجتمع والبيئة بجانب ربح المنظمة.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
-
-    <!-- Floating AI Chat Button & Modal ✨ -->
-    <button onclick="toggleAIModal()" class="fixed bottom-6 left-6 bg-sky-600 text-white p-4 rounded-full shadow-lg hover:bg-sky-700 transition-transform hover:scale-105 z-40 flex items-center gap-2 font-bold focus:outline-none">
-        <span class="text-2xl">💬</span> <span>اسأل المساعد ✨</span>
-    </button>
-
-    <div id="aiModal" class="ai-modal">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 flex flex-col overflow-hidden">
-            <div class="bg-sky-600 p-4 text-white flex justify-between items-center shadow-md z-10">
-                <h3 class="font-bold text-lg flex items-center gap-2"><span>🤖</span> مساعد التسويق الذكي ✨</h3>
-                <button onclick="toggleAIModal()" class="text-white hover:text-sky-200 text-2xl font-bold focus:outline-none">&times;</button>
-            </div>
-            <div class="p-6">
-                <p class="text-gray-600 text-sm mb-4 leading-relaxed">أنا مساعدك الأكاديمي المدعوم بالذكاء الاصطناعي. يمكنك طرح أي سؤال غير واضح لك حول موضوع <span class="font-bold text-sky-700">البيئة التسويقية</span> وسأقوم بتبسيطه لك!</p>
-                <textarea id="ai-user-input" class="w-full border border-gray-300 rounded-xl p-3 mb-4 focus:ring-2 focus:ring-sky-500 focus:outline-none resize-none" rows="3" placeholder="اكتب سؤالك هنا... (مثال: اشرح لي البيئة التكنولوجية بمثال)"></textarea>
-                <button onclick="askAIAssistant()" id="btn-ask-ai" class="w-full bg-sky-600 text-white py-3 rounded-xl font-bold hover:bg-sky-700 transition-colors flex justify-center items-center gap-2 shadow-sm">
-                    <span>إرسال السؤال ✨</span>
-                </button>
-                <div id="ai-chat-response" class="mt-4 p-4 bg-sky-50 rounded-xl text-gray-800 text-sm hidden border border-sky-100 max-h-48 overflow-y-auto leading-relaxed shadow-inner"></div>
-            </div>
-        </div>
-    </div>
 
     <script>
         const internalEnvData = [
@@ -623,7 +739,6 @@
             Chart.defaults.font.family = "'Tajawal', sans-serif";
             Chart.defaults.font.size = 14;
 
-            // Using the 6 macro environment forces
             const challengesLabels = [
                 ['البيئة', 'الديموجرافية'],
                 ['البيئة', 'الاقتصادية'],
@@ -690,7 +805,6 @@
             });
         }
 
-        // Quiz toggle function
         function toggleAnswer(answerId, btnElement) {
             const answerDiv = document.getElementById(answerId);
             if (answerDiv.classList.contains('show')) {
@@ -703,162 +817,6 @@
                 btnElement.innerText = "إخفاء الإجابة";
                 btnElement.classList.replace('bg-sky-100', 'bg-gray-200');
                 btnElement.classList.replace('text-sky-800', 'text-gray-700');
-            }
-        }
-
-        // ==========================================
-        // Gemini API Integration ✨
-        // ==========================================
-        const apiKey = ""; // API key is injected by the environment
-
-        async function callGeminiAPI(payload, isJSON = false, maxRetries = 5) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const delays = [1000, 2000, 4000, 8000, 16000];
-            
-            if (isJSON) {
-                payload.generationConfig = { responseMimeType: "application/json" };
-            }
-
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    
-                    const result = await response.json();
-                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    
-                    return isJSON ? JSON.parse(text) : text;
-                } catch (error) {
-                    if (i === maxRetries - 1) throw error;
-                    await new Promise(resolve => setTimeout(resolve, delays[i]));
-                }
-            }
-        }
-
-        // Feature 1: Dynamic AI Quiz Generation ✨
-        async function generateAIQuiz() {
-            const btn = document.getElementById('btn-ai-quiz');
-            const container = document.getElementById('ai-quiz-container');
-            
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> <span>جاري التوليد...</span>';
-            container.classList.add('hidden');
-            container.innerHTML = '';
-
-            const prompt = "أنت أستاذ جامعي في مادة إدارة التسويق. قم بإنشاء سؤال اختيارات (Multiple Choice) جديد ومختلف باللغة العربية لطلاب الماجستير حول موضوع 'البيئة التسويقية' (البيئة الداخلية، أو البيئة الجزئية، أو البيئة الكلية). يجب أن يكون السؤال تطبيقياً وواقعياً. قم بإرجاع النتيجة بصيغة JSON حصرية تحتوي على: 'question' (نص السؤال)، 'options' (مصفوفة من 4 خيارات نصية)، 'correctIndex' (رقم صحيح من 0 إلى 3 يمثل الإجابة الصحيحة)، و 'explanation' (شرح مبسط ومفيد لسبب الإجابة الصحيحة).";
-            
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: "أنت أستاذ تسويق محترف في جامعة عربية." }] }
-            };
-
-            try {
-                const quizData = await callGeminiAPI(payload, true);
-                
-                let optionsHTML = quizData.options.map((opt, index) => 
-                    `<button onclick="checkAIAnswer(${index}, ${quizData.correctIndex}, this)" class="block w-full text-right p-3 my-2 border border-gray-200 rounded-lg hover:bg-sky-50 hover:border-sky-300 transition-colors focus:outline-none font-medium text-gray-700">
-                        ${opt}
-                    </button>`
-                ).join('');
-
-                container.innerHTML = `
-                    <h4 class="text-lg font-bold text-gray-800 mb-4 leading-relaxed">${quizData.question}</h4>
-                    <div class="space-y-2 mb-4">
-                        ${optionsHTML}
-                    </div>
-                    <div id="ai-quiz-feedback" class="hidden p-4 rounded-lg text-sm mt-4 transition-all">
-                        <strong id="ai-quiz-result" class="block mb-2 text-lg"></strong>
-                        <span class="text-gray-700 leading-relaxed font-medium">${quizData.explanation}</span>
-                    </div>
-                `;
-                container.classList.remove('hidden');
-            } catch (error) {
-                container.innerHTML = '<p class="text-red-600 font-bold p-4 bg-red-50 rounded-lg">حدث خطأ أثناء الاتصال بالذكاء الاصطناعي. يرجى المحاولة لاحقاً.</p>';
-                container.classList.remove('hidden');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<span>إنشاء سؤال آخر ✨</span>';
-            }
-        }
-
-        // Check Answer for AI Quiz
-        window.checkAIAnswer = function(selectedIndex, correctIndex, btnElement) {
-            const feedback = document.getElementById('ai-quiz-feedback');
-            const resultTitle = document.getElementById('ai-quiz-result');
-            
-            // Disable all siblings
-            const allBtns = btnElement.parentElement.querySelectorAll('button');
-            allBtns.forEach(b => {
-                b.disabled = true;
-                b.classList.remove('hover:bg-sky-50', 'hover:border-sky-300');
-            });
-
-            if (selectedIndex === correctIndex) {
-                btnElement.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800');
-                feedback.classList.add('bg-emerald-50', 'border', 'border-emerald-200');
-                feedback.classList.remove('bg-red-50', 'border-red-200');
-                resultTitle.innerText = "✅ إجابة صحيحة وممتازة!";
-                resultTitle.classList.add('text-emerald-700');
-            } else {
-                btnElement.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
-                allBtns[correctIndex].classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800'); // Highlight the correct one
-                feedback.classList.add('bg-red-50', 'border', 'border-red-200');
-                feedback.classList.remove('bg-emerald-50', 'border-emerald-200');
-                resultTitle.innerText = "❌ إجابة خاطئة، راجع الشرح.";
-                resultTitle.classList.add('text-red-700');
-            }
-            
-            feedback.classList.remove('hidden');
-        }
-
-        // Feature 2: AI Assistant Chat ✨
-        function toggleAIModal() {
-            const modal = document.getElementById('aiModal');
-            modal.classList.toggle('show');
-        }
-
-        async function askAIAssistant() {
-            const inputEl = document.getElementById('ai-user-input');
-            const responseEl = document.getElementById('ai-chat-response');
-            const btn = document.getElementById('btn-ask-ai');
-            const question = inputEl.value.trim();
-            
-            if (!question) return;
-
-            // UI Loading state
-            inputEl.disabled = true;
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> <span>جاري التفكير...</span>';
-            responseEl.classList.add('hidden');
-            responseEl.innerHTML = '';
-
-            const payload = {
-                contents: [{ parts: [{ text: `سؤال الطالب: ${question}` }] }],
-                systemInstruction: { 
-                    parts: [{ text: "أنت مساعد ذكاء اصطناعي أكاديمي ودود في مادة 'إدارة التسويق' لطلاب الماجستير. موضوع المحاضرة الحالية هو 'البيئة التسويقية'. أجب على سؤال الطالب باللغة العربية بشكل علمي، مبسط، ومباشر. استخدم أمثلة واقعية إن أمكن لتبسيط المفهوم. لا تتجاوز 150 كلمة واستخدم علامات التنسيق Markdown عند الحاجة." }] 
-                }
-            };
-
-            try {
-                const answer = await callGeminiAPI(payload, false);
-                // Simple markdown parsing for bold text and new lines
-                const formattedAnswer = answer.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong class="text-sky-800">$1</strong>');
-                
-                responseEl.innerHTML = `<span class="block mb-2 text-sm text-gray-500">تمت الإجابة بواسطة الذكاء الاصطناعي:</span>${formattedAnswer}`;
-                responseEl.classList.remove('hidden');
-            } catch (error) {
-                responseEl.innerHTML = '<span class="text-red-600 font-bold">عذراً، لم أتمكن من معالجة سؤالك في الوقت الحالي. يرجى التأكد من اتصالك والمحاولة مرة أخرى.</span>';
-                responseEl.classList.remove('hidden');
-            } finally {
-                inputEl.disabled = false;
-                btn.disabled = false;
-                btn.innerHTML = '<span>إرسال سؤال آخر ✨</span>';
-                inputEl.value = ''; // clear input
             }
         }
 
