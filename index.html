@@ -1,26 +1,27 @@
 <script>
-fetch('/marketing-course/data/lectures.json')
-.then(res => {
-    if (!res.ok) {
-        throw new Error("فشل تحميل JSON");
+const data = {
+  lectures: [
+    {
+      title: "المحاضرة الأولى",
+      desc: "المفهوم التسويقي وأهميته",
+      file: "lectures/lecture1.html"
+    },
+    {
+      title: "المحاضرة الثانية",
+      desc: "تجربة النظام",
+      file: "lectures/lecture2.html"
     }
-    return res.json();
-})
-.then(data => {
-    const container = document.getElementById('lecturesContainer');
-    container.innerHTML = "";
+  ]
+};
 
-    data.lectures.forEach(lec => {
-        container.innerHTML += `
-        <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow hover:shadow-lg border border-sky-100">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
-            <p class="text-gray-600">${lec.desc}</p>
-        </a>
-        `;
-    });
-})
-.catch(err => {
-    document.body.innerHTML += "<p style='color:red;text-align:center'>في مشكلة في تحميل البيانات</p>";
-    console.error(err);
+const container = document.getElementById('lecturesContainer');
+
+data.lectures.forEach(lec => {
+    container.innerHTML += `
+    <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow hover:shadow-lg border border-sky-100">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
+        <p class="text-gray-600">${lec.desc}</p>
+    </a>
+    `;
 });
 </script>
