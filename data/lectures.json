@@ -1,19 +1,15 @@
 {
   "lectures": [
-    {
-      "title": "المحاضرة الأولى",
+    { "title": "المحاضرة الأولى",
       "desc": "المفهوم التسويقي وأهميته",
-      "file": "lectures/lecture1.html"
-    },
-    {
-      "title": "المحاضرة الثانية",
+      "file": "lectures/lecture1.html" },
+    {"title": "المحاضرة الثانية",
       "desc": "تجربة النظام",
-      "file": "lectures/lecture2.html"
-    },
+      "file": "lectures/lecture2.html"},
     {
-  title: "المحاضرة الثالثة",
-  desc: "عنوان جديد",
-  file: "lectures/lecture3.html"
+  "title": "المحاضرة الثالثة",
+  "desc": "عنوان جديد",
+  "file": "lectures/lecture3.html"
 }
   ]
 }
