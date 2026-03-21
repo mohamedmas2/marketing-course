@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التسويق - المحاضرة الأولى (المفهوم التسويقي)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        .nav-item.active {
+            background-color: #E0F2FE;
+            color: #0369A1;
+            border-right: 4px solid #0369A1;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        /* Custom classes for quiz */
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 200px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
+            <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الأولى</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مفهوم وأهمية التسويق</button></li>
+                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المزيج التسويقي (4Ps)</button></li>
+                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مراحل تطور التسويق</button></li>
+                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أسباب إدراك أهمية التسويق</button></li>
+                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحديات القرن 21</button></li>
+                <li><button onclick="scrollToSection('macro_chart')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">خريطة التحديات التسويقية</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700">
+                <option value="intro">مفهوم وأهمية التسويق</option>
+                <option value="internal">المزيج التسويقي (4Ps)</option>
+                <option value="external">مراحل تطور التسويق</option>
+                <option value="reasons">أسباب إدراك أهمية التسويق</option>
+                <option value="philosophies">تحديات القرن 21</option>
+                <option value="macro_chart">خريطة التحديات التسويقية</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block">
+            <p>أ.د/ ألفت إبراهيم جاد الرب</p>
+            <p>21 فبراير 2026</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Intro -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">المفهوم التسويقي</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        يتناول هذا الفصل دراسة أساسيات التسويق، أهميته لمنظمات الأعمال، عناصر المزيج التسويقي الأساسية، والتحديات المعاصرة في القرن الحادي والعشرين.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
+                        <div class="flex items-center gap-2"><span>📅</span> السبت 21 فبراير 2026م</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
+                        <div class="flex items-center gap-2"><span>📧</span> Dr.olfat@azhar.edu.eg</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🌟</span> ما هو جوهر العملية التسويقية؟</h3>
+                <p class="mb-6 text-gray-600">التسويق ليس مجرد بيع وإعلان، بل هو فلسفة متكاملة تبدأ قبل الإنتاج وتستمر بعد البيع.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">اكتشاف الحاجات</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: التسويق يبدأ بالبحث عن ما يحتاجه الناس فعلاً قبل التفكير في تصنيع أي شيء.</p>
+                        <div class="bg-sky-50 p-3 rounded text-sm text-sky-800 border-r-2 border-sky-400">
+                            <strong>مثال واقعي:</strong> شركة أبل لاحظت حاجة الناس لجهاز يجمع بين الهاتف ومشغل الموسيقى والإنترنت، فابتكرت الآيفون.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">إشباع الرغبات</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: تقديم منتج أو خدمة تلبي هذه الحاجة بطريقة ترضي العميل وتجعله سعيداً وتشعره بالقيمة.</p>
+                        <div class="bg-amber-50 p-3 rounded text-sm text-amber-800 border-r-2 border-amber-400">
+                            <strong>مثال واقعي:</strong> مطاعم الوجبات السريعة لا تبيع طعاماً فقط، بل تبيع "السرعة والراحة" لإشباع رغبة العميل المشغول.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-colors">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">تحقيق الأهداف</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: التسويق هو الأداة التي تربط بين رضاء العميل وتحقيق أرباح وأهداف المنظمة في نفس الوقت.</p>
+                        <div class="bg-emerald-50 p-3 rounded text-sm text-emerald-800 border-r-2 border-emerald-400">
+                            <strong>مثال واقعي:</strong> شركة تويوتا تحقق مبيعات وأرباحاً ضخمة (هدفها) لأنها تقدم سيارات اعتمادية واقتصادية (هدف العميل).
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-300 transition-colors">
+                        <div class="text-4xl mb-4">🔄</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">نشاط مستمر</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: التسويق لا يتوقف عند إتمام البيع، بل يمتد لخدمات ما بعد البيع وبناء علاقة طويلة الأمد.</p>
+                        <div class="bg-purple-50 p-3 rounded text-sm text-purple-800 border-r-2 border-purple-400">
+                            <strong>مثال واقعي:</strong> اتصال شركة السيارات بك بعد صيانة سيارتك للتأكد من جودة الخدمة ورضاك عنها.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Internal Environment (Marketing Mix) -->
+        <section id="internal" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">المزيج التسويقي (Marketing Mix)</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">هو مجموعة الأدوات التكتيكية التي يمكن للشركة التحكم بها وتطويعها للتأثير على الطلب في السوق المستهدف. وتعرف باسم الـ (4Ps). انقر على كل عنصر للتفاصيل.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="internalButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+
+                <div id="internalDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[200px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">اختر أحد عناصر المزيج أعلاه</h3>
+                    <p class="text-gray-600 text-lg">لاستكشاف تفاصيل الأداة وكيف تستخدمها الشركة لخدمة عملائها.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: External Environment (Tabs - Evolution of Marketing) -->
+        <section id="external" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">مراحل تطور الفكر التسويقي</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">مر التسويق الحديث تاريخياً بثلاث مراحل رئيسية، من التركيز على المصنع والإنتاج إلى التركيز الكامل على المستهلك.</p>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('micro')" id="btn-micro" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">المراحل التقليدية الأولى</button>
+                        <button onclick="switchTab('macro')" id="btn-macro" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">المرحلة الحديثة</button>
+                    </div>
+                    <div class="p-8">
+                        <!-- Micro Environment (Traditional Stages) -->
+                        <div id="content-micro" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">مرحلتي التوجه بالمنتج والتوجه بالبيع</h4>
+                            <p class="text-gray-600 mb-6">كانت الشركات في هذه المراحل تنظر إلى الداخل (إلى قدراتها ومصانعها) وليس إلى الخارج (إلى السوق).</p>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">🏭</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">1. مرحلة التوجه بالمنتج (Product Orientation)</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح مبسط: التركيز كان على تصنيع أكبر قدر ممكن من السلع بأقل تكلفة، بافتراض أن المستهلك سيشتري أي شيء رخيص ومتاح.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال واقعي: هنري فورد في بدايات صناعة السيارات كان يقول "يمكن للعميل الحصول على أي لون يريده للسيارة، طالما أنه اللون الأسود".</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">📢</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">2. مرحلة التوجه بالبيع (Sales Orientation)</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح مبسط: عندما زادت المنافسة وتكدست المخازن، بدأت الشركات في تكثيف الإعلانات والضغط على العميل بالشراء للتخلص من البضاعة.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال واقعي: مندوبي المبيعات الذين يطرقون الأبواب ويلحون بشكل مزعج لبيع فلاتر مياه أو مكانس كهربائية للعملاء سواء كانوا بحاجة لها أم لا.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Macro Environment (Modern Stage) -->
+                        <div id="content-macro" class="hidden">
+                            <h4 class="text-xl font-bold text-amber-600 mb-4">مرحلة التوجه بالتسويق (Marketing Orientation)</h4>
+                            <p class="text-gray-600 mb-6">هي المرحلة الحديثة التي أدركت فيها الشركات أن العميل هو الملك، ولا يجب تصنيع شيء قبل معرفة رأيه.</p>
+                            
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="bg-gray-50 p-6 rounded-lg border-r-4 border-amber-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2 text-xl mb-3"><span>❤️</span> التركيز على العميل أولاً</h5>
+                                    <p class="text-sm text-gray-600 mt-1 mb-4 leading-relaxed">شرح مبسط: تبدأ هذه المرحلة بدراسة السوق ومعرفة مشاكل واحتياجات العملاء، ثم تصميم وتصنيع المنتج الذي يحل هذه المشكلة ويشبع هذه الحاجة، مما يجعل عملية البيع سهلة وتلقائية.</p>
+                                    
+                                    <div class="bg-white p-4 rounded border border-gray-200">
+                                        <h6 class="font-bold text-sky-800 mb-2">أمثلة من الحياة الواقعية:</h6>
+                                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                            <li><strong>أمازون (Amazon):</strong> تعتبر نفسها "الشركة الأكثر تركيزاً على العميل في الأرض"، كل قراراتها تبدأ من العميل وتعود إليه.</li>
+                                            <li><strong>أوبر (Uber):</strong> لم تخترع السيارات، بل درست مشكلة صعوبة إيجاد تاكسي، وقدمت حلاً تسويقياً يربط السائق بالراكب بسهولة.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Reasons to study -->
+        <section id="reasons" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">أسباب إدراك منظمات الأعمال لأهمية التسويق</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">لماذا تحول التسويق من مجرد نشاط ثانوي إلى أهم وظيفة في المنظمة المعاصرة؟</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="mix-card bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-sky-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">1</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">نشاط جوهري وأساسي</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: كان يُنظر للتسويق قديماً بأنه أقل أهمية من الإنتاج والتمويل، اليوم أصبح نشاطاً لا غنى عنه ويوازي أو يفوق البقية أهمية.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-sky-800 font-medium">
+                            💡 مثال: أبل تمتلك أفضل مصممين، لكن بدون تسويق قوي، لن يشتري أحد أجهزتها الغالية.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-amber-50 to-white p-8 rounded-2xl border border-amber-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">2</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">البداية قبل الإنتاج</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: التسويق هو من يعطي "الضوء الأخضر" للمصنع للعمل، فهو الذي يحدد ماذا ننتج، وبأي لون، وبأي حجم.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-amber-800 font-medium">
+                            💡 مثال: شركات الملابس تدرس الألوان والموديلات الدارجة (تسويق) قبل أن تبدأ في خياطة قطعة واحدة (إنتاج).
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-emerald-50 to-white p-8 rounded-2xl border border-emerald-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors">3</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">محور تدور حوله الوظائف</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: التسويق هو الذي يقود باقي الأقسام. الإنتاج يصنع ما يطلبه التسويق، والتمويل يوفر الميزانية التي يقترحها التسويق.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-emerald-800 font-medium">
+                            💡 مثال: المايسترو في الفرقة الموسيقية هو الذي يوجه باقي العازفين ليخرجوا بلحن جميل.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-purple-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">4</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">ثقافة التوجيه بالمستهلك</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: تحول الاهتمام المشترك لكل الإدارات (حتى من لا يتعامل مع العميل مباشرة) إلى هدف واحد: إرضاء المستهلك.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-purple-800 font-medium">
+                            💡 مثال: موظف المخازن يغلف المنتج بعناية شديدة لأنه يعرف أن استلام المنتج سليم يسعد العميل (التفكير بعقلية المسوق).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Philosophies -> Challenges -->
+        <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التحديات التسويقية في القرن الحادي والعشرين</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>🌪️</span> ضغوط وتحديات العصر</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-blue-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">1. الاتجاه المتزايد نحو العولمة</h4>
+                                <p class="text-gray-600 mt-1">شرح مبسط: العالم أصبح قرية صغيرة، ولم يعد السوق محلياً فقط. عليك منافسة شركات من قارات أخرى.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: مصنع ملابس محلي في مصر ينافس علامات تجارية عالمية مثل Zara و H&M.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-red-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">2. كبر حجم المنظمات (الاندماج)</h4>
+                                <p class="text-gray-600 mt-1">شرح مبسط: الشركات تندمج وتشتري بعضها لتصبح كيانات عملاقة يصعب على الشركات الصغيرة منافستها.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: استحواذ فيسبوك على واتساب وإنستجرام لتكوين كيان تسويقي وتقني جبار (Meta).</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">3. التكنولوجيا والبيانات الضخمة</h4>
+                                <p class="text-gray-600 mt-1">شرح مبسط: ظهور صناعات ضخمة للتكنولوجيا وصعوبة معالجة وفهم الكم الهائل من بيانات العملاء.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: خوارزميات نتفليكس التي تحلل ملايين البيانات لتقترح لك مسلسلاً يناسب ذوقك تماماً.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow animate-pulse"></div>
+                                <h4 class="text-xl font-bold text-amber-600">4. المنافسة الشرسة</h4>
+                                <p class="text-gray-600 mt-1">شرح مبسط: بسبب كثرة الخيارات، أصبح ولاء العميل نادراً، وتتنافس الشركات على كسب رضاه بأي ثمن.</p>
+                                <p class="text-sm text-amber-800 mt-1 bg-amber-50 p-2 inline-block rounded border border-amber-200">مثال: حرب الأسعار والعروض المستمرة بين شركات الاتصالات لجذب العملاء من بعضهم.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>🛡️</span> الخلاصة: حتمية التكيف</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200 text-center">
+                                <h4 class="font-bold text-emerald-800 text-xl mb-3">البقاء للأكثر استجابة</h4>
+                                <p class="text-gray-700 mb-4">في ظل هذه التحديات، التسويق ليس ترفاً بل هو وسيلة النجاة الوحيدة للمنظمات.</p>
+                                
+                                <div class="flex flex-col justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-4">
+                                    <div class="bg-white p-2 rounded shadow-sm border w-full">فهم التغيرات العالمية 🌍</div>
+                                    <div class="text-xl">⬇️</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border w-full">تعديل الاستراتيجية التسويقية 📝</div>
+                                    <div class="text-xl">⬇️</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border border-emerald-500 text-emerald-700 w-full">البقاء والنمو في السوق 🏆</div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                                <h4 class="font-bold text-gray-800 mb-1">الدرس المستفاد من التحديات:</h4>
+                                <p class="text-sm text-gray-600">الشركات التي لا تراقب بيئتها ولا تتطور مع التكنولوجيا وتتجاهل العولمة، مصيرها الخروج من السوق، بغض النظر عن حجمها السابق.</p>
+                            </div>
+                            
+                            <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                                <h4 class="font-bold text-red-800 mb-1">مثال قاسي من الواقع:</h4>
+                                <p class="text-sm text-gray-700">شركة "كوداك" للتصوير تجاهلت التكنولوجيا (الكاميرات الرقمية) واكتفت بنجاحها القديم، فكانت النتيجة إفلاسها أمام المنافسة الشرسة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Radar Chart (Challenges) -->
+        <section id="macro_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">خريطة تحديات التسويق المعاصرة</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">يوضح هذا الشكل التحديات والقوى الضاغطة التي تفرض على المنظمات تبني فكر تسويقي حديث ومرن.</p>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="macroChart"></canvas>
+                </div>
+                
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    <p>المصدر: المحاضرة الأولى - إدارة التسويق</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم السابقة الخاصة بالمحاضرة الأولى من خلال هذا الاختبار.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: عملية إدارية واجتماعية يحصل من خلالها الأفراد على ما يحتاجون إليه من خلال ابتكار السلع وتبادلها بقيمة. هذا يشير إلى مفهوم...</h3>
+                        <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans1" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التسويق.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التسويق في جوهره هو عملية إشباع للحاجات من خلال تبادل المنفعة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: المنتج، السعر، الترويج، والمكان (التوزيع). ماذا يطلق على هذه العناصر مجتمعة؟</h3>
+                        <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans2" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المزيج التسويقي (Marketing Mix).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي الأدوات التكتيكية الأربعة (4Ps) التي تستخدمها الشركة لتنفيذ خطتها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: في أي مرحلة تاريخية كان يتم التركيز على تصنيع أكبر كمية ممكنة لخفض التكلفة، مع تجاهل رغبات العميل الفردية؟</h3>
+                        <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans3" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة التوجه بالمنتج (الإنتاج).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لإنها مرحلة قديمة افترضت أن توفر السلعة وسعرها الرخيص هما فقط ما يهم.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: عندما تزيد المنافسة وتلجأ الشركة لأساليب الإقناع والضغط الإعلاني القوي لتصريف بضائعها المكدسة، فإنها تطبق مرحلة التوجه بـ...</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التوجه بالبيع.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الهدف هنا هو التخلص من المخزون وليس تلبية حاجة العميل من البداية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س5: المرحلة التي تعتبر المستهلك هو نقطة البداية والنهاية، ويتم تصميم السلع بناءً على دراسة حاجاته أولاً، هي...</h3>
+                        <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans5" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة التوجه بالتسويق.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هو الفكر الحديث الذي يضمن بيع المنتج لأنه مُصمم خصيصاً لحل مشكلة للعميل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س6: هل يبدأ التسويق الفعلي بعد خروج المنتج من خط الإنتاج؟ (نعم / لا)</h3>
+                        <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans6" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: لا.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: من أسباب أهمية التسويق أنه يبدأ *قبل* العملية الإنتاجية من خلال أبحاث السوق.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س7: يعتبر عنصر (التسعير Price) من عناصر البيئة الخارجية للمنظمة. صواب أم خطأ؟</h3>
+                        <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans7" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: خطأ.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التسعير هو أحد عناصر المزيج التسويقي الداخلي الذي تتحكم فيه المنظمة بالكامل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س8: من أسباب إدراك أهمية التسويق أنه أصبح يمثل "نشاط ضروري ومركزي". ماذا يعني ذلك؟</h3>
+                        <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans8" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: أنه أصبح المحور الذي تدور وتتكامل حوله باقي وظائف المنظمة (كالإنتاج والتمويل).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لم يعد مجرد قسم فرعي، بل هو الموجه لباقي الأقسام نحو إرضاء العميل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س9: "الإتجاه المتزايد نحو العولمة" يعتبر من التحديات التسويقية في القرن...</h3>
+                        <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans9" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الحادي والعشرين.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: انفتاح الأسواق على بعضها جعل المنافسة عالمية وليست محلية فقط.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س10: عندما تندمج شركتان ضخمتان لتكوين كيان واحد عملاق، هذا يمثل تحدياً للمنظمات الأخرى. ما اسم هذا التحدي؟</h3>
+                        <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans10" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: كبر حجم منظمات الأعمال نتيجة الاندماج.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الكيانات الكبيرة تمتلك ميزانيات تسويق ضخمة تصعب منافستها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س11: توظيف الإعلانات، العلاقات العامة، والبيع الشخصي لإقناع العميل. أي عنصر من عناصر الـ 4Ps هذا؟</h3>
+                        <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans11" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الترويج (Promotion).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الترويج هو أداة الاتصال بالسوق لتعريفهم بالمنتج وإقناعهم به.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س12: توفير المنتج في المكان والزمان المناسبين للعميل (مثل المتاجر أو التوصيل). أي عنصر من الـ 4Ps؟</h3>
+                        <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans12" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التوزيع / المكان (Place).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: المنتج الممتاز يفشل إذا لم يكن متاحاً أمام العميل عندما يحتاجه.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س13: الاعتماد على تحليل كميات هائلة من المعلومات لمعرفة سلوك المستهلك يندرج تحت تحدي...</h3>
+                        <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans13" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيانات الضخمة (Big Data) والتكنولوجيا المتقدمة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التكنولوجيا وفرت بيانات دقيقة جداً تتطلب قدرات تسويقية متقدمة لتحليلها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س14: "زيادة المنافسة الشرسة بين المنظمات بعضها البعض" هل يعزز من أهمية دور التسويق أم يقلل منه؟</h3>
+                        <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans14" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: يعزز ويزيد من أهمية دور التسويق جداً.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: في ظل المنافسة، التسويق هو الذي يخلق التميز (الميزة التنافسية) ويجذب العميل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س15: ما هو العنصر الوحيد في المزيج التسويقي الذي يدر إيرادات (أموال) للشركة، بينما باقي العناصر تمثل تكلفة؟</h3>
+                        <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans15" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: السعر (Price).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: المنتج والترويج والتوزيع يكلفون أموالاً لتنفيذهم، بينما السعر هو المقابل المادي الذي يتم تحصيله.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س16: التغليف، الجودة، والضمان، تتبع أي عنصر من عناصر المزيج التسويقي؟</h3>
+                        <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans16" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المنتج (Product).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: المنتج ليس فقط المادة الملموسة، بل يشمل غلافه واسمه والضمان المقدم معه.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س17: ترتيب تاريخ تطور التسويق هو: التوجه بالتسويق، ثم البيع، ثم المنتج. (صواب أم خطأ)</h3>
+                        <button onclick="toggleAnswer('ans17', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans17" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: خطأ.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الترتيب الصحيح هو: التوجه بالمنتج، ثم التوجه بالبيع، ثم أحدثهم التوجه بالتسويق.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س18: "التسويق يخلق الحاجات لدى البشر" هذه المقولة صحيحة أم خاطئة؟</h3>
+                        <button onclick="toggleAnswer('ans18', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans18" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: خاطئة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الحاجات الفطرية (كالجوع والأمان) موجودة داخل الإنسان، التسويق فقط يوجه هذه الحاجات نحو "رغبات" محددة (مثل الرغبة في برجر لسد الجوع).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س19: "تحول الاهتمام المشترك لكل الأنشطة الوظيفية بالمنظمة للتوجيه بالمستهلك". ماذا يعني هذا؟</h3>
+                        <button onclick="toggleAnswer('ans19', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans19" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: أن الجميع داخل الشركة (محاسبين، عمال إنتاج، أمن) هدفهم النهائي هو إرضاء العميل.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هذا هو جوهر الفكر التسويقي الحديث المترابط داخل المؤسسة الناجحة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س20: في أي مرحلة من مراحل التطور التسويقي يتم تبني شعار "صنع ما يمكن بيعه" بدلاً من "بيع ما تم صنعه"؟</h3>
+                        <button onclick="toggleAnswer('ans20', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans20" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة التوجه بالتسويق.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها تدرس السوق أولاً لتصنع ما يرغب الناس حقاً في شرائه.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const internalEnvData = [
+            { id: 1, name: 'المنتج (Product)', icon: '📦', desc: 'كل ما يعرض في السوق لإشباع حاجة أو رغبة (سلع، خدمات، أفكار). يشمل الجودة، التصميم، التغليف، والضمان.', example: '<strong class="text-sky-700">مثال واقعي:</strong> شركة أبل لا تبيع مجرد هاتف، بل تبيع نظام تشغيل مستقر، تصميم أنيق، وكاميرا ممتازة (كل هذا هو المنتج).' },
+            { id: 2, name: 'السعر (Price)', icon: '💵', desc: 'القيمة النقدية التي يدفعها العميل مقابل الحصول على المنتج. وهو العنصر الوحيد الذي يدر إيرادات للشركة.', example: '<strong class="text-sky-700">مثال واقعي:</strong> تسعير ساعات رولكس بأسعار مرتفعة جداً لإعطاء العميل إيحاءً بالتميز والفخامة.' },
+            { id: 3, name: 'التوزيع / المكان (Place)', icon: '🏪', desc: 'الأنشطة التي تجعل المنتج متاحاً ومتوفراً للعملاء المستهدفين في الوقت والمكان المناسبين.', example: '<strong class="text-sky-700">مثال واقعي:</strong> انتشار ثلاجات كوكاكولا في كل سوبر ماركت ومطعم لضمان حصولك عليها بمجرد شعورك بالعطش.' },
+            { id: 4, name: 'الترويج (Promotion)', icon: '📢', desc: 'أنشطة الاتصال لإخبار السوق بمزايا المنتج وإقناع العملاء بشرائه (إعلانات، علاقات عامة، عروض).', example: '<strong class="text-sky-700">مثال واقعي:</strong> إعلانات بيبسي في رمضان وعروض "اشتري واحدة واحصل على الثانية مجاناً".' }
+        ];
+
+        function initInternalSection() {
+            const container = document.getElementById('internalButtons');
+            internalEnvData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-6 py-3 bg-white border border-sky-200 text-sky-800 rounded-full font-bold hover:bg-sky-50 hover:border-sky-400 transition-all shadow-sm focus:ring-2 focus:ring-sky-300 outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showInternalDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showInternalDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
+            detailContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <div class="flex items-center gap-3 mb-3 justify-center">
+                        <h3 class="text-3xl font-bold text-sky-800">${item.name}</h3>
+                    </div>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mt-4"><strong>التعريف:</strong> ${item.desc}</p>
+                    <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-500 shadow-sm text-right w-full max-w-3xl mx-auto transition-all">
+                        <p class="text-gray-700 text-lg leading-relaxed">${item.example}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-micro').classList.add('hidden');
+            document.getElementById('content-macro').classList.add('hidden');
+            
+            document.getElementById('btn-micro').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-micro').classList.add('bg-gray-100', 'text-gray-600');
+            
+            document.getElementById('btn-macro').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-macro').classList.add('bg-gray-100', 'text-gray-600');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+            
+            if(tabId === 'micro') {
+                activeBtn.style.backgroundColor = '#0369A1';
+                activeBtn.style.color = 'white';
+                document.getElementById('btn-macro').style.backgroundColor = '';
+            } else {
+                activeBtn.style.backgroundColor = '#0369A1';
+                activeBtn.style.color = 'white';
+                document.getElementById('btn-micro').style.backgroundColor = '';
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) {
+                        item.classList.add('active');
+                    }
+                });
+                
+                if(current) {
+                    mobileNav.value = current;
+                }
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('macroChart').getContext('2d');
+            
+            Chart.defaults.font.family = "'Tajawal', sans-serif";
+            Chart.defaults.font.size = 14;
+
+            const challengesLabels = [
+                ['العولمة', 'وانفتاح الأسواق'],
+                ['المنافسة', 'الشرسة'],
+                ['التكنولوجيا', 'الحديثة'],
+                ['البيانات', 'الضخمة'],
+                ['الاندماج', 'والكيانات الكبرى'],
+                ['تغير سلوك', 'المستهلك']
+            ];
+
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: challengesLabels,
+                    datasets: [{
+                        label: 'تحديات القرن الـ 21',
+                        data: [100, 100, 100, 100, 100, 100],
+                        backgroundColor: [
+                            'rgba(217, 119, 6, 0.7)',  // Amber
+                            'rgba(16, 185, 129, 0.7)', // Emerald
+                            'rgba(22, 163, 74, 0.7)',  // Green
+                            'rgba(59, 130, 246, 0.7)', // Blue
+                            'rgba(239, 68, 68, 0.7)',  // Red
+                            'rgba(168, 85, 247, 0.7)'  // Purple
+                        ],
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: 20
+                    },
+                    scales: {
+                        r: {
+                            ticks: { display: false },
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#0369A1',
+                            titleFont: { size: 16, family: "'Tajawal', sans-serif" },
+                            bodyColor: '#1F2937',
+                            bodyFont: { size: 14, family: "'Tajawal', sans-serif" },
+                            borderColor: '#e2e8f0',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            rtl: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'تحدي تسويقي يتطلب التكيف السريع';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+                btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
+                btnElement.classList.replace('text-gray-700', 'text-sky-800');
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+                btnElement.classList.replace('bg-sky-100', 'bg-gray-200');
+                btnElement.classList.replace('text-sky-800', 'text-gray-700');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initInternalSection();
+            initScrollSpy();
+            switchTab('micro');
+            initChart();
+        });
+    </script>
+</body>
+</html>
