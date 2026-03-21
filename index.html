@@ -1,56 +1,26 @@
-<!DOCTYPE html>
+<script>
+fetch('data/lectures.json')
+.then(res => {
+    if (!res.ok) {
+        throw new Error("فشل تحميل JSON");
+    }
+    return res.json();
+})
+.then(data => {
+    const container = document.getElementById('lecturesContainer');
+    container.innerHTML = "";
 
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>منصة إدارة التسويق</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-body {
-    font-family: 'Tajawal', sans-serif;
-    background-color: #F9FAFB;
-}
-.card:hover {
-    transform: translateY(-5px);
-    transition: 0.3s;
-}
-</style>
-
-</head>
-
-<body class="p-10">
-
-<div class="max-w-5xl mx-auto">
-
-```
-<h1 class="text-4xl font-bold text-sky-800 text-center mb-10">
-    📚 منصة إدارة التسويق
-</h1>
-
-<div class="grid md:grid-cols-3 gap-6">
-
-    <!-- محاضرة 1 -->
-    <a href="lectures/lecture1.html" 
-       class="card bg-white p-6 rounded-xl shadow hover:shadow-lg border border-sky-100">
-
-        <h2 class="text-xl font-bold text-gray-800 mb-2">
-            المحاضرة الأولى
-        </h2>
-
-        <p class="text-gray-600">
-            المفهوم التسويقي وأهميته
-        </p>
-
-    </a>
-
-</div>
-```
-
-</div>
-
-</body>
-</html>
+    data.lectures.forEach(lec => {
+        container.innerHTML += `
+        <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow hover:shadow-lg border border-sky-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
+            <p class="text-gray-600">${lec.desc}</p>
+        </a>
+        `;
+    });
+})
+.catch(err => {
+    document.body.innerHTML += "<p style='color:red;text-align:center'>في مشكلة في تحميل البيانات</p>";
+    console.error(err);
+});
+</script>
