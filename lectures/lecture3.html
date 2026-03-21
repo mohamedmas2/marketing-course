@@ -66,7 +66,10 @@
     <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
         <div class="p-6 border-b border-gray-100">
             <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
-            <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الثالثة</p>
+            <p class="text-sm text-amber-600 font-semibold mb-4">الماجستير المهني - المحاضرة الثالثة</p>
+            <a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-xl font-bold hover:bg-blue-700 transition text-sm w-full text-center">
+                ⬅ الرجوع إلى المحاضرات
+            </a>
         </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1">
@@ -76,7 +79,7 @@
                 <li><button onclick="scrollToSection('mix')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحليل سوات (SWOT)</button></li>
                 <li><button onclick="scrollToSection('evolution')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">فوائد التخطيط الإستراتيجي</button></li>
                 <li><button onclick="scrollToSection('challenges')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المتغيرات البيئية</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-emerald-50 transition-colors font-bold text-emerald-700">اختبر نفسك</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-emerald-50 transition-colors font-bold text-emerald-700">اختبر نفسك (20 سؤال)</button></li>
             </ul>
         </nav>
         <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
@@ -336,52 +339,239 @@
             </div>
         </section>
 
-        <!-- New Quiz Section -->
+        <!-- Quiz Section (Expanded to 20 Questions) -->
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-sky-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-4">📝 اختبر نفسك</h2>
-                    <p class="text-lg text-gray-600">تأكد من فهمك لمفاهيم المحاضرة الثالثة عبر هذا الاختبار السريع.</p>
+                    <p class="text-lg text-gray-600">20 سؤال شامل لتأكيد فهمك لمفاهيم المحاضرة الثالثة.</p>
                 </div>
 
                 <div class="space-y-6">
-                    <!-- Question 1 -->
+                    <!-- Q1 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
                         <h4 class="text-xl font-bold text-gray-800 mb-4">1. يعتبر "ظهور تقنية ذكاء اصطناعي جديدة في السوق" في تحليل SWOT بمثابة:</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) نقطة قوة (Strength)</button>
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) نقطة ضعف (Weakness)</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) فرصة أو تهديد (Opportunity/Threat) لأنها بيئة خارجية</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) فرصة أو تهديد (Opportunity/Threat)</button>
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) بيئة داخلية</button>
                         </div>
                     </div>
 
-                    <!-- Question 2 -->
+                    <!-- Q2 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4">2. التخطيط الإستراتيجي التسويقي يساعد المنظمة على التفاعل باستباقية بدلاً من رد الفعل العشوائي:</h4>
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">2. التخطيط الإستراتيجي التسويقي يساعد المنظمة على التفاعل باستباقية بدلاً من رد الفعل العشوائي.</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) عبارة صحيحة</button>
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) عبارة خاطئة</button>
                         </div>
                     </div>
 
-                    <!-- Question 3 -->
+                    <!-- Q3 -->
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
                         <h4 class="text-xl font-bold text-gray-800 mb-4">3. من أهم فوائد التخطيط الإستراتيجي للتسويق:</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) القضاء التام على المنافسين</button>
                             <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) تقليل الموارد البشرية للمنظمة</button>
-                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تقليل التهديدات وزيادة فاعلية الإعلان وتدريب القوى العاملة</button>
-                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التركيز فقط على جودة الإنتاج وتجاهل السوق</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تقليل التهديدات وزيادة فاعلية الإعلان</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التركيز فقط على جودة الإنتاج</button>
                         </div>
                     </div>
+
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">4. ما هي أول خطوة في خطوات التخطيط الإستراتيجي التسويقي؟</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التنفيذ والرقابة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) التحليل البيئي</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تحديد رسالة المنظمة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) تصميم المزيج التسويقي</button>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">5. الموارد المالية والبشرية والقدرات الإنتاجية تصنف ضمن:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) البيئة الداخلية (Internal Environment)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة الخارجية (External Environment)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) الفرص التسويقية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التهديدات البيئية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">6. المتطلب الذي يعني "قدرة الخطة على التكيف لمواجهة التغيرات المفاجئة في البيئة" هو:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الشمولية</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) المرونة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) الاستمرارية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الواقعية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">7. التضخم والقوة الشرائية والضرائب تعتبر أمثلة على:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) البيئة التكنولوجية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة التنافسية</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) البيئة الاقتصادية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) البيئة الداخلية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">8. "بناء الخطة بناءً على احتياجات ورغبات المستهلكين بدلاً من التركيز على المنتج فقط" يعكس متطلب:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الواقعية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) الرؤية الواضحة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) القابلية للقياس</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">د) التوجه بالسوق</button>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">9. ميزات داخلية إيجابية تمنح المنظمة تفوقاً على منافسيها تعبر في تحليل SWOT عن:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) نقاط القوة (Strengths)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) الفرص (Opportunities)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) نقاط الضعف (Weaknesses)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) التهديدات (Threats)</button>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">10. امتلاك المنظمة لآلات إنتاج قديمة وبطيئة يمثل في تحليل SWOT:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) تهديد خارجي</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) نقطة ضعف داخلية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) نقطة قوة داخلية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) فرصة خارجية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">11. وضع مؤشرات أداء (KPIs) لتقييم مدى نجاح الخطة وتصحيحها يعكس متطلب:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) الشمولية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) المرونة</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) القابلية للقياس</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الاستمرارية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">12. قوانين حماية المستهلك والتشريعات الحكومية تندرج تحت:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) البيئة التشريعية والقانونية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) البيئة الديموجرافية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) البيئة التنافسية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) البيئة الداخلية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">13. الإدارة التي تخطط استراتيجياً تتميز بأن فعلها ومواجهتها للتحديات يكون:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) رد فعل عشوائي (Reactive)</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) فعل استباقي (Proactive)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) فعل متأخر</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) لا يوجد إجابة صحيحة</button>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">14. التخطيط الإستراتيجي التسويقي يقتصر فقط على قسم التسويق ولا يحتاج لدمج الإدارات الأخرى كالتمويل والإنتاج.</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) عبارة صحيحة</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) عبارة خاطئة (يخالف متطلب الشمولية)</button>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">15. "اختيار القطاعات السوقية المناسبة بدقة وتوجيه الجهود نحوها" يشير إلى:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التنبؤ بالمستقبل</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) تصميم المزيج التسويقي</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) تحديد الأسواق المستهدفة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) تحليل البيئة التكنولوجية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">16. وفقاً لخطوات التخطيط، الأهداف الناجحة للمنظمة يجب أن تكون:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) واضحة وقابلة للقياس</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) واقعية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) محددة بوقت معين</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">د) جميع ما سبق</button>
+                        </div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">17. سياسات المنافسين وأسعارهم في السوق تمثل البيئة التنافسية، والتي تقع:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) داخل سيطرة الإدارة بالكامل</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) خارج سيطرة الإدارة (بيئة خارجية)</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) ضمن الموارد البشرية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) ضمن القدرات الإنتاجية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">18. أي مما يلي يُعد من النتائج الإيجابية المباشرة لتطبيق التخطيط الإستراتيجي التسويقي؟</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">أ) تطوير سياسات التسعير والمنتج بشكل فعال</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) زيادة التكاليف العشوائية</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ج) تجاهل تدريب القوى العاملة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) الانعزال عن دراسة السوق</button>
+                        </div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">19. متطلب "الشمولية" في الخطة الإستراتيجية يعني:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) التركيز على المنتجات فقط</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">ب) المرونة في التعديل وقت الأزمات</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ج) أن تغطي الخطة كافة جوانب المنظمة المترابطة</button>
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">د) المراجعة الدورية السنوية</button>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4">20. التخطيط الإستراتيجي عملية لمرة واحدة فقط تُكتب في بداية المشروع ولا يتم العودة إليها أبداً.</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <button onclick="checkAnswer(this, false)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors">أ) عبارة صحيحة</button>
+                            <button onclick="checkAnswer(this, true)" class="quiz-option p-3 border border-gray-300 rounded-lg text-right hover:bg-gray-50 transition-colors font-medium">ب) عبارة خاطئة (التخطيط عملية مستمرة)</button>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!-- Back to Lectures Button at the bottom of the quiz -->
+                <div class="mt-12 text-center">
+                    <a href="../index.html" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg text-lg">
+                        ⬅ الرجوع إلى المحاضرات
+                    </a>
+                </div>
+
             </div>
-            <div class="text-center mt-10">
-  <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition">
-    ⬅ الرجوع إلى المحاضرات
-  </a>
-</div>
         </section>
 
     </main>
