@@ -6,11 +6,16 @@
     {"title": "المحاضرة الثانية",
       "desc": "تجربة النظام",
       "file": "lectures/lecture2.html"},
-     {"title": "المحاضرة الرابعه",
+     {"title": "المحاضرة الثالثه ",
       "desc": " جديد 2606تجربة النظام",
       "file": "lectures/lecture2.html"},
     {
-  "title": "المحاضرة الثالثة",
+  "title": "المحاضرة الرابعه",
+  "desc": "عنوان جديد",
+  "file": "lectures/lecture3.html"
+},
+    {
+  "title": "المحاضرة الخامسة ",
   "desc": "عنوان جديد",
   "file": "lectures/lecture3.html"
 }
