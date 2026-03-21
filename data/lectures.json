@@ -11,13 +11,11 @@
      {"title": "المحاضرة الثالثه ",
       "desc": " التخطيط الإستراتيجي التسويقي ",
       "file": "lectures/lecture3.html"},
-    {
-  "title": "المحاضرة الرابعه",
-  "desc": "عنوان جديد",
-  "file": "lectures/lecture4.html"
-},
-    {
-  "title": "المحاضرة الخامسة ",
+    {"title": "المحاضرة الرابعه",
+  "desc": "المعلومات وبحوث التسويق",
+  "file": "lectures/lecture4.html"},
+    
+    {"title": "المحاضرة الخامسة ",
   "desc": "عنوان جديد",
   "file": "lectures/lecture5.html"
 }
