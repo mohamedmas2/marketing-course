@@ -576,41 +576,5 @@
             initChart();
         });
     </script>
-    <div class="mt-10 p-6 bg-white rounded-xl shadow">
-
-<h2 class="text-xl font-bold mb-4">🧠 اختبر نفسك</h2>
-
-<p class="mb-3">ما هو تعريف الحاجات (Needs)؟</p>
-
-<button onclick="checkAnswer(1)" class="block w-full text-right p-2 mb-2 border rounded">
-رغبة في شراء منتج معين
-</button>
-
-<button onclick="checkAnswer(2)" class="block w-full text-right p-2 mb-2 border rounded">
-حالة من الشعور بالنقص أو الحرمان
-</button>
-
-<button onclick="checkAnswer(3)" class="block w-full text-right p-2 mb-2 border rounded">
-طلب مدعوم بالقدرة على الشراء
-</button>
-
-<p id="result" class="mt-4 font-bold"></p>
-
-</div>
-
-<script>
-function checkAnswer(choice){
-    const result = document.getElementById("result");
-
-    if(choice === 2){
-        result.innerHTML = "✅ إجابة صحيحة";
-        result.style.color = "green";
-    } else {
-        result.innerHTML = "❌ إجابة غلط";
-        result.style.color = "red";
-    }
-}
-</script>
-
 </body>
 </html>
