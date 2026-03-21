@@ -1,27 +1,43 @@
-<script>
-const data = {
-  lectures: [
-    {
-      title: "المحاضرة الأولى",
-      desc: "المفهوم التسويقي وأهميته",
-      file: "lectures/lecture1.html"
-    },
-    {
-      title: "المحاضرة الثانية",
-      desc: "تجربة النظام",
-      file: "lectures/lecture2.html"
-    }
-  ]
-};
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>منصة إدارة التسويق</title>
 
-const container = document.getElementById('lecturesContainer');
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
 
-data.lectures.forEach(lec => {
-    container.innerHTML += `
-    <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow hover:shadow-lg border border-sky-100">
-        <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
-        <p class="text-gray-600">${lec.desc}</p>
+<style>
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #F9FAFB;
+}
+.card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+</style>
+</head>
+
+<body class="p-10">
+
+<h1 class="text-3xl font-bold text-sky-800 text-center mb-10">
+📚 منصة إدارة التسويق
+</h1>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+    <a href="lectures/lecture1.html" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
+        <h2 class="text-xl font-bold text-gray-800">المحاضرة الأولى</h2>
+        <p class="text-gray-600">المفهوم التسويقي وأهميته</p>
     </a>
-    `;
-});
-</script>
+
+    <a href="lectures/lecture2.html" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
+        <h2 class="text-xl font-bold text-gray-800">المحاضرة الثانية</h2>
+        <p class="text-gray-600">تجربة النظام</p>
+    </a>
+
+</div>
+
+</body>
+</html>
