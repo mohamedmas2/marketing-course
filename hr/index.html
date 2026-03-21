@@ -30,7 +30,7 @@ body {
 <div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
 
 <script>
-fetch('data/lectures.json')
+fetch('./data/lectures.json')
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById('lecturesContainer');
