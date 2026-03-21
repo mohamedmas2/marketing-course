@@ -1,0 +1,9 @@
+{
+  "lectures": [
+    {
+      "title": "المحاضرة الأولى",
+      "desc": "المفهوم التسويقي وأهميته",
+      "file": "lectures/lecture1.html"
+    }
+  ]
+}
