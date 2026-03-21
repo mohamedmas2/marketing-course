@@ -28,16 +28,37 @@ body {
 📚 منصة إدارة التسويق
 </h1>
 
+<!-- البحث -->
+
+<input 
+type="text" 
+id="searchInput" 
+placeholder="ابحث عن محاضرة..." 
+class="w-full p-3 mb-6 border rounded-lg"
+/>
+
+<!-- المحاضرات -->
+
 <div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
 
 <script>
-// نقرأ JSON من GitHub مباشرة
+
+let lecturesData = [];
+
+// تحميل البيانات من JSON
 fetch('https://raw.githubusercontent.com/mohamedmas2/marketing-course/main/data/lectures.json')
 .then(res => res.json())
 .then(data => {
-    const container = document.getElementById('lecturesContainer');
+    lecturesData = data.lectures;
+    displayLectures(lecturesData);
+});
 
-    data.lectures.forEach(lec => {
+// عرض المحاضرات
+function displayLectures(lectures) {
+    const container = document.getElementById('lecturesContainer');
+    container.innerHTML = "";
+
+    lectures.forEach(lec => {
         container.innerHTML += `
         <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
             <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
@@ -45,7 +66,20 @@ fetch('https://raw.githubusercontent.com/mohamedmas2/marketing-course/main/data/
         </a>
         `;
     });
+}
+
+// البحث
+document.getElementById('searchInput').addEventListener('input', function() {
+    const value = this.value.toLowerCase();
+
+    const filtered = lecturesData.filter(lec =>
+        lec.title.toLowerCase().includes(value) ||
+        lec.desc.toLowerCase().includes(value)
+    );
+
+    displayLectures(filtered);
 });
+
 </script>
 
 </body>
