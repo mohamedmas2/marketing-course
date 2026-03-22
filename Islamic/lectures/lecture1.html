@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الثقافة التنظيمية - المحاضرات من 1 الي 4(عوامل ازدهار الدولة الإسلامية)</title>
+    <title>الثقافة التنظيمية - المحاضرة الثانية (عوامل ازدهار الدولة الإسلامية)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -13,15 +13,6 @@
             font-family: 'Tajawal', sans-serif;
             background-color: #F8F9FA;
             color: #1F2937;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 450px;
-            max-height: 60vh;
         }
         /* الشريط الجانبي بلون أخضر إسلامي فاخر وزخارف ذهبية */
         .sidebar-dark {
@@ -42,11 +33,6 @@
             background-color: #c5a059;
             color: #043927;
             font-weight: 800;
-        }
-        .tab-btn.active {
-            background-color: #043927;
-            color: #c5a059;
-            border: 1px solid #c5a059;
         }
         .mix-card:hover {
             transform: translateY(-5px);
@@ -73,12 +59,19 @@
             border-top: 1px solid #e5e7eb;
             margin-top: 1rem;
         }
-        .islamic-border {
-            border: 2px solid #c5a059;
-            position: relative;
-        }
         .islamic-pattern-bg {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0l5 15h15l-12 9 5 16-13-10-13 10 5-16-12-9h15z' fill='%23043927' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .quran-verse {
+            font-family: 'Amiri', serif;
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #065f46;
+            background: #f0fdf4;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border-right: 5px solid #c5a059;
+            margin: 1rem 0;
         }
     </style>
 </head>
@@ -94,15 +87,15 @@
                 </a>
             </div>
             <h1 class="text-2xl font-black text-[#c5a059] mb-1">الإدارة الإسلامية</h1>
-            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">محاضرات من 1 الي 4</p>
+            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">تميز المنظور الإسلامي</p>
         </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1">
                 <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold">المنهج الرباني</button></li>
                 <li><button onclick="scrollToSection('factors')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">7 عوامل للازدهار</button></li>
                 <li><button onclick="scrollToSection('details')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">تفاصيل عوامل القوة</button></li>
-                <li><button onclick="scrollToSection('principles')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">المبادئ الإدارية</button></li>
-                <li><button onclick="scrollToSection('functions_chart')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">تكامل النظم</button></li>
+                <li><button onclick="scrollToSection('excellence_foundations')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">أسس تميز المنظور</button></li>
+                <li><button onclick="scrollToSection('management_sources')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">مصادر علم الإدارة</button></li>
                 <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4">اختبر معلوماتك</button></li>
             </ul>
         </nav>
@@ -122,7 +115,7 @@
                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#043927] opacity-5 rounded-full"></div>
                     <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">سر ازدهار مؤسسات الدولة الإسلامية</h2>
                     <p class="text-xl text-gray-700 leading-relaxed mb-8">
-                        لم يكن تقدم الدولة الإسلامية وليد الصدفة، بل كان نتيجة إدارة محكمة لمواردها استناداً إلى تشريعات سماوية وقيم إنسانية شاملة. سنستعرض هنا العوامل السبعة التي جعلت من هذه الدولة القوة الاقتصادية والإدارية الأولى في العالم لقرون طويلة.
+                        لم يكن تقدم الدولة الإسلامية وليد الصدفة، بل كان نتيجة إدارة محكمة لمواردها استناداً إلى تشريعات سماوية وقيم إنسانية شاملة. سنستعرض هنا الأسس والمصادر التي جعلت من هذه الدولة القوة الاقتصادية والإدارية الأولى في العالم.
                     </p>
                     <div class="flex flex-wrap gap-6 text-sm font-bold text-[#c5a059]">
                         <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🕌</span> منظور إسلامي شامل</div>
@@ -133,149 +126,163 @@
             </div>
         </section>
 
-        <!-- Section 2: The 7 Factors (Interactive Icons) -->
+        <!-- Section 2: Factors (Previously shown) -->
         <section id="factors" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center border-b border-gray-100">
             <div class="max-w-6xl mx-auto w-full">
                 <div class="text-center mb-16">
                     <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">المقومات الاستراتيجية</span>
                     <h2 class="text-4xl md:text-5xl font-black text-[#043927] mt-2 mb-6">7 عوامل ساهمت في الازدهار</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">هذه الركائز شكلت حجر الزاوية في بناء أقوى نظام إداري ومؤسسي عرفه التاريخ بين القرنين الثامن والثالث عشر.</p>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">هذه الركائز شكلت حجر الزاوية في بناء أقوى نظام إداري ومؤسسي عرفه التاريخ.</p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-12">
-                    <!-- Cards will be populated with content and unique Islamic-themed visuals -->
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(1)">
-                        <div class="text-3xl mb-3">🌍</div>
-                        <p class="text-xs font-black text-[#043927]">الموقع الاستراتيجي</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(2)">
-                        <div class="text-3xl mb-3">🚢</div>
-                        <p class="text-xs font-black text-[#043927]">التجارة الحرة</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(3)">
-                        <div class="text-3xl mb-3">🌾</div>
-                        <p class="text-xs font-black text-[#043927]">الزراعة والصناعة</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(4)">
-                        <div class="text-3xl mb-3">🪙</div>
-                        <p class="text-xs font-black text-[#043927]">النظام المالي</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(5)">
-                        <div class="text-3xl mb-3">👥</div>
-                        <p class="text-xs font-black text-[#043927]">تنوع القوى العاملة</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(6)">
-                        <div class="text-3xl mb-3">🔬</div>
-                        <p class="text-xs font-black text-[#043927]">البحث والابتكار</p>
-                    </div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl text-center hover:border-[#c5a059] cursor-pointer transition-all shadow-sm group" onclick="showFactor(7)">
-                        <div class="text-3xl mb-3">🤝</div>
-                        <p class="text-xs font-black text-[#043927]">الأمن والأقليات</p>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-12 text-center">
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(1)">🌍<p class="text-xs font-black mt-2">الموقع</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(2)">🚢<p class="text-xs font-black mt-2">التجارة</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(3)">🌾<p class="text-xs font-black mt-2">الزراعة</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(4)">🪙<p class="text-xs font-black mt-2">المال</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(5)">👥<p class="text-xs font-black mt-2">العمالة</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(6)">🔬<p class="text-xs font-black mt-2">الابتكار</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(7)">🤝<p class="text-xs font-black mt-2">الأمن</p></div>
                 </div>
 
-                <div id="factorDetail" class="bg-[#043927] text-white rounded-3xl p-10 flex flex-col md:flex-row gap-10 items-center border-b-8 border-[#c5a059] shadow-2xl transition-all duration-500">
+                <div id="factorDetail" class="bg-[#043927] text-white rounded-3xl p-10 flex flex-col md:flex-row gap-10 items-center border-b-8 border-[#c5a059] shadow-2xl transition-all duration-500 min-h-[300px]">
                     <div class="w-full md:w-1/3">
                         <img id="factorImg" src="https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&q=80&w=400" alt="Islamic Art" class="rounded-2xl border-4 border-[#c5a059] shadow-lg object-cover h-64 w-full">
                     </div>
                     <div class="w-full md:w-2/3">
                         <h3 id="factorTitle" class="text-3xl font-black text-[#c5a059] mb-4">اختر عاملاً لاستكشافه</h3>
-                        <p id="factorDesc" class="text-lg text-emerald-50 leading-relaxed mb-6">اضغط على الأيقونات أعلاه لقراءة الشرح التفصيلي لكل عامل من عوامل قوة الدولة الإسلامية.</p>
-                        <div id="factorExample" class="bg-emerald-800/50 p-4 rounded-xl border-r-4 border-[#c5a059] italic text-sm">
-                            مثال توضيحي سيظهر هنا...
-                        </div>
+                        <p id="factorDesc" class="text-lg text-emerald-50 leading-relaxed mb-6">اضغط على الأيقونات أعلاه لقراءة الشرح التفصيلي.</p>
+                        <div id="factorExample" class="bg-emerald-800/50 p-4 rounded-xl border-r-4 border-[#c5a059] italic text-sm"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: Detailed Breakdown -->
-        <section id="details" class="min-h-screen p-8 md:p-16 flex flex-col justify-center">
-            <div class="max-w-6xl mx-auto w-full">
-                <h2 class="text-4xl font-black text-[#043927] mb-12 text-center">التفصيل العملي لعوامل الازدهار</h2>
+        <!-- Placeholder for 'details' to avoid offset error -->
+        <div id="details"></div>
+
+        <!-- Section 3: Excellence Foundations (Modified Section) -->
+        <section id="excellence_foundations" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center bg-white">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">الهوية الإدارية</span>
+                    <h2 class="text-4xl font-black text-[#043927] mb-6">أسس تميز المنظور الإسلامي للإدارة</h2>
+                    <p class="text-lg text-gray-600">ينفرد المنظور الإسلامي بأسس عقدية وأخلاقية تجعل الإدارة رسالة هادفة لا مجرد إجراءات فنية.</p>
+                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Factor 1 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">01</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">1. الموقع الجغرافي الاستراتيجي</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">وقعت الدولة الإسلامية في قلب العالم، لتكون جسراً برياً وبحرياً يربط بين الصين والهند شرقاً وأوروبا غرباً.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: السيطرة على "طريق الحرير" جعلت من بغداد والقاهرة ومراكز التجارة الإسلامية محطات لا غنى عنها عالمياً.
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Foundation 1 -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">🕋</div>
+                            <h3 class="text-2xl font-black text-[#043927]">أولاً: الإيمان والرقابة الذاتية</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            يكمن الأساس الأول في <strong>الإيمان بالله واليوم الآخر</strong>. هذا المبدأ يغرس في نفس المسلم الإحساس بمراقبة الله الدائمة، مما يعزز قيمة ضبط النفس والسلوك التلقائي دون حاجة لرقابة خارجية مستمرة، ويقينه بأنه سيحاسب عن كل عمل.
+                        </p>
+                        <div class="quran-verse">
+                            قال تعالى: ﴿لِّلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ وَإِن تُبْدُوا مَا فِي أَنفُسِكُمْ أَوْ تُخْفُوهُ يُحَاسِبْكُم بِهِ اللَّهُ ۖ فَيَغْفِرُ لِمَن يَشَاءُ وَيُعَذِّبُ مَن يَشَاءُ ۗ وَاللَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ﴾ [البقرة: 284]
                         </div>
                     </div>
 
-                    <!-- Factor 2 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">02</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">2. سياسات التجارة الحرة</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">تبنت الدولة قوانين تضمن حرية انتقال البضائع والأفراد، مع فرض رسوم عادلة وحماية كاملة للقوافل التجارية.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: كان التاجر المسلم أو غير المسلم ينتقل من قرطبة إلى دمشق دون عوائق سياسية أو جمركية معقدة.
+                    <!-- Foundation 2 -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">💎</div>
+                            <h3 class="text-2xl font-black text-[#043927]">ثانياً: الدور القيادي للأخلاق</h3>
                         </div>
-                    </div>
-
-                    <!-- Factor 3 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">03</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">3. التطور في الزراعة والصناعة</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">أدخل المسلمون أنظمة ري متطورة (القناطر والسواقي) وبرعوا في صناعة الورق، المنسوجات، والأسلحة.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: نقل تقنية صناعة الورق من الصين وتطويرها في سمرقند وبغداد أحدث ثورة في تدوين العلوم والإدارة.
-                        </div>
-                    </div>
-
-                    <!-- Factor 4 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">04</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">4. نظام مالي متطور</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">امتلاك عملة قوية (الدينار والدرهم) ونظام مصرفي بدائي يعتمد على "الصكوك" والحوالات المالية.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: كلمة "Check" الإنجليزية مشتقة من كلمة "صك" العربية، حيث كان التاجر يحمل ورقة مالية تُصرف في مدينة أخرى.
-                        </div>
-                    </div>
-
-                    <!-- Factor 5 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">05</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">5. تنوع القوى العاملة</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">اعتمدت الدولة على مبدأ الكفاءة "الرجل المناسب في المكان المناسب" بغض النظر عن الأصل أو العرق.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: ضمت الدواوين (الوزارات) خبراء من الفرس والروم والعرب، مما أدى لتبادل خبرات إدارية هائلة.
-                        </div>
-                    </div>
-
-                    <!-- Factor 6 -->
-                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-emerald-50 relative group">
-                        <div class="absolute top-4 left-4 text-[#c5a059] opacity-20 text-4xl font-black">06</div>
-                        <h4 class="text-xl font-black text-[#043927] mb-4">6. البحث العلمي والابتكار</h4>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">دعم الخلفاء لبيت الحكمة والمستشفيات والمراصد الفلكية كأدوات لتحسين جودة الحياة والإدارة.</p>
-                        <div class="bg-emerald-50 p-3 rounded-lg text-xs text-[#043927] font-bold">
-                            💡 مثال: اختراع "الأسطرلاب" وتطوير علم الخرائط ساعد في دقة الملاحة البحرية وفتح آفاق تجارية جديدة.
-                        </div>
-                    </div>
-
-                    <!-- Factor 7 (Full width or centered) -->
-                    <div class="mix-card bg-[#043927] text-white p-8 rounded-3xl shadow-lg border border-[#c5a059] col-span-1 md:col-span-2 lg:col-span-3 text-center">
-                        <h4 class="text-2xl font-black text-[#c5a059] mb-4">7. الأمن ودمج الأقليات في المجتمع</h4>
-                        <p class="text-emerald-50 text-lg mb-6 leading-relaxed">تحقق الاستقرار نتيجة الشعور بالعدل والمساواة، حيث تمتعت الأقليات (أهل الذمة) بكامل حقوقهم في ممارسة التجارة والعمل، مما منع الصراعات الداخلية.</p>
-                        <div class="bg-white/10 p-4 rounded-xl text-sm italic inline-block border-r-4 border-[#c5a059]">
-                            واقعياً: في الأندلس، عاش المسلمون والمسيحيون واليهود في تناغم إداري أنتج أعظم حضارة في تلك العصور.
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            للأخلاق دور رئيسي في الإدارة الإسلامية؛ فتحلي المديرين والعاملين بصفات مثل <strong>الصدق، الإخلاص، الأمانة، التواضع، والوفاء بالعهد</strong> يوفر بيئة عمل قائمة على الثقة المتبادلة والاحترام، مما يحفز الأداء المتميز ويحقق الأهداف المنظمة بروح الفريق.
+                        </p>
+                        <div class="bg-white p-6 rounded-2xl border-r-4 border-[#c5a059] shadow-sm">
+                            <h4 class="font-bold text-[#043927] mb-2">تطبيق عملي:</h4>
+                            <p class="text-sm text-gray-600 italic">المدير المسلم الذي يفي بعهده لموظفيه في المكافآت والترقيات يبني منظمة لا تهزها الأزمات بفضل "رأس المال الأخلاقي".</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Quiz -->
+        <!-- Section 4: Management Sources (New Section) -->
+        <section id="management_sources" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">الأصول العلمية</span>
+                    <h2 class="text-4xl font-black text-[#043927] mb-6">مصادر علم الإدارة من المنظور الإسلامي</h2>
+                    <p class="text-lg text-gray-700">تستقي الإدارة الإسلامية قوتها من أربعة مصادر رئيسية تدمج بين الوحي الإلهي والتجربة البشرية.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Primary Sources -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-[#c5a059] relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 text-9xl text-emerald-50 font-black opacity-10">01</div>
+                        <h3 class="text-2xl font-black text-[#043927] mb-6 flex items-center gap-3">
+                            <span class="bg-[#c5a059] text-[#043927] px-3 py-1 rounded-lg text-sm">أساسي</span> المصادر الأصلية
+                        </h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#c5a059] mt-1">✦</span>
+                                <div><strong>القرآن الكريم:</strong> دستور الحياة الذي وضع قواعد العدل والشورى.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#c5a059] mt-1">✦</span>
+                                <div><strong>الحديث الشريف:</strong> التطبيق العملي والبيان النبوي لمبادئ الإدارة والقيادة.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Secondary Sources -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-[#043927] relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 text-9xl text-emerald-50 font-black opacity-10">02</div>
+                        <h3 class="text-2xl font-black text-[#043927] mb-6 flex items-center gap-3">
+                            <span class="bg-[#043927] text-[#c5a059] px-3 py-1 rounded-lg text-sm">ثانوي</span> المصادر التبعية
+                        </h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#043927] mt-1 text-xl">◈</span>
+                                <div><strong>الفقه الإسلامي:</strong> الذي استنبط الأحكام المنظمة للمعاملات المالية والإدارية.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-[#043927] mt-1 text-xl">◈</span>
+                                <div><strong>سيرة النبي والخلفاء الراشدين:</strong> رصيد هائل من الممارسات الميدانية الناجحة.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Universal Sources -->
+                <div class="bg-[#043927] text-white p-10 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl">
+                    <h3 class="text-2xl font-black text-[#c5a059] mb-6 text-center">المصادر الفكرية والمعرفة العالمية</h3>
+                    <p class="text-lg leading-relaxed text-center max-w-4xl mx-auto mb-8">
+                        تكتمل هذه المصادر بكتابات <strong>العلماء المسلمين وغير المسلمين</strong> الذين استطاعوا فهم القواعد الحاكمة للسلوك البشري. فطلب العلم والمعرفة لا ينحصر في فئة أو جيل معين؛ فالحكمة "سلعة ثمينة" نبحث عنها في كل زمان ومكان، شريطة امتلاك <strong>القدرة التحليلية</strong> لتقييمها والتحقق من ملائمتها لبيئتنا.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white/10 p-4 rounded-xl text-center border border-white/20">
+                            <span class="block text-3xl mb-2">📚</span>
+                            كتابات العلماء المعاصرين
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-xl text-center border border-white/20">
+                            <span class="block text-3xl mb-2">🌍</span>
+                            التجارب العالمية الناجحة
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-xl text-center border border-white/20">
+                            <span class="block text-3xl mb-2">🧠</span>
+                            التأمل في السلوك البشري
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Quiz -->
         <section id="quiz" class="min-h-screen p-8 md:p-16 bg-[#FDFBF7]">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك التاريخية</h2>
-                    <p class="text-gray-600">هل يمكنك استرجاع العوامل السبعة لازدهار الدولة الإسلامية؟</p>
+                    <p class="text-gray-600">هل يمكنك استرجاع الأسس والمصادر الإدارية الإسلامية؟</p>
                 </div>
                 <div id="quizContainer" class="space-y-6">
-                    <!-- JavaScript will load 20 questions here -->
+                    <!-- Loaded via JS -->
                 </div>
             </div>
         </section>
@@ -284,91 +291,50 @@
 
     <script>
         const factorsData = {
-            1: {
-                title: "الموقع الجغرافي الاستراتيجي",
-                desc: "تمثلت أهمية الموقع في توسط الدولة الإسلامية لقارات العالم القديم الثلاث، مما جعلها المتحكم الفعلي في طرق التجارة العالمية البرية والبحرية.",
-                example: "مثال واقعي: السيطرة على المعابر المائية مثل مضيق جبل طارق وباب المندب أعطى قوة اقتصادية هائلة للدولة.",
-                img: "https://images.unsplash.com/photo-1541410901520-22709e99a897?auto=format&fit=crop&q=80&w=600"
-            },
-            2: {
-                title: "سياسات التجارة الحرة",
-                desc: "إلغاء الحواجز بين الأقاليم الإسلامية الشاسعة شجع التجار على الحركة المستمرة، مما أدى لانتعاش الأسواق وتوفر السلع بأسعار تنافسية.",
-                example: "مثال واقعي: معاهدات الأمان التي كان يمنحها الخلفاء للتجار الأجانب لتشجيعهم على دخول الأسواق الإسلامية.",
-                img: "https://images.unsplash.com/photo-1542401886-65d6c60db275?auto=format&fit=crop&q=80&w=600"
-            },
-            3: {
-                title: "التطور في الزراعة والصناعة",
-                desc: "لم تكتفِ الدولة بالتجارة، بل استثمرت في الإنتاج. تم استصلاح الأراضي وبناء المصانع (مثل مصانع الورق والزجاج والمنسوجات).",
-                example: "مثال واقعي: اشتهرت دمشق بصناعة السيوف والمنسوجات الحريرية التي كانت تُصدر للعالم كله.",
-                img: "https://images.unsplash.com/photo-1532009232840-7f2878709503?auto=format&fit=crop&q=80&w=600"
-            },
-            4: {
-                title: "امتلاك نظام مالي متطور",
-                desc: "أنشأ المسلمون أول 'بيت مال' منظم، واستخدموا أدوات مالية حديثة مثل الحوالات المالية لتقليل مخاطر نقل الذهب والفضة.",
-                example: "مثال واقعي: تطور مهنة 'الصيرفي' التي كانت تقوم بتبديل العملات وتسهيل التعاملات التجارية الدولية.",
-                img: "https://images.unsplash.com/photo-1615468511210-441f71dfc836?auto=format&fit=crop&q=80&w=600"
-            },
-            5: {
-                title: "تنوع القوى العاملة",
-                desc: "احترام التخصص وتقدير العقل جعل الدولة تستقطب أمهر الصناع والعلماء من جميع الحضارات السابقة وتدمجهم في نظامها.",
-                example: "مثال واقعي: الاعتماد على المهندسين الفرس في بناء أنظمة الري المتقدمة في العراق.",
-                img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600"
-            },
-            6: {
-                title: "التقدم في البحث العلمي والابتكار",
-                desc: "الإيمان بأن 'العلم عبادة' دفع الدولة لتمويل الأبحاث التي تخدم الاقتصاد مثل علم الكيمياء (لصناعة الأدوية) وعلم الفلك (للملاحة).",
-                example: "مثال واقعي: إنشاء 'المارستانات' (المستشفيات) التي كانت مراكز للعلاج والبحث العلمي في آن واحد.",
-                img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600"
-            },
-            7: {
-                title: "الأمن ودمج الأقليات",
-                desc: "السلم المجتمعي هو أساس الاقتصاد. حماية دماء وأموال غير المسلمين جعلتهم شركاء في التنمية بدلاً من أن يكونوا عناصر هدم.",
-                example: "مثال واقعي: تولي بعض الشخصيات من أهل الذمة مناصب إدارية رفيعة في الدواوين المالية لمهاراتهم الحسابية.",
-                img: "https://images.unsplash.com/photo-1519817650390-64a934479f67?auto=format&fit=crop&q=80&w=600"
-            }
+            1: { title: "الموقع الجغرافي الاستراتيجي", desc: "توسط الدولة لقارات العالم القديم والتحكم في طرق التجارة العالمية.", example: "مثال: السيطرة على المعابر المائية أعطى قوة اقتصادية هائلة.", img: "https://images.unsplash.com/photo-1541410901520-22709e99a897?auto=format&fit=crop&q=80&w=600" },
+            2: { title: "سياسات التجارة الحرة", desc: "إلغاء الحواجز بين الأقاليم وتشجيع حركة التجار والأموال.", example: "مثال: معاهدات الأمان للتجار الأجانب أنعشت الأسواق.", img: "https://images.unsplash.com/photo-1542401886-65d6c60db275?auto=format&fit=crop&q=80&w=600" },
+            3: { title: "الزراعة والصناعة", desc: "بناء القناطر وتطوير صناعات الورق والمنسوجات والزجاج.", example: "مثال: صناعة الورق أحدثت ثورة في تدوين الدواوين والعلوم.", img: "https://images.unsplash.com/photo-1532009232840-7f2878709503?auto=format&fit=crop&q=80&w=600" },
+            4: { title: "نظام مالي متطور", desc: "عملة قوية (دينار ودرهم) ونظام 'صكوك' يغني عن حمل الذهب.", example: "مثال: كلمة Check مشتقة من 'صك' العربي.", img: "https://images.unsplash.com/photo-1615468511210-441f71dfc836?auto=format&fit=crop&q=80&w=600" },
+            5: { title: "تنوع القوى العاملة", desc: "الاعتماد على الكفاءة بغض النظر عن العرق أو الجنسية.", example: "مثال: الاستعانة بخبرات الفرس في الهندسة والروم في الطب.", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600" },
+            6: { title: "البحث العلمي والابتكار", desc: "دعم بيت الحكمة والمستشفيات كأدوات لتحسين الإدارة.", example: "مثال: ابتكار الأسطرلاب لتسهيل الملاحة والتجارة البحرية.", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600" },
+            7: { title: "الأمن ودمج الأقليات", desc: "تحقيق العدل والمساواة للجميع مما منع الصراعات الداخلية.", example: "مثال: تولي أهل الذمة مناصب إدارية هامة لخبراتهم الحسابية.", img: "https://images.unsplash.com/photo-1519817650390-64a934479f67?auto=format&fit=crop&q=80&w=600" }
         };
+
+        const questions = [
+            { q: "ما هو الأساس الأول لتميز المنظور الإسلامي في الإدارة؟", a: "الإيمان بالله واليوم الآخر.", r: "لأنه يغرس الرقابة الذاتية وضبط السلوك." },
+            { q: "ما هو دور الأخلاق في بيئة العمل الإسلامية؟", a: "توفير الثقة والاحترام وتحفيز الأداء الجيد.", r: "الصدق والأمانة ركائز للنجاح المؤسسي." },
+            { q: "ما هي المصادر الأساسية (الأصلية) لعلم الإدارة الإسلامي؟", a: "القرآن الكريم والحديث الشريف.", r: "هما أصل التشريع ومنبع القيم." },
+            { q: "ماذا تشمل المصادر الثانوية (التبعية) للإدارة؟", a: "الفقه الإسلامي، سيرة النبي، وسيرة الخلفاء الراشدين.", r: "تمثل التجارب العملية والتطبيقية للأحكام." },
+            { q: "هل ينحصر طلب العلم الإداري في المسلمين فقط؟", a: "لا، بل يستفيد من كتابات العلماء المسلمين وغير المسلمين.", r: "الحكمة ضالة المؤمن أنى وجدها فهو أحق بها." },
+            { q: "ما هي الآية الكريمة التي تؤكد على محاسبة الله لأعمال الإنسان وتفكيره؟", a: "الآية 284 من سورة البقرة.", r: "تؤكد على شمولية الرقابة الإلهية." },
+            { q: "لماذا تُعتبر الرقابة الذاتية أقوى من الرقابة الخارجية؟", a: "لأنها تنبع من إيمان الفرد بمراقبة الخالق له.", r: "الموظف يؤدي عمله بإتقان حتى في غياب المدير." },
+            { q: "ما معنى أن الحكمة سلعة ثمينة يجب البحث عنها تاريخياً؟", a: "الانفتاح على تجارب الأمم السابقة والمعاصرة وتقييمها.", r: "البحث العلمي والاطلاع على أفكار الآخرين ضرورة إدارية." },
+            { q: "كيف ساهمت الأخلاق مثل 'الوفاء بالعهد' في استقرار المنظمات؟", a: "بناء جسور الثقة بين المدير والموظفين.", r: "الثقة تقلل النزاعات وتزيد الإنتاجية." },
+            { q: "ما هي القدرة المطلوبة عند دراسة كتابات غير المسلمين في الإدارة؟", a: "القدرة التحليلية لتقييم مدى ملائمتها.", r: "ليس كل ما يكتب يناسب بيئتنا وقيمنا." },
+            { q: "كم عدداً بلغت عوامل ازدهار الدولة الإسلامية؟", a: "7 عوامل.", r: "الموقع، التجارة، الزراعة، المال، العمالة، الابتكار، والأمن." },
+            { q: "ما هو 'صك' العملة الذي ابتكره المسلمون؟", a: "ورقة مالية تثبت الحق وتُصرف في مكان آخر.", r: "هو أصل 'الشيك' المعاصر." },
+            { q: "من هو واضع نظام 'الدواوين' الأول؟", a: "عمر بن الخطاب رضي الله عنه.", r: "استفاد من خبرات الأمم الأخرى وطورها إسلامياً." },
+            { q: "ما هو دور 'المحتسب' في الاقتصاد الإسلامي؟", a: "الرقابة على جودة السلع ومنع الغش في الموازين.", r: "يمثل هيئة الرقابة الإدارية والتموينية." },
+            { q: "أين تكمن قيمة الإدارة بالمعلومات في السيرة؟", a: "في اتخاذ قرارات مبنية على حقائق (بدر، الخندق).", r: "المعلومة هي أساس القوة والانتصار." },
+            { q: "ماذا يغرس الإيمان في نفس المسلم تجاه تصرفاته؟", a: "الإحساس بمراقبة الله وضبط السلوك.", r: "يمنع الفساد الإداري والمالي." },
+            { q: "هل السيرة النبوية مصدر أساسي أم تبعي؟", a: "تعتبر من المصادر التبعية (الثانوية) كفعل عملي.", r: "بينما السنة القولية (الحديث) مصدر أساسي." },
+            { q: "ما هي الفئة التي أمرنا الله بدراسة قواعد سلوكها؟", a: "البشر عامة (السلوك البشري).", r: "لأن النفس البشرية لها قواعد ثابتة خلقها الله." },
+            { q: "لماذا تولي أهل الذمة مناصب في الدواوين المالية؟", a: "لمهاراتهم الحسابية وتطبيقاً لمبدأ الكفاءة.", r: "الإسلام يقدر التخصص والموهبة." },
+            { q: "ما هو الرابط بين عمارة الأرض والمنظور الإسلامي؟", a: "أن الإدارة وسيلة للاستخلاف وعمارة الكون.", r: "العمل عبادة والنجاح فيه واجب ديني." }
+        ];
 
         function showFactor(id) {
             const data = factorsData[id];
             const detailContainer = document.getElementById('factorDetail');
-            
-            // Animation effect
             detailContainer.style.opacity = '0';
-            detailContainer.style.transform = 'translateY(20px)';
-            
             setTimeout(() => {
                 document.getElementById('factorTitle').innerText = data.title;
                 document.getElementById('factorDesc').innerText = data.desc;
                 document.getElementById('factorExample').innerText = data.example;
                 document.getElementById('factorImg').src = data.img;
-                
                 detailContainer.style.opacity = '1';
-                detailContainer.style.transform = 'translateY(0)';
             }, 300);
         }
-
-        const questions = [
-            { q: "كم عدداً بلغت عوامل ازدهار مؤسسات الدولة الإسلامية التي تمت دراستها؟", a: "7 عوامل.", r: "الموقع، التجارة، الزراعة، النظام المالي، تنوع العمالة، البحث العلمي، والأمن." },
-            { q: "ما هي العملات الرئيسية التي استخدمتها الدولة الإسلامية قديماً؟", a: "الدينار والدرهم.", r: "كان الدينار ذهبياً والدرهم فضياً." },
-            { q: "ما هو المصطلح العربي الذي اشتقت منه كلمة 'Check' الإنجليزية؟", a: "الصك.", r: "وهو مستند مالي يثبت الحق في مبلغ معين." },
-            { q: "كيف ساهم الموقع الجغرافي في قوة الدولة؟", a: "بالتوسط بين قارات العالم والتحكم في طرق التجارة.", r: "أصبحت الدولة هي المعبر الإلزامي للتجارة الدولية." },
-            { q: "ماذا يقصد بسياسات التجارة الحرة في الدولة الإسلامية؟", a: "سهولة انتقال البضائع دون عوائق جمركية معقدة.", r: "كانت الدولة سوقاً واحدة شاسعة." },
-            { q: "ما هي التقنية التي نقلها المسلمون من الصين وطوروها إدارياً؟", a: "صناعة الورق.", r: "سمحت بتدوين الدواوين والسجلات بشكل أسهل من الجلود." },
-            { q: "ما هو أساس اختيار الموظفين في الدواوين الإسلامية؟", a: "مبدأ الكفاءة (الرجل المناسب في المكان المناسب).", r: "تم دمج الفرس والروم والعرب بناءً على خبراتهم." },
-            { q: "ما دور 'بيت المال' في تلك العصور؟", a: "تنظيم ميزانية الدولة وإدارة المصروفات والإيرادات.", r: "يعادل وزارة المالية في العصر الحديث." },
-            { q: "لماذا اعتبر دمج الأقليات عاملاً للازدهار؟", a: "لأنه حقق الاستقرار المجتمعي واستثمر مهارات الجميع.", r: "العدل منع الصراعات التي تهدر الموارد." },
-            { q: "ما العلاقة بين البحث العلمي والاقتصاد في الدولة الإسلامية؟", a: "العلم ساعد في تطوير الملاحة والزراعة والطب.", r: "الابتكارات العلمية أدت لفتح أسواق ومنتجات جديدة." },
-            { q: "ما هو 'المحتسب'؟", a: "المسؤول عن مراقبة الأسواق والموازين.", r: "يضمن جودة المنتجات ومنع الغش (رقابة إدارية)." },
-            { q: "أي مدينة اشتهرت كمركز لصناعة الورق المتطور؟", a: "سمرقند ثم بغداد.", r: "كانت أولى المدن الإسلامية التي أنشأت مصانع الورق." },
-            { q: "هل اعتمدت الدولة على الزراعة فقط؟", a: "لا، بل حققت توازناً بين الزراعة والصناعة والتجارة.", r: "هذا التنوع الاقتصادي وفر استدامة مالية." },
-            { q: "ما هو المبدأ الإسلامي الذي حمى أموال التجار؟", a: "مبدأ العدالة والأمان (الذمة).", r: "كان التاجر يأمن على ماله وقافلته بفضل قوة القانون." },
-            { q: "ما تأثير نظام الري المتطور على الدولة؟", a: "زيادة الإنتاج الزراعي وتنوع المحاصيل.", r: "بناء القناطر سمح بزراعة أراضٍ كانت صحراوية." },
-            { q: "لماذا يُعتبر تنوع القوى العاملة ميزة تنافسية؟", a: "لأنه أتاح الوصول لأفضل الممارسات من حضارات مختلفة.", r: "تلاقح الأفكار يؤدي للابتكار الإداري." },
-            { q: "ماذا كانت 'الصكوك' توفر للتاجر؟", a: "توفير الأمان من السرقة وتسهيل السيولة المالية.", r: "لم يعد التاجر بحاجة لحمل أكياس الذهب الثقيلة." },
-            { q: "متى كانت الفترة الذهبية لازدهار الدولة الإسلامية؟", a: "بين القرن الثامن والقرن الثالث عشر ميلادياً.", r: "شهدت هذه الفترة قمة العطاء العلمي والإداري." },
-            { q: "ما هي 'المارستانات'؟", a: "المستشفيات الإسلامية القديمة.", r: "كانت تعالج الناس وتدرب الأطباء وتجري الأبحاث." },
-            { q: "كيف ساهمت اللغة العربية في الازدهار الإداري؟", a: "بتوحيد لغة السجلات والدواوين في كل الأقاليم.", r: "سهلت التواصل الإداري بين أقصى الشرق وأقصى الغرب." }
-        ];
 
         function initQuiz() {
             const container = document.getElementById('quizContainer');
@@ -398,14 +364,36 @@
             }
         }
 
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            document.getElementById('mainContent').scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({ top: section.offsetTop, behavior: 'smooth' });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) item.classList.add('active');
+                });
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             initQuiz();
-            showFactor(1); // Default show first factor
+            initScrollSpy();
+            showFactor(1);
         });
     </script>
 </body>
