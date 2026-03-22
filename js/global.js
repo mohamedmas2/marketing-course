@@ -1,9 +1,20 @@
-alert("js شغال");
-const backBtn = document.createElement("a");
+window.addEventListener("DOMContentLoaded", function () {
+    const backBtn = document.createElement("a");
 
-backBtn.href = "../index.html";
-backBtn.innerText = "← الرئيسية";
+    // الرابط والنص (مع السهم كما في الصورة)
+    backBtn.href = "../index.html";
+    backBtn.innerText = "الرجوع إلى المحاضرات ←";
 
-backBtn.className = "fixed top-6 left-6 bg-white border border-sky-200 text-sky-700 px-4 py-2 rounded-full shadow hover:bg-sky-50 transition z-50";
+    // التنسيقات لمطابقة الصورة:
+    // bg-[#00adef]: لون أزرق سماوي مطابق للصورة
+    // text-white: نص أبيض
+    // font-bold: خط عريض
+    // rounded-xl: حواف دائرية عريضة لكن ليست دائرية بالكامل
+    // py-3 px-6: مسافات داخلية ليعطي شكل الزر الضخم في الصورة
+    // text-center: توسيط النص
+    // shadow-md: ظل خفيف
+    backBtn.className =
+        "fixed top-6 left-6 bg-[#00adef] text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-[#0086b8] transition-all z-50 flex items-center justify-center gap-2 no-underline";
 
-document.body.appendChild(backBtn);
+    document.body.appendChild(backBtn);
+});
