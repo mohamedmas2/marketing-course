@@ -1,1 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الموارد البشرية - المحاضرة الثالثة: تخطيط الموارد البشرية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        .sidebar-dark {
+            background-color: #0f172a;
+            color: white;
+        }
+        .nav-item {
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .nav-item.active {
+            background-color: #1e293b;
+            color: white;
+            border-right: 4px solid #38bdf8;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 500px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
+    <aside class="w-full md:w-72 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-slate-700">
+            <div class="mb-6 text-center">
+                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-white mb-1">إدارة الموارد البشرية</h1>
+            <p class="text-sm text-sky-400 font-semibold">المحاضرة 3: تخطيط الموارد البشرية</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 transition-colors font-medium">تعريف التخطيط</button></li>
+                <li><button onclick="scrollToSection('importance')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أهمية التخطيط</button></li>
+                <li><button onclick="scrollToSection('dimensions')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أبعاد التخطيط (عرض vs طلب)</button></li>
+                <li><button onclick="scrollToSection('demand')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">التنبؤ بالطلب (الاحتياجات)</button></li>
+                <li><button onclick="scrollToSection('supply')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">التنبؤ بالعرض (الداخلي)</button></li>
+                <li><button onclick="scrollToSection('factors_chart')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">مؤثرات العرض الداخلي</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 transition-colors font-bold text-emerald-400">اختبر نفسك (20 سؤال)</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-slate-700 bg-slate-800">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 bg-slate-900 border border-slate-700 rounded text-white outline-none">
+                <option value="intro">تعريف التخطيط</option>
+                <option value="importance">أهمية التخطيط</option>
+                <option value="dimensions">أبعاد التخطيط</option>
+                <option value="demand">التنبؤ بالطلب</option>
+                <option value="supply">التنبؤ بالعرض</option>
+                <option value="factors_chart">مؤثرات العرض</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-6 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 hidden md:block">
+            <p class="font-bold text-slate-300">إعداد المحتوى التعليمي</p>
+            <p>بناءً على المادة العلمية للدكتورة/ ليلى حسام الدين</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Definition -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">ما هو تخطيط الموارد البشرية؟</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        هو مجموعة من الإجراءات والسياسات المتكاملة التي تضمن توفير <strong>العدد المناسب</strong> بالنوعية المناسبة، وفي <strong>التوقيت الملائم</strong> للقيام بالأعمال المطلوبة في فترة زمنية معينة.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-xl border-r-4 border-blue-400">
+                        <p class="text-blue-900"><strong>💡 شرح مبسط:</strong> تخطيط الموارد البشرية هو بمثابة "خريطة طريق" تخبر الشركة كم موظف ستحتاج في المستقبل وما هي المهارات التي يجب أن يمتلكوها لكي لا تتعطل الأعمال.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mix-card transition-all">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>🏢</span> مثال من الحياة الواقعية</h4>
+                    <p class="text-gray-600">تخيل أن شركة "أمازون" تخطط لافتتاح مستودع جديد بعد 6 أشهر. تخطيط الموارد البشرية هنا يعني البدء الآن في تحديد أنهم سيحتاجون 500 عامل تغليف و20 مدير تقني، والبدء في البحث عنهم ليكونوا جاهزين يوم الافتتاح تماماً.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Importance -->
+        <section id="importance" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">أهمية التخطيط للمنظمة</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-300 transition-all">
+                        <div class="text-4xl mb-4">🔮</div>
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">التنبؤ والسياسات</h4>
+                        <p class="text-gray-600 text-sm">التنبؤ بالاحتياجات من القوى العاملة (عدد ومهارات) وتبني سياسات وظيفية قائمة على توازن الطلب والعرض.</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-all">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="text-xl font-bold text-emerald-800 mb-2">الاستخدام الأمثل</h4>
+                        <p class="text-gray-600 text-sm">تحقيق الاستخدام الأفضل للموارد البشرية المتاحة وتنمية قدراتها لتجنب الهدر في الرواتب أو العجز في الإنتاج.</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-all">
+                        <div class="text-4xl mb-4">🛠️</div>
+                        <h4 class="text-xl font-bold text-amber-800 mb-2">توفير البيانات</h4>
+                        <p class="text-gray-600 text-sm">توفير المعلومات اللازمة لأنشطة الاستقطاب والاختيار والتدريب، وتحقيق التكامل مع الخطط المالية للمنظمة.</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-rose-300 transition-all">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h4 class="text-xl font-bold text-rose-800 mb-2">تجنب المشكلات</h4>
+                        <p class="text-gray-600 text-sm">تصحيح مشكلات إدارة الموارد البشرية قبل استفحالها (مثل نقص العمالة المفاجئ أو التضخم الوظيفي).</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-slate-800 text-white p-6 rounded-2xl">
+                    <p class="text-lg"><strong>💡 مثال واقعي:</strong> خلال أزمة كورونا، الشركات التي لديها "تخطيط جيد" استطاعت بسرعة معرفة الموظفين الذين يمكنهم العمل عن بُعد ومن يحتاجون لتدريب تقني فوراً، مما أنقذها من الإفلاس.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Dimensions -->
+        <section id="dimensions" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12">أبعاد التخطيط: نظام التوافق</h2>
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="internalButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+                <div id="internalDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[250px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">⚖️</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">انقر على المصدر أعلاه</h3>
+                    <p class="text-gray-600 text-lg">لاستكشاف كيف يتم التوفيق بين احتياجات المنظمة والموارد المتاحة.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Demand Forecasting -->
+        <section id="demand" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">أساليب التنبؤ بالطلب (الاحتياجات)</h2>
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('non-quant')" id="btn-non-quant" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">أساليب غير كمية (تخمين)</button>
+                        <button onclick="switchTab('quant')" id="btn-quant" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">أساليب كمية (رياضية)</button>
+                    </div>
+                    <div class="p-8">
+                        <div id="content-non-quant" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">التخمين القائم على الحكم الشخصي</h4>
+                            <p class="text-gray-600 mb-4">تعتمد على خبرة المديرين وتقديرهم للظروف المستقبلية دون استخدام معادلات رياضية معقدة.</p>
+                            <div class="bg-amber-50 p-4 rounded-lg border-r-4 border-amber-400 text-sm">
+                                <strong>💡 مثال واقعي:</strong> صاحب مطعم صغير يقرر توظيف 2 عمال إضافيين في رمضان لأنه يعرف من "خبرته" في السنوات السابقة أن الزحام سيزداد، دون إجراء دراسة إحصائية.
+                            </div>
+                        </div>
+                        <div id="content-quant" class="hidden">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">النماذج الرياضية والإحصائية</h4>
+                            <p class="text-gray-600 mb-4">تستخدم الحاسب الآلي والبيانات التاريخية للتنبؤ الدقيق (مثل علاقة حجم المبيعات بعدد الموظفين المطلوبين).</p>
+                            <div class="bg-emerald-50 p-4 rounded-lg border-r-4 border-emerald-400 text-sm">
+                                <strong>💡 مثال واقعي:</strong> شركة اتصالات تستخدم برنامجاً يحسب أنه مقابل كل 10,000 مشترك جديد، يجب توظيف 5 موظفين في خدمة العملاء.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Supply Forecasting -->
+        <section id="supply" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التنبؤ بالعرض الداخلي</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>🔍</span> كيف نقيس ما لدينا؟</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">تحليل العمالة الحالية</h4>
+                                <p class="text-gray-600 mt-1 text-sm">دراسة المهارات الحالية وأنماط التغيير (النقل، الاستقالات).</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-600 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">تأثير سياسات التدريب</h4>
+                                <p class="text-gray-600 mt-1 text-sm">البرامج التي تنمي المهارات وتحول الموظف من مستوى لآخر.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">الافتراضات المنطقية</h4>
+                                <p class="text-gray-600 mt-1 text-sm">توقع من سيتقاعد ومن سيطلب نقلاً في الفترة القادمة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>💡</span> مثال واقعي</h3>
+                        <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200">
+                            <p class="text-gray-700 leading-relaxed">
+                                شركة "بنك مصر" قبل فتح فرع إلكتروني جديد، قامت بـ <strong>تحليل العرض الداخلي</strong> ووجدت أن لديها 20 موظفاً بارعين في التكنولوجيا في فروع مختلفة. بدلاً من توظيف جدد، قررت <strong>نقلهم</strong> للفرع الجديد. هذا هو جوهر التنبؤ بالعرض الداخلي.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Chart -->
+        <section id="factors_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+            <div class="max-w-5xl mx-auto w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">العوامل المؤثرة على العرض الداخلي</h2>
+                <p class="text-lg text-gray-600 mb-10">يوضح الرسم البياني مدى تأثير السياسات المختلفة على توفر الموظفين داخل الشركة.</p>
+                <div class="chart-container">
+                    <canvas id="supplyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">أسئلة لقياس فهمك لمحاضرة تخطيط الموارد البشرية.</p>
+                </div>
+
+                <div id="quizContainer" class="space-y-4">
+                    <!-- Questions will be populated here via script for cleaner HTML -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Data for interactive dimensions
+        const dimensionsData = [
+            { id: 1, name: 'العرض الداخلي', icon: '👥', desc: 'هم الأفراد الموجودون فعلياً داخل المنظمة والذين يمكن الاستفادة منهم في وظائف جديدة أو شاغرة.', example: 'موظف مبيعات في الشركة حصل على دورة في الإدارة، فيتم التخطيط لترقيته ليصبح مديراً للفرع.' },
+            { id: 2, name: 'العرض الخارجي', icon: '🌐', desc: 'هم الأفراد المتاحون في سوق العمل الخارجي والذين سيتم استقطابهم وتعيينهم.', example: 'خريجون جدد تطلبهم الشركة من الجامعات لسد عجز لا يمكن تغطيته من الموظفين الحاليين.' },
+            { id: 3, name: 'نظام التوافق', icon: '🧩', desc: 'هي عملية مقابلة العرض (داخلي/خارجي) مع الوظائف المتوقعة عبر فترة زمنية محددة.', example: 'إذا كان الطلب 10 مهندسين والعرض الداخلي 4 فقط، فالتوافق يفرض علينا جلب 6 من العرض الخارجي.' }
+        ];
+
+        function initDimensionsSection() {
+            const container = document.getElementById('internalButtons');
+            dimensionsData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-6 py-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-full font-bold hover:bg-slate-700 hover:text-white transition-all shadow-sm outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showDimensionDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showDimensionDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
+            detailContainer.style.opacity = '0';
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <h3 class="text-3xl font-bold text-sky-800 mb-3">${item.name}</h3>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed"><strong>التعريف:</strong> ${item.desc}</p>
+                    <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-600 shadow-sm text-right w-full max-w-3xl mx-auto">
+                        <p class="text-gray-700 text-lg"><strong>💡 مثال:</strong> ${item.example}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-non-quant').classList.add('hidden');
+            document.getElementById('content-quant').classList.add('hidden');
+            document.getElementById('btn-non-quant').classList.replace('active', 'bg-gray-100');
+            document.getElementById('btn-quant').classList.replace('active', 'bg-gray-100');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.replace('bg-gray-100', 'active');
+            
+            const allTabs = document.querySelectorAll('.tab-btn');
+            allTabs.forEach(t => { t.style.backgroundColor = ''; t.style.color = ''; });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.style.backgroundColor = '#0369A1';
+            activeBtn.style.color = 'white';
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) item.classList.add('active');
+                });
+                if(current) mobileNav.value = current;
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('supplyChart').getContext('2d');
+            Chart.defaults.font.family = "'Tajawal', sans-serif";
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['برامج التدريب', 'سياسات التوظيف', 'النقل والترقية', 'التقاعد', 'الأجور والحوافز'],
+                    datasets: [{
+                        label: 'مدى التأثير على العرض الداخلي (%)',
+                        data: [95, 70, 85, 40, 90],
+                        backgroundColor: [
+                            '#38bdf8', '#0ea5e9', '#0284c7', '#0369a1', '#075985'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+        }
+
+        // Quiz Generator
+        const quizQuestions = [
+            { q: "ما هو التعريف الأساسي لتخطيط الموارد البشرية؟", a: "توفير العدد والنوعية المناسبة من العمالة في التوقيت الملائم." },
+            { q: "هل يعتمد تخطيط الموارد البشرية على مقابلة العرض بالطلب؟", a: "نعم، هو نظام لموافقة العرض الداخلي والخارجي مع الوظائف المتاحة." },
+            { q: "ما هي أهمية التخطيط فيما يخص القوى العاملة؟", a: "التنبؤ بالاحتياجات وتحديد المهارات اللازمة مسبقاً." },
+            { q: "كيف يساعد التخطيط في تقليل التكاليف؟", a: "عن طريق تحقيق الاستخدام الأمثل للموارد وتجنب الهدر في العمالة الزائدة." },
+            { q: "اذكر أحد الأنشطة التي تعتمد بياناتها على تخطيط الموارد البشرية.", a: "الاستقطاب، الاختيار، والتدريب." },
+            { q: "ماذا يقصد بالأساليب غير الكمية في التنبؤ بالطلب؟", a: "هي الأساليب القائمة على التخمين والحكم الشخصي للمديرين." },
+            { q: "متى نلجأ للأساليب الكمية في التنبؤ؟", a: "عند توفر بيانات تاريخية كافية وتسهيلات الحاسب الآلي والنماذج الرياضية." },
+            { q: "ما هي العوامل التي تحدد اختيار أسلوب التنبؤ المناسب؟", a: "الهدف، النطاق الزمني، توفر البيانات، والخبرة." },
+            { q: "كيف يتم تقدير العرض الداخلي للموارد البشرية؟", a: "من خلال دراسة العمالة الحالية وتحليل مهاراتهم وأنماط التغيير (نقل، إنهاء خدمة)." },
+            { q: "هل تؤثر سياسة الأجور والحوافز على العرض الداخلي؟", a: "نعم، لأن الحوافز تشجع الموظفين على البقاء في الشركة (تقليل الدوران الوظيفي)." },
+            { q: "ما المقصود بالعرض الخارجي؟", a: "الأشخاص الذين يمكن استقطابهم من سوق العمل خارج المنظمة." },
+            { q: "لماذا يعد التخطيط مهماً للمدى الطويل؟", a: "لضمان توافر المتخصصين للاستجابة للحاجات المتزايدة للإنتاج." },
+            { q: "ما هو دور التدريب في التنبؤ بالعرض الداخلي؟", a: "يساهم في ترقية الموظفين الحاليين ليشغلوا وظائف أعلى (تغيير نوعية العرض)." },
+            { q: "هل التنبؤ بالقوى العاملة يجب أن يكون كمياً فقط؟", a: "لا، ينبغي أن يكون مزيجاً من الأسلوب الكمي والحكم الشخصي." },
+            { q: "ما هي أهداف تحليل العمالة الحالية؟", a: "معرفة المهارات المتاحة وتوقع التغييرات المستقبلية كالنقل والتقاعد." },
+            { q: "كيف يتكامل تخطيط الموارد البشرية مع الخطط المالية؟", a: "من خلال تقدير تكاليف الرواتب والتدريب المطلوبة في الميزانية." },
+            { q: "ما هو الفرق بين الطلب والعرض في هذا السياق؟", a: "الطلب هو ما تحتاجه الشركة، والعرض هو ما تملكه أو تستطيع جلبه." },
+            { q: "هل يساعد التخطيط في حل مشكلات إدارة الموارد البشرية قبل وقوعها؟", a: "نعم، يساعد في تصحيح المسار وتجنب الأزمات المفاجئة." },
+            { q: "ما هي أبسط طرق التنبؤ بالعرض الداخلي؟", a: "الجداول البسيطة لأسماء الموظفين وتواريخ تقاعدهم المتوقعة." },
+            { q: "ما هي الفائدة الأساسية من 'نظام التوافق'؟", a: "ضمان عدم وجود عجز (نقص) أو فائض (زيادة غير مبررة) في الموظفين." }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            quizQuestions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-gray-200';
+                qDiv.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">س${index + 1}: ${item.q}</h3>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                    <div id="ans${index}" class="quiz-answer">
+                        <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: ${item.a}</p>
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initDimensionsSection();
+            initScrollSpy();
+            switchTab('non-quant');
+            initChart();
+            loadQuiz();
+        });
+    </script>
+</body>
+</html>
