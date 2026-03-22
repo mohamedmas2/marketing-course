@@ -1,1 +1,19 @@
-
+{
+  "lectures": [
+    {
+      "title": "المحاضرة الأولى",
+      "desc": "  إدارة الاعمال في ظل ازدهار الدولة الاسلامية ",
+      "file": "lectures/lecture1.html"
+    },
+    {
+      "title": "المحاضرة الثانية",
+      "desc": " جاي التحضير ",
+      "file": "lectures/lecture2.html"
+    },
+    {
+      "title": "المحاضرة الثالثة",
+      "desc": "  قريبا ..... ",
+      "file": "lectures/lecture3.html"
+    }
+  ]
+}
