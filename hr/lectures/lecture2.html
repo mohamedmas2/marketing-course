@@ -1,1 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الموارد البشرية - المحاضرة الثانية (تحليل وتوصيف الوظائف)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        .sidebar-dark {
+            background-color: #0f172a;
+            color: white;
+        }
+        .nav-item {
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .nav-item.active {
+            background-color: #1e293b;
+            color: white;
+            border-right: 4px solid #38bdf8;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 200px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
+    <aside class="w-full md:w-72 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-slate-700">
+            <div class="mb-6 text-center">
+                <a href="index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-white mb-1">إدارة الموارد البشرية</h1>
+            <p class="text-sm text-sky-400 font-semibold">المحاضرة الثانية - تحليل الوظائف</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 transition-colors font-medium">مفهوم تحليل الوظائف</button></li>
+                <li><button onclick="scrollToSection('fields')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">طرق جمع البيانات</button></li>
+                <li><button onclick="scrollToSection('goals')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">نواتج التحليل (الوصف والمواصفات)</button></li>
+                <li><button onclick="scrollToSection('challenges')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">تحديات التوصيف الحديث</button></li>
+                <li><button onclick="scrollToSection('evolution')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أهمية التحليل للإدارة</button></li>
+                <li><button onclick="scrollToSection('functions_chart')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">مكونات بطاقة الوصف</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 transition-colors font-bold text-emerald-400">اختبر نفسك</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-slate-700 bg-slate-800">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 bg-slate-900 border border-slate-700 rounded text-white outline-none">
+                <option value="intro">مفهوم تحليل الوظائف</option>
+                <option value="fields">طرق جمع البيانات</option>
+                <option value="goals">نواتج التحليل</option>
+                <option value="challenges">تحديات التوصيف الحديث</option>
+                <option value="evolution">أهمية التحليل</option>
+                <option value="functions_chart">مكونات بطاقة الوصف</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-6 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 hidden md:block">
+            <p class="font-bold text-slate-300">دكتورة/ ليلى حسام الدين شكر</p>
+            <p>أستاذ إدارة الأعمال - جامعة الأزهر</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Intro -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">تحليل وتوصيف الوظائف</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        يعتبر تحليل الوظائف "حجر الزاوية" في إدارة الموارد البشرية. هو العملية التي يتم من خلالها جمع بيانات تفصيلية عن كل وظيفة (ماذا يفعل الموظف؟ كيف يفعله؟ ولماذا؟) لضمان وضع الشخص المناسب في المكان المناسب.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-2"><span>👤</span> دكتورة/ ليلى حسام الدين شكر</div>
+                        <div class="flex items-center gap-2"><span>📅</span> المحاضرة الثانية</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> كلية التجارة - جامعة الأزهر</div>
+                        <div class="flex items-center gap-2"><span>📂</span> مادة إدارة الموارد البشرية</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🔍</span> لماذا نحلل الوظائف؟</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
+                        <div class="text-4xl mb-4">📋</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">تحديد المتطلبات بدقة</h4>
+                        <p class="text-gray-600 mb-3">شرح: فهم المهام المطلوبة يساعدنا في معرفة المهارات التي يجب أن تتوفر في المتقدم للوظيفة.</p>
+                        <div class="bg-sky-50 p-3 rounded text-sm text-sky-800 border-r-2 border-sky-400">
+                            <strong>مثال واقعي:</strong> قبل توظيف "محاسب"، يجب أن نعرف هل سيقوم بإدخال بيانات فقط أم سيقوم بإعداد ميزانيات؟ كل مهمة تتطلب مستوى تعليمي مختلف.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
+                        <div class="text-4xl mb-4">⚖️</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">العدالة في الأجور</h4>
+                        <p class="text-gray-600 mb-3">شرح: لا يمكن تحديد راتب عادل دون معرفة حجم المسؤوليات والمخاطر المرتبطة بكل وظيفة.</p>
+                        <div class="bg-amber-50 p-3 rounded text-sm text-amber-800 border-r-2 border-amber-400">
+                            <strong>مثال واقعي:</strong> موظف الاستقبال في فندق 5 نجوم يتقاضى راتباً أعلى من موظف استقبال في مكتب صغير لأن متطلبات "اللغات" و"المظهر" والضغط أعلى.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Data Collection Methods -->
+        <section id="fields" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">طرق جمع بيانات تحليل الوظائف</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">هناك عدة طرق علمية للحصول على المعلومات من الميدان. انقر لاستكشاف كل طريقة.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="internalButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+
+                <div id="internalDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[200px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">اختر طريقة لجمع البيانات</h3>
+                    <p class="text-gray-600 text-lg">لاستكشاف كيفية تطبيقها والمواقف التي تناسبها.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Outcomes (Tabs) -->
+        <section id="goals" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">نواتج عملية تحليل الوظائف</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">تنتهي عملية التحليل بإنتاج وثيقتين أساسيتين هما العمود الفقري للتعامل مع الموظف.</p>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('desc')" id="btn-desc" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">وصف الوظيفة (Job Description)</button>
+                        <button onclick="switchTab('spec')" id="btn-spec" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">مواصفات الوظيفة (Job Spec)</button>
+                    </div>
+                    <div class="p-8">
+                        <div id="content-desc" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">بطاقة وصف الوظيفة</h4>
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">📝</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">توصيف المهام والواجبات</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح: قائمة مكتوبة توضح ماذا يفعل الموظف، المسؤوليات، وظروف العمل والأدوات المستخدمة.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال: "مسؤول عن استقبال 50 مكالمة يومياً، استخدام نظام CRM، العمل في نوبات مسائية".</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="content-spec" class="hidden">
+                            <h4 class="text-xl font-bold text-amber-600 mb-4">مواصفات شاغل الوظيفة</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-amber-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>🎓</span> المؤهلات والمهارات</h5>
+                                    <p class="text-sm text-gray-600 mt-1">الخصائص التي يجب أن تتوفر في الشخص (تعليم، خبرة، سمات شخصية).</p>
+                                    <p class="text-xs text-amber-700 mt-2 font-bold">مثال: "بكالوريوس تجارة، خبرة 3 سنوات، إجادة اللغة الإنجليزية، القدرة على تحمل الضغط".</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-emerald-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>🧠</span> القدرات الذهنية</h5>
+                                    <p class="text-sm text-gray-600 mt-1">الذكاء، سرعة البديهة، والقدرة على حل المشكلات المعقدة.</p>
+                                    <p class="text-xs text-emerald-700 mt-2 font-bold">مثال: "القدرة على اتخاذ قرارات سريعة في حالات الطوارئ الطبية لمهنة الطبيب".</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Challenges -->
+        <section id="challenges" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">تحديات تحليل الوظائف المعاصرة</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">مع تغير طبيعة العمل (العمل عن بعد، الذكاء الاصطناعي)، واجه تحليل الوظائف تحديات جديدة.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="mix-card bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-sky-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">1</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">الوظائف المرنة (Flexible Roles)</h3>
+                        <p class="text-gray-600 mb-3">شرح: الموظف الآن يقوم بعدة مهام متداخلة، مما يجعل "التوصيف الجامد" غير مفيد أحياناً.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-sky-800 font-medium">
+                            💡 مثال: في الشركات الناشئة، قد يكون المبرمج مسؤولاً أيضاً عن جزء من خدمة العملاء أو التصميم.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-amber-50 to-white p-8 rounded-2xl border border-amber-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">2</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">أتمتة المهام (Automation)</h3>
+                        <p class="text-gray-600 mb-3">شرح: دخول التكنولوجيا يغير من طبيعة الوظيفة باستمرار، مما يتطلب تحديث التحليل دورياً.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-amber-800 font-medium">
+                            💡 مثال: المحاسب الذي كان يقضي وقته في الجمع والطرح، الآن يحتاج لمهارة "تحليل البيانات" لأن البرامج تقوم بالحساب.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Importance (Timeline style) -->
+        <section id="evolution" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">علاقة تحليل الوظائف بالأنشطة الأخرى</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>🔄</span> دورة التأثير</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-gray-400 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">التوظيف والاختيار</h4>
+                                <p class="text-gray-600 mt-1">التحليل يخبرنا بمن نبحث عنه (المواصفات المطلوبة).</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال: إعلان الوظيفة يُكتب بناءً على "بطاقة الوصف".</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow animate-pulse"></div>
+                                <h4 class="text-xl font-bold text-sky-700">التدريب والتطوير</h4>
+                                <p class="text-gray-600 mt-1">عندما نلاحظ فجوة بين "ما يفعله الموظف فعلياً" و"المكتوب في التوصيف"، نبدأ بالتدريب.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-sky-50 p-2 inline-block rounded border border-sky-200">مثال: إذا كانت الوظيفة تتطلب لغة فرنسية والموظف ضعيف فيها، نوفر له دورة لغة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>💡</span> ملاحظة هامة</h3>
+                        <div class="space-y-6">
+                            <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200 text-center">
+                                <h4 class="font-bold text-emerald-800 text-xl mb-3">نحن نحلل "الوظيفة" لا "الشخص"</h4>
+                                <p class="text-gray-700 mb-4">في هذه المرحلة، نركز على متطلبات المنصب نفسه بغض النظر عن الشخص الذي يشغله حالياً.</p>
+                            </div>
+                            <div class="p-4 bg-sky-50 rounded-lg border-l-4 border-sky-400">
+                                <h4 class="font-bold text-sky-800 mb-1">تطبيق عملي:</h4>
+                                <p class="text-sm text-gray-700">إذا كان لدينا موظف عبقري في الرسم وهو يعمل "مدخل بيانات"، بطاقة وصف الوظيفة لن تحتوي على "الرسم" لأن الوظيفة لا تحتاجه.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Radar Chart -->
+        <section id="functions_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">تركيز عناصر بطاقة الوصف</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">يوضح الرسم البياني مدى أهمية توزيع العناصر المختلفة داخل وثيقة وصف الوظيفة لضمان شموليتها.</p>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="hrChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (تحليل الوظائف)</h2>
+                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم الأساسية للمحاضرة الثانية.</p>
+                </div>
+
+                <div id="quizContainer" class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: ما هو الفرق الجوهري بين "وصف الوظيفة" و"مواصفات شاغل الوظيفة"؟</h3>
+                        <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans1" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الوصف يركز على المهام (العمل)، والمواصفات تركز على الشخص (المؤهلات).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الوصف (Description) يجيب على "ماذا سأفعل؟"، والمواصفات (Specs) تجيب على "من يجب أن أكون؟".</p>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: لماذا نستخدم طريقة "الملاحظة" لجمع البيانات لعمال المصانع أكثر من المديرين؟</h3>
+                        <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans2" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: لأن عمل العمال يدوي وحركي ويمكن رؤيته وقياسه بسهولة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: عمل المدير "ذهني" وقائم على الاجتماعات والقرارات، وهي أمور لا يمكن فهمها بمجرد النظر.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: متى يجب على الشركة إعادة إجراء عملية "تحليل الوظائف"؟</h3>
+                        <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans3" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: عند حدوث تغير تكنولوجي، أو دمج وظائف، أو ظهور مهام جديدة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لضمان أن التوصيف الوظيفي يطابق الواقع ولا يظلم الموظف أو الشركة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const fieldsData = [
+            { id: 1, name: 'المقابلة الشخصية', icon: '🗣️', desc: 'الحديث المباشر مع الموظف أو رئيسه في العمل.', example: '<strong class="text-sky-400">مثال واقعي:</strong> مقابلة مدير الموارد لـ "محاسب بنك" لسؤاله عن أدق تفاصيل يومه وكيف يتعامل مع العجز المالي.' },
+            { id: 2, name: 'الاستقصاءات', icon: '📝', desc: 'توزيع نموذج أسئلة مكتوب لجمع كمية كبيرة من البيانات بسرعة.', example: '<strong class="text-sky-400">مثال واقعي:</strong> إرسال رابط إلكتروني لـ 200 عامل في المصنع لتعبئة مهامهم اليومية.' },
+            { id: 3, name: 'الملاحظة الميدانية', icon: '👁️', desc: 'مراقبة الموظف أثناء أداء عمله وتسجيل تحركاته.', example: '<strong class="text-sky-400">مثال واقعي:</strong> وقوف محلل الوظائف بجانب موظف "كاشير" في السوبر ماركت لملاحظة سرعة تعامله مع الأجهزة.' }
+        ];
+
+        function initFieldsSection() {
+            const container = document.getElementById('internalButtons');
+            fieldsData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-6 py-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-full font-bold hover:bg-slate-700 hover:text-white transition-all shadow-sm outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showFieldDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showFieldDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
+            detailContainer.style.opacity = '0';
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <h3 class="text-3xl font-bold text-sky-800 mb-3">طريقة ${item.name}</h3>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mt-4"><strong>الوصف:</strong> ${item.desc}</p>
+                    <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-600 shadow-sm text-right w-full max-w-3xl mx-auto">
+                        <p class="text-gray-700 text-lg leading-relaxed">${item.example.replace('text-sky-700', 'text-sky-600')}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-desc').classList.add('hidden');
+            document.getElementById('content-spec').classList.add('hidden');
+            document.getElementById('btn-desc').classList.replace('active', 'bg-gray-100');
+            document.getElementById('btn-spec').classList.replace('active', 'bg-gray-100');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.replace('bg-gray-100', 'active');
+            
+            const allTabs = document.querySelectorAll('.tab-btn');
+            allTabs.forEach(t => {
+                t.style.backgroundColor = '';
+                t.style.color = '';
+            });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.style.backgroundColor = '#0369A1';
+            activeBtn.style.color = 'white';
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) item.classList.add('active');
+                });
+                if(current) mobileNav.value = current;
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('hrChart').getContext('2d');
+            Chart.defaults.font.family = "'Tajawal', sans-serif";
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['المهام والواجبات', 'ظروف العمل', 'المؤهلات المطلوبة', 'المسؤوليات المالية', 'الأدوات والمعدات', 'العلاقات الوظيفية'],
+                    datasets: [{
+                        label: 'أوزان مكونات بطاقة الوصف',
+                        data: [98, 70, 95, 60, 80, 85],
+                        backgroundColor: 'rgba(56, 189, 248, 0.2)',
+                        borderColor: '#0284c7',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#0284c7'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initFieldsSection();
+            initScrollSpy();
+            switchTab('desc');
+            initChart();
+        });
+    </script>
+</body>
+</html>
