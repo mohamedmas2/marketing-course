@@ -1,3 +1,4 @@
+alert("js شغال");
 const backBtn = document.createElement("a");
 
 backBtn.href = "../index.html";
