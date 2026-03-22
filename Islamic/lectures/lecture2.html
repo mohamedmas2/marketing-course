@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الثقافة التنظيمية - المحاضرة الثانيه  </title>
+    <title>الثقافة التنظيمية - المحاضرة الثالثة (المنظور الإسلامي)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -72,11 +72,6 @@
             border-right: 5px solid #c5a059;
             margin: 1rem 0;
         }
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
     </style>
 </head>
     
@@ -86,24 +81,29 @@
     <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
         <div class="p-8 border-b border-emerald-900/50">
             <div class="mb-6 text-center">
-                <a href="index.html" class="inline-block bg-[#c5a059] text-[#043927] px-6 py-3 rounded-xl font-extrabold hover:bg-yellow-600 transition w-full shadow-lg">
+                <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
                     ⬅ المنهج الدراسي الكامل
                 </a>
             </div>
-            <h1 class="text-2xl font-black text-[#c5a059] mb-1">الثقافة التنظيمية</h1>
-            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">المحاضرة الثالثة</p>
+            <h1 class="text-2xl font-black text-[#c5a059] mb-1 text-center">الثقافة التنظيمية</h1>
+            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase text-center">المحاضرة الثالثة</p>
         </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1">
-                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold">مفهوم الثقافة</button></li>
-                <li><button onclick="scrollToSection('islamic_perspective')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">المنظور الإسلامي</button></li>
-                <li><button onclick="scrollToSection('components')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">مكونات الثقافة</button></li>
-                <li><button onclick="scrollToSection('tawhid')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">قيمة التوحيد</button></li>
-                <li><button onclick="scrollToSection('responsibility')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">المسؤولية والعدل</button></li>
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-3 transition-colors font-bold">مفهوم الثقافة</button></li>
+                <li><button onclick="scrollToSection('islamic_perspective')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">المنظور الإسلامي</button></li>
+                <li><button onclick="scrollToSection('components_3')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">المكونات الـ 3</button></li>
+                <li><button onclick="scrollToSection('tawhid')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">قيمة التوحيد واليقين</button></li>
+                <li><button onclick="scrollToSection('responsibility')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">المسؤولية والعدل</button></li>
+                <li><button onclick="scrollToSection('behaviors_intro')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">السلوكيات والممارسات</button></li>
+                <li><button onclick="scrollToSection('mastery_cooperation')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">الإتقان والتعاون</button></li>
+                <li><button onclick="scrollToSection('shura_wealth')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">الشورى وكفاءة المال</button></li>
+                <li><button onclick="scrollToSection('time_knowledge')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">الوقت وطلب العلم</button></li>
+                <li><button onclick="scrollToSection('final_components')" class="nav-item w-full text-right px-8 py-3 transition-colors font-bold">القصص والطقوس</button></li>
                 <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4">اختبر معلوماتك</button></li>
             </ul>
         </nav>
-        <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-xs text-emerald-400 hidden md:block text-center">
+        <div class="p-4 bg-[#032d1f] border-t border-emerald-900 text-xs text-emerald-400 hidden md:block text-center">
             <p class="font-bold text-[#c5a059]">د. خديجة يحيى عبد الصمد</p>
             <p>جامعة الأزهر - كلية التجارة</p>
         </div>
@@ -112,94 +112,85 @@
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto bg-[#FDFBF7] relative scroll-smooth islamic-pattern-bg" id="mainContent">
         
-        <!-- Section 1: Introduction (Original Content) -->
+        <!-- Section 1: Intro (Same Layout) -->
         <section id="intro" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="bg-white rounded-3xl p-10 shadow-xl border-t-8 border-[#c5a059] mb-12 relative overflow-hidden">
                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#043927] opacity-5 rounded-full"></div>
-                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">مفهوم الثقافة والتعددية</h2>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">الثقافة: الجوهر والمفهوم</h2>
                     <p class="text-xl text-gray-700 leading-relaxed">
-                        تعد الثقافة هي المحرك الأساسي للسلوك البشري، وفي بيئة العمل، تشكل الثقافة التنظيمية "الروح" التي توجه الأداء وتحدد الهوية. سننتقل الآن لفهم هذه الثقافة من منظورنا الإسلامي الأصيل.
+                        الثقافة هي "نظام تشغيل" المجتمعات والمنظمات. لغةً تعني الحذق والفطنة، واصطلاحاً هي كل ما يكتسبه الإنسان من معارف وقيم وسلوكيات كعضو في المجتمع.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Islamic Perspective Definition (New Content) -->
+        <!-- Section 2: Islamic Perspective Definition -->
         <section id="islamic_perspective" class="min-h-screen p-8 md:p-16 bg-white border-b border-gray-100 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-12">
-                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">تعريف خاص</span>
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">التعريف الرباني</span>
                     <h2 class="text-4xl font-black text-[#043927] mt-2">الثقافة التنظيمية من المنظور الإسلامي</h2>
                 </div>
                 
-                <div class="bg-[#FDFBF7] p-10 rounded-3xl border-2 border-emerald-50 shadow-lg mb-10">
-                    <p class="text-xl text-gray-700 leading-relaxed text-center font-medium">
+                <div class="bg-[#FDFBF7] p-10 rounded-3xl border-2 border-emerald-50 shadow-lg mb-10 text-center">
+                    <p class="text-xl text-gray-700 leading-relaxed font-medium">
                         "نظام من القيم والمعتقدات والمعايير والافتراضات السلوكية المشتركة بين أفراد المنظمة، <span class="text-[#043927] font-black">والمستمدة من الشريعة الإسلامية</span>، والتي توجه سلوك الأفراد وتصوراتهم، بهدف تحقيق أهداف تنظيمية مشروعة."
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-[#043927] text-white p-8 rounded-3xl mix-card transition-all border-b-8 border-[#c5a059]">
+                    <div class="bg-[#043927] text-white p-8 rounded-3xl border-b-8 border-[#c5a059] mix-card transition-all">
                         <h4 class="text-[#c5a059] font-black text-xl mb-4">المنظور الإسلامي</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="flex items-center gap-2">✔ المصدر: القرآن والسنة.</li>
-                            <li class="flex items-center gap-2">✔ الغاية: رضا الله والفوز بالجنة.</li>
+                            <li class="flex items-center gap-2">✔ الغاية: كسب رضا الله والفوز بالجنة.</li>
                             <li class="flex items-center gap-2">✔ العلاقة: أخوة وتعاون ("المسلم أخو المسلم").</li>
                             <li class="flex items-center gap-2">✔ التنافس: شريف يبتعد عن الصراع السلبي.</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-100 p-8 rounded-3xl mix-card transition-all border-b-8 border-gray-400">
+                    <div class="bg-gray-100 p-8 rounded-3xl border-b-8 border-gray-400 mix-card transition-all">
                         <h4 class="text-gray-700 font-black text-xl mb-4">المنظور التقليدي</h4>
                         <ul class="space-y-3 text-sm text-gray-600">
-                            <li>✖ المصدر: تجارب بشرية وفلسفات وضعية.</li>
+                            <li>✖ المصدر: فلسفات وتجارب بشرية وضعيّة.</li>
                             <li>✖ الغاية: أهداف اقتصادية وإنتاجية بحتة.</li>
                             <li>✖ العلاقة: تعاقدية رسمية جافة.</li>
-                            <li>✖ التنافس: فردي قد يؤدي لتصادم المصالح.</li>
+                            <li>✖ التنافس: فردي قد يضر بالآخرين.</li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-8 bg-amber-50 p-4 rounded-xl border-r-4 border-amber-500 text-sm italic">
-                    🌍 <strong>مثال واقعي:</strong> في شركة إسلامية، عندما يتأخر موظف بسبب ظرف طارئ، يتعامل المدير بمبدأ "الأخوة" والتقدير الإنساني قبل النظر في "بنود العقد" الجافة.
-                </div>
             </div>
         </section>
 
-        <!-- Section 3: Components (New Content) -->
-        <section id="components" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+        <!-- Section 3: Components Overview -->
+        <section id="components_3" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
             <div class="max-w-6xl mx-auto w-full">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-black text-[#043927] mb-4">مكونات الثقافة التنظيمية الثلاثة</h2>
-                    <p class="text-gray-600">تتفاعل هذه الجوانب لتشكل الهوية الفريدة لكل منظمة.</p>
+                    <h2 class="text-4xl font-black text-[#043927] mb-4">المكونات الثلاثة المتفاعلة</h2>
+                    <p class="text-gray-600">هذه الجوانب تتفاعل معاً لتشكل الهوية الفريدة للمنظمة.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Moral -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-3xl mb-4">🧠</div>
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] text-center">
+                        <div class="text-4xl mb-4">🧠</div>
                         <h4 class="font-black text-[#043927] mb-3">الجوانب المعنوية</h4>
-                        <p class="text-sm text-gray-600 mb-4">القيم والمعتقدات والفلسفات والافتراضات الأساسية التي تشكل جوهر الثقافة.</p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-xs italic">مثال: الإيمان بأن "الإتقان عبادة" هو قيمة معنوية توجه العمل.</div>
+                        <p class="text-sm text-gray-600">القيم، المعتقدات، والفلسفات التي تشكل جوهر الثقافة وتوجه السلوك.</p>
                     </div>
-                    <!-- Behavioral -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-3xl mb-4">🤝</div>
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] text-center">
+                        <div class="text-4xl mb-4">🏃‍♂️</div>
                         <h4 class="font-black text-[#043927] mb-3">الجوانب السلوكية</h4>
-                        <p class="text-sm text-gray-600 mb-4">الأفعال اليومية، العادات، التقاليد، والطقوس التي تعكس القيم وتنتقل للموظفين الجدد.</p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-xs italic">مثال: عادة "إلقاء السلام" الصباحي والاجتماعات القائمة على الشورى.</div>
+                        <p class="text-sm text-gray-600">الأفعال اليومية، العادات، والطقوس التي تعكس القيم وتنقلها للموظفين الجدد.</p>
                     </div>
-                    <!-- Physical -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] flex flex-col items-center text-center">
-                        <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-3xl mb-4">🏗</div>
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-[#c5a059] text-center">
+                        <div class="text-4xl mb-4">🏗</div>
                         <h4 class="font-black text-[#043927] mb-3">الجوانب المادية</h4>
-                        <p class="text-sm text-gray-600 mb-4">المظاهر والتصميمات، الملابس، الشعارات، والتكنولوجيا كرموز ملموسة للثقافة.</p>
-                        <div class="bg-gray-50 p-3 rounded-lg text-xs italic">مثال: تصميم مكاتب مفتوحة لتعزيز التعاون، أو شعار يحمل رمزاً إسلامياً.</div>
+                        <p class="text-sm text-gray-600">تصميم المباني، الملبس، الشعارات، والتكنولوجيا كرموز ملموسة للثقافة.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: Tawhid (New Content) -->
+        <!-- Section 4: Tawhid and Psychological Stability -->
         <section id="tawhid" class="min-h-screen p-8 md:p-16 bg-[#043927] text-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -207,75 +198,229 @@
                         <span class="text-[#c5a059] font-black uppercase tracking-widest text-sm">الجذور الفكرية</span>
                         <h2 class="text-4xl font-black text-[#c5a059] mb-6">التوحيد والعبودية الخالصة لله</h2>
                         <p class="text-lg leading-relaxed mb-6">
-                            هي القيمة المركزية الحاكمة التي تنبثق منها جميع القيم الأخرى. تعني إفراد الله بالألوهية وإخلاص العمل له كجوهر لثقافة كل مسلم.
+                            هي القيمة المركزية التي تجعل العمل "عبادة". الموظف لا يعمل لمجرد الرزق، بل يبتغي مرضاة الله، مما يضمن الجودة الذاتية.
                         </p>
-                        <div class="bg-emerald-800 p-6 rounded-2xl border-r-4 border-[#c5a059]">
-                            <h4 class="font-bold mb-2">الأثر التنظيمي:</h4>
-                            <p class="text-sm italic">الموظف يرى عمله "عبادة" يؤجر عليها، مما يضمن الجودة الذاتية دون حاجة لرقيب بشري دائم.</p>
+                        <div class="bg-emerald-800/50 p-6 rounded-2xl border-r-4 border-[#c5a059] space-y-4">
+                            <p class="text-sm italic font-bold">💎 الشعور بالمسؤولية والمراقبة:</p>
+                            <p class="text-xs">عقيدة التوحيد تزرع "التقوى"؛ المراقبة الدائمة لله التي تغني عن الرقابة البشرية.</p>
+                            <p class="text-sm italic font-bold">🌿 الاستقرار النفسي والسكينة:</p>
+                            <p class="text-xs">اليقين بأن الأمور بيد الله يمنح قوة لمواجهة التحديات والرضا بالقضاء والقدر.</p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="bg-white/10 p-5 rounded-xl border border-white/20">
-                            <h5 class="font-bold text-[#c5a059]">1. الإخلاص والنية:</h5>
-                            <p class="text-xs">تحول العمل من مجرد وسيلة رزق إلى عبادة مقدسة تزيد الدافعية.</p>
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-xl border border-white/20">
-                            <h5 class="font-bold text-[#c5a059]">2. الرقابة الذاتية (التقوى):</h5>
-                            <p class="text-xs">الشعور الدائم بمراقبة الله يمنع الفساد والإهمال حتى في غياب المدير.</p>
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-xl border border-white/20">
-                            <h5 class="font-bold text-[#c5a059]">3. الاستقرار النفسي:</h5>
-                            <p class="text-xs">اليقين والسكينة في مواجهة التحديات، فكل الأمور بيد الله والرزق مقسوم.</p>
+                    <div class="bg-white/10 p-8 rounded-3xl border border-white/20">
+                        <h4 class="text-[#c5a059] font-black mb-4">الأثر التنظيمي للتوحيد:</h4>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start gap-3">⭐ <p>تحول العمل من وسيلة رزق إلى عبادة (زيادة الدافعية).</p></li>
+                            <li class="flex items-start gap-3">⭐ <p>تحرير المديرين من الخوف والقلق من المستقبل.</p></li>
+                            <li class="flex items-start gap-3">⭐ <p>الالتزام بالأخلاق الفاضلة كالصدق والنزاهة تلقائياً.</p></li>
+                        </ul>
+                        <div class="mt-6 quran-verse text-center text-white bg-emerald-900 border-[#c5a059]">
+                            ﴿وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ﴾ [التغابن: 11]
                         </div>
                     </div>
-                </div>
-                <div class="mt-12 quran-verse text-center">
-                    ﴿وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ﴾ [التغابن: 11] - أي يهده لليقين والسكينة.
-                </div>
-                <div class="mt-6 bg-[#c5a059] text-[#043927] p-4 rounded-xl text-center font-bold text-sm">
-                    🌟 مثال واقعي: مبرمج يكتشف خطأ برمجياً لا يعرفه أحد غيره، فيقوم بإصلاحه فوراً بدافع "الأمانة أمام الله" رغم أن أحداً لن يحاسبه.
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: Responsibility & Justice (New Content) -->
-        <section id="responsibility" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center">
+        <!-- Section 5: Responsibility and Justice -->
+        <section id="responsibility" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center border-b">
             <div class="max-w-6xl mx-auto w-full">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <!-- Independence & Responsibility -->
-                    <div class="bg-emerald-50 p-10 rounded-3xl border-t-8 border-[#043927]">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-emerald-50 p-10 rounded-3xl border-t-8 border-[#043927] shadow-sm">
                         <h3 class="text-2xl font-black text-[#043927] mb-4">الاستقلالية والمسؤولية</h3>
-                        <p class="text-gray-700 mb-6">قدرة الفرد على إدارة شؤونه واتخاذ قراراته بوعي وتحمل تبعاتها، ورفض القرارات غير الأخلاقية التي تخالف الدين.</p>
-                        <div class="bg-white p-4 rounded-xl border-r-4 border-[#c5a059] text-xs">
-                            💡 <strong>مثال:</strong> مدير يرفض توقيع صفقة مشبوهة أو ربوية رغم ضغط الإدارة العليا، تمسكاً بمسؤوليته الأخلاقية.
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            قدرة الفرد على إدارة مهامه واتخاذ قراراته بمسؤولية، ورفض القرارات غير الأخلاقية أو التي تخالف تعاليم الإسلام.
+                        </p>
+                        <div class="bg-white p-4 rounded-xl border-r-4 border-emerald-500 text-sm italic">
+                            💡 <strong>مثال:</strong> موظف يرفض التلاعب في البيانات المالية رغم ضغط رئيسه المباشر، إيماناً بمسؤوليته الفردية أمام الله.
                         </div>
                     </div>
-                    <!-- Justice & Equality -->
-                    <div class="bg-emerald-50 p-10 rounded-3xl border-t-8 border-[#c5a059]">
+                    <div class="bg-emerald-50 p-10 rounded-3xl border-t-8 border-[#c5a059] shadow-sm">
                         <h3 class="text-2xl font-black text-[#043927] mb-4">العدل والمساواة</h3>
-                        <p class="text-gray-700 mb-6">العدل يعني إعطاء كل ذي حق حقه بإنصاف، والمساواة هي تكافؤ الفرص للجميع. المعيار الوحيد للتفاضل هو <span class="font-bold">الكفاءة والتقوى</span>.</p>
-                        <div class="bg-white p-4 rounded-xl border-r-4 border-[#043927] text-xs">
-                            💡 <strong>مثال:</strong> ترقية الموظف الأكثر إنجازاً والتزاماً بالأهداف، بدلاً من ترقية قريب المدير أو من تربطه به مصلحة (محاربة الواسطة).
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            العدل هو إعطاء كل ذي حق حقه بإنصاف، والمساواة هي تكافؤ الفرص للجميع. المعيار الوحيد هو "التقوى والكفاءة".
+                        </p>
+                        <div class="bg-white p-4 rounded-xl border-r-4 border-[#c5a059] text-sm italic">
+                            🌍 <strong>مثال واقعي:</strong> ترقية الموظف الأكثر كفاءة وإخلاصاً بصرف النظر عن جنسه أو جنسيته أو علاقته الشخصية بالمدير.
                         </div>
-                    </div>
-                </div>
-                <div class="mt-10 p-8 bg-[#043927] text-white rounded-3xl">
-                    <h4 class="text-[#c5a059] font-black mb-4 text-center">الأثر التنظيمي للعدل والاستقلالية:</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-sm">
-                        <div class="p-4 border border-white/20 rounded-xl">تقليل الصراعات الداخلية</div>
-                        <div class="p-4 border border-white/20 rounded-xl">زيادة الرضا والولاء الوظيفي</div>
-                        <div class="p-4 border border-white/20 rounded-xl">جذب المواهب والكفاءات</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 6: Quiz -->
+        <!-- Section 6: Behaviors, Practices & Norms (New Content Added After) -->
+        <section id="behaviors_intro" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">التطبيق العملي</span>
+                    <h2 class="text-4xl font-black text-[#043927] mb-6">السلوكيات والممارسات والأعراف</h2>
+                    <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                        هي الترجمة العملية للقيم والمعتقدات إلى أفعال يومية مرئية وملموسة داخل المنظمة. في المنظور الإسلامي، يجب أن تتوافق هذه السلوكيات مع تعاليم الشريعة.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Mastery & Cooperation (New Content) -->
+        <section id="mastery_cooperation" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Mastery -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-r-8 border-[#c5a059] mix-card transition-all">
+                        <h3 class="text-2xl font-black text-[#043927] mb-4">أ- الإتقان والإحسان</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed mb-6">
+                            الإحكام والضبط التام في إنجاز العمل. الإتقان هو الجودة الظاهرة، والإحسان هو الروح التي تجعل هذه الجودة عبادة لله تعالى.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-xl shadow-sm">
+                                <h5 class="font-bold text-[#c5a059] text-xs">الأثر التنظيمي:</h5>
+                                <p class="text-[11px] text-gray-500">تحسين الجودة، تخفيض التكاليف، كسب ثقة العملاء، ورضا الله تعالى.</p>
+                            </div>
+                            <div class="bg-[#043927] text-white p-3 rounded-xl text-xs">
+                                📜 «إن الله يحب إذا عمل أحدكم عملاً أن يتقنه»
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cooperation -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-r-8 border-[#043927] mix-card transition-all">
+                        <h3 class="text-2xl font-black text-[#043927] mb-4">ب- التعاون والتكافل</h3>
+                        <p class="text-gray-700 text-sm leading-relaxed mb-6">
+                            العمل الجماعي القائم على الدعم المتبادل. التكافل أعمق من التعاون؛ فهو التضامن في مواجهة الصعوبات المهنية والشخصية.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-xl shadow-sm">
+                                <h5 class="font-bold text-[#043927] text-xs">الأثر التنظيمي:</h5>
+                                <p class="text-[11px] text-gray-500">إنجاز المهام بسرعة وكفاءة أعلى، تنمية المهارات، وخلق بيئة عمل إيجابية.</p>
+                            </div>
+                            <div class="bg-[#c5a059] text-[#043927] p-3 rounded-xl text-xs font-bold">
+                                📖 ﴿وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ﴾
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 bg-amber-50 p-4 rounded-xl border border-amber-200 text-sm text-center italic">
+                    💡 <strong>مثال واقعي:</strong> في شركة برمجيات، "الإتقان" يعني كتابة كود خالٍ من الثغرات، و"التعاون" يعني مساعدة الزميل المبتدئ على فهم الأنظمة المعقدة.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Shura & Wealth Efficiency (New Content) -->
+        <section id="shura_wealth" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Shura -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-[#c5a059]">
+                        <h3 class="text-2xl font-black text-[#043927] mb-4">ج- الشورى في الإدارة</h3>
+                        <p class="text-gray-700 text-sm mb-4">توجيه إلهي بأن تكون الأمور محل نقاش وتشاور للوصول للقرار الصائب، وهي جزء لا يتجزأ من منهج المؤمنين.</p>
+                        <ul class="text-[11px] text-gray-500 space-y-2 mb-4">
+                            <li>📍 إشراك الموظفين في صنع القرار يزيد من التزامهم.</li>
+                            <li>📍 تقليل الأخطاء الإدارية عبر تبادل وجهات النظر.</li>
+                            <li>📍 النبي ﷺ شاور أصحابه رغم استغنائه عنها بالوحي ليكون قدوة.</li>
+                        </ul>
+                        <div class="quran-verse text-sm py-4">﴿وَأَمْرُهُمْ شُورَىٰ بَيْنَهُمْ﴾</div>
+                    </div>
+                    <!-- Wealth -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-[#043927]">
+                        <h3 class="text-2xl font-black text-[#043927] mb-4">د- الكفاءة في إنفاق المال</h3>
+                        <p class="text-gray-700 text-sm mb-4">استثمار المال وتنميته (تجنباً لنقصانه بالزكاة والتضخم) والاعتدال في الإنفاق بعيداً عن التبذير أو التقتير.</p>
+                        <div class="bg-emerald-50 p-4 rounded-xl text-[11px] mb-4">
+                            <strong>الأثر التنظيمي:</strong> تعزيز أرباح المنظمة، تحقيق التنمية الاقتصادية، وترشيد النفقات التشغيلية (الكهرباء، الأثاث غير الضروري).
+                        </div>
+                        <div class="bg-[#043927] text-white p-3 rounded-xl text-[10px] italic">
+                            📜 «اتجروا في مال اليتامى لا تأكلها الزكاة»
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Time & Knowledge (New Content) -->
+        <section id="time_knowledge" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Time -->
+                    <div>
+                        <h3 class="text-3xl font-black text-[#043927] mb-6 flex items-center gap-3">⏳ الاهتمام بالوقت</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            الوقت في الغرب يعني "المال"، أما في الإسلام فيعني <strong>"الحياة"</strong>. هو مورد لا يمكن تعويضه، وإدارته تعني زيادة الكفاءة التشغيلية وبناء ثقافة الانضباط.
+                        </p>
+                        <div class="bg-emerald-50 p-6 rounded-2xl border-r-4 border-[#c5a059] text-xs">
+                            <p class="font-bold mb-2">حديث نبوي:</p>
+                            <p>«اغتنم خمساً قبل خمس: شبابك قبل هرمك، وصحتك قبل سقمك، وغناك قبل فقرك، وفراغك قبل شغلك، وحياتك قبل موتك»</p>
+                        </div>
+                    </div>
+                    <!-- Knowledge -->
+                    <div>
+                        <h3 class="text-3xl font-black text-[#043927] mb-6 flex items-center gap-3">📚 العلم والتعلم المستمر</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            حث القرآن على العلم في كافة المجالات (فلك، طب، جيولوجيا) وربطه بالإيمان. طلب العلم في الإسلام شامل ومترابط.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center">
+                                <p class="font-black text-[#c5a059]">ابن سينا</p>
+                                <p class="text-[10px]">طب وفلك ورياضيات</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center">
+                                <p class="font-black text-[#c5a059]">الخوارزمي</p>
+                                <p class="text-[10px]">الجبر والخوارزميات</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 bg-[#043927] text-[#c5a059] p-4 rounded-xl text-xs font-bold text-center">
+                            النبي ﷺ جعل فداء الأسرى في بدر تعليم صبيان المسلمين القراءة والكتابة.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Final Components (Stories, Rituals, Physicals) -->
+        <section id="final_components" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-[#043927] mb-4">المكونات الداعمة للهوية</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Stories -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-b-8 border-[#c5a059]">
+                        <h4 class="text-xl font-black text-[#043927] mb-4">القصص والقدوة</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">تداول قصص النجاح المستمدة من السيرة النبوية أو تاريخ المنظمة لترسيخ القيم.</p>
+                        <div class="bg-emerald-50 p-3 rounded-lg text-[10px] italic">المدير الذي يجسد قيم الأمانة يصبح "قدوة" حية للموظفين.</div>
+                    </div>
+                    <!-- Rituals -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-b-8 border-[#043927]">
+                        <h4 class="text-xl font-black text-[#043927] mb-4">الطقوس والمراسم</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">الأنشطة المتكررة مثل مراعاة أوقات الصلاة، اجتماعات الفريق، وتكريم الموظفين.</p>
+                        <div class="bg-emerald-50 p-3 rounded-lg text-[10px] italic">أداء الصلاة جماعة في الأقسام يقوي الروابط الأخوية.</div>
+                    </div>
+                    <!-- Physicals -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-b-8 border-[#c5a059]">
+                        <h4 class="text-xl font-black text-[#043927] mb-4">المظاهر المادية</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed mb-4">البيئة المادية، التصميم الداخلي، الشعارات، وحتى التكنولوجيا المستخدمة كرموز للثقافة.</p>
+                        <div class="bg-emerald-50 p-3 rounded-lg text-[10px] italic">تصميم مكاتب يراعي الخصوصية والراحة يعبر عن قيمة "التكريم".</div>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-[#043927] text-white p-8 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-2/3">
+                        <h4 class="text-2xl font-black text-[#c5a059] mb-4">وـ إظهار البشاشة والتحية</h4>
+                        <p class="text-sm leading-relaxed mb-4">تبادل تحية الإسلام والتبسم هو أدب نبوي يسهم في تحسين علاقات العمل وخلق بيئة يسودها الود.</p>
+                        <div class="bg-white/10 p-4 rounded-xl text-xs italic">«تبسمك في وجه أخيك صدقة» - «أفشوا السلام بينكم»</div>
+                    </div>
+                    <div class="w-full md:w-1/3 text-center">
+                        <div class="text-6xl">😊</div>
+                        <p class="text-[10px] mt-2 text-[#c5a059]">البشاشة هي "الزيت" الذي يسهل حركة التروس الإدارية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Quiz (Updated with 20 Comprehensive Questions) -->
         <section id="quiz" class="min-h-screen p-8 md:p-16 bg-[#FDFBF7]">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك (المحاضرة 3 - شامل)</h2>
-                    <p class="text-gray-600">20 سؤالاً تغطي كافة محاور الثقافة التنظيمية من المنظور الإسلامي.</p>
+                    <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك (المحاضرة 3 - كاملة)</h2>
+                    <p class="text-gray-600">20 سؤالاً لتأكيد فهمك لكل جزء في المحاضرة.</p>
                 </div>
                 <div id="quizContainer" class="space-y-6">
                     <!-- Loaded via JS -->
@@ -287,26 +432,26 @@
 
     <script>
         const questions = [
-            { q: "ما هو تعريف الثقافة التنظيمية من المنظور الإسلامي؟", a: "نظام من القيم والمعايير المستمدة من الشريعة، توجه سلوك الأفراد لتحقيق أهداف مشروعة.", r: "يركز على الجانب الرباني والشرعي." },
-            { q: "ما هي المكونات الثلاثة لثقافة المنظمة؟", a: "الجوانب المعنوية، الجوانب السلوكية، والجوانب المادية.", r: "تتفاعل معاً لتشكل الهوية الفريدة." },
-            { q: "ماذا تشمل 'الجوانب المعنوية' في الثقافة؟", a: "القيم، المعتقدات، الفلسفات، والافتراضات الأساسية.", r: "تمثل 'الجذور' الفكرية للثقافة." },
-            { q: "ما هي 'الجوانب المادية' في ثقافة المنظمة؟", a: "تصميم المباني، الملبس، الشعارات، والتكنولوجيا المستخدمة.", r: "هي رموز ملموسة تعبر عن الثقافة." },
-            { q: "بماذا يختلف المنظور الإسلامي للثقافة عن المنظور التقليدي؟", a: "الإسلامي يستمد من الوحي ويركز على رضا الله، التقليدي ينبع من تجارب البشر ويركز على الاقتصاد.", r: "اختلاف في الغاية والمصدر." },
-            { q: "ما طبيعة علاقة العمل في المنظور الإسلامي؟", a: "علاقة أخوة وتعاون (المسلم أخو المسلم).", r: "بدلاً من العلاقة التعاقدية الرسمية الجافة." },
-            { q: "ما هي 'القيم العليا' في منظومة القيم الإسلامية؟", a: "المبادئ الثابتة مثل التوحيد، العدل، والوفاء بالعهود.", r: "تسمى أيضاً بالقيم الحاكمة." },
-            { q: "ما هي 'القيم الدنيا' (الوسيلية)؟", a: "القيم التي تخدم القيم العليا مثل السلطة والثروة والمكانة.", r: "يجب ألا تكون الغاية الكبرى للمسلم." },
-            { q: "لماذا يعد 'التوحيد' القيمة المركزية في الثقافة الإسلامية؟", a: "لأنه يحدد وجهة الإنسان وغايته ويجعل العمل عبادة لله.", r: "هو حجر الزاوية الذي تبنى عليه كل السلوكيات." },
-            { q: "كيف يؤثر الإخلاص والنية في أداء الموظف؟", a: "يتحول العمل إلى عبادة يؤجر عليها، مما يضمن الإتقان والدافعية الذاتية.", r: "العمل يكتسب قيمة روحية عميقة." },
-            { q: "ما أثر عقيدة التوحيد على 'الرقابة' في العمل؟", a: "تزرع الشعور الدائم بمراقبة الله (التقوى)، مما يغني عن الرقابة البشرية المستمرة.", r: "تنمي الأمانة والمسؤولية الذاتية." },
-            { q: "كيف يساهم التوحيد في الاستقرار النفسي للمديرين؟", a: "يمنحهم السكينة والثقة بالله والرضا بقضائه عند مواجهة التحديات.", r: "يحررهم من الخوف والقلق من المستقبل." },
-            { q: "ماذا تعني 'الاستقلالية والمسؤولية' في بيئة العمل الإسلامية؟", a: "قدرة الفرد على اتخاذ قرارات مسؤولة دون خضوع لإملاءات تخالف الشرع.", r: "تحمل التبعات وتقويم النفس ذاتياً." },
-            { q: "ما الفرق بين العدل والمساواة في المنظمات؟", a: "العدل إعطاء كل ذي حق حقه، والمساواة تكافؤ الفرص بغض النظر عن النوع أو العرق.", r: "العدل أعم وأشمل في توزيع الحقوق." },
-            { q: "ما هو المعيار الوحيد للتفاضل بين الموظفين إسلامياً؟", a: "التقوى والكفاءة والعمل الصالح.", r: "محاربة التمييز القائم على اللون أو الجنس أو القرابة." },
-            { q: "اذكر أثراً واحداً لتحقيق العدل والمساواة في المنظمة.", a: "زيادة الرضا الوظيفي، تقليل الصراعات، وتحسين الإنتاجية.", r: "يؤدي لبيئة عمل صحية ومستقرة." },
-            { q: "ما معنى 'التنافس الشريف' في المنظور الإسلامي؟", a: "التنافس الذي يبتعد عن الصراع السلبي أو الإضرار بالآخرين.", r: "يهدف للارتقاء العام بالمنظمة." },
-            { q: "ماذا تشمل 'الجوانب السلوكية' في الثقافة التنظيمية؟", a: "العادات، التقاليد، الطقوس، وأساليب التواصل اليومية.", r: "تعكس القيم والمعتقدات الأساسية بشكل عملي." },
-            { q: "كيف يخدم الإيمان باليوم الآخر سلوك الموظف؟", a: "يجعله حريصاً على أداء الحقوق لأصحابها خوفاً من الحساب الإلهي.", r: "يربط الأداء الدنيوي بالجزاء الأخروي." },
-            { q: "ما معنى الآية 'ومن يؤمن بالله يهد قلبه' في سياق العمل؟", a: "يهدي قلبه لليقين والسكينة، فيعلم أن ما أصابه لم يكن ليخطئه.", r: "تعزز الثبات النفسي في إدارة الأزمات." }
+            { q: "ما هو مصدر الثقافة التنظيمية في المنظور الإسلامي؟", a: "الشريعة الإسلامية (القرآن والسنة).", r: "هذا ما يميزها عن المنظور التقليدي الوضعي." },
+            { q: "ما هي الجوانب الثلاثة لمكونات ثقافة المنظمة؟", a: "المعنوية، السلوكية، والمادية.", r: "تتفاعل هذه الجوانب لتشكل الهوية الفريدة." },
+            { q: "ما هي القيمة المركزية الحاكمة في الإدارة الإسلامية؟", a: "التوحيد والعبودية الخالصة لله.", r: "تنبثق منها جميع القيم الأخرى." },
+            { q: "ما أثر التوحيد على 'الرقابة الذاتية'؟", a: "يزرع الشعور الدائم بمراقبة الله (التقوى).", r: "الموظف يؤدي عمله بأمانة حتى بدون رقابة بشرية." },
+            { q: "كيف يواجه المدير المسلم تحديات المستقبل نفسياً؟", a: "باليقين والسكينة المستمدة من الثقة بالله والتوكل عليه.", r: "﴿وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ﴾." },
+            { q: "ما الفرق بين الإتقان والإحسان؟", a: "الإتقان هو الجودة الظاهرة للعمل، والإحسان هو الروح التي تجعل الجودة عبادة.", r: "الإسلام يريد من المسلم أن يكون موظفاً متميزاً." },
+            { q: "ما هو الأثر التنظيمي للتعاون والتكافل؟", a: "إنجاز المهام بسرعة وجودة أعلى وخلق بيئة عمل إيجابية.", r: "التكافل يتضمن المساعدة في مواجهة الصعوبات الشخصية أيضاً." },
+            { q: "لماذا شاور النبي ﷺ أصحابه رغم وجود الوحي؟", a: "ليكون قدوة للمسلمين في اتباع منهج الشورى.", r: "الشورى تؤدي للوصول للقرار الصائب." },
+            { q: "لماذا يحث الإسلام على استثمار المال بدلاً من اكتنازه؟", a: "لتجنب نقصان قيمته بالتضخم ونقصانه بدفع الزكاة، ولتحقيق التنمية.", r: "الشريعة تشجع على الكفاءة والنمو." },
+            { q: "ما هو مفهوم الوقت في الإسلام مقارنة بالغرب؟", a: "في الغرب الوقت يعني المال، وفي الإسلام الوقت يعني 'الحياة'.", r: "نحن مسؤولون عن أعمارنا فيم أفنيناها." },
+            { q: "كيف طبق النبي ﷺ أهمية العلم في غزوة بدر؟", a: "جعل فداء الأسرى تعليم صبيان المسلمين القراءة والكتابة.", r: "يدل على أن العلم أولى من المال." },
+            { q: "اذكر مثالاً لعالم مسلم جمع بين تخصصات دينية ودنيوية.", a: "أبو حنيفة (فقيه وتاجر)، ابن سينا (طب وفلك)، الخوارزمي (جبر وفلك).", r: "التعلم في الحضارة الإسلامية كان شاملاً." },
+            { q: "ما أهمية البشاشة وإفشاء السلام في المنظمة؟", a: "تحسين علاقات العمل وخلق بيئة يسودها الود والتحابب.", r: "«تبسمك في وجه أخيك صدقة»." },
+            { q: "ماذا تشمل 'القصص المؤثرة' في الثقافة التنظيمية؟", a: "قصص النجاح المستمدة من السيرة النبوية وتاريخ المنظمة.", r: "تساعد في ترسيخ القيم المشتركة." },
+            { q: "أعطِ مثالاً لطقوس أو مراسم في بيئة عمل إسلامية.", a: "مراعاة أوقات الصلاة، اجتماعات الفريق، واحتفالات العيدين.", r: "هي أنشطة متكررة تعزز الهوية." },
+            { q: "ما هي 'المظاهر المادية' الملموسة للثقافة؟", a: "تصميم المباني، الملابس، الشعارات، والتكنولوجيا المستخدمة.", r: "هي رموز ملموسة للقيم غير المرئية." },
+            { q: "ما الفرق بين 'القيم العليا' و'القيم الدنيا' (الوسيلية)؟", a: "العليا ثابتة وشاملة كالتوحيد والعدل، والدنيا تخدم العليا مثل الثروة والمكانة.", r: "يجب ألا تكون القيم الدنيا هي الغاية الكبرى." },
+            { q: "كيف تحقق الاستقلالية النزاهة في العمل؟", a: "بتحمل الفرد مسؤولية قراراته ورفض الإملاءات غير الأخلاقية.", r: "تؤدي لبناء ثقة واسعة في بيئة العمل." },
+            { q: "ما هو المعيار الوحيد للتفاضل بين الموظفين؟", a: "التقوى والكفاءة والعمل الصالح.", r: "بعيداً عن النوع أو اللون أو العرق." },
+            { q: "ما هو الهدف النهائي للثقافة التنظيمية الإسلامية؟", a: "تحقيق أهداف تنظيمية مشروعة وكسب رضا الله تعالى.", r: "تربط بين النجاح الدنيوي والفلاح الأخروي." }
         ];
 
         function initQuiz() {
