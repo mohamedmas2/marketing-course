@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title> منصه الثقافه السلامية </title>
 
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #F9FAFB;
+}
+.card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+</style>
+
+</head>
+
+<body class="p-10">
+
+<div class="text-center mb-12">
+
+    <h1 class="text-4xl md:text-5xl font-extrabold text-sky-900 mb-3 leading-relaxed">
+        MBA
+    </h1>
+
+    <p class="text-xl md:text-2xl text-gray-700 font-medium">
+ الثقافه  السلامية    </p>
+
+</div>
+
+<!-- البحث -->
+<input 
+type="text" 
+id="searchInput" 
+placeholder="ابحث عن محاضرة..." 
+class="w-full p-3 mb-6 border rounded-lg"
+/>
+
+<!-- المحاضرات -->
+<div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
+
+<script>
+
+let lecturesData = [];
+
+// تحميل البيانات من JSON
+fetch('./data/lectures.json')
+.then(res => res.json())
+.then(data => {
+    lecturesData = data.lectures;
+    displayLectures(lecturesData);
+})
+.catch(err => {
+    document.body.innerHTML = "<h2 style='color:red'>في مشكلة في تحميل البيانات</h2>";
+    console.error(err);
+});
+
+// عرض المحاضرات
+function displayLectures(lectures) {
+    const container = document.getElementById('lecturesContainer');
+    container.innerHTML = "";
+
+    lectures.forEach(lec => {
+        container.innerHTML += `
+        <a href="${lec.file}" class="card bg-white p-6 rounded-xl shadow border border-sky-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">${lec.title}</h2>
+            <p class="text-gray-600">${lec.desc}</p>
+        </a>
+        `;
+    });
+}
+
+// البحث
+document.getElementById('searchInput').addEventListener('input', function() {
+    const value = this.value.toLowerCase();
+
+    const filtered = lecturesData.filter(lec =>
+        lec.title.toLowerCase().includes(value) ||
+        lec.desc.toLowerCase().includes(value)
+    );
+
+    displayLectures(filtered);
+});
+
+</script>
+<script src="../js/global.js"></script>
+</body>
+</html>
