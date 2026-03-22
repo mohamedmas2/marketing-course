@@ -4,6 +4,16 @@
       "title": "المحاضرة الأولى",
       "desc": "أهمية المورد البشري",
       "file": "lectures/lecture1.html"
+    },
+    {
+      "title": "المحاضرة الثانية",
+      "desc": " تخطيط  الموارد البشرية ",
+      "file": "lectures/lecture2.html"
+    },
+    {
+      "title": "المحاضرة الثالثة",
+      "desc": "  قريبا ..... ",
+      "file": "lectures/lecture3.html"
     }
   ]
 }
