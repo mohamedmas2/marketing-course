@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>إدارة الموارد البشرية - المحاضرة الاولي 
-</title>
+<title>إدارة التسويق</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -30,7 +28,6 @@ body {
 </h1>
 
 <!-- البحث -->
-
 <input 
 type="text" 
 id="searchInput" 
@@ -39,7 +36,6 @@ class="w-full p-3 mb-6 border rounded-lg"
 />
 
 <!-- المحاضرات -->
-
 <div id="lecturesContainer" class="grid md:grid-cols-3 gap-6"></div>
 
 <script>
@@ -47,11 +43,15 @@ class="w-full p-3 mb-6 border rounded-lg"
 let lecturesData = [];
 
 // تحميل البيانات من JSON
-fetch('https://raw.githubusercontent.com/mohamedmas2/marketing-course/main/data/lectures.json')
+fetch('/marketing-course/data/lectures.json')
 .then(res => res.json())
 .then(data => {
     lecturesData = data.lectures;
     displayLectures(lecturesData);
+})
+.catch(err => {
+    document.body.innerHTML = "<h2 style='color:red'>في مشكلة في تحميل البيانات</h2>";
+    console.error(err);
 });
 
 // عرض المحاضرات
