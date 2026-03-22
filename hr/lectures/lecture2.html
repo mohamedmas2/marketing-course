@@ -64,7 +64,7 @@
             transition: max-height 0.3s ease-out, padding 0.3s ease;
         }
         .quiz-answer.show {
-            max-height: 200px;
+            max-height: 500px;
             padding-top: 1rem;
             border-top: 1px solid #e5e7eb;
             margin-top: 1rem;
@@ -92,7 +92,7 @@
                 <li><button onclick="scrollToSection('challenges')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">تحديات التوصيف الحديث</button></li>
                 <li><button onclick="scrollToSection('evolution')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أهمية التحليل للإدارة</button></li>
                 <li><button onclick="scrollToSection('functions_chart')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">مكونات بطاقة الوصف</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 transition-colors font-bold text-emerald-400">اختبر نفسك</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 transition-colors font-bold text-emerald-400">اختبر نفسك (20 سؤال)</button></li>
             </ul>
         </nav>
         <div class="md:hidden p-4 border-b border-slate-700 bg-slate-800">
@@ -304,12 +304,12 @@
             </div>
         </section>
 
-        <!-- Section 7: Quiz -->
+        <!-- Section 7: Quiz (20 Questions) -->
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (تحليل الوظائف)</h2>
-                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم الأساسية للمحاضرة الثانية.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">أسئلة شاملة لتغطية كافة جوانب تحليل وتوصيف الوظائف.</p>
                 </div>
 
                 <div id="quizContainer" class="space-y-6">
@@ -340,6 +340,160 @@
                         <div id="ans3" class="quiz-answer">
                             <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: عند حدوث تغير تكنولوجي، أو دمج وظائف، أو ظهور مهام جديدة.</p>
                             <p class="text-gray-600 text-sm mt-1">السبب: لضمان أن التوصيف الوظيفي يطابق الواقع ولا يظلم الموظف أو الشركة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: ما هو الهدف الأساسي من تحليل الوظائف في المنظمة؟</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: توفير قاعدة بيانات دقيقة لكل الأنشطة الأخرى (توظيف، تدريب، أجور).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س5: أي طريقة هي الأفضل لجمع بيانات وظيفة سكرتير في شركة كبيرة؟</h3>
+                        <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans5" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الاستبيان (الاستقصاء) مع مقابلة عينة من الموظفين.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س6: هل يعتبر تحليل الوظائف عملية ثابتة أم مستمرة؟</h3>
+                        <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans6" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: عملية مستمرة (ديناميكية).</p>
+                            <p class="text-gray-600 text-sm mt-1">لأن السوق والتكنولوجيا يتغيران باستمرار.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س7: ما الذي يحدد درجة الخطورة في الوظيفة ضمن بطاقة الوصف؟</h3>
+                        <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans7" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: بيئة وظروف العمل (Environmental Conditions).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س8: أين يتم ذكر "الخبرة المطلوبة" في نواتج التحليل؟</h3>
+                        <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans8" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: في مواصفات شاغل الوظيفة (Job Specification).</p>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س9: كيف يساعد تحليل الوظائف في عملية التخطيط للموارد البشرية؟</h3>
+                        <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans9" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: من خلال تحديد المهارات المطلوبة مستقبلاً لسد الفجوات الوظيفية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س10: ما هي أهم عيوب طريقة المقابلة الشخصية في جمع البيانات؟</h3>
+                        <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans10" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: استهلاك الكثير من الوقت والجهد، واحتمالية مبالغة الموظف في مهامه.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س11: هل تشمل بطاقة الوصف الوظيفي ذكر الآلات والمعدات المستخدمة؟</h3>
+                        <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans11" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: نعم، تعتبر جزءاً أساسياً من توصيف الوظيفة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س12: ما المقصود بـ "هوية الوظيفة" (Job Identification)؟</h3>
+                        <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans12" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: اسم الوظيفة، كود الوظيفة، والقسم التابعة له.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س13: كيف يستخدم تحليل الوظائف في "تقييم الأداء"؟</h3>
+                        <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans13" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: بوضع معايير الأداء بناءً على المهام المكتوبة في بطاقة الوصف.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س14: ما الفرق بين تحليل الوظائف وتقييم الوظائف (Job Evaluation)؟</h3>
+                        <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans14" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التحليل لجمع البيانات، التقييم لتحديد قيمة الوظيفة (الراتب) مقارنة بغيرها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س15: هل يجب أن يتضمن التحليل العلاقات الوظيفية (من يرأس الموظف ومن يرأسه)؟</h3>
+                        <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans15" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: نعم، لتوضيح خطوط السلطة والمسؤولية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س16: ما هي طريقة "سجل الوقائع اليومية"؟</h3>
+                        <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans16" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: قيام الموظف بكتابة كل نشاط يقوم به وقت حدوثه طوال يوم العمل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س17: هل يؤثر الذكاء الاصطناعي على طريقة صياغة "مواصفات الوظيفة"؟</h3>
+                        <button onclick="toggleAnswer('ans17', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans17" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: نعم، أصبح التركيز على المهارات التقنية والقدرة على التعامل مع البيانات أكبر.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س18: ما هو "العبء الوظيفي" في سياق التحليل؟</h3>
+                        <button onclick="toggleAnswer('ans18', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans18" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مقدار الطاقة والوقت اللازمين لإنجاز المهام الموكلة للوظيفة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س19: من هو الشخص المسؤول تقنياً عن إجراء تحليل الوظائف؟</h3>
+                        <button onclick="toggleAnswer('ans19', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans19" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: اختصاصي تحليل الوظائف في إدارة الموارد البشرية بالتعاون مع مديري الأقسام.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س20: هل يعتبر تحليل الوظائف اختيارياً للمنظمات الكبيرة؟</h3>
+                        <button onclick="toggleAnswer('ans20', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans20" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: لا، هو ضرورة إدارية وتنظيمية لضمان الكفاءة والعدالة القانونية.</p>
                         </div>
                     </div>
                 </div>
