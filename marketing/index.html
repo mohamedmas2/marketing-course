@@ -43,7 +43,7 @@ class="w-full p-3 mb-6 border rounded-lg"
 let lecturesData = [];
 
 // تحميل البيانات من JSON
-fetch('/marketing-course/data/lectures.json')
+fetch('./data/lectures.json')
 .then(res => res.json())
 .then(data => {
     lecturesData = data.lectures;
