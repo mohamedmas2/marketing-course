@@ -16,8 +16,14 @@
   "file": "lectures/lectures4.html"},
     
     {"title": "المحاضرة الخامسة ",
-  "desc": "عنوان جديد",
+  "desc": "المزيج التسويقى",
   "file": "lectures/lectures5.html"
+}
+    ,
+    
+    {"title": "المحاضرة السادسة ",
+  "desc": "غير متاحه حتي الان",
+  "file": "lectures/lectures6.html"
 }
   ]
 }
