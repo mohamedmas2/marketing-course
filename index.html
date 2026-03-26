@@ -1,54 +1,216 @@
-const container = document.getElementById("courses-container");
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA - دفعة فبراير 2026 | لوحة التحكم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .course-card:hover .overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
 
-fetch("data/courses.json")
-  .then(res => res.json())
-  .then(courses => {
+    <!-- Header Section -->
+    <header class="bg-sky-900 text-white py-12 px-6 shadow-xl mb-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-right">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">MBA</h1>
+                <p class="text-sky-200 text-lg md:text-xl font-light">الماجستير المهني في إدارة الأعمال – دفعة فبراير 2026</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-sky-800/50 p-4 rounded-xl border border-sky-700 text-center">
+                    <span class="block text-2xl font-bold italic">Semester 1</span>
+                    <span class="text-xs uppercase text-sky-300 tracking-widest">Current Stage</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    container.innerHTML = ""; // مهم
-
-    courses.forEach(course => {
-
-      const saved = localStorage.getItem("course_" + course.id);
-      const progress = saved ? saved : course.progress;
-
-      container.innerHTML += `
-      <div class="group relative bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 flex flex-col md:flex-row h-full">
+    <main class="max-w-6xl mx-auto px-6">
         
-        <div class="md:w-2/5 relative overflow-hidden h-48 md:h-auto">
-          <img src="${course.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <!-- Statistics / Analytical Overview -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border-b-4 border-sky-600">
+                <p class="text-gray-500 text-sm mb-1">المواد المسجلة</p>
+                <h3 class="text-2xl font-black text-sky-900">4 مواد</h3>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm border-b-4 border-emerald-500">
+                <p class="text-gray-500 text-sm mb-1">نسبة الإنجاز</p>
+                <h3 class="text-2xl font-black text-emerald-600">25%</h3>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm border-b-4 border-amber-500">
+                <p class="text-gray-500 text-sm mb-1">الساعات المعتمدة</p>
+                <h3 class="text-2xl font-black text-amber-600">12 ساعة</h3>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm border-b-4 border-rose-500">
+                <p class="text-gray-500 text-sm mb-1">المعدل التراكمي المتوقع</p>
+                <h3 class="text-2xl font-black text-rose-600">3.8</h3>
+            </div>
+        </section>
 
-          <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-sky-900 shadow-sm">
-            ${course.code}
-          </div>
+        <!-- Courses Grid -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+            <span class="w-8 h-1 bg-sky-900 rounded-full"></span>
+            المقررات الدراسية الحالية
+        </h2>
+
+        <div id="courses-container" class="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+            <!-- Dynamic Content via JS -->
         </div>
 
-        <div class="p-6 md:w-3/5 flex flex-col justify-between">
-
-          <div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">${course.title}</h3>
-            <p class="text-sky-700 text-sm font-medium mb-3">بإشراف: ${course.instructor}</p>
-            <p class="text-gray-500 text-sm mb-6">${course.desc}</p>
-          </div>
-
-          <div class="space-y-4">
-
-            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-              <div class="bg-sky-600 h-full" style="width: ${progress}%"></div>
+        <!-- Resources Section -->
+        <section class="mt-16 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+            <h2 class="text-xl font-bold text-sky-900 mb-6">مصادر سريعة</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <a href="#" class="p-4 rounded-xl border-2 border-dashed border-gray-200 hover:border-sky-500 hover:bg-sky-50 transition-all group">
+                    <span class="block text-lg font-bold group-hover:text-sky-700">الجدول الدراسي</span>
+                    <span class="text-sm text-gray-400">تحميل ملف PDF</span>
+                </a>
+                <a href="#" class="p-4 rounded-xl border-2 border-dashed border-gray-200 hover:border-sky-500 hover:bg-sky-50 transition-all group">
+                    <span class="block text-lg font-bold group-hover:text-sky-700">المكتبة الرقمية</span>
+                    <span class="text-sm text-gray-400">دخول قواعد البيانات</span>
+                </a>
+                <a href="#" class="p-4 rounded-xl border-2 border-dashed border-gray-200 hover:border-sky-500 hover:bg-sky-50 transition-all group">
+                    <span class="block text-lg font-bold group-hover:text-sky-700">الدعم الأكاديمي</span>
+                    <span class="text-sm text-gray-400">تواصل مع الإدارة</span>
+                </a>
             </div>
+        </section>
 
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-gray-400">${progress}% مكتمل</span>
+    </main>
+<script>
+        const container = document.getElementById("courses-container");
 
-              <a href="${course.link}" 
-              class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-900 text-white rounded-xl text-sm font-bold hover:bg-sky-800 transition-colors shadow-lg shadow-sky-900/20">
-                دخول المحاضرات
-              </a>
-            </div>
+        // نحاول نجيب الداتا من JSON
+        fetch("data/courses.json")
+        .then(res => res.json())
+        .then(courses => {
 
-          </div>
-        </div>
-      </div>
-      `;
-    });
+            container.innerHTML = ""; // نفضي القديم
 
-  });
+            courses.forEach(course => {
+
+                const saved = localStorage.getItem("course_" + course.id);
+                const progress = saved ? saved : course.progress;
+
+                container.innerHTML += `
+                <div class="group relative bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 flex flex-col md:flex-row h-full">
+                    
+                    <div class="md:w-2/5 relative overflow-hidden h-48 md:h-auto">
+                        <img src="${course.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-sky-900 shadow-sm">
+                            ${course.code}
+                        </div>
+                    </div>
+
+                    <div class="p-6 md:w-3/5 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">${course.title}</h3>
+                            <p class="text-sky-700 text-sm font-medium mb-3">بإشراف: ${course.instructor}</p>
+                            <p class="text-gray-500 text-sm mb-6">${course.desc}</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sky-600 h-full" style="width: ${progress}%"></div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-400">${progress}% مكتمل</span>
+
+                                <a href="${course.link}" 
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-900 text-white rounded-xl text-sm font-bold hover:bg-sky-800 transition-colors shadow-lg shadow-sky-900/20">
+                                    دخول المحاضرات
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+
+        })
+        .catch(() => {
+
+            // 🔥 fallback → يرجع للكود القديم لو JSON فشل
+            const courses = [
+                {
+                    id: 1,
+                    title: "إدارة التسويق الرقمي",
+                    code: "MKT-501",
+                    instructor: "د. أحمد علي",
+                    desc: "استراتيجيات التسويق الحديثة وتحليل سلوك المستهلك في العصر الرقمي.",
+                    link: "marketing/index.html",
+                    img: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80",
+                    progress: 40
+                },
+                {
+                    id: 2,
+                    title: "إدارة الموارد البشرية",
+                    code: "HRM-502",
+                    instructor: "د. سارة محمود",
+                    desc: "تطوير رأس المال البشري، التوظيف الاستراتيجي، وأنظمة المكافآت.",
+                    link: "hr/index.html",
+                    img: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
+                    progress: 15
+                },
+                {
+                    id: 3,
+                    title: "المحاسبة الإدارية والمالية",
+                    code: "ACC-503",
+                    instructor: "د. محمد حسن",
+                    desc: "تحليل البيانات المالية لاتخاذ القرارات الإدارية والتخطيط المالي.",
+                    link: "accounting/index.html",
+                    img: "https://images.unsplash.com/photo-1554224155-1697b39ee56f?auto=format&fit=crop&w=800&q=80",
+                    progress: 60
+                },
+                {
+                    id: 4,
+                    title: "الثقافة والقيم الإسلامية في الأعمال",
+                    code: "ISL-504",
+                    instructor: "د. عمر خالد",
+                    desc: "أخلاقيات العمل من منظور إسلامي وتطبيقاتها في المؤسسات المعاصرة.",
+                    link: "Islamic/index.html",
+                    img: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80",
+                    progress: 10
+                }
+            ];
+
+            courses.forEach(course => {
+                container.innerHTML += `
+                <div class="group relative bg-white rounded-3xl shadow-sm overflow-hidden flex">
+                    <div class="p-6">
+                        <h3>${course.title}</h3>
+                    </div>
+                </div>
+                `;
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    </script>
+</body>
+</html>
