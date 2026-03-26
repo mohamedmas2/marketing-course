@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المحاضرات</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #F9FAFB;
+}
+</style>
+
+</head>
+
+<body class="p-6">
+
+<!-- عنوان الكورس -->
+<div class="max-w-5xl mx-auto mb-10 text-center">
+    <h1 id="course-title" class="text-3xl font-bold text-sky-900"></h1>
+</div>
+
+<!-- المحاضرات -->
+<div id="lectures" class="max-w-5xl mx-auto grid gap-4"></div>
+
+<script>
+
+// 🧠 نجيب id الكورس من الرابط
+const params = new URLSearchParams(window.location.search);
+const courseId = params.get("id");
+
+// 📌 نجيب اسم الكورس
+fetch("data/courses.json")
+.then(res => res.json())
+.then(courses => {
+
+    const course = courses.find(c => c.link.includes(courseId));
+
+    if (course) {
+        document.getElementById("course-title").innerText = course.title;
+    }
+
+});
+
+// 📌 نجيب المحاضرات
+fetch("data/lectures.json")
+.then(res => res.json())
+.then(data => {
+
+    const lectures = data.filter(l => l.courseId === courseId);
+
+    const container = document.getElementById("lectures");
+
+    if (lectures.length === 0) {
+        container.innerHTML = "<p class='text-center text-gray-500'>لا توجد محاضرات</p>";
+        return;
+    }
+
+    lectures.forEach(l => {
+        container.innerHTML += `
+        <a href="${l.file}" 
+        class="block bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+
+            <h2 class="text-lg font-bold text-gray-800 mb-1">
+                ${l.title}
+            </h2>
+
+        </a>
+        `;
+    });
+
+});
+
+</script>
+
+</body>
+</html>
