@@ -1,2 +1,794 @@
-<h1>  المحاضرة الخامسة    </h1>
-<p> قريبا ...... بعد العيد </p>
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التسويق - المحاضرة الخامسة (المزيج التسويقي)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        .nav-item.active {
+            background-color: #E0F2FE;
+            color: #0369A1;
+            border-right: 4px solid #0369A1;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        /* Custom classes for quiz */
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 200px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="../index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
+            <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الخامسة</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مقدمة المزيج التسويقي</button></li>
+                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">عناصر المزيج الترويجي</button></li>
+                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التسعير والتوزيع</button></li>
+                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">دورة حياة المنتج</button></li>
+                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحديات الترويج</button></li>
+                <li><button onclick="scrollToSection('macro_chart')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مكونات الـ 4Ps</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700">
+                <option value="intro">مقدمة المزيج التسويقي</option>
+                <option value="internal">عناصر المزيج الترويجي</option>
+                <option value="external">التسعير والتوزيع</option>
+                <option value="reasons">دورة حياة المنتج</option>
+                <option value="philosophies">تحديات الترويج</option>
+                <option value="macro_chart">مكونات الـ 4Ps</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block">
+            <p>أ.د/ ألفت إبراهيم جاد الرب</p>
+            <p>28 مارس 2026</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Intro -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">المزيج التسويقي (Marketing Mix)</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        يهدف هذا المحتوى إلى إمداد الباحث بالمفاهيم الأساسية ليكون على علم ودراية وإلمام بعناصر المزيج التسويقي (4Ps)، والذي يُعد أساس إدارة التسويق في أي منظمة.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
+                        <div class="flex items-center gap-2"><span>📅</span> السبت 28 مارس 2026م</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
+                        <div class="flex items-center gap-2"><span>📧</span> Dr.olfat@azhar.edu.eg</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🌟</span> ما هي عناصر المزيج التسويقي (4Ps)؟</h3>
+                <p class="mb-6 text-gray-600">هي الأدوات الأربعة الأساسية التي تستخدمها المنظمة لتحقيق أهدافها التسويقية وإرضاء عملائها.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
+                        <div class="text-4xl mb-4">📦</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">1. المنتج (Product)</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: مجموعة المواصفات والمعايير للحصول على منافع تشبع حاجات ورغبات المستهلكين (مادية أو خدمية).</p>
+                        <div class="bg-sky-50 p-3 rounded text-sm text-sky-800 border-r-2 border-sky-400">
+                            <strong>مثال واقعي:</strong> هاتف آيفون (منتج مادي) أو تطبيق أوبر للتوصيل (خدمة) كلاهما صُنعا لحل مشكلة وتلبية رغبة للعميل.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
+                        <div class="text-4xl mb-4">💵</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">2. التسعير (Price)</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: القيمة النقدية التي يدفعها المستهلك مقابل الحصول على المنتج، وهو العنصر الوحيد الذي يدر عائداً للمنظمة.</p>
+                        <div class="bg-amber-50 p-3 rounded text-sm text-amber-800 border-r-2 border-amber-400">
+                            <strong>مثال واقعي:</strong> تسعير فنجان القهوة في ستاربكس بـ 100 جنيه يعكس قيمته في نظر العميل ويحقق أرباحاً للشركة.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-colors">
+                        <div class="text-4xl mb-4">🚚</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">3. التوزيع (Place)</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: الأنشطة التي تضمن توفر المنتج في المكان والزمان المناسبين للمستهلك المستهدف.</p>
+                        <div class="bg-emerald-50 p-3 rounded text-sm text-emerald-800 border-r-2 border-emerald-400">
+                            <strong>مثال واقعي:</strong> شركة كوكاكولا تضمن وجود زجاجاتها في كل سوبر ماركت ومطعم وثلاجة في الشارع ليسهل عليك شراءها.
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-300 transition-colors">
+                        <div class="text-4xl mb-4">📣</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">4. الترويج (Promotion)</h4>
+                        <p class="text-gray-600 mb-3">شرح مبسط: عملية الاتصال التي تهدف إلى إخبار وإقناع وتذكير المستهلكين بالمنتج.</p>
+                        <div class="bg-purple-50 p-3 rounded text-sm text-purple-800 border-r-2 border-purple-400">
+                            <strong>مثال واقعي:</strong> إعلانات فودافون في رمضان أو العروض الترويجية التي تراها على السوشيال ميديا لإقناعك بالاشتراك.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Promotional Mix (Using the Interactive Buttons UI) -->
+        <section id="internal" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">عناصر المزيج الترويجي</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">الترويج ليس مجرد إعلانات فقط، بل يتكون من مجموعة أدوات متكاملة تستخدمها الشركة للتواصل مع جمهورها. انقر على كل أداة للتفاصيل.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="promoMixButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+
+                <div id="promoMixDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[200px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">اختر إحدى أدوات الترويج أعلاه</h3>
+                    <p class="text-gray-600 text-lg">لاستكشاف كيف تستخدم الشركات هذه الأداة للتأثير على المستهلك.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Pricing and Place (Tabs) -->
+        <section id="external" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">التسعير والتوزيع (Price & Place)</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">عنصران في غاية الأهمية؛ أحدهما يحدد أرباحك، والآخر يضمن وصول منتجك للعميل.</p>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('pricing')" id="btn-pricing" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">التسعير (Price)</button>
+                        <button onclick="switchTab('place')" id="btn-place" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">التوزيع (Place)</button>
+                    </div>
+                    <div class="p-8">
+                        <!-- Pricing Tab -->
+                        <div id="content-pricing" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">عنصر التسعير (العنصر المدر للعائد)</h4>
+                            <p class="text-gray-600 mb-6">التسعير هو العنصر الوحيد في المزيج التسويقي الذي يُدخل أموالاً للشركة، بينما باقي العناصر (المنتج، التوزيع، الترويج) تمثل تكاليف ومصروفات.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">🎯</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">طرق التسعير الأساسية</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح مبسط: تعتمد الشركات على 3 طرق رئيسية: التسعير بناءً على التكلفة (إضافة هامش ربح)، أو بناءً على القيمة (ما يراه العميل مناسباً)، أو بناءً على المنافسين (أسعار السوق).</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال واقعي: أبل تسعر أجهزتها بناءً على "القيمة" العالية للعلامة التجارية، وليس فقط تكلفة التصنيع.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex flex-col md:flex-row gap-4 items-start">
+                                    <div class="text-3xl bg-white p-3 rounded-full shadow-sm">📝</div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-800">خطوات تحديد السعر</h5>
+                                        <p class="text-sm text-gray-600 mt-1">شرح مبسط: تحديد أهداف التسعير ⬅ تقدير حجم الطلب ⬅ تقدير التكاليف ⬅ تحليل أسعار المنافسين ⬅ اختيار طريقة التسعير ⬅ اختيار السعر النهائي.</p>
+                                        <p class="text-sm text-sky-700 mt-1 font-semibold">مثال واقعي: قبل أن تطرح سامسونج هاتفاً، تحسب تكلفته، وترى كم سيباع منه، وتقارنه بسعر الآيفون المنافس لتحدد سعره النهائي.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Place Tab -->
+                        <div id="content-place" class="hidden">
+                            <h4 class="text-xl font-bold text-amber-600 mb-4">عنصر التوزيع (المكان)</h4>
+                            <p class="text-gray-600 mb-6">الأنشطة التي تقوم بها الشركة لضمان أن المنتج متاح في أيدي العملاء المستهدفين في الوقت والمكان المناسبين.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-amber-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>➡️</span> التوزيع المباشر</h5>
+                                    <p class="text-sm text-gray-600 mt-1">شرح مبسط: من المُصنّع إلى المستهلك مباشرة دون أي وسطاء.</p>
+                                    <p class="text-xs text-amber-700 mt-2 font-bold">مثال واقعي: عندما تشتري ملابس من موقع المصنع نفسه (Zara Online) أو تشتري أثاث من ورشة نجار مباشرة.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border-r-4 border-emerald-500">
+                                    <h5 class="font-bold text-gray-800 flex items-center gap-2"><span>🔄</span> التوزيع غير المباشر</h5>
+                                    <p class="text-sm text-gray-600 mt-1">شرح مبسط: استخدام وسطاء (تجار جملة وتجزئة) لتوصيل المنتج.</p>
+                                    <p class="text-xs text-emerald-700 mt-2 font-bold">مثال واقعي: شراءك لعلبة تونة "صن شاين" من البقالة القريبة منك (البقالة وسيط تجزئة).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Product Life Cycle (Using Cards UI) -->
+        <section id="reasons" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مراحل دورة حياة المنتج</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">المنتج كالكائن الحي، يولد، ينمو، ينضج، ثم يشيخ. تختلف الخطة التسويقية تماماً في كل مرحلة من هذه المراحل الأربعة.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="mix-card bg-gradient-to-br from-sky-50 to-white p-8 rounded-2xl border border-sky-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">1</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة التقديم (Introduction)</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: المنتج جديد في السوق. المبيعات بطيئة، والشركة تصرف مبالغ ضخمة على الإعلانات لتعريف الناس به.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-sky-800 font-medium">
+                            💡 مثال واقعي: إطلاق نظارات أبل "Vision Pro" لأول مرة في السوق؛ حملات ضخمة لتعريف الناس بكيفية استخدامها.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-amber-50 to-white p-8 rounded-2xl border border-amber-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">2</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة النمو (Growth)</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: الناس عرفت المنتج وبدأت تشتريه بكثرة. المبيعات والأرباح ترتفع بسرعة، ويبدأ المنافسون في الظهور.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-amber-800 font-medium">
+                            💡 مثال واقعي: السيارات الكهربائية حالياً؛ الإقبال عليها يتزايد بشدة وشركات كثيرة بدأت في تصنيعها.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-emerald-50 to-white p-8 rounded-2xl border border-emerald-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors">3</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة النضوج (Maturity)</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: المبيعات تصل لأقصى حد وتستقر. المنافسة شرسة جداً، والشركات تركز على العروض والخصومات للحفاظ على عملائها.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-emerald-800 font-medium">
+                            💡 مثال واقعي: الهواتف الذكية التقليدية أو المشروبات الغازية؛ الكل يمتلكها والشركات تتنافس على العروض.
+                        </div>
+                    </div>
+                    <div class="mix-card bg-gradient-to-br from-purple-50 to-white p-8 rounded-2xl border border-purple-100 transition-all duration-300 cursor-pointer group">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">4</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة التدهور (Decline)</h3>
+                        <p class="text-gray-600 mb-3">شرح مبسط: المبيعات تنخفض بشدة بسبب ظهور تكنولوجيا جديدة أو تغير أذواق المستهلكين. الشركة قد توقف المنتج.</p>
+                        <div class="text-sm bg-white p-2 rounded shadow-sm text-purple-800 font-medium">
+                            💡 مثال واقعي: شرائط الكاسيت وأسطوانات الـ DVD التي انتهت بظهور الإنترنت ومنصات البث.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Challenges & Golden Rule (Timeline layout) -->
+        <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التحديات التسويقية والقاعدة الذهبية</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>⚠️</span> أهم التحديات التي تواجه الترويج</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-gray-400 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">اختلاف الأذواق والولاء</h4>
+                                <p class="text-gray-600 mt-1">تعدد أذواق المستهلكين ودرجة ولائهم للعلامات التجارية يصعب مهمة الحملات الترويجية.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال واقعي: صعوبة إقناع شخص وفيّ جداً لأبل بشراء هاتف أندرويد مهما كان الإعلان جذاباً.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">التغييرات الديموجرافية</h4>
+                                <p class="text-gray-600 mt-1">التغيرات المستمرة في خصائص السكان (النوع، الدخل، التعليم) تتطلب تعديل الرسائل الترويجية باستمرار.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال واقعي: زيادة المتعلمين والمثقفين تجعل الإعلانات السطحية غير فعالة.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">ارتفاع المنافسة</h4>
+                                <p class="text-gray-600 mt-1">المنافسة الشرسة لكسب رضا المستهلك وجذب انتباهه وسط آلاف الإعلانات اليومية.</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-white p-2 inline-block rounded border">مثال واقعي: صراع شركات الاتصالات في رمضان لحجز المساحات الإعلانية.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow animate-pulse"></div>
+                                <h4 class="text-xl font-bold text-sky-700">تطور طرق الشراء</h4>
+                                <p class="text-gray-600 mt-1">تغير طرق الشراء والدفع أدت لضرورة إيجاد أساليب ترويج غير تقليدية (مثل التسويق بالمؤثرين).</p>
+                                <p class="text-sm text-sky-700 mt-1 bg-sky-50 p-2 inline-block rounded border border-sky-200">مثال واقعي: الاعتماد على "التيك توك" وكود الخصم للترويج للملابس بدلاً من التلفزيون.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>🏆</span> القاعدة الذهبية للمزيج التسويقي</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200 text-center">
+                                <h4 class="font-bold text-emerald-800 text-xl mb-3">التكامل بين الـ 4Ps</h4>
+                                <p class="text-gray-700 mb-4">يجب أن تتذكر دائماً أن عناصر المزيج التسويقي تعمل في مسارين رئيسيين:</p>
+                                
+                                <div class="flex justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-4 flex-wrap">
+                                    <div class="bg-white p-2 rounded shadow-sm border text-blue-800 border-blue-200">المنتج + السعر</div>
+                                    <div class="text-xl">🟰</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border">إرضاء العملاء الحاليين</div>
+                                </div>
+                                <div class="flex justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-4 flex-wrap">
+                                    <div class="bg-white p-2 rounded shadow-sm border text-amber-800 border-amber-200">التوزيع + الترويج</div>
+                                    <div class="text-xl">🟰</div>
+                                    <div class="bg-white p-2 rounded shadow-sm border">زيادة عدد العملاء مستقبلاً</div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                                <h4 class="font-bold text-gray-800 mb-1">شرح مبسط:</h4>
+                                <p class="text-sm text-gray-600">جودة "المنتج" وتناسب "السعر" هما ما يجعلان العميل الحالي سعيداً، بينما الانتشار في "التوزيع" والإعلانات في "الترويج" هما ما يجذبان عملاء جدد لم يكونوا يعرفونك.</p>
+                            </div>
+                            
+                            <div class="p-4 bg-sky-50 rounded-lg border-l-4 border-sky-400">
+                                <h4 class="font-bold text-sky-800 mb-1">تطبيق عملي:</h4>
+                                <p class="text-sm text-gray-700">إذا كان مطعمك يقدم طعاماً لذيذاً (منتج) بسعر جيد، سيحبه الزبائن. ولكن إذا لم تفتح فروعاً جديدة (توزيع) ولم تعلن عنها (ترويج)، فلن يزداد عدد زبائنك.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Chart (Marketing Mix) -->
+        <section id="macro_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مكونات المزيج التسويقي الـ 4Ps</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">توضح هذه الخريطة العناصر الأربعة المتكاملة التي تبني عليها المنظمة خطتها لتسويق منتجاتها بنجاح.</p>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="marketingMixChart"></canvas>
+                </div>
+                
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    <p>المصدر: المحاضرة الخامسة - المزيج التسويقي</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">تأكد من استيعابك للمفاهيم السابقة من خلال هذه الأسئلة الشاملة لمحاضرة المزيج التسويقي.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: مجموعة المواصفات والمعايير التي تُستخدم للحصول على منافع تشبع حاجات المستهلكين، تُعرّف بـ...</h3>
+                        <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans1" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: المنتج (Product).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هو العنصر الأول في المزيج التسويقي ويمثل جوهر ما تقدمه الشركة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: ما هو العنصر الوحيد في عناصر المزيج التسويقي (4Ps) الذي يُدر عائداً وأرباحاً للمنظمة؟</h3>
+                        <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans2" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التسعير (Price).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: بينما تمثل باقي العناصر (منتج، توزيع، ترويج) تكاليف على الشركة، السعر هو ما يدفعه العميل ويشكل الإيرادات.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: الأنشطة التي تُبذل لجعل المنتج متاحاً في أيدي العملاء المستهدفين تُعرف بـ...</h3>
+                        <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans3" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التوزيع (Place).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التوزيع هو حلقة الوصل المادية بين المصنع والمستهلك.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: عملية اتصال تهدف إلى إخبار أو إقناع أو تذكير المستهلك بمنتجات الشركة...</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الترويج (Promotion).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: بدون الترويج لن يعرف المستهلك بوجود المنتج مهما كانت جودته عالية.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س5: في أي مرحلة من مراحل دورة حياة المنتج يتم تقديم المنتج للسوق لأول مرة وتكون المبيعات بطيئة؟</h3>
+                        <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans5" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة التقديم (Introduction).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأن المستهلكين لا يزالون يجهلون المنتج ويحتاجون لإعلانات مكثفة لتعريفه بهم.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س6: المرحلة التي تتميز بزيادة سريعة في المبيعات وظهور منافسين جدد هي مرحلة...</h3>
+                        <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans6" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة النمو (Growth).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: السوق يبدأ في قبول المنتج بشدة، مما يغري شركات أخرى بدخول نفس المجال.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س7: عندما تصل مبيعات المنتج إلى أقصى حد لها وتستقر، وتشتد المنافسة بين الشركات، فإن المنتج يمر بمرحلة...</h3>
+                        <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans7" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة النضوج (Maturity).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: معظم العملاء المحتملين اشتروا المنتج بالفعل، والنمو يصبح ضعيفاً.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س8: انخفاض المبيعات بشدة لدرجة قد تدفع الشركة لإيقاف إنتاج السلعة، يحدث في مرحلة...</h3>
+                        <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans8" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: مرحلة التدهور (Decline).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: غالباً بسبب ظهور ابتكارات تكنولوجية بديلة أو تغير جذري في أذواق المستهلك.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س9: من طرق التسعير، طريقة تعتمد على حساب التكاليف ثم إضافة هامش ربح محدد. ما هي؟</h3>
+                        <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans9" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: التسعير بناءً على التكلفة.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي الطريقة الأبسط حيث تركز الشركة على تغطية مصروفاتها وتحقيق ربح فوقها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س10: الخصومات، العينات المجانية، الهدايا، والبيع بالتقسيط هي أمثلة على أي عنصر من المزيج الترويجي؟</h3>
+                        <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans10" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: تنشيط المبيعات (Sales Promotion).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هي حوافز قصيرة الأجل لتشجيع العميل على الشراء الفوري.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س11: أداة الترويج الأنسب للسلع الصناعية المعقدة والأدوية (التي تتطلب مندوب يشرح التفاصيل للأطباء) هي...</h3>
+                        <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans11" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيع الشخصي (Personal Selling).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأنها منتجات تحتاج إلى اتصال مباشر وشرح مفصل وإقناع وجه لوجه.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س12: القاعدة الذهبية تقول: (المنتج + التسعير) يساعدان في...</h3>
+                        <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans12" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: إرضاء العملاء الحاليين.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: العميل الحالي يهمه الجودة التي يحصل عليها والمبلغ الذي يدفعه مقابلها.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س13: بناءً على القاعدة الذهبية: (التوزيع + الترويج) يساعدان في...</h3>
+                        <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans13" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: زيادة عدد العملاء المتوقع مستقبلاً.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الانتشار في أماكن جديدة وعمل إعلانات يجلب عملاء لم يكونوا يتعاملون مع الشركة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س14: من أهم التحديات التي تواجه الترويج: التغييرات في الخصائص الديموجرافية للسكان. مثل ماذا؟</h3>
+                        <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans14" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: النوع، الدخل، والمؤهل والتعليم.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لأن طريقة الترويج لشريحة متعلمة تختلف كلياً عن شريحة أخرى، وكذلك اختلاف الدخل.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q15 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س15: وسيلة إعلامية غير مدفوعة الأجر تقوم بنشر أخبار عن المنظمة أو منتجاتها في الصحف والمجلات بشكل إيجابي، تُسمى...</h3>
+                        <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans15" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: النشر (Publicity).</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: تختلف عن الإعلان في أنها لا تدفع مقابل المساحة، وتعتمد على العلاقات مع الصحافة لبناء صورة جيدة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س16: التطور السريع في التكنولوجيا أدى إلى تحدٍ ترويجي جديد يتعلق بـ...</h3>
+                        <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans16" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: تطور طرق الشراء والدفع.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الدفع الإلكتروني والشراء عبر الإنترنت أجبرا الشركات على الترويج بأساليب غير تقليدية وجديدة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س17: إذا باعت شركة ملابس منتجاتها للمستهلكين عبر موقعها الإلكتروني الخاص دون استخدام تجار تجزئة، فهذا توزيع...</h3>
+                        <button onclick="toggleAnswer('ans17', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans17" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: توزيع مباشر.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: لعدم وجود أي وسطاء (تجار) بين المُصنع والمستهلك النهائي.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س18: "كلما تنوعت المنتجات كلما تضمن المنظمة ________ في السوق". أكمل الفراغ.</h3>
+                        <button onclick="toggleAnswer('ans18', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans18" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الاستمرارية.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: التنوع يلبي أذواق مختلفة ويحمي الشركة من الانهيار إذا فشل منتج واحد.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س19: الخطوة الأولى من خطوات تحديد الأسعار هي...</h3>
+                        <button onclick="toggleAnswer('ans19', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans19" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: تحديد أهداف التسعير.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: هل هدف الشركة تحقيق أقصى ربح سريع؟ أم الانتشار بأقل سعر؟ الهدف يحدد الباقي.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س20: إعلان مدفوع الأجر في التلفزيون أو الإنترنت للترويج لمنتج يُعتبر جزءاً من...</h3>
+                        <button onclick="toggleAnswer('ans20', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans20" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: الإعلان (Advertising) كأحد عناصر المزيج الترويجي.</p>
+                            <p class="text-gray-600 text-sm mt-1">السبب: الإعلان هو وسيلة اتصال غير شخصية مدفوعة الأجر للوصول لأكبر عدد من الجمهور.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const promoMixData = [
+            { id: 1, name: 'الإعلان', icon: '📺', desc: 'وسيلة اتصال غير شخصية ومدفوعة الأجر، تستخدم للوصول إلى أعداد ضخمة من الجمهور في وقت واحد.', example: '<strong class="text-sky-700">مثال واقعي:</strong> إعلانات بيبسي وشيبسي في فواصل المسلسلات في رمضان.' },
+            { id: 2, name: 'تنشيط المبيعات', icon: '🎁', desc: 'حوافز قصيرة الأجل تُشجع المستهلك على اتخاذ قرار الشراء الفوري (خصومات، عينات، هدايا).', example: '<strong class="text-sky-700">مثال واقعي:</strong> عروض "اشتري قطعة واحصل على الثانية مجاناً" أو تخفيضات البلاك فرايداي.' },
+            { id: 3, name: 'البيع الشخصي', icon: '🤝', desc: 'اتصال مباشر (وجه لوجه) بين مندوب المبيعات والعميل لإقناعه وإتمام عملية البيع (مهم للسلع المعقدة).', example: '<strong class="text-sky-700">مثال واقعي:</strong> مندوب الدعاية الطبية الذي يزور الأطباء في العيادات لشرح فوائد دواء جديد.' },
+            { id: 4, name: 'العلاقات العامة', icon: '🏛️', desc: 'بناء علاقات جيدة وصورة إيجابية للمنظمة مع المجتمع والتعامل مع أي إشاعات أو أزمات قد تضر بالشركة.', example: '<strong class="text-sky-700">مثال واقعي:</strong> تبرع شركة أورنج لتطوير مستشفيات أو رعاية بطولات رياضية لبناء صورة محبة لدى الناس.' },
+            { id: 5, name: 'النشر', icon: '📰', desc: 'تغطية إخبارية مجانية وإيجابية عن الشركة أو منتجاتها في وسائل الإعلام والصحف.', example: '<strong class="text-sky-700">مثال واقعي:</strong> مقال في جريدة الأهرام يتحدث عن ابتكار شركة لسيارة صديقة للبيئة (الشركة لا تدفع مقابل المقال).' }
+        ];
+
+        function initInternalSection() {
+            const container = document.getElementById('promoMixButtons');
+            promoMixData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-6 py-3 bg-white border border-sky-200 text-sky-800 rounded-full font-bold hover:bg-sky-50 hover:border-sky-400 transition-all shadow-sm focus:ring-2 focus:ring-sky-300 outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showPromoMixDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showPromoMixDetail(item) {
+            const detailContainer = document.getElementById('promoMixDetail');
+            detailContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <div class="flex items-center gap-3 mb-3 justify-center">
+                        <h3 class="text-3xl font-bold text-sky-800">${item.name}</h3>
+                    </div>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mt-4"><strong>التعريف:</strong> ${item.desc}</p>
+                    <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-500 shadow-sm text-right w-full max-w-3xl mx-auto transition-all">
+                        <p class="text-gray-700 text-lg leading-relaxed">${item.example}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-pricing').classList.add('hidden');
+            document.getElementById('content-place').classList.add('hidden');
+            
+            document.getElementById('btn-pricing').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-pricing').classList.add('bg-gray-100', 'text-gray-600');
+            
+            document.getElementById('btn-place').classList.remove('active', 'bg-sky-700', 'text-white');
+            document.getElementById('btn-place').classList.add('bg-gray-100', 'text-gray-600');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('active');
+            activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+            
+            if(tabId === 'pricing') {
+                activeBtn.style.backgroundColor = '#0369A1';
+                activeBtn.style.color = 'white';
+                document.getElementById('btn-place').style.backgroundColor = '';
+            } else {
+                activeBtn.style.backgroundColor = '#0369A1';
+                activeBtn.style.color = 'white';
+                document.getElementById('btn-pricing').style.backgroundColor = '';
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) {
+                        item.classList.add('active');
+                    }
+                });
+                
+                if(current) {
+                    mobileNav.value = current;
+                }
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('marketingMixChart').getContext('2d');
+            
+            Chart.defaults.font.family = "'Tajawal', sans-serif";
+            Chart.defaults.font.size = 14;
+
+            const mixLabels = [
+                ['المنتج', 'Product'],
+                ['التسعير', 'Price'],
+                ['التوزيع', 'Place'],
+                ['الترويج', 'Promotion']
+            ];
+
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: mixLabels,
+                    datasets: [{
+                        label: 'المزيج التسويقي',
+                        data: [100, 100, 100, 100],
+                        backgroundColor: [
+                            'rgba(14, 165, 233, 0.7)', // Sky
+                            'rgba(245, 158, 11, 0.7)', // Amber
+                            'rgba(16, 185, 129, 0.7)', // Emerald
+                            'rgba(168, 85, 247, 0.7)'  // Purple
+                        ],
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: 20
+                    },
+                    scales: {
+                        r: {
+                            ticks: { display: false },
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#0369A1',
+                            titleFont: { size: 16, family: "'Tajawal', sans-serif" },
+                            bodyColor: '#1F2937',
+                            bodyFont: { size: 14, family: "'Tajawal', sans-serif" },
+                            borderColor: '#e2e8f0',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            rtl: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'عنصر أساسي في خطة التسويق';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+                btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
+                btnElement.classList.replace('text-gray-700', 'text-sky-800');
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+                btnElement.classList.replace('bg-sky-100', 'bg-gray-200');
+                btnElement.classList.replace('text-sky-800', 'text-gray-700');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initInternalSection();
+            initScrollSpy();
+            switchTab('pricing');
+            initChart();
+        });
+    </script>
+</body>
+</html>
