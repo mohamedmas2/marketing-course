@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "title": "التسويق ",
+    "title": "التسويق",
     "code": "MKT-501",
-    "instructor": "د. ألفت ابراهيم جاد الرب ",
+    "instructor": "د. ألفت إبراهيم جاد الرب",
     "desc": "استراتيجيات التسويق الحديثة وتحليل سلوك المستهلك في العصر الرقمي.",
-    "link": "marketing/index.html",
+    "link": "course.html?id=marketing",
     "img": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80",
     "progress": 40
   },
@@ -13,29 +13,29 @@
     "id": 2,
     "title": "إدارة الموارد البشرية",
     "code": "HRM-502",
-    "instructor": "د.ليلي حسام الدين شكر ",
+    "instructor": "د. ليلى حسام الدين شكر",
     "desc": "تطوير رأس المال البشري، التوظيف الاستراتيجي، وأنظمة المكافآت.",
-    "link": "hr/index.html",
+    "link": "course.html?id=hr",
     "img": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
     "progress": 15
   },
   {
     "id": 3,
-    "title": "المحاسبة الإدارية ",
+    "title": "المحاسبة الإدارية",
     "code": "ACC-503",
-    "instructor": "د.هيام محمد صلاح شرف ",
+    "instructor": "د. هيام محمد صلاح شرف",
     "desc": "تحليل البيانات المالية لاتخاذ القرارات الإدارية والتخطيط المالي.",
-    "link": "accounting/index.html",
+    "link": "course.html?id=accounting",
     "img": "https://images.unsplash.com/photo-1554224155-1697b39ee56f?auto=format&fit=crop&w=800&q=80",
     "progress": 60
   },
   {
     "id": 4,
-    "title": " الثقافه التنظيمية و وظائف الإدارة من المنظور الإسلامي ",
+    "title": "الثقافة التنظيمية ووظائف الإدارة من المنظور الإسلامي",
     "code": "ISL-504",
-    "instructor": "د.خديجة يحي عبد الصمد",
+    "instructor": "د. خديجة يحيى عبد الصمد",
     "desc": "أخلاقيات العمل من منظور إسلامي وتطبيقاتها في المؤسسات المعاصرة.",
-    "link": "Islamic/index.html",
+    "link": "course.html?id=islamic",
     "img": "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80",
     "progress": 10
   }
