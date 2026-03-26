@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "إدارة التسويق الرقمي",
+    "code": "MKT-501",
+    "instructor": "د. أحمد علي",
+    "desc": "استراتيجيات التسويق الحديثة وتحليل سلوك المستهلك في العصر الرقمي.",
+    "link": "marketing/index.html",
+    "img": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80",
+    "progress": 40
+  },
+  {
+    "id": 2,
+    "title": "إدارة الموارد البشرية",
+    "code": "HRM-502",
+    "instructor": "د. سارة محمود",
+    "desc": "تطوير رأس المال البشري، التوظيف الاستراتيجي، وأنظمة المكافآت.",
+    "link": "hr/index.html",
+    "img": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
+    "progress": 15
+  },
+  {
+    "id": 3,
+    "title": "المحاسبة الإدارية والمالية",
+    "code": "ACC-503",
+    "instructor": "د. محمد حسن",
+    "desc": "تحليل البيانات المالية لاتخاذ القرارات الإدارية والتخطيط المالي.",
+    "link": "accounting/index.html",
+    "img": "https://images.unsplash.com/photo-1554224155-1697b39ee56f?auto=format&fit=crop&w=800&q=80",
+    "progress": 60
+  },
+  {
+    "id": 4,
+    "title": "الثقافة والقيم الإسلامية في الأعمال",
+    "code": "ISL-504",
+    "instructor": "د. عمر خالد",
+    "desc": "أخلاقيات العمل من منظور إسلامي وتطبيقاتها في المؤسسات المعاصرة.",
+    "link": "Islamic/index.html",
+    "img": "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80",
+    "progress": 10
+  }
+]
