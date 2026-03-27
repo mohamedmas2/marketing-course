@@ -123,12 +123,9 @@
                         </div>
 
                         <div class="space-y-4">
-                            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-sky-600 h-full" style="width: ${progress}%"></div>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-bold text-gray-400">${progress}% مكتمل</span>
+                            <p class="text-sm text-gray-500 font-bold">
+                                  ${course.lecturesCount || 0} محاضرة
+                                </p>
 
                                 <a href="${course.link}" 
                                 class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-900 text-white rounded-xl text-sm font-bold hover:bg-sky-800 transition-colors shadow-lg shadow-sky-900/20">
