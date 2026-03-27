@@ -7,35 +7,43 @@
 <title>المحاضرات</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;800&display=swap" rel="stylesheet">
 
 <style>
 body {
     font-family: 'Tajawal', sans-serif;
-    background-color: #F9FAFB;
+    background: linear-gradient(to bottom, #f8fafc, #eef2f7);
 }
 </style>
 
 </head>
 
-<body class="p-6">
+<body class="min-h-screen p-6">
 
-<!-- عنوان الكورس -->
-<div class="max-w-5xl mx-auto mb-10 text-center">
-    <h1 id="course-title" class="text-3xl font-bold text-sky-900"></h1>
+<!-- 🔝 Header -->
+<div class="max-w-6xl mx-auto mb-12 text-center">
+
+    <h1 id="course-title"
+    class="text-3xl md:text-4xl font-extrabold text-sky-900 mb-3 tracking-tight">
+    </h1>
+
+    <p class="text-gray-500 text-sm">
+        اختر المحاضرة وابدأ التعلم
+    </p>
+
 </div>
 
-<!-- المحاضرات -->
-<div id="lectures" class="max-w-5xl mx-auto grid gap-4"></div>
+<!-- 📚 Lectures -->
+<div id="lectures"
+class="max-w-6xl mx-auto grid gap-6 md:grid-cols-2"></div>
 
 <script>
 
-// 🧠 نجيب id الكورس من الرابط
+// 🧠 ID من الرابط
 const params = new URLSearchParams(window.location.search);
 const courseId = params.get("id");
 
-// 📌 نجيب اسم الكورس
+// 📌 اسم الكورس
 fetch("data/courses.json")
 .then(res => res.json())
 .then(courses => {
@@ -48,7 +56,7 @@ fetch("data/courses.json")
 
 });
 
-// 📌 نجيب المحاضرات
+// 📌 المحاضرات
 fetch("data/lectures.json")
 .then(res => res.json())
 .then(data => {
@@ -58,25 +66,50 @@ fetch("data/lectures.json")
     const container = document.getElementById("lectures");
 
     if (lectures.length === 0) {
-        container.innerHTML = "<p class='text-center text-gray-500'>لا توجد محاضرات</p>";
+        container.innerHTML = `
+        <div class="col-span-full text-center text-gray-400 text-lg mt-10">
+            لا توجد محاضرات حالياً
+        </div>`;
         return;
     }
 
-    lectures.forEach(l => {
+    lectures.forEach((l, index) => {
+
         container.innerHTML += `
-        <a href="${l.file}" 
-        class="block bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+        <div class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-6 flex items-center justify-between border border-gray-100">
 
-            <h2 class="text-lg font-bold text-gray-800 mb-1">
-                ${l.title}
-            </h2>
+            <!-- Left -->
+            <div class="flex items-center gap-4">
 
-        </a>
+                <!-- رقم -->
+                <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-sky-100 text-sky-700 font-extrabold text-lg shadow-inner">
+                    ${index + 1}
+                </div>
+
+                <!-- نص -->
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-sky-700 transition">
+                        ${l.title}
+                    </h3>
+
+                    <p class="text-xs text-gray-400 mt-1">
+                        محاضرة رقم ${index + 1}
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- زر -->
+            <a href="${l.file}" 
+            class="px-5 py-2.5 bg-sky-900 text-white rounded-xl text-sm font-bold hover:bg-sky-800 transition shadow-md shadow-sky-900/20">
+                مشاهدة
+            </a>
+
+        </div>
         `;
     });
 
 });
-
 </script>
 
 </body>
