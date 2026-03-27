@@ -13,8 +13,38 @@
   },
   {
     "id": 3,
+    "courseId": "marketing",
+    "title": "المحاضرة الثالثة",
+    "file": "marketing/lectures/lecture3.html"
+  },
+  
+    "id": 4,
+    "courseId": "marketing",
+    "title": "المحاضرة الرابعه",
+    "file": "marketing/lectures/lecture4.html"
+  },
+  
+    "id": 5,
+    "courseId": "marketing",
+    "title": "المحاضرة الخامسة",
+    "file": "marketing/lectures/lecture5.html"
+  },
+  
+    "id": 6,
     "courseId": "hr",
     "title": "المحاضرة الأولى",
     "file": "hr/lectures/lecture1.html"
+  },
+    {
+    "id": 6,
+    "courseId": "hr",
+    "title": "المحاضرة الثانية",
+    "file": "hr/lectures/lecture2.html"
+  },
+      {
+    "id": 7,
+    "courseId": "hr",
+    "title": "المحاضرة الثالثة",
+    "file": "hr/lectures/lecture3.html"
   }
 ]
