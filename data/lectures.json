@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "courseId": "marketing",
+    "title": "المحاضرة الأولى",
+    "file": "marketing/lectures/lecture1.html"
+  },
+  {
+    "id": 2,
+    "courseId": "marketing",
+    "title": "المحاضرة الثانية",
+    "file": "marketing/lectures/lecture2.html"
+  },
+  {
+    "id": 3,
+    "courseId": "hr",
+    "title": "المحاضرة الأولى",
+    "file": "hr/lectures/lecture1.html"
+  }
+]
