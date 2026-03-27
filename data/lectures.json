@@ -49,16 +49,16 @@
   },
   
       {
-    "id": 8,
-    "courseId": "hr",
-    "title": "المحاضرة الثالثة",
-    "file": "hr/lectures/lecture3.html"
+    "id": 9,
+    "courseId": "Islamic",
+    "title": "المحاضرة الاولي",
+    "file": "Islamic/lectures/lecture1.html"
   },
   
       {
-    "id": 8,
-    "courseId": "hr",
-    "title": "المحاضرة الثالثة",
-    "file": "hr/lectures/lecture3.html"
+    "id": 10,
+    "courseId": "Islamic",
+    "title": "المحاضرة الاولي",
+    "file": "Islamic/lectures/lecture2.html"
   }
 ]
