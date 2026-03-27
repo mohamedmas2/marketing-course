@@ -21,8 +21,23 @@ body {
 
 <body class="min-h-screen">
 
-<!-- 🔝 HERO -->
-<div id="hero" class="relative h-64 md:h-80 overflow-hidden rounded-b-3xl shadow-lg">
+<!-- 🔙 Back Button -->
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+    const backBtn = document.createElement("a");
+
+    backBtn.href = "index.html"; // رجوع للكورسات
+    backBtn.innerText = "← رجوع";
+
+    backBtn.className =
+        "fixed top-6 right-6 bg-[#00adef] text-white font-bold py-2 px-5 rounded-xl shadow-md hover:bg-[#0086b8] transition-all z-50";
+
+    document.body.appendChild(backBtn);
+});
+</script>
+
+<!-- 🔝 HERO (مصغر) -->
+<div id="hero" class="relative h-36 md:h-44 overflow-hidden rounded-b-3xl shadow">
 
     <img id="hero-img"
     class="absolute inset-0 w-full h-full object-cover">
@@ -32,35 +47,32 @@ body {
     <div class="relative z-10 h-full flex flex-col justify-center items-center text-center text-white px-4">
 
         <h1 id="course-title"
-        class="text-3xl md:text-5xl font-extrabold mb-2 tracking-tight">
+        class="text-2xl md:text-3xl font-extrabold">
         </h1>
-
-        <p class="text-sm text-gray-200">
-            ابدأ رحلتك التعليمية الآن
-        </p>
 
     </div>
 </div>
 
 <!-- 📚 المحتوى -->
-<div class="max-w-6xl mx-auto px-6 mt-10">
+<div class="max-w-7xl mx-auto px-6 mt-8">
 
-    <h2 class="text-xl font-bold text-gray-800 mb-6">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">
         المحاضرات
     </h2>
 
+    <!-- 🔥 Grid أقوى -->
     <div id="lectures"
-    class="grid gap-6 md:grid-cols-2"></div>
+    class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
 
 </div>
 
 <script>
 
-// 🧠 ID من الرابط
+// 🧠 ID
 const params = new URLSearchParams(window.location.search);
 const courseId = params.get("id");
 
-// 📌 تحميل بيانات الكورس
+// 📌 بيانات الكورس
 fetch("data/courses.json")
 .then(res => res.json())
 .then(courses => {
@@ -74,7 +86,7 @@ fetch("data/courses.json")
 
 });
 
-// 📌 تحميل المحاضرات
+// 📌 المحاضرات
 fetch("data/lectures.json")
 .then(res => res.json())
 .then(data => {
@@ -86,7 +98,7 @@ fetch("data/lectures.json")
     if (lectures.length === 0) {
         container.innerHTML = `
         <div class="col-span-full text-center text-gray-400 text-lg mt-10">
-            لا توجد محاضرات حالياً
+            لا توجد محاضرات
         </div>`;
         return;
     }
@@ -94,32 +106,24 @@ fetch("data/lectures.json")
     lectures.forEach((l, index) => {
 
         container.innerHTML += `
-        <div class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-6 flex items-center justify-between border border-gray-100">
+        <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 p-4 flex flex-col justify-between border border-gray-100">
 
-            <!-- LEFT -->
-            <div class="flex items-center gap-4">
+            <!-- عنوان -->
+            <div class="flex items-center gap-3 mb-3">
 
-                <!-- رقم -->
-                <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 text-white font-extrabold text-lg shadow-md">
+                <div class="w-9 h-9 flex items-center justify-center rounded-lg bg-sky-100 text-sky-700 font-bold text-sm">
                     ${index + 1}
                 </div>
 
-                <!-- النص -->
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800 group-hover:text-sky-700 transition">
-                        ${l.title}
-                    </h3>
-
-                    <p class="text-xs text-gray-400 mt-1">
-                        محاضرة رقم ${index + 1}
-                    </p>
-                </div>
+                <h3 class="text-sm font-bold text-gray-800 group-hover:text-sky-700 transition">
+                    ${l.title}
+                </h3>
 
             </div>
 
-            <!-- BUTTON -->
+            <!-- زر -->
             <a href="${l.file}" 
-            class="px-5 py-2.5 bg-sky-900 text-white rounded-xl text-sm font-bold hover:bg-sky-800 transition shadow-lg shadow-sky-900/20">
+            class="mt-auto text-center py-2 bg-sky-900 text-white rounded-lg text-sm font-bold hover:bg-sky-800 transition">
                 مشاهدة
             </a>
 
