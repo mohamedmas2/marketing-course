@@ -17,19 +17,19 @@
     "title": "المحاضرة الثالثة",
     "file": "marketing/lectures/lecture3.html"
   },
-  
-    "id": 4,
+  {
+      "id": 4,
     "courseId": "marketing",
     "title": "المحاضرة الرابعه",
     "file": "marketing/lectures/lecture4.html"
   },
-  
-    "id": 5,
+  {
+      "id": 5,
     "courseId": "marketing",
     "title": "المحاضرة الخامسة",
     "file": "marketing/lectures/lecture5.html"
   },
-  
+  {
     "id": 6,
     "courseId": "hr",
     "title": "المحاضرة الأولى",
