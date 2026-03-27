@@ -19,17 +19,7 @@
     "img": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
     "progress": 15
   },
-  {
-    "id": 3,
-    "title": "المحاسبة الإدارية",
-    "code": "ACC-503",
-    "instructor": "د. هيام محمد صلاح شرف",
-    "desc": "تحليل البيانات المالية لاتخاذ القرارات الإدارية والتخطيط المالي.",
-    "link": "course.html?id=accounting",
-    "img": "https://images.unsplash.com/photo-1554224155-1697b39ee56f?auto=format&fit=crop&w=800&q=80",
-    "progress": 60
-  },
-  {
+    {
     "id": 4,
     "title": "الثقافة التنظيمية ووظائف الإدارة من المنظور الإسلامي",
     "code": "ISL-504",
