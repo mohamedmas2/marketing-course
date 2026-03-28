@@ -47,6 +47,14 @@
             border-top: 1px solid #e5e7eb;
             margin-top: 1rem;
         }
+        /* Custom Table Styling */
+        .custom-table th {
+            background-color: #f3e8ff; /* purple-50 */
+            color: #581c87; /* purple-900 */
+        }
+        .custom-table tr:hover td {
+            background-color: #fafafa;
+        }
     </style>
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
@@ -61,7 +69,7 @@
                 </a>
             </div>
             <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
-            <p class="text-sm text-amber-600 font-semibold">المحاضرة الخامسة</p>
+            <p class="text-sm text-amber-600 font-semibold">المحاضرة الخامسة-المزيج التسويقي</p>
         </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1 text-sm lg:text-base">
@@ -96,15 +104,15 @@
     <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
         
         <!-- Section: Intro -->
-        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <section id="intro" class="p-6 md:p-8 border-b border-gray-200 bg-white flex flex-col justify-center min-h-[20vh]">
             <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                <div class="bg-gray-50 rounded-xl p-5 md:p-6 shadow-sm border border-sky-100 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">المزيج التسويقي (Marketing Mix)</h2>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">المزيج التسويقي (Marketing Mix)</h2>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-4">
                         يهدف هذا المحتوى إلى إمداد الباحث بالمفاهيم الأساسية ليكون على علم ودراية وإلمام بعناصر المزيج التسويقي (4Ps)، والذي يُعد أساس إدارة التسويق وعصب الاستدامة المالية في أي منظمة. بدون مزيج متوازن، تتحول ميزانية التسويق إلى هدر نقدي.
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm text-gray-600">
                         <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
                         <div class="flex items-center gap-2"><span>📅</span> السبت 28 مارس 2026م</div>
                         <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
@@ -164,7 +172,7 @@
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مراحل دورة حياة المنتج</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">المنتج يمر بـ 4 مراحل، وعلى المنظمة تغيير المزيج التسويقي بالكامل حسب كل مرحلة لتجنب الخسائر وإهدار الكاش.</p>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">المنتج يمر بـ 4 مراحل، وعلى المنظمة تغيير المزيج التسويقي بالكامل حسب كل مرحلة لتجنب الخسائر .</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -214,66 +222,71 @@
         <!-- 3- Product Categories -->
         <section id="product_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">المنتج وتقسيماته</h2>
-                    <p class="text-lg text-gray-600">ينقسم المنتج إلى 3 تصنيفات رئيسية تحدد معدل دوران المخزون وحساسية السعر.</p>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-sky-800 mb-2">المنتج وتقسيماته</h2>
+                    <p class="text-base text-gray-600">ينقسم المنتج إلى تصنيفات تحدد معدل الدوران وحساسية السعر.</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- By Time -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hover:border-sky-300 transition-colors">
-                        <div class="text-4xl mb-4 text-center">⏱️</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-4 text-center border-b pb-2">1. وفقاً للزمن</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="font-bold text-sky-700">النوع الأول: سلع معمرة</p>
-                                <p class="text-sm text-gray-600 mb-1">تشبع حاجات المستهلك على المدى الطويل. هامش ربح مرتفع ومعدل شراء بطيء.</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-sky-100"><strong class="text-sky-700">مثال واقعي:</strong> شراء غسالة أو سيارة؛ قرار يحتاج وقتاً وتدوم لسنوات.</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-sky-700">النوع الثاني: سلع غير معمرة</p>
-                                <p class="text-sm text-gray-600 mb-1">تستهلك في فترة قصيرة. تعتمد على سرعة دوران المخزون.</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-sky-100"><strong class="text-sky-700">مثال واقعي:</strong> العصائر والمخبوزات تستهلك فوراً وتحتاج شراء متكرر.</p>
-                            </div>
-                        </div>
+                <!-- Main 3 Categories (Compacted) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">⏱️</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">1. وفقاً للزمن</h4>
+                        <ul class="text-xs text-gray-600 space-y-2">
+                            <li><strong class="text-sky-700">معمرة:</strong> تشبع الحاجات لمدى طويل (سيارات، ثلاجات). هامش ربحها مرتفع.</li>
+                            <li><strong class="text-sky-700">غير معمرة:</strong> تستهلك سريعاً (مخبوزات، عصائر). تعتمد على سرعة دوران المخزون.</li>
+                        </ul>
                     </div>
-
-                    <!-- By Importance -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hover:border-amber-300 transition-colors">
-                        <div class="text-4xl mb-4 text-center">⭐</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-4 text-center border-b pb-2">2. وفقاً للأهمية</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="font-bold text-amber-700">النوع الأول: سلع ضرورية</p>
-                                <p class="text-sm text-gray-600 mb-1">لا يمكن الاستغناء عنها. <strong>تحليل:</strong> الطلب عليها غير مرن.</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-amber-100"><strong class="text-amber-700">مثال واقعي:</strong> أدوية السكر، الخبز؛ المستهلك سيشتريها حتى لو ارتفع سعرها.</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-amber-700">النوع الثاني: سلع كمالية</p>
-                                <p class="text-sm text-gray-600 mb-1">يمكن الاستغناء عنها. <strong>تحليل:</strong> شديدة التأثر بالأزمات الاقتصادية.</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-amber-100"><strong class="text-amber-700">مثال واقعي:</strong> حقائب ديور الفاخرة؛ هي أول ما يتوقف المستهلك عن شرائه وقت الأزمات.</p>
-                            </div>
-                        </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">⭐</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">2. وفقاً للأهمية</h4>
+                        <ul class="text-xs text-gray-600 space-y-2">
+                            <li><strong class="text-amber-700">ضرورية:</strong> لا يُستغنى عنها (أدوية، خبز). الطلب غير مرن للسعر.</li>
+                            <li><strong class="text-amber-700">كمالية:</strong> يمكن الاستغناء عنها (حقائب فاخرة). شديدة التأثر بالأزمات الاقتصادية.</li>
+                        </ul>
                     </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">🛒</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">3. وفقاً لغرض الشراء</h4>
+                        <ul class="text-xs text-gray-600 space-y-2">
+                            <li><strong class="text-purple-700">استهلاكية:</strong> للاستخدام المباشر (تفصيلها بالأسفل).</li>
+                            <li><strong class="text-purple-700">إنتاجية (صناعية):</strong> تُشترى لتصنيع منتجات أخرى (مثل شراء مصنع لأقمشة ومعدات).</li>
+                        </ul>
+                    </div>
+                </div>
 
-                    <!-- By Purpose -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hover:border-purple-300 transition-colors">
-                        <div class="text-4xl mb-4 text-center">🛒</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-4 text-center border-b pb-2">3. وفقاً لغرض الشراء</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="font-bold text-purple-700">النوع الأول: سلع استهلاكية</p>
-                                <p class="text-sm text-gray-600 mb-1">تُشترى للاستخدام المباشر (ميسرة، تسوق، خاصة).</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-purple-100"><strong class="text-purple-700">مثال واقعي:</strong> شراء معجون أسنان (ميسرة سريعة) أو شراء بدلة (تسوق ومقارنة).</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-purple-700">النوع الثاني: سلع إنتاجية (صناعية)</p>
-                                <p class="text-sm text-gray-600 mb-1">تُشترى لإعادة استخدامها في تصنيع منتجات أخرى.</p>
-                                <p class="text-xs bg-white p-2 rounded text-gray-700 border border-purple-100"><strong class="text-purple-700">مثال واقعي:</strong> مصنع ملابس يشتري آلات خياطة وأقمشة بالجملة من مصنع آخر (B2B).</p>
-                            </div>
+                <!-- Added Detailed Note for Consumer Goods -->
+                <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-sky-900 mb-3 flex items-center gap-2"><span>📌</span> ملاحظة هامة: تصنيف السلع الاستهلاكية النهائية</h3>
+                    <p class="text-sm text-gray-700 mb-4">نقسم السلع الاستهلاكية النهائية وفقاً للتصنيف التسويقي إلى ثلاثة أنواع أساسية تختلف في خصائصها وأسلوب عرضها وسلوك المستهلك الشرائي تجاهها :</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Convenience -->
+                        <div class="bg-sky-50 p-4 rounded border-t-4 border-sky-500">
+                            <h4 class="font-bold text-sky-800 text-sm mb-2">1. السلع الميسرة (Convenience Goods)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-2">سلع نمطية سهلة المنال يشتريها المستهلك بمجرد شعوره بالحاجة دون مجهود في البحث [50، 51، 141].</p>
+                            <p class="text-xs text-gray-800 mb-2"><strong class="text-sky-700">أمثلة:</strong> الخبز، اللبن، الزبادي، الصحف، الصابون، مساحيق الغسيل [51، 90، 142].</p>
+                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-sky-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> رخص ثمنها، شراء بكميات صغيرة على فترات متقاربة. <span class="text-emerald-700 font-bold">التحليل:</span> تتسم بسرعة دوران المخزون العالية وانتشارها الواسع؛ الهامش قليل لكن الربح يأتي من الحجم [51، 54، 90، 142].</p>
+                        </div>
+
+                        <!-- Shopping -->
+                        <div class="bg-amber-50 p-4 rounded border-t-4 border-amber-500">
+                            <h4 class="font-bold text-amber-800 text-sm mb-2">2. سلع التسوق (Shopping Goods)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-2">يرتكز قرار شرائها على المقارنة بين الأنواع المتاحة من حيث الجودة، السعر، العلامة، والملاءمة [52، 89، 142].</p>
+                            <p class="text-xs text-gray-800 mb-2"><strong class="text-amber-700">أمثلة:</strong> الملابس الجاهزة، الأحذية، الساعات، الأثاث، والأجهزة (ثلاجات، غسالات) [52، 90، 142].</p>
+                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-amber-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> تُشترى على فترات متباعدة بتخطيط مسبق. <span class="text-emerald-700 font-bold">التحليل:</span> دوران المخزون أبطأ وتُخزن لفترات أطول لعدم استقرار الطلب، مما يتطلب دراسة تكلفة التخزين بعناية [52، 55، 90، 142].</p>
+                        </div>
+
+                        <!-- Specialty -->
+                        <div class="bg-purple-50 p-4 rounded border-t-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 text-sm mb-2">3. السلع الخاصة (Specialty Goods)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-2">تمتلك مواصفات فريدة أو علامات متميزة، ويبذل المستهلك مجهوداً وتكلفة للحصول عليها ولا يقبل بديلاً [53، 143].</p>
+                            <p class="text-xs text-gray-800 mb-2"><strong class="text-purple-700">أمثلة:</strong> الآلات الموسيقية، أدوات الصيد، السيارات الفارهة، المجوهرات، العطور [53، 89، 90، 143].</p>
+                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-purple-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> ارتفاع ثمنها الشديد وندرة مشتريها ومعدل الدوران البطيء جداً. <span class="text-emerald-700 font-bold">التحليل:</span> تحقق هامش ربح مرتفعاً جداً للمنظمة لتعويض بطء البيع [53، 54، 90].</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -285,7 +298,7 @@
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">تخفيض السعر بنسبة 5% قد يمحو 25% من أرباحك الصافية. التسعير هو أخطر قرارات المزيج التسويقي.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
                     <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>⚖️</span> العوامل التي تؤثر على قرارات وسياسات التسعير:</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -324,6 +337,62 @@
                         <p class="text-sm bg-white p-2 inline-block rounded border border-purple-200"><strong class="text-purple-700">مثال واقعي:</strong> تسعير تذاكر مترو الأنفاق مُدعم حكومياً ليتناسب مع الظروف الاقتصادية للمواطنين، بينما شركة النقل الخاص (أوبر) تُسعر بالخوارزميات لتعظيم الربح حسب الزحام.</p>
                     </div>
                 </div>
+
+                <!-- جدول استراتيجيات التسعير -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 overflow-x-auto">
+                    <h4 class="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2"><span>📊</span> جدول (استراتجيات التسعير ): استراتيجيات التسعير الخمسة ومفاهيمها [108، 109، 110]</h4>
+                    <p class="text-sm text-gray-600 mb-4">يوضح هذا الجدول التوجهات المختلفة للمنظمات عند وضع السعر بناءً على الطلب أو المنافسة أو الحالة النفسية للمستهلك:</p>
+                    
+                    <table class="w-full text-right border-collapse custom-table min-w-[700px]">
+                        <thead>
+                            <tr>
+                                <th class="p-3 border border-purple-200 font-bold rounded-tr-lg w-10 text-center">م</th>
+                                <th class="p-3 border border-purple-200 font-bold w-1/4">الاستراتيجية</th>
+                                <th class="p-3 border border-purple-200 font-bold w-1/3">المفهوم</th>
+                                <th class="p-3 border border-purple-200 font-bold rounded-tl-lg">أمثلة توضيحية</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm text-gray-700">
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">1</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير الموجه بالطلب (كشط الأسعار)</td>
+                                <td class="p-3 border border-gray-200">وضع سعر مرتفع في البداية للحصول على أعلى ربح، ثم ينخفض تدريجياً مع مرور الوقت.</td>
+                                <td class="p-3 border border-gray-200">أجهزة التلفزيون تنزل بأسعار مرتفعة ثم تنخفض.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">2</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">تسعير الاختراق</td>
+                                <td class="p-3 border border-gray-200">تحديد أسعار أقل من المنافسين للحصول على زيادة سريعة في المبيعات والاستحواذ على السوق.</td>
+                                <td class="p-3 border border-gray-200">المقاهي الجديدة في المدينة تبدأ بأسعار منخفضة ثم ترفعها بعد شهرتها [108، 109].</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">3</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير التنافسي (سعر السوق)</td>
+                                <td class="p-3 border border-gray-200">يتم التسعير بناءً على سعر السوق الحالي، سواء مساوياً له أو أقل بقليل لكسب العملاء.</td>
+                                <td class="p-3 border border-gray-200">جميع المنتجات التي تسوق عبر الإنترنت والسلع الاستهلاكية.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">4</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير المتميز</td>
+                                <td class="p-3 border border-gray-200">تحديد أسعار أعلى من الأسعار المماثلة في السوق للرغبة في إشعار العميل بالجودة العالية والقيمة.</td>
+                                <td class="p-3 border border-gray-200">الانتيكات والسلع النادرة والفاخرة.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">5</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير بالخسارة</td>
+                                <td class="p-3 border border-gray-200">يدفع المستهلك للشراء بأسعار رخيصة لمنتجات معينة لجذبه لشراء منتجات أخرى بسعر كامل [109، 110].</td>
+                                <td class="p-3 border border-gray-200">بعض المحلات التي تضع عروض (Sale) والمخابز في نهاية اليوم [109، 110].</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 text-center font-bold">6</td>
+                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير النفسي</td>
+                                <td class="p-3 border border-gray-200">إجراء تغييرات بسيطة في السعر لجعله يبدو أقل (الأسعار الانكسارية).</td>
+                                <td class="p-3 border border-gray-200">وضع سعر 49.99 بدلاً من 50.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </section>
 
@@ -517,6 +586,14 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 تقسيمات المنتج:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">تقسيمات المنتج الي ثلاث تقسيمات 1. وفقاً للزمن 2. وفقاً للأهمية 3. وفقاً لغرض الشراء.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 طبيعة الدورة (تذكر):</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">•كل مرحلة فى دورة حياة المنتج تختلف من سلعة استهالكية إلى سللعة معملرة فلى الفتلرة الزمنيلة التلى تسلتغرقها ملن وقلت آلخلر وعلى المنظمة اتباع السياسات التسلويقية المناسلبة للفتلرة الزمنيلة خلللالل دورة حيلللاة المنلللتج بالسياسلللة السلللعرية ومنافلللذ التوزيلللع والترويج والتشكيل مع اإلضافة والتجديد والتطوير فى المنتج.</p>
+                    </div>
                     <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
                         <p class="text-gray-800 font-bold mb-1">💡 المزيج التسويقي:</p>
                         <p class="text-gray-600 text-sm leading-relaxed">تذكر أن المزيج التسويقي هو أساس إدارة التسويق في أي منظمة.</p>
@@ -737,4 +814,3 @@
     </script>
 </body>
 </html>
-```
