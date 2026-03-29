@@ -60,7 +60,8 @@
       {
     "id": 10,
     "courseId": "Islamic",
-    "title": "المحاضرة الاولي",
-    "file": "Islamic/lectures/lecture2.html"
+    "title": "المحاضرة الثانية",
+    "file": "Islamic/lectures/lecture2.html",
+    "pdf": "assets/pdfs/Islamic/1.pdf"
   }
 ]
