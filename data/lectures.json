@@ -63,5 +63,12 @@
     "title": "المحاضرة الرابعه",
     "file": "Islamic/lectures/lecture4.html",
     "pdf": "assets/pdfs/Islamic/4.pdf"
+  },
+        {
+    "id": 10,
+    "courseId": "Islamic",
+    "title": "المحاضرة الخامسة",
+    "file": "Islamic/lectures/lecture5.html",
+    "pdf": "assets/pdfs/Islamic/5.pdf"
   }
 ]
