@@ -3,13 +3,15 @@
     "id": 1,
     "courseId": "marketing",
     "title": "المحاضرة الأولى",
-    "file": "marketing/lectures/lecture1.html"
+    "file": "marketing/lectures/lecture1.html",
+    "pdf": "assets/pdfs/marketing/1.pdf"
   },
   {
     "id": 2,
     "courseId": "marketing",
     "title": "المحاضرة الثانية",
-    "file": "marketing/lectures/lecture2.html"
+    "file": "marketing/lectures/lecture2.html",
+    "pdf": "assets/pdfs/marketing/2.pdf"
   },
   {
     "id": 3,
