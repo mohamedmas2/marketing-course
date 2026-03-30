@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons for better visual menu -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -79,114 +79,34 @@
             border-right-color: #043927;
             transform: scale(1.01);
         }
-        /* تحسينات الموبيل القوية */
-        #mobile-overlay {
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 998;
-        }
-        #mobile-sidebar {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(100%);
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 80%;
-            max-width: 320px;
-            height: 100%;
-            z-index: 999;
-            background-color: #043927;
-        }
-        #mobile-sidebar.open {
-            transform: translateX(0);
-        }
-        .mobile-nav-btn {
-            width: 100%;
-            text-align: right;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: all 0.2s;
-            color: #e2e8f0;
-        }
-        .mobile-nav-btn:hover {
-            background-color: rgba(197, 160, 89, 0.2);
-            color: #c5a059;
-        }
-        .mobile-nav-btn i {
-            background: rgba(197, 160, 89, 0.1);
-            padding: 0.5rem;
-            border-radius: 50%;
-            color: #c5a059;
-        }
     </style>
 </head>
     
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
-    <!-- Mobile Header -->
-    <header class="md:hidden sidebar-dark p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-[#c5a059] rounded-lg flex items-center justify-center text-[#043927]">
-                <i data-lucide="book-open"></i>
+    <!-- Mobile Navigation (As requested: Select Dropdown style) -->
+    <div class="md:hidden sidebar-dark shadow-lg z-50">
+        <div class="p-4 flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="book-open" class="text-[#c5a059]"></i>
+                    <h1 class="text-lg font-black text-[#c5a059]">المحاضرة الخامسة</h1>
+                </div>
+                <a href="#" onclick="history.back()" class="bg-sky-500 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-md">رجوع</a>
             </div>
-            <h1 class="text-lg font-black text-[#c5a059]">المحاضرة الخامسة</h1>
-        </div>
-        <button onclick="toggleMobileMenu()" class="p-2 bg-[#c5a059]/20 text-[#c5a059] border border-[#c5a059]/30 rounded-lg">
-            <i data-lucide="menu"></i>
-        </button>
-    </header>
-
-    <!-- Mobile Sidebar Drawer (The Example Request) -->
-    <div id="mobile-overlay" onclick="toggleMobileMenu()"></div>
-    <aside id="mobile-sidebar" class="sidebar-dark shadow-2xl flex flex-col">
-        <div class="p-6 border-b border-emerald-900/50 flex justify-between items-center">
-            <div class="flex flex-col">
-                <span class="text-xs text-emerald-400 font-bold tracking-widest uppercase">الإدارة الإسلامية</span>
-                <h2 class="font-black text-[#c5a059] text-xl">قائمة التنقل</h2>
+            <!-- Select menu for mobile navigation -->
+            <div class="bg-[#032d1f] p-1 rounded-lg border border-emerald-900">
+                <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 bg-transparent text-emerald-100 font-bold outline-none cursor-pointer">
+                    <option class="bg-[#043927]" value="intro">1. المنهج الاستراتيجي</option>
+                    <option class="bg-[#043927]" value="planning-steps">2. خطوات التخطيط</option>
+                    <option class="bg-[#043927]" value="factors">3. أركان الخطة</option>
+                    <option class="bg-[#043927]" value="details">4. تحليل للمخاطر</option>
+                    <option class="bg-[#043927]" value="management_sources">5. الخلاصة الإدارية</option>
+                    <option class="bg-[#043927]" value="quiz">📝 اختبر معلوماتك</option>
+                </select>
             </div>
-            <button onclick="toggleMobileMenu()" class="p-2 text-emerald-200 hover:text-white rounded-full hover:bg-emerald-900/50">
-                <i data-lucide="x"></i>
-            </button>
         </div>
-        <nav class="flex-1 overflow-y-auto p-4 space-y-2">
-            <button onclick="scrollToSection('intro'); toggleMobileMenu()" class="mobile-nav-btn">
-                <i data-lucide="compass"></i>
-                <span class="font-bold">المنهج الاستراتيجي</span>
-            </button>
-            <button onclick="scrollToSection('planning-steps'); toggleMobileMenu()" class="mobile-nav-btn">
-                <i data-lucide="list-checks"></i>
-                <span class="font-bold">خطوات التخطيط</span>
-            </button>
-            <button onclick="scrollToSection('factors'); toggleMobileMenu()" class="mobile-nav-btn">
-                <i data-lucide="users"></i>
-                <span class="font-bold">أركان الخطة</span>
-            </button>
-            <button onclick="scrollToSection('details'); toggleMobileMenu()" class="mobile-nav-btn">
-                <i data-lucide="shield-alert"></i>
-                <span class="font-bold">تحليل للمخاطر</span>
-            </button>
-            <button onclick="scrollToSection('management_sources'); toggleMobileMenu()" class="mobile-nav-btn">
-                <i data-lucide="file-text"></i>
-                <span class="font-bold">الخلاصة الإدارية</span>
-            </button>
-            <div class="border-t border-emerald-900/50 my-4 pt-4">
-                <button onclick="scrollToSection('quiz'); toggleMobileMenu()" class="mobile-nav-btn text-yellow-400">
-                    <i data-lucide="award" class="!text-yellow-400"></i>
-                    <span class="font-black italic underline decoration-wavy">اختبر معلوماتك</span>
-                </button>
-            </div>
-        </nav>
-        <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-center">
-             <p class="text-[10px] text-emerald-500 mb-1">إعداد وتقديم</p>
-             <p class="font-bold text-[#c5a059] text-sm">د. خديجة يحيى عبد الصمد</p>
-        </div>
-    </aside>
+    </div>
 
     <!-- Desktop Sidebar -->
     <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0 hidden md:flex">
@@ -355,7 +275,6 @@
                 <div class="bg-[#043927] text-white p-12 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-24 h-24 bg-[#c5a059] opacity-10 rounded-br-full"></div>
                     <h3 class="text-3xl font-black text-[#c5a059] mb-8 text-center font-serif">الخلاصة الإدارية للهجرة</h3>
-                    <!-- Image was removed here as requested -->
                     <p class="text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8 font-medium italic text-emerald-50">
                         تثبت الهجرة أن التخطيط هو <strong>"إدارة المستقبل بالحاضر"</strong>. النجاح لم يكن صدفة، بل كان نتيجة لإدارة موارد كفؤة، وتحليل معلوماتي دقيق، وتغطية لوجستية محكمة، فوقها جميعاً قيادة ملهمة تثق في نصر الله ولكنها لا تغفل عن ربط الناقة.
                     </p>
@@ -365,11 +284,11 @@
         </section>
 
         <!-- Section 6: Quiz -->
-        <section id="quiz" class="min-h-screen p-8 md:p-16 bg-[#FDFBF7]">
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-[#FDFBF7]">
             <div class="max-w-4xl mx-auto w-full">
-                <div class="text-center mb-12">
+                <div class="text-center mb-10">
                     <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك</h2>
-                    <p class="text-gray-600">أسئلة لتقييم فهمك لنموذج التخطيط النبوي في الهجرة.</p>
+                    <p class="text-gray-600">أسئلة شاملة للتأكد من فهمك لنموذج التخطيط النبوي في الهجرة.</p>
                 </div>
                 <div id="quizContainer" class="grid grid-cols-1 gap-6">
                     <!-- يتم التحميل عبر JS -->
@@ -387,21 +306,6 @@
             initScrollSpy();
             showFactor(1);
         });
-
-        // دالة لفتح وإغلاق القائمة في الموبيل (إصلاح شامل)
-        function toggleMobileMenu() {
-            const sidebar = document.getElementById('mobile-sidebar');
-            const overlay = document.getElementById('mobile-overlay');
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                overlay.style.display = 'none';
-                document.body.style.overflow = ''; // استعادة السكرول
-            } else {
-                sidebar.classList.add('open');
-                overlay.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // منع سكرول الخلفية
-            }
-        }
 
         const factorsData = {
             1: { 
@@ -504,10 +408,10 @@
             const ans = document.getElementById(id);
             if (ans.classList.contains('show')) {
                 ans.classList.remove('show');
-                btn.innerText = "كشف التحليل";
+                btn.innerText = "إظهار الإجابة";
             } else {
                 ans.classList.add('show');
-                btn.innerText = "إخفاء التحليل";
+                btn.innerText = "إخفاء الإجابة";
             }
         }
 
@@ -515,7 +419,7 @@
             const section = document.getElementById(sectionId);
             const mainContent = document.getElementById('mainContent');
             if (section && mainContent) {
-                const offset = 80; // تعويض ارتفاع الهيدر
+                const offset = 100; // تعويض ارتفاع الهيدر في الموبيل
                 mainContent.scrollTo({ top: section.offsetTop - offset, behavior: 'smooth' });
             }
         }
@@ -523,6 +427,7 @@
         function initScrollSpy() {
             const sections = document.querySelectorAll('section');
             const desktopNavItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mobileNav = document.getElementById('mobileNav');
             const mainContent = document.getElementById('mainContent');
             if (!mainContent) return;
             
@@ -534,6 +439,7 @@
                         current = section.id;
                     }
                 });
+                // تحديث القائمة الجانبية في الديسكتوب
                 desktopNavItems.forEach(item => {
                     item.classList.remove('active');
                     const onclickAttr = item.getAttribute('onclick');
@@ -541,6 +447,10 @@
                         item.classList.add('active');
                     }
                 });
+                // تحديث القائمة المنسدلة في الموبيل
+                if (current && mobileNav) {
+                    mobileNav.value = current;
+                }
             });
         }
     </script>
