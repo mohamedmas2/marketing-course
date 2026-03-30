@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الثقافة التنظيمية - المحاضرة الخامسة (نموذج للتخطيط من المنظور الإسلامي)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F8F9FA;
+            color: #1F2937;
+        }
+        .sidebar-dark {
+            background-color: #043927; 
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z' fill='%23c5a059' fill-opacity='0.05'/%3E%3C/svg%3E");
+            color: white;
+            border-left: 4px solid #c5a059;
+        }
+        .nav-item {
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: #c5a059;
+        }
+        .nav-item.active {
+            background-color: #c5a059;
+            color: #043927;
+            font-weight: 800;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(4, 57, 39, 0.2);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 250px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+        .islamic-pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0l5 15h15l-12 9 5 16-13-10-13 10 5-16-12-9h15z' fill='%23043927' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .step-card {
+            border-right: 4px solid #c5a059;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            border-right-color: #043927;
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-8 border-b border-emerald-900/50">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">⬅ الرجوع</a>
+            </div>
+            <h1 class="text-2xl font-black text-[#c5a059] mb-1">المحاضرة الخامسة</h1>
+            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">التخطيط الاستراتيجي للهجرة</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold">المنهج الاستراتيجي</button></li>
+                <li><button onclick="scrollToSection('planning-steps')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">خطوات التخطيط</button></li>
+                <li><button onclick="scrollToSection('factors')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">أركان الخطة</button></li>
+                <li><button onclick="scrollToSection('details')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">التحليل النقدي للمخاطر</button></li>
+                <li><button onclick="scrollToSection('management_sources')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">الخلاصة الإدارية</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4">اختبر معلوماتك</button></li>
+            </ul>
+        </nav>
+        <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-xs text-emerald-400 hidden md:block text-center">
+            <p class="font-bold text-[#c5a059]">د. خديجة يحيى عبد الصمد</p>
+            <p>جامعة الأزهر - كلية التجارة</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-[#FDFBF7] relative scroll-smooth islamic-pattern-bg" id="mainContent">
+        
+        <!-- Section 1: Intro -->
+        <section id="intro" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="bg-white rounded-3xl p-10 shadow-xl border-t-8 border-[#c5a059] mb-12 relative overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#043927] opacity-5 rounded-full"></div>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">الهجرة النبوية: نموذج للتخطيط الفعال</h2>
+                    <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                        لم تكن الهجرة النبوية فعلاً عشوائياً، بل كانت <strong>"أنموذجاً استراتيجياً"</strong> يجمع بين الأخذ بالأسباب والتوكل المطلق. لقد قدم النبي ﷺ درساً في إعمال الفكر، والمشورة، ودراسة الواقع، وتحويل الرؤية الإيمانية إلى "خطة تشغيلية" ناجحة.
+                    </p>
+                    <div class="flex flex-wrap gap-6 text-sm font-bold text-[#c5a059]">
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🔍</span>تحليل الواقع</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🎯</span>وضوح الرؤية</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🛡️</span>إدارة المخاطر</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>⚙️</span>الإجراءات التنفيذية</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Planning Steps (Updated) -->
+        <section id="planning-steps" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">خارطة الطريق الاستراتيجية</span>
+                    <h2 class="text-4xl font-black text-[#043927] mt-2 mb-6">خطوات التخطيط الاستراتيجي للهجرة النبوية</h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">1- تحليل الواقع واستشراف المستقبل</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            بدأ النبي ﷺ بدراسة <strong>البيئة الداخلية</strong> في مكة، حيث أدرك أن استمرار الدعوة هناك أصبح صعباً بسبب تصاعد الاضطهاد. ثم انتقل لدراسة <strong>البيئة الخارجية</strong> للبحث عن "بيئة خصبة" بديلة، ووقع الاختيار على يثرب لوجود روابط اجتماعية (أخوال أبيه) واستجابة أهلها (الأوس والخزرج) للدعوة.
+                        </p>
+                        <div class="bg-emerald-50 p-4 rounded-xl text-sm border-r-4 border-emerald-600">
+                            <strong class="text-emerald-900 block mb-2">بناء التحالفات والتمهيد الاستراتيجي:</strong>
+                            شمل ذلك عرض الدعوة على القبائل في مواسم الحج لبناء "قوة ومنعة"، وعقد بيعة العقبة الأولى التي تبعها إرسال مصعب بن عمير لتهيئة المدينة اجتماعياً ونفسياً. ثم جاءت بيعة العقبة الثانية كـ "اتفاقية دفاع مشترك"، وتلاها وضع نظام النقباء (12 نقيباً) كقيادات وسيطة لتنظيم شؤون المجتمع الجديد إدارياً.
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">2- تحديد الرؤية</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            تميز التخطيط النبوي بوجود رؤية مستقبلية واضحة لانتشار الإسلام في الأرض، ورسالة أساسية وهي دعوة الناس إلى الله. عبر النبي ﷺ عن هذه الرؤية الشاملة في أحاديثه، ومن أبرزها حديث تميم الداري الذي يجسد المدى العالمي للدعوة:
+                        </p>
+                        <div class="quran-verse my-4 text-center">
+                            «ليبلغن هذا الأمر ما بلغ الليل والنهار، ولا يترك الله بيت مدر (طين) ولا وبر (شعر) إلا أدخله الله هذا الدين، بعز عزيز أو بذل ذليل، عزاً يعز الله به الإسلام، وذلاً يذل الله به الكفر»
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">3- تحديد الرسالة</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            تُعرف الرسالة بأنها <strong>"بيان رسمي يحدد الغرض الأساسي لعمل المؤسسة"</strong>، ويوضح الدور الفريد والمتميز الذي تقوم به وتؤديه في المجتمع. وفي الهجرة، كانت الرسالة هي تحويل يثرب إلى "المدينة المنورة" كقاعدة عالمية لنشر قيم العدل والتوحيد.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">4- تحديد الأهداف</h3>
+                        <p class="text-gray-700 mb-4">الأهداف هي غايات أو نتائج مستقبلية تسعى المؤسسة أو الدولة للوصول إليها ضمن إطار زمني محدد. وكان هدف النبي ﷺ من هجرته:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span class="bg-[#043927] text-[#c5a059] w-8 h-8 rounded-full flex items-center justify-center font-bold">أ</span>
+                                <span class="text-gray-800 font-bold">الانتقال من الاستضعاف إلى القوة:</span> من مرحلة الاضطهاد إلى مرحلة التمكين.
+                            </li>
+                            <li class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span class="bg-[#043927] text-[#c5a059] w-8 h-8 rounded-full flex items-center justify-center font-bold">ب</span>
+                                <span class="text-gray-800 font-bold">توفير بيئة آمنة للدعوة:</span> إيجاد مناخ ملائم يضمن استمرارية نشر الدعوة بعيداً عن تضييق قريش.
+                            </li>
+                            <li class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span class="bg-[#043927] text-[#c5a059] w-8 h-8 rounded-full flex items-center justify-center font-bold">ج</span>
+                                <span class="text-gray-800 font-bold">إقامة الدولة الإسلامية:</span> العمل على إقامة دولة ذات كيان مستقل ذات سيادة.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">5- وضع الإجراءات التنفيذية وتوفير الموارد</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <strong class="text-[#c5a059]">أ- السرية التامة وحفظ المعلومات:</strong> اعتمد النبي ﷺ مبدأ الكتمان الشديد، فلم يعلن عن ساعة الخروج حتى لأقرب الناس إليه. <span class="italic text-gray-500">(مثال: زيارة أبي بكر في وقت الظهيرة وهو وقت غير معتاد للزيارة لإبلاغه بالخطة)</span>.
+                            </div>
+                            <div>
+                                <strong class="text-[#c5a059]">ب- تحديد توقيت التنفيذ:</strong> اختيار ليلة المؤامرة لمباغتة العدو، والخروج أمامهم كقمة في التوكل والثقة بنصر الله.
+                            </div>
+                            <div>
+                                <strong class="text-[#c5a059]">ج- اختيار طريق غير تقليدي (التورية):</strong> لتضليل الملاحقين، اتجه جنوباً نحو غار ثور بدلاً من الطريق المعتاد شمالاً، مما أربك حسابات قريش تماماً.
+                            </div>
+                            <div>
+                                <strong class="text-[#c5a059]">د- إعداد الموارد المادية:</strong> تجهيز المتطلبات اللوجستية (راحلتيْن قويتيْن من الإبل، إعداد الزاد والطعام) مسبقاً قبل الموعد المحدد.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Factors (Reordered) -->
+        <section id="factors" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center border-b border-gray-100">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">أركان فريق العمل</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mt-2 mb-6">أركان الخطة وتوزيع الأدوار</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">تحليل إداري لدور كل فرد في "فريق المهام" الاستراتيجي لضمان نجاح الهجرة.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12 text-center">
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(1)">🤝<p class="text-[10px] font-black mt-2">اختيار الصاحب</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(2)">🛌<p class="text-[10px] font-black mt-2">علي بن أبي طالب</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(3)">📡<p class="text-[10px] font-black mt-2">عبدالله بن أبي بكر</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(4)">🧺<p class="text-[10px] font-black mt-2">أسماء بنت أبي بكر</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(5)">🐑<p class="text-[10px] font-black mt-2">عامر بن فهيرة</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(6)">🧭<p class="text-[10px] font-black mt-2">عبدالله بن أريقط</p></div>
+                </div>
+
+                <div id="factorDetail" class="bg-[#043927] text-white rounded-3xl p-10 flex flex-col justify-center items-start border-b-8 border-[#c5a059] shadow-2xl transition-all duration-500 min-h-[250px]">
+                    <div class="w-full">
+                        <h3 id="factorTitle" class="text-3xl font-black text-[#c5a059] mb-4">اختر ركناً لاستكشاف الدور</h3>
+                        <div id="factorDesc" class="text-lg text-emerald-50 leading-relaxed mb-6">اضغط على الأيقونات أعلاه لقراءة شرح دور كل شخصية في الخطة.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: Critical Analysis (Risk) -->
+        <section id="details" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center bg-white">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">إدارة المخاطر (Risk Management)</span>
+                    <h2 class="text-4xl font-black text-[#043927] mb-6">تحليل نقدي: لماذا نجحت الخطة تقنياً؟</h2>
+                    <p class="text-lg text-gray-600">بصفتنا محللين، ننظر إلى الهجرة كعملية "إدارة أزمات" (Crisis Management) نجحت بسبب التنبؤ الدقيق بردود فعل المنافس.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Critical Analysis 1 -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">🧩</div>
+                            <h3 class="text-2xl font-black text-[#043927]">التضليل الاستراتيجي</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6 flex-grow text-sm">
+                            نام علي بن أبي طالب في فراش النبي ﷺ لم يكن عملاً بطولياً فحسب، بل هو <strong>"تمويه تكتيكي" (Tactical Deception)</strong> لشراء المورد الأغلى وهو (الزمن). والاتجاه جنوباً نحو غار ثور كسر لتوقعات المنافسين.
+                        </p>
+                        <div class="bg-white p-5 rounded-2xl border-r-4 border-[#c5a059] shadow-sm">
+                            <h4 class="font-bold text-[#043927] mb-2 flex items-center gap-2"><span>💡</span> التحليل المالي الإداري:</h4>
+                            <p class="text-xs text-gray-600 italic">التوجه لمكان لا يتوقعه المنافسون بدلاً من الصدام المباشر هو جوهر استراتيجية المحيط الأزرق لتجنب "المحيط الأحمر" المليء بالمخاطر القاتلة.</p>
+                        </div>
+                    </div>
+
+                    <!-- Critical Analysis 2 -->
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm flex flex-col h-full">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">👥</div>
+                            <h3 class="text-2xl font-black text-[#043927]">تكامل سلاسل الإمداد</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6 flex-grow text-sm">
+                            أسماء بنت أبي بكر أمنت تدفق الإمدادات الحيوية، وعامر بن فهيرة لم يوفر الغذاء فحسب، بل قام بـ <strong>"محو البيانات" (Data Wiping)</strong> عبر مسح آثار الأقدام.
+                        </p>
+                        <div class="bg-white p-5 rounded-2xl border-r-4 border-[#c5a059] shadow-sm">
+                            <h4 class="font-bold text-[#043927] mb-2 flex items-center gap-2"><span>💡</span> التحليل المالي الإداري:</h4>
+                            <p class="text-xs text-gray-600 italic">هذا يمثل "أمن المعلومات" في العصر الحديث؛ لا يكفي تأمين البيانات (الفريق)، بل يجب مسح "سجل الأنشطة" (الآثار) لمنع المنافسين من تتبع المسار.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Summary -->
+        <section id="management_sources" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="bg-[#043927] text-white p-10 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl">
+                    <h3 class="text-2xl font-black text-[#c5a059] mb-6 text-center">الخلاصة الإدارية للهجرة</h3>
+                    <p class="text-lg leading-relaxed text-center max-w-4xl mx-auto mb-8">
+                        تثبت الهجرة أن التخطيط هو <strong>"إدارة المستقبل بالحاضر"</strong>. النجاح لم يكن صدفة، بل كان نتيجة لإدارة موارد كفؤة، وتحليل معلوماتي دقيق، وتغطية لوجستية محكمة، فوقها جميعاً قيادة ملهمة تثق في نصر الله ولكنها لا تغفل عن ربط الناقة. التوازن بين الأخذ بالأسباب والتوكل هو المحرك الحقيقي للنمو والاستدامة.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-16 bg-[#FDFBF7]">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك</h2>
+                    <p class="text-gray-600">أسئلة لتقييم فهمك لنموذج التخطيط النبوي في الهجرة.</p>
+                </div>
+                <div id="quizContainer" class="space-y-6">
+                    <!-- Loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const factorsData = {
+            1: { 
+                title: "1- اختيار الصاحب-الرفيق (أبو بكر الصديق)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> اختيار الشريك الاستراتيجي الذي يمتلك الولاء المطلق والكفاءة في التنفيذ.</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• ساهم في إعداد الموارد المادية (الراحلتين).</li>
+                         <li>• كان رفيقاً في أدق تفاصيل الرحلة وفي الغار.</li>
+                         <li>• يمثل نموذج "القوي الأمين" في العمل الجماعي.</li>
+                       </ul>`
+            },
+            2: { 
+                title: "2- علي بن أبي طالب (التضليل والتمويه)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> القيام بعملية التمويه التكتيكي لشراء الوقت للقائد.</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• نام في فراش النبي ﷺ لتضليل قريش ليلة المؤامرة.</li>
+                         <li>• أدى دوراً حيوياً في رد الأمانات لأهلها، مما يعزز سمعة "الأمانة المؤسسية".</li>
+                         <li>• ساهم في تأخير ملاحقة المشركين للنبي لساعات حرجة.</li>
+                       </ul>`
+            },
+            3: { 
+                title: "3- عبدالله بن أبي بكر (إدارة المعلومات والاستخبارات)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> توفير البيانات الحية من الميدان (Business Intelligence).</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• كان يرصد تحركات ونوايا قريش في مكة طوال النهار.</li>
+                         <li>• ينقل الأخبار والمستجدات للنبي ﷺ في الغار ليلاً.</li>
+                         <li>• ضمن بقاء القائد على اطلاع دائم ببيئة المنافس.</li>
+                       </ul>`
+            },
+            4: { 
+                title: "4- أسماء بنت أبي بكر (الخدمات اللوجستية والإمداد)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> تأمين سلاسل الإمداد الحيوية في ظروف أمنية قاسية.</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• قامت بتجهيز ونقل الزاد والماء (التموين) سراً إلى الغار.</li>
+                         <li>• أظهرت إبداعاً في حل المشكلات (شق النطاق لربط الزاد).</li>
+                         <li>• تحملت ضغوطاً جسدية ونفسية لضمان بقاء الفريق.</li>
+                       </ul>`
+            },
+            5: { 
+                title: "5- عامر بن فهيرة (أمن المسار وتوفير القوت)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> تأمين "الأثر" الرقمي والمكاني وتوفير الاحتياجات الغذائية اليومية.</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• كان يرعى الغنم خلف عبدالله بن أبي بكر لمحو آثار أقدامه (Data Wiping).</li>
+                         <li>• وفر الحليب (القوت اليومي) للفريق في الغار.</li>
+                         <li>• لعب دوراً مزدوجاً في (الإنتاج) و(الأمن العملياتي).</li>
+                       </ul>`
+            },
+            6: { 
+                title: "6- عبدالله بن أريقط (الخبرة الفنية المستأجرة - Outsourcing)", 
+                desc: `<p class='text-lg mb-4'><strong>الدور:</strong> الدليل الخبير والقيادة الفنية في المسارات غير التقليدية.</p>
+                       <ul class='space-y-2 text-emerald-50'>
+                         <li>• تم استئجاره لخبرته العميقة في الطرق والمسالك الوعرة.</li>
+                         <li>• قاد الرحلة عبر طريق ساحلي غير متوقع لتجنب ملاحقات المنافس.</li>
+                         <li>• نموذج للاستعانة بالخبرات التخصصية (Consultancy) لضمان النجاح التقني.</li>
+                       </ul>`
+            }
+        };
+
+        const questions = [
+            { q: "ما هو المبدأ الذي طبقه النبي ﷺ بزيارته لأبي بكر وقت الظهيرة؟", a: "السرية التامة وحفظ المعلومات (Security Protocol).", r: "اختار وقتاً غير معتاد للزيارة لضمان عدم لفت الأنظار وبدء تنفيذ الخطة بكتمان شديد." },
+            { q: "ما الهدف الاستراتيجي من اتجاه النبي ﷺ جنوباً نحو غار ثور بدلاً من الشمال؟", a: "تضليل الملاحقين واستخدام مسار عكسي (Strategic Deception).", r: "إرباك حسابات قريش التي بحثت عنه في الطريق التقليدي شمالاً نحو المدينة." },
+            { q: "ماذا يمثل نظام النقباء الـ 12 في الإدارة النبوية بعد بيعة العقبة؟", a: "تنسيق إداري وقيادات وسيطة (Middle Management).", r: "تنظيم شؤون المجتمع الجديد وتوزيع المسؤوليات لضمان استدامة الدولة." },
+            { q: "في التخطيط الاستراتيجي، ماذا تمثل بيعة العقبة الثانية؟", a: "اتفاقية دفاع مشترك وبناء تحالفات استراتيجية.", r: "توفير المنعة والقوة لضمان حماية كيان الدولة الجديدة." },
+            { q: "من هو الشخص الذي كان مسؤولاً عن محو آثار الأقدام في خطة الهجرة؟", a: "عامر بن فهيرة.", r: "قام بمحو الأثر عبر رعي الغنم تضليلاً لقصاصي الأثر من قريش." }
+        ];
+
+        function showFactor(id) {
+            const data = factorsData[id];
+            const detailContainer = document.getElementById('factorDetail');
+            detailContainer.style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('factorTitle').innerText = data.title;
+                document.getElementById('factorDesc').innerHTML = data.desc;
+                detailContainer.style.opacity = '1';
+            }, 300);
+        }
+
+        function initQuiz() {
+            const container = document.getElementById('quizContainer');
+            questions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-emerald-50';
+                qDiv.innerHTML = `
+                    <h3 class="text-lg font-black text-[#043927] mb-3">س${index+1}: ${item.q}</h3>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-[#c5a059] text-[#043927] px-4 py-2 rounded-lg text-xs font-bold hover:bg-yellow-600 transition-colors">كشف التحليل</button>
+                    <div id="ans${index}" class="quiz-answer">
+                        <p class="text-emerald-800 font-bold text-md">✅ الإجابة: ${item.a}</p>
+                        <p class="text-gray-500 text-xs mt-1 italic">${item.r}</p>
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function toggleAnswer(id, btn) {
+            const ans = document.getElementById(id);
+            if (ans.classList.contains('show')) {
+                ans.classList.remove('show');
+                btn.innerText = "كشف التحليل";
+            } else {
+                ans.classList.add('show');
+                btn.innerText = "إخفاء التحليل";
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const mainContent = document.getElementById('mainContent');
+            if (section && mainContent) {
+                mainContent.scrollTo({ top: section.offsetTop, behavior: 'smooth' });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            if (!mainContent) return;
+            
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const onclickAttr = item.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.includes(current)) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            initScrollSpy();
+            showFactor(1);
+        });
+    </script>
+</body>
+</html>
