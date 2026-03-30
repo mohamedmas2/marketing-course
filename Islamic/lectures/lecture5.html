@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for better visual menu -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         body {
@@ -23,6 +25,9 @@
         .nav-item {
             color: #e2e8f0;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
         .nav-item:hover {
             background-color: rgba(197, 160, 89, 0.1);
@@ -74,19 +79,50 @@
             border-right-color: #043927;
             transform: scale(1.01);
         }
-        /* تحسينات الموبيل - القائمة الجانبية */
+        /* تحسينات الموبيل القوية */
         #mobile-overlay {
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
             display: none;
-            z-index: 40;
+            position: fixed;
+            inset: 0;
+            z-index: 998;
         }
         #mobile-sidebar {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateX(100%);
-            z-index: 50;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            z-index: 999;
+            background-color: #043927;
         }
         #mobile-sidebar.open {
             transform: translateX(0);
+        }
+        .mobile-nav-btn {
+            width: 100%;
+            text-align: right;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s;
+            color: #e2e8f0;
+        }
+        .mobile-nav-btn:hover {
+            background-color: rgba(197, 160, 89, 0.2);
+            color: #c5a059;
+        }
+        .mobile-nav-btn i {
+            background: rgba(197, 160, 89, 0.1);
+            padding: 0.5rem;
+            border-radius: 50%;
+            color: #c5a059;
         }
     </style>
 </head>
@@ -94,55 +130,84 @@
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
     <!-- Mobile Header -->
-    <header class="md:hidden sidebar-dark p-4 flex justify-between items-center shadow-lg">
-        <h1 class="text-lg font-black text-[#c5a059]">المحاضرة الخامسة</h1>
-        <button onclick="toggleMobileMenu()" class="p-2 bg-[#c5a059] text-[#043927] rounded-lg focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+    <header class="md:hidden sidebar-dark p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#c5a059] rounded-lg flex items-center justify-center text-[#043927]">
+                <i data-lucide="book-open"></i>
+            </div>
+            <h1 class="text-lg font-black text-[#c5a059]">المحاضرة الخامسة</h1>
+        </div>
+        <button onclick="toggleMobileMenu()" class="p-2 bg-[#c5a059]/20 text-[#c5a059] border border-[#c5a059]/30 rounded-lg">
+            <i data-lucide="menu"></i>
         </button>
     </header>
 
-    <!-- Mobile Sidebar Drawer -->
-    <div id="mobile-overlay" class="fixed inset-0 md:hidden" onclick="toggleMobileMenu()"></div>
-    <aside id="mobile-sidebar" class="fixed top-0 right-0 w-64 h-full sidebar-dark shadow-2xl md:hidden overflow-y-auto">
+    <!-- Mobile Sidebar Drawer (The Example Request) -->
+    <div id="mobile-overlay" onclick="toggleMobileMenu()"></div>
+    <aside id="mobile-sidebar" class="sidebar-dark shadow-2xl flex flex-col">
         <div class="p-6 border-b border-emerald-900/50 flex justify-between items-center">
-            <h2 class="font-black text-[#c5a059]">القائمة</h2>
-            <button onclick="toggleMobileMenu()" class="text-white hover:text-[#c5a059]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+            <div class="flex flex-col">
+                <span class="text-xs text-emerald-400 font-bold tracking-widest uppercase">الإدارة الإسلامية</span>
+                <h2 class="font-black text-[#c5a059] text-xl">قائمة التنقل</h2>
+            </div>
+            <button onclick="toggleMobileMenu()" class="p-2 text-emerald-200 hover:text-white rounded-full hover:bg-emerald-900/50">
+                <i data-lucide="x"></i>
             </button>
         </div>
-        <nav class="p-4">
-            <ul class="space-y-2">
-                <li><button onclick="scrollToSection('intro'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-bold block">المنهج الاستراتيجي</button></li>
-                <li><button onclick="scrollToSection('planning-steps'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-bold block">خطوات التخطيط</button></li>
-                <li><button onclick="scrollToSection('factors'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-bold block">أركان الخطة</button></li>
-                <li><button onclick="scrollToSection('details'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-bold block">تحليل للمخاطر</button></li>
-                <li><button onclick="scrollToSection('management_sources'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-bold block">الخلاصة الإدارية</button></li>
-                <li><button onclick="scrollToSection('quiz'); toggleMobileMenu()" class="nav-item w-full text-right px-4 py-3 rounded-xl transition-colors font-black text-yellow-400 block border-t border-emerald-900 mt-4 pt-4">اختبر معلوماتك</button></li>
-            </ul>
+        <nav class="flex-1 overflow-y-auto p-4 space-y-2">
+            <button onclick="scrollToSection('intro'); toggleMobileMenu()" class="mobile-nav-btn">
+                <i data-lucide="compass"></i>
+                <span class="font-bold">المنهج الاستراتيجي</span>
+            </button>
+            <button onclick="scrollToSection('planning-steps'); toggleMobileMenu()" class="mobile-nav-btn">
+                <i data-lucide="list-checks"></i>
+                <span class="font-bold">خطوات التخطيط</span>
+            </button>
+            <button onclick="scrollToSection('factors'); toggleMobileMenu()" class="mobile-nav-btn">
+                <i data-lucide="users"></i>
+                <span class="font-bold">أركان الخطة</span>
+            </button>
+            <button onclick="scrollToSection('details'); toggleMobileMenu()" class="mobile-nav-btn">
+                <i data-lucide="shield-alert"></i>
+                <span class="font-bold">تحليل للمخاطر</span>
+            </button>
+            <button onclick="scrollToSection('management_sources'); toggleMobileMenu()" class="mobile-nav-btn">
+                <i data-lucide="file-text"></i>
+                <span class="font-bold">الخلاصة الإدارية</span>
+            </button>
+            <div class="border-t border-emerald-900/50 my-4 pt-4">
+                <button onclick="scrollToSection('quiz'); toggleMobileMenu()" class="mobile-nav-btn text-yellow-400">
+                    <i data-lucide="award" class="!text-yellow-400"></i>
+                    <span class="font-black italic underline decoration-wavy">اختبر معلوماتك</span>
+                </button>
+            </div>
         </nav>
+        <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-center">
+             <p class="text-[10px] text-emerald-500 mb-1">إعداد وتقديم</p>
+             <p class="font-bold text-[#c5a059] text-sm">د. خديجة يحيى عبد الصمد</p>
+        </div>
     </aside>
 
-    <!-- Desktop Sidebar (Hidden on Mobile) -->
+    <!-- Desktop Sidebar -->
     <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0 hidden md:flex">
         <div class="p-8 border-b border-emerald-900/50">
             <div class="mb-6 text-center">
-                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">⬅ الرجوع</a>
+                <a href="#" onclick="history.back()" class="inline-flex items-center justify-center gap-2 bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg">
+                    <i data-lucide="arrow-right"></i>
+                    <span>الرجوع للمقرر</span>
+                </a>
             </div>
             <h1 class="text-2xl font-black text-[#c5a059] mb-1">المحاضرة الخامسة</h1>
             <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">التخطيط الاستراتيجي للهجرة</p>
         </div>
         <nav class="flex-1 overflow-y-auto py-4" id="desktopNav">
             <ul class="space-y-1">
-                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold">المنهج الاستراتيجي</button></li>
-                <li><button onclick="scrollToSection('planning-steps')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">خطوات التخطيط</button></li>
-                <li><button onclick="scrollToSection('factors')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">أركان الخطة</button></li>
-                <li><button onclick="scrollToSection('details')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">تحليل للمخاطر</button></li>
-                <li><button onclick="scrollToSection('management_sources')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">الخلاصة الإدارية</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4">اختبر معلوماتك</button></li>
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold"><i data-lucide="compass" class="w-5 h-5"></i> المنهج الاستراتيجي</button></li>
+                <li><button onclick="scrollToSection('planning-steps')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold"><i data-lucide="list-checks" class="w-5 h-5"></i> خطوات التخطيط</button></li>
+                <li><button onclick="scrollToSection('factors')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold"><i data-lucide="users" class="w-5 h-5"></i> أركان الخطة</button></li>
+                <li><button onclick="scrollToSection('details')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold"><i data-lucide="shield-alert" class="w-5 h-5"></i> تحليل للمخاطر</button></li>
+                <li><button onclick="scrollToSection('management_sources')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold"><i data-lucide="file-text" class="w-5 h-5"></i> الخلاصة الإدارية</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4"><i data-lucide="award" class="w-5 h-5"></i> اختبر معلوماتك</button></li>
             </ul>
         </nav>
         <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-xs text-emerald-400 text-center">
@@ -159,15 +224,15 @@
             <div class="max-w-5xl mx-auto w-full">
                 <div class="bg-white rounded-3xl p-10 shadow-xl border-t-8 border-[#c5a059] mb-12 relative overflow-hidden">
                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#043927] opacity-5 rounded-full"></div>
-                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">الهجرة النبوية: نموذج للتخطيط الفعال</h2>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6 font-serif">الهجرة النبوية: نموذج للتخطيط الفعال</h2>
                     <p class="text-xl text-gray-700 leading-relaxed mb-8">
                         لم تكن الهجرة النبوية فعلاً عشوائياً، بل كانت <strong>"نموذجاً استراتيجياً"</strong> يجمع بين الأخذ بالأسباب والتوكل المطلق. لقد قدم النبي ﷺ درساً في إعمال الفكر، والمشورة، ودراسة الواقع، وتحويل الرؤية الإيمانية إلى "خطة تشغيلية" ناجحة.
                     </p>
                     <div class="flex flex-wrap gap-6 text-sm font-bold text-[#c5a059]">
-                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🔍</span>تحليل الواقع</div>
-                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🎯</span>وضوح الرؤية</div>
-                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>🛡️</span>إدارة المخاطر</div>
-                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full"><span>⚙️</span>الإجراءات التنفيذية</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 shadow-sm">🔍 تحليل الواقع</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 shadow-sm">🎯 وضوح الرؤية</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 shadow-sm">🛡️ إدارة المخاطر</div>
+                        <div class="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100 shadow-sm">⚙️ الإجراءات التنفيذية</div>
                     </div>
                 </div>
             </div>
@@ -182,42 +247,42 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-6">
-                    <div class="step-card">
-                        <h3 class="text-xl font-black text-[#043927] mb-4">1- تحليل الواقع واستشراف المستقبل</h3>
+                    <div class="step-card group">
+                        <div class="flex items-center gap-4 mb-4">
+                             <div class="bg-[#043927] text-[#c5a059] w-10 h-10 rounded-full flex items-center justify-center font-black">1</div>
+                             <h3 class="text-xl font-black text-[#043927]">تحليل الواقع واستشراف المستقبل</h3>
+                        </div>
                         <p class="text-gray-700 leading-relaxed mb-4">
                             بدأ النبي ﷺ بدراسة <strong>البيئة الداخلية</strong> في مكة، حيث أدرك أن استمرار الدعوة هناك أصبح صعباً بسبب تصاعد الاضطهاد. ثم انتقل لدراسة <strong>البيئة الخارجية</strong> للبحث عن "بيئة خصبة" بديلة، ووقع الاختيار على يثرب لوجود روابط اجتماعية (أخوال أبيه) واستجابة أهلها (الأوس والخزرج) للدعوة.
                         </p>
-                        <div class="bg-emerald-50 p-4 rounded-xl text-sm border-r-4 border-emerald-600">
+                        <div class="bg-emerald-50 p-4 rounded-xl text-sm border-r-4 border-emerald-600 shadow-sm">
                             <strong class="text-emerald-900 block mb-2">بناء التحالفات والتمهيد الاستراتيجي:</strong>
-                            شمل ذلك عرض الدعوة على القبائل في مواسم الحج لبناء "قوة ومنعة"، وعقد بيعة العقبة الأولى التي تبعها إرسال مصعب بن عمير لتهيئة المدينة اجتماعياً ونفسياً. ثم جاءت بيعة العقبة الثانية كـ "اتفاقية دفاع مشترك"، وتلاها وضع نظام النقباء (12 نقيباً) كقيادات وسيطة لتنظيم شؤون المجتمع الجديد إدارياً.
+                            شمل ذلك عرض الدعوة على القبائل في مواسم الحج لبناء "قوة ومنعة"، وعقد بيعة العقبة الأولى، ثم بيعة العقبة الثانية كـ "اتفاقية دفاع مشترك"، وتلاها وضع نظام النقباء لتنظيم شؤون المجتمع الجديد.
                         </div>
                     </div>
 
                     <div class="step-card">
-                        <h3 class="text-xl font-black text-[#043927] mb-4">2- تحديد الرؤية</h3>
+                         <div class="flex items-center gap-4 mb-4">
+                             <div class="bg-[#043927] text-[#c5a059] w-10 h-10 rounded-full flex items-center justify-center font-black">2</div>
+                             <h3 class="text-xl font-black text-[#043927]">تحديد الرؤية والرسالة</h3>
+                        </div>
                         <p class="text-gray-700 leading-relaxed">
-                            تميز التخطيط النبوي بوجود رؤية مستقبلية واضحة لانتشار الإسلام في الأرض، ورسالة أساسية وهي دعوة الناس إلى الله. عبر النبي ﷺ عن هذه الرؤية الشاملة في أحاديثه، ومن أبرزها حديث تميم الداري الذي يجسد المدى العالمي للدعوة.
+                            تميز التخطيط النبوي بوجود رؤية مستقبلية واضحة لانتشار الإسلام في الأرض، ورسالة أساسية وهي دعوة الناس إلى الله. تمثلت الرسالة في تحويل يثرب إلى مركز إشعاع عالمي (المدينة المنورة).
                         </p>
                     </div>
 
                     <div class="step-card">
-                        <h3 class="text-xl font-black text-[#043927] mb-4">3- تحديد الرسالة</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            تُعرف الرسالة بأنها <strong>"بيان رسمي يحدد الغرض الأساسي لعمل المؤسسة"</strong>، ويوضح الدور الفريد والمتميز الذي تقوم به وتؤديه في المجتمع. وفي الهجرة، كانت الرسالة هي تحويل يثرب إلى "المدينة المنورة" كقاعدة عالمية لنشر قيم العدل والتوحيد.
-                        </p>
-                    </div>
-
-                    <div class="step-card">
-                        <h3 class="text-xl font-black text-[#043927] mb-4">4- تحديد الأهداف</h3>
-                        <p class="text-gray-700 mb-4">الأهداف هي غايات أو نتائج مستقبلية تسعى المؤسسة أو الدولة للوصول إليها ضمن إطار زمني محدد. وكان هدف النبي ﷺ من هجرته:</p>
-                        <ul class="space-y-3">
+                         <div class="flex items-center gap-4 mb-4">
+                             <div class="bg-[#043927] text-[#c5a059] w-10 h-10 rounded-full flex items-center justify-center font-black">3</div>
+                             <h3 class="text-xl font-black text-[#043927]">تحديد الأهداف الاستراتيجية</h3>
+                        <ul class="mt-4 space-y-3">
                             <li class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
-                                <span class="bg-[#043927] text-[#c5a059] w-8 h-8 rounded-full flex items-center justify-center font-bold">أ</span>
-                                <span class="text-gray-800 font-bold">الانتقال من الاستضعاف إلى القوة:</span> من مرحلة الاضطهاد إلى مرحلة التمكين.
+                                <span class="bg-[#c5a059] text-[#043927] w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">أ</span>
+                                <span class="text-gray-800">الانتقال من الاستضعاف إلى القوة.</span>
                             </li>
                             <li class="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
-                                <span class="bg-[#043927] text-[#c5a059] w-8 h-8 rounded-full flex items-center justify-center font-bold">ب</span>
-                                <span class="text-gray-800 font-bold">توفير بيئة آمنة للدعوة:</span> إيجاد مناخ ملائم يضمن استمرارية نشر الدعوة بعيداً عن تضييق قريش.
+                                <span class="bg-[#c5a059] text-[#043927] w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">ب</span>
+                                <span class="text-gray-800">توفير بيئة آمنة للدعوة وإقامة الدولة.</span>
                             </li>
                         </ul>
                     </div>
@@ -231,20 +296,21 @@
                 <div class="text-center mb-16">
                     <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">أركان فريق العمل</span>
                     <h2 class="text-4xl md:text-5xl font-black text-[#043927] mt-2 mb-6">أركان الخطة وتوزيع الأدوار</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">توزيع المهام بناءً على الكفاءة والأمانة لضمان أقصى درجات الفعالية.</p>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12 text-center">
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(1)">🤝<p class="text-[10px] font-black mt-2">اختيار الصاحب</p></div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(2)">🛌<p class="text-[10px] font-black mt-2">علي بن أبي طالب</p></div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(3)">📡<p class="text-[10px] font-black mt-2">عبدالله بن أبي بكر</p></div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(4)">🧺<p class="text-[10px] font-black mt-2">أسماء بنت أبي بكر</p></div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(5)">🐑<p class="text-[10px] font-black mt-2">عامر بن فهيرة</p></div>
-                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(6)">🧭<p class="text-[10px] font-black mt-2">عبدالله بن أريقط</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(1)">🤝<p class="text-[10px] font-black mt-2">اختيار الصاحب</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(2)">🛌<p class="text-[10px] font-black mt-2">علي بن أبي طالب</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(3)">📡<p class="text-[10px] font-black mt-2">عبدالله بن أبي بكر</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(4)">🧺<p class="text-[10px] font-black mt-2">أسماء بنت أبي بكر</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(5)">🐑<p class="text-[10px] font-black mt-2">عامر بن فهيرة</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059] transition-all" onclick="showFactor(6)">🧭<p class="text-[10px] font-black mt-2">عبدالله بن أريقط</p></div>
                 </div>
 
                 <div id="factorDetail" class="bg-[#043927] text-white rounded-3xl p-10 flex flex-col justify-center items-start border-b-8 border-[#c5a059] shadow-2xl transition-all duration-500 min-h-[250px]">
                     <div class="w-full">
-                        <h3 id="factorTitle" class="text-3xl font-black text-[#c5a059] mb-4">اختر ركناً لاستكشاف الدور</h3>
+                        <h3 id="factorTitle" class="text-3xl font-black text-[#c5a059] mb-4 underline decoration-emerald-800">اختر ركناً لاستكشاف الدور</h3>
                         <div id="factorDesc" class="text-lg text-emerald-50 leading-relaxed mb-6">اضغط على الأيقونات أعلاه لقراءة شرح دور كل شخصية في الخطة.</div>
                     </div>
                 </div>
@@ -256,27 +322,27 @@
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-16">
                     <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">إدارة المخاطر (Risk Management)</span>
-                    <h2 class="text-4xl font-black text-[#043927] mb-6">تحليل المخاطر: لماذا نجحت الخطة تقنياً؟</h2>
+                    <h2 class="text-4xl font-black text-[#043927] mb-6 font-serif underline decoration-[#c5a059]">تحليل المخاطر: لماذا نجحت الخطة تقنياً؟</h2>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm flex flex-col h-full">
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-md flex flex-col h-full hover:shadow-lg transition-shadow">
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">🧩</div>
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl shadow-lg">🧩</div>
                             <h3 class="text-2xl font-black text-[#043927]">التضليل الاستراتيجي</h3>
                         </div>
                         <p class="text-gray-700 leading-relaxed mb-6 flex-grow text-sm">
-                            نام علي بن أبي طالب في فراش النبي ﷺ لم يكن عملاً بطولياً فحسب، بل هو <strong>"تمويه تكتيكي"</strong> لشراء المورد الأغلى وهو (الزمن).
+                            نام علي بن أبي طالب في فراش النبي ﷺ لم يكن عملاً بطولياً فحسب، بل هو <strong>"تمويه تكتيكي"</strong> لشراء المورد الأغلى وهو (الزمن). هذا التضليل أربك حسابات قريش وعطل ملاحقتهم المبكرة.
                         </p>
                     </div>
 
-                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-sm flex flex-col h-full">
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-t-4 border-[#c5a059] shadow-md flex flex-col h-full hover:shadow-lg transition-shadow">
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl">👥</div>
+                            <div class="w-14 h-14 bg-[#043927] text-[#c5a059] rounded-2xl flex items-center justify-center text-3xl shadow-lg">👥</div>
                             <h3 class="text-2xl font-black text-[#043927]">تكامل سلاسل الإمداد</h3>
                         </div>
                         <p class="text-gray-700 leading-relaxed mb-6 flex-grow text-sm">
-                            أسماء بنت أبي بكر أمنت تدفق الإمدادات الحيوية، وعامر بن فهيرة لم يوفر الغذاء فحسب، بل قام بـ <strong>"محو البيانات"</strong> عبر مسح آثار الأقدام.
+                            أسماء بنت أبي بكر أمنت تدفق الإمدادات الحيوية، وعامر بن فهيرة لم يوفر الغذاء فحسب، بل قام بـ <strong>"محو البيانات"</strong> عبر مسح آثار الأقدام، مما أعمى قصاصي الأثر عن المسار الحقيقي.
                         </p>
                     </div>
                 </div>
@@ -286,11 +352,14 @@
         <!-- Section 5: Summary -->
         <section id="management_sources" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
             <div class="max-w-6xl mx-auto w-full">
-                <div class="bg-[#043927] text-white p-10 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl">
-                    <h3 class="text-2xl font-black text-[#c5a059] mb-6 text-center">الخلاصة الإدارية للهجرة</h3>
-                    <p class="text-lg leading-relaxed text-center max-w-4xl mx-auto mb-8">
+                <div class="bg-[#043927] text-white p-12 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-24 h-24 bg-[#c5a059] opacity-10 rounded-br-full"></div>
+                    <h3 class="text-3xl font-black text-[#c5a059] mb-8 text-center font-serif">الخلاصة الإدارية للهجرة</h3>
+                    <!-- Image was removed here as requested -->
+                    <p class="text-xl leading-relaxed text-center max-w-4xl mx-auto mb-8 font-medium italic text-emerald-50">
                         تثبت الهجرة أن التخطيط هو <strong>"إدارة المستقبل بالحاضر"</strong>. النجاح لم يكن صدفة، بل كان نتيجة لإدارة موارد كفؤة، وتحليل معلوماتي دقيق، وتغطية لوجستية محكمة، فوقها جميعاً قيادة ملهمة تثق في نصر الله ولكنها لا تغفل عن ربط الناقة.
                     </p>
+                    <div class="w-32 h-1 bg-[#c5a059] mx-auto rounded-full"></div>
                 </div>
             </div>
         </section>
@@ -302,7 +371,7 @@
                     <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر معلوماتك</h2>
                     <p class="text-gray-600">أسئلة لتقييم فهمك لنموذج التخطيط النبوي في الهجرة.</p>
                 </div>
-                <div id="quizContainer" class="space-y-6">
+                <div id="quizContainer" class="grid grid-cols-1 gap-6">
                     <!-- يتم التحميل عبر JS -->
                 </div>
             </div>
@@ -311,16 +380,26 @@
     </main>
 
     <script>
-        // دالة لفتح وإغلاق القائمة في الموبيل
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initQuiz();
+            initScrollSpy();
+            showFactor(1);
+        });
+
+        // دالة لفتح وإغلاق القائمة في الموبيل (إصلاح شامل)
         function toggleMobileMenu() {
             const sidebar = document.getElementById('mobile-sidebar');
             const overlay = document.getElementById('mobile-overlay');
             if (sidebar.classList.contains('open')) {
                 sidebar.classList.remove('open');
                 overlay.style.display = 'none';
+                document.body.style.overflow = ''; // استعادة السكرول
             } else {
                 sidebar.classList.add('open');
                 overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // منع سكرول الخلفية
             }
         }
 
@@ -331,6 +410,7 @@
                        <ul class='space-y-2 text-emerald-50'>
                          <li>• ساهم في إعداد الموارد المادية (الراحلتين).</li>
                          <li>• كان رفيقاً في أدق تفاصيل الرحلة وفي الغار.</li>
+                         <li>• يمثل نموذج الوفاء المطلق.</li>
                        </ul>`
             },
             2: { 
@@ -338,7 +418,7 @@
                 desc: `<p class='text-lg mb-4'><strong>الدور:</strong> القيام بعملية التمويه التكتيكي لشراء الوقت للقائد.</p>
                        <ul class='space-y-2 text-emerald-50'>
                          <li>• نام في فراش النبي ﷺ لتضليل قريش ليلة المؤامرة.</li>
-                         <li>• أدى دوراً حيوياً في رد الأمانات لأهلها.</li>
+                         <li>• أدى دوراً حيوياً في رد الأمانات لأهلها لترسيخ الثقة والنزاهة.</li>
                        </ul>`
             },
             3: { 
@@ -354,6 +434,7 @@
                 desc: `<p class='text-lg mb-4'><strong>الدور:</strong> تأمين سلاسل الإمداد الحيوية في ظروف أمنية قاسية.</p>
                        <ul class='space-y-2 text-emerald-50'>
                          <li>• قامت بتجهيز ونقل الزاد والماء سراً إلى الغار.</li>
+                         <li>• تجسدت في شخصيتها الشجاعة والإبداع الإداري (ذات النطاقين).</li>
                        </ul>`
             },
             5: { 
@@ -361,6 +442,7 @@
                 desc: `<p class='text-lg mb-4'><strong>الدور:</strong> تأمين "الأثر" الرقمي والمكاني وتوفير القوت.</p>
                        <ul class='space-y-2 text-emerald-50'>
                          <li>• كان يرعى الغنم خلف عبدالله بن أبي بكر لمحو آثار أقدامه.</li>
+                         <li>• وفر الحليب للفريق في الغار كدعم لوجستي غذائي.</li>
                        </ul>`
             },
             6: { 
@@ -368,14 +450,15 @@
                 desc: `<p class='text-lg mb-4'><strong>الدور:</strong> الدليل الخبير والقيادة الفنية في المسارات غير التقليدية.</p>
                        <ul class='space-y-2 text-emerald-50'>
                          <li>• تم استئجاره لخبرته العميقة في الطرق والمسالك الوعرة.</li>
+                         <li>• قاد الرحلة عبر طرق غير مألوفة للعدو لضمان السلامة التقنية للمسار.</li>
                        </ul>`
             }
         };
 
         const questions = [
-            { q: "ما هو المبدأ الذي طبقه النبي ﷺ بزيارته لأبي بكر وقت الظهيرة؟", a: "السرية التامة وحفظ المعلومات.", r: "اختار وقتاً غير معتاد للزيارة لضمان عدم لفت الأنظار." },
+            { q: "ما هو المبدأ الذي طبقه النبي ﷺ بزيارته لأبي بكر وقت الظهيرة؟", a: "السرية التامة وحفظ المعلومات.", r: "اختار وقتاً غير معتاد للزيارة لضمان عدم لفت الأنظار وبدء التنفيذ بكتمان." },
             { q: "ما الهدف الاستراتيجي من اتجاه النبي ﷺ جنوباً نحو غار ثور؟", a: "تضليل الملاحقين واستخدام مسار عكسي.", r: "إرباك حسابات قريش التي بحثت عنه في الطريق التقليدي شمالاً." },
-            { q: "ماذا يمثل نظام النقباء الـ 12 في الإدارة النبوية؟", a: "تنسيق إداري وقيادات وسيطة (Middle Management).", r: "تنظيم شؤون المجتمع الجديد وتوزيع المسؤوليات." }
+            { q: "ماذا يمثل نظام النقباء الـ 12 في الإدارة النبوية؟", a: "تنسيق إداري وقيادات وسيطة (Middle Management).", r: "تنظيم شؤون المجتمع الجديد وتوزيع المسؤوليات لضمان الاستدامة." }
         ];
 
         function showFactor(id) {
@@ -397,13 +480,20 @@
             
             questions.forEach((item, index) => {
                 const qDiv = document.createElement('div');
-                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-emerald-50';
+                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-emerald-50 hover:border-emerald-200 transition-colors';
                 qDiv.innerHTML = `
-                    <h3 class="text-lg font-black text-[#043927] mb-3">س${index+1}: ${item.q}</h3>
-                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-[#c5a059] text-[#043927] px-4 py-2 rounded-lg text-xs font-bold hover:bg-yellow-600 transition-colors">كشف التحليل</button>
-                    <div id="ans${index}" class="quiz-answer">
-                        <p class="text-emerald-800 font-bold text-md">✅ الإجابة: ${item.a}</p>
-                        <p class="text-gray-500 text-xs mt-1 italic">${item.r}</p>
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[#043927] text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold flex-shrink-0">س${index+1}</div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-[#043927] mb-3">${item.q}</h3>
+                            <button onclick="toggleAnswer('ans${index}', this)" class="bg-[#c5a059] text-[#043927] px-4 py-2 rounded-lg text-xs font-bold hover:bg-yellow-600 transition-colors shadow-sm">كشف التحليل</button>
+                            <div id="ans${index}" class="quiz-answer">
+                                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                                    <p class="text-emerald-800 font-bold text-md mb-2">✅ الإجابة: ${item.a}</p>
+                                    <p class="text-gray-500 text-xs italic">💡 تفسير: ${item.r}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
                 container.appendChild(qDiv);
@@ -425,25 +515,26 @@
             const section = document.getElementById(sectionId);
             const mainContent = document.getElementById('mainContent');
             if (section && mainContent) {
-                mainContent.scrollTo({ top: section.offsetTop - 60, behavior: 'smooth' });
+                const offset = 80; // تعويض ارتفاع الهيدر
+                mainContent.scrollTo({ top: section.offsetTop - offset, behavior: 'smooth' });
             }
         }
 
         function initScrollSpy() {
             const sections = document.querySelectorAll('section');
-            const navItems = document.querySelectorAll('.nav-item');
+            const desktopNavItems = document.querySelectorAll('#desktopNav .nav-item');
             const mainContent = document.getElementById('mainContent');
             if (!mainContent) return;
             
             mainContent.addEventListener('scroll', () => {
                 let current = '';
-                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 2);
                 sections.forEach(section => {
                     if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
                         current = section.id;
                     }
                 });
-                navItems.forEach(item => {
+                desktopNavItems.forEach(item => {
                     item.classList.remove('active');
                     const onclickAttr = item.getAttribute('onclick');
                     if (onclickAttr && onclickAttr.includes(current)) {
@@ -452,12 +543,6 @@
                 });
             });
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initQuiz();
-            initScrollSpy();
-            showFactor(1);
-        });
     </script>
 </body>
 </html>
