@@ -1,1 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الثقافة التنظيمية - المحاضرة الثانية (الأسس الإسلامية للتعددية الثقافية)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F8F9FA;
+            color: #1F2937;
+        }
+        .sidebar-dark {
+            background-color: #043927; 
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z' fill='%23c5a059' fill-opacity='0.05'/%3E%3C/svg%3E");
+            color: white;
+            border-left: 4px solid #c5a059;
+        }
+        .nav-item {
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: #c5a059;
+        }
+        .nav-item.active {
+            background-color: #c5a059;
+            color: #043927;
+            font-weight: 800;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(4, 57, 39, 0.2);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 250px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+        .islamic-pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0l5 15h15l-12 9 5 16-13-10-13 10 5-16-12-9h15z' fill='%23043927' fill-opacity='0.03'/%3E%3C/svg%3E");
+        }
+        .step-card {
+            border-right: 4px solid #c5a059;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            border-right-color: #043927;
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
+    <!-- Sidebar (Desktop) -->
+    <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-8 border-b border-emerald-900/50">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">⬅ الرجوع</a>
+            </div>
+            <h1 class="text-2xl font-black text-[#c5a059] mb-1">المحاضرة الثانية</h1>
+            <p class="text-xs text-emerald-200 font-medium tracking-widest uppercase">التعامل مع التعددية الثقافية</p>
+        </div>
+        
+        <!-- Desktop Nav -->
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-bold">مفهوم الثقافة</button></li>
+                <li><button onclick="scrollToSection('definitions')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">الثقافة التنظيمية</button></li>
+                <li><button onclick="scrollToSection('diversity-pillars')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">أسس التعددية الثقافية</button></li>
+                <li><button onclick="scrollToSection('summary')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold">الخلاصة الإدارية</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-black text-yellow-400 border-t border-emerald-900 mt-4">اختبر معلوماتك</button></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden p-4 bg-[#032d1f] border-b border-emerald-900">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-3 bg-[#043927] border border-emerald-800 rounded-xl text-emerald-100 font-bold outline-none shadow-inner">
+                <option value="intro">مفهوم الثقافة</option>
+                <option value="definitions">الثقافة التنظيمية</option>
+                <option value="diversity-pillars">أسس التعددية الثقافية</option>
+                <option value="summary">الخلاصة الإدارية</option>
+                <option value="quiz">اختبر معلوماتك</option>
+            </select>
+        </div>
+
+        <div class="p-6 bg-[#032d1f] border-t border-emerald-900 text-xs text-emerald-400 hidden md:block text-center">
+            <p class="font-bold text-[#c5a059]">د. خديجة يحيى عبد الصمد</p>
+            <p>استاذ ادارة الاعمال جامعة الأزهر- كلية التجارة</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-[#FDFBF7] relative scroll-smooth islamic-pattern-bg" id="mainContent">
+        
+        <!-- Section 1: Intro -->
+        <section id="intro" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="bg-white rounded-3xl p-10 shadow-xl border-t-8 border-[#c5a059] mb-12 relative overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#043927] opacity-5 rounded-full"></div>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mb-6">مفهوم الثقافة: الحذق والفطنة</h2>
+                    <p class="text-xl text-gray-700 leading-relaxed mb-8">
+                                الثقافة في اللغة تعني <strong>الحذق والفطنة والذكاء وسرعة الفهم</strong>. أما اصطلاحاً فهي "مجموعة العلوم والمعارف والفنون التي يُطلب الحذق فيها"، وتشمل كل ما يكتسبه الإنسان كعضو في المجتمع من أكثر التعاريف ارتبطا بمجال الادارة التعريف السلوكي والاجتماعي للثقافة، وهو يعرف الثقافة بانها "مجموعة أنماط النشاط البشري داخل مجتمع معين، وتشمل طريقة تصرف الافراد وتفكيرهم وسلوكهم بناء علي القيم المشتركة وهي تشمل (المكونات المادية )مثل الادواتوالملبس( وغير المادية )مثل اللغة والدين والقيم .
+                         </p>
+                    <div class="bg-emerald-50 p-5 rounded-2xl border-r-4 border-emerald-600 mb-8">
+                        <strong class="text-emerald-900 block mb-2">💡 مثال من الحياة الواقعية:</strong>
+                        <p class="text-gray-700 italic">الموظف الذي يمتلك "ثقافة" في تخصصه هو الشخص الذي يستطيع حل المشكلات التقنية بسرعة بديهة ناتجة عن تراكم خبراته ومعارفه، وليس فقط عن طريق اتباع الدليل الفني.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Definitions -->
+        <section id="definitions" class="min-h-screen p-8 md:p-16 border-b border-gray-100 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">ما هي ثقافة المنظمة؟</span>
+                    <h2 class="text-4xl font-black text-[#043927] mt-2 mb-6">الثقافة التنظيمية من المنظور العام والإسلامي</h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">الثقافة التنظيمية (عام)</h3>
+                        <p class="text-gray-700 leading-relaxed">هي مجموعة القيم والمعتقدات والممارسات المشتركة التي تشكل البيئة الفريدة للمنظمة وتحدد كيفية تصرف الموظفين.</p>
+                    </div>
+                    <div class="step-card">
+                        <h3 class="text-xl font-black text-[#043927] mb-4">الثقافة التنظيمية (إسلامي)</h3>
+                        <p class="text-gray-700 leading-relaxed">هي منظومة من القيم والأخلاق المستمدة من القرآن والسنة، والتي تحكم سلوك الأفراد وأداءهم داخل المنظمة لتحقيق الفلاح.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Diversity Pillars (NEW) -->
+        <section id="diversity-pillars" class="min-h-screen p-8 md:p-16 bg-white flex flex-col justify-center border-b border-gray-100">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <span class="text-[#c5a059] font-black tracking-widest text-sm uppercase">التعامل مع الآخر</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#043927] mt-2 mb-6">الأسس الإسلامية للتعددية الثقافية</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">وضع الإسلام إطاراً شاملاً للتعامل مع التنوع الثقافي في بيئة العمل والمجتمع، يضمن الكرامة والعدل للجميع.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-12 text-center">
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(1)">🤝<p class="text-[10px] font-black mt-2">التكريم الإنساني</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(2)">🌍<p class="text-[10px] font-black mt-2">مبدأ التعارف</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(3)">🕊️<p class="text-[10px] font-black mt-2">حرية المعتقد</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(4)">⚖️<p class="text-[10px] font-black mt-2">العدل والقسط</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(5)">❤️<p class="text-[10px] font-black mt-2">البر والإحسان</p></div>
+                    <div class="factor-btn p-4 bg-[#FDFBF7] border-2 border-emerald-50 rounded-2xl cursor-pointer hover:border-[#c5a059]" onclick="showFactor(6)">🛡️<p class="text-[10px] font-black mt-2">حفظ الحقوق</p></div>
+                </div>
+
+                <div id="factorDetail" class="bg-[#043927] text-white rounded-3xl p-10 flex flex-col justify-center items-start border-b-8 border-[#c5a059] shadow-2xl transition-all duration-500 min-h-[250px]">
+                    <div class="w-full">
+                        <h3 id="factorTitle" class="text-3xl font-black text-[#c5a059] mb-4">اختر أساساً لاستكشاف التفاصيل</h3>
+                        <div id="factorDesc" class="text-lg text-emerald-50 leading-relaxed mb-6">اضغط على الأيقونات أعلاه لقراءة المبدأ الإسلامي وكيفية تطبيقه في المنظمة.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Summary -->
+        <section id="summary" class="min-h-screen p-8 md:p-16 islamic-pattern-bg flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="bg-[#043927] text-white p-10 rounded-3xl border-b-8 border-[#c5a059] shadow-2xl text-center">
+                    <h3 class="text-2xl font-black text-[#c5a059] mb-6">الخلاصة الإدارية</h3>
+                    <p class="text-lg leading-relaxed max-w-4xl mx-auto">
+                        الإسلام قدم نموذجاً متقدماً لـ <strong>"إدارة التنوع" (Diversity Management)</strong> يسبق النظريات الإدارية الحديثة. من خلال التكريم العام والعدل المطلق، تتحول التعددية الثقافية داخل المنظمة من مصدر للنزاع إلى مصدر للقوة والإبداع والتعاون العالمي.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Quiz (10 Questions) -->
+        <section id="quiz" class="min-h-screen p-8 md:p-16 bg-[#FDFBF7]">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-[#043927] mb-4">اختبر نفسك (10 أسئلة)</h2>
+                    <p class="text-gray-600">أسئلة لقياس فهمك لمفاهيم الثقافة والتعددية من المنظور الإسلامي.</p>
+                </div>
+                <div id="quizContainer" class="space-y-6"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const factorsData = {
+            1: { 
+                title: "1- التكريم الإنساني العام", 
+                desc: `<p class='text-lg mb-4'>ينظر الإسلام إلى جميع البشر على قدم المساواة في الكرّامة الإنسانية بغض النظر عن معتقداتهم أو ثقافاتهم.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>أن تضع المنظمة ميثاقاً أخلاقياً يمنع أي شكل من أشكال التنمر أو السخرية من خلفيات الموظفين، احتراماً لكرامتهم كبشر أولاً.</p>
+                       </div>`
+            },
+            2: { 
+                title: "2- مبدأ التعارف وسنة التنوع", 
+                desc: `<p class='text-lg mb-4'>يؤكد القرآن أن الاختلاف بين البشر في الأعراق والثقافات هو إرادة إلهية تهدف للتعارف وليس للنزاع.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>تشكيل فرق عمل متنوعة الجنسيات في المشاريع الكبرى، حيث يثري كل موظف المشروع بخلفيته الثقافية المختلفة، مما يؤدي للابتكار.</p>
+                       </div>`
+            },
+            3: { 
+                title: "3- حرية المعتقد وعدم الإكراه", 
+                desc: `<p class='text-lg mb-4'>يضمن الإسلام حرية ممارسة الشعائر الدينية والثقافية للأقليات داخل المجتمع المسلم، حيث لا يجوز الإكراه في الدين.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>سماح مدير المنظمة للموظفين من غير المسلمين بأخذ إجازات في أعيادهم الرسمية، وتوفير بيئة تحترم خصوصيتهم التعبدية.</p>
+                       </div>`
+            },
+            4: { 
+                title: "4- العدل والقسط", 
+                desc: `<p class='text-lg mb-4'>يدعو الإسلام إلى التعامل بالعدل مع الجميع بغض النظر عن انتمائهم الثقافي أو الديني.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>تطبيق معايير موحدة للترقية والمكافآت بناءً على "الأداء" فقط، دون أي تمييز بين موظف وآخر بناءً على دينه أو عرقه.</p>
+                       </div>`
+            },
+            5: { 
+                title: "5- البر والمعاملة الحسنة", 
+                desc: `<p class='text-lg mb-4'>يشجع الإسلام على التعامل بخلق رفيع ورفق مع غير المسلمين المسالمين.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>مبادرة الموظفين المسلمين بتهنئة زملائهم من الثقافات الأخرى في مناسباتهم الاجتماعية، ومساعدتهم برفق عند حاجتهم للدعم المهني.</p>
+                       </div>`
+            },
+            6: { 
+                title: "6- حفظ الحقوق", 
+                desc: `<p class='text-lg mb-4'>تضمن الدولة الإسلامية لغير المسلمين حقوقاً ثابتة تشمل الحماية، التملك، التنقل، والحفاظ على خصوصياتهم الثقافية واللغوية.</p>
+                       <div class='bg-emerald-900/50 p-4 rounded-xl border-r-4 border-[#c5a059]'>
+                         <strong class='text-[#c5a059] block mb-1'>💡 مثال واقعي:</strong>
+                         <p class='text-sm text-emerald-50'>وجود عقود عمل واضحة تضمن حقوق الموظف (الأجنبي أو المختلف ثقافةً) كاملة، مع وجود آليات عادلة لتقديم الشكاوى والحماية القانونية.</p>
+                       </div>`
+            }
+        };
+
+        const questions = [
+            { q: "ما هو أصل الثقافة في اللغة العربية؟", a: "الحذق والفطنة والذكاء وسرعة الفهم.", r: "المصدر: ص 2 في المرفق." },
+            { q: "لماذا خلق الله البشر شعوباً وقبائل مختلفة من المنظور القرآني؟", a: "لأجل التعارف والتكامل، وليس للنزاع.", r: "يؤكد مبدأ 'سنة التنوع'." },
+            { q: "ماذا يضمن مبدأ 'لا إكراه في الدين' في المنظمة؟", a: "حرية ممارسة الشعائر الدينية للأقليات وعدم إجبارهم على معتقد معين.", r: "حجر زاوية في حقوق الإنسان الإسلامية." },
+            { q: "هل يجوز التمييز في الرواتب بناءً على الثقافة أو الدين في الإسلام؟", a: "لا، لأن الإسلام يدعو للعدل والقسط مع الجميع.", r: "المعيار هو الكفاءة والأداء." },
+            { q: "ماذا يقصد بالتكريم الإنساني العام؟", a: "أن جميع البشر مكرمون لذاتهم الإنسانية بغض النظر عن أي اختلاف.", r: "مستمد من قوله تعالى 'ولقد كرمنا بني آدم'." },
+            { q: "كيف يطبق مبدأ 'البر' مع الزميل غير المسلم المسالم؟", a: "من خلال المعاملة الحسنة، الرفق، والمساعدة عند الحاجة.", r: "البر درجة أعلى من العدل." },
+            { q: "ما هي المكونات 'غير المادية' للثقافة التنظيمية؟", a: "اللغة، الدين، القيم، والمعتقدات.", r: "الأشياء التي تشكل وجدان السلوك." },
+            { q: "ما هو هدف الثقافة التنظيمية الإسلامية النهائي؟", a: "تحقيق الفلاح والنجاح في الدنيا والآخرة.", r: "تربط العمل بالغاية الوجودية." },
+            { q: "في الإدارة، ماذا يمثل 'حفظ الحقوق' للأقليات؟", a: "ضمان الحماية القانونية، التملك، والأمان الوظيفي والخصوصية الثقافية.", r: "يشمل الحقوق المادية والمعنوية." },
+            { q: "بناءً على المحاضرة، ما هو 'محرك' الإبداع في التعددية الثقافية؟", a: "استثمار الاختلافات الثقافية لتحقيق 'التعارف' وتبادل الخبرات.", r: "التنوع مصدر قوة وليس ضعف." }
+        ];
+
+        function showFactor(id) {
+            const data = factorsData[id];
+            const detailContainer = document.getElementById('factorDetail');
+            if (detailContainer) {
+                detailContainer.style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('factorTitle').innerText = data.title;
+                    document.getElementById('factorDesc').innerHTML = data.desc;
+                    detailContainer.style.opacity = '1';
+                }, 300);
+            }
+        }
+
+        function initQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+            questions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-emerald-50';
+                qDiv.innerHTML = `
+                    <h3 class="text-lg font-black text-[#043927] mb-3">س${index+1}: ${item.q}</h3>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-[#c5a059] text-[#043927] px-4 py-2 rounded-lg text-xs font-bold hover:bg-yellow-600 transition-colors">كشف الإجابة</button>
+                    <div id="ans${index}" class="quiz-answer">
+                        <p class="text-emerald-800 font-bold text-md">✅ ${item.a}</p>
+                        <p class="text-gray-500 text-xs mt-1 italic">${item.r}</p>
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function toggleAnswer(id, btn) {
+            const ans = document.getElementById(id);
+            if (ans.classList.contains('show')) {
+                ans.classList.remove('show');
+                btn.innerText = "كشف الإجابة";
+            } else {
+                ans.classList.add('show');
+                btn.innerText = "إخفاء الإجابة";
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const mainContent = document.getElementById('mainContent');
+            if (section && mainContent) {
+                mainContent.scrollTo({ top: section.offsetTop - 20, behavior: 'smooth' });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            if (!mainContent) return;
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const onclickAttr = item.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.includes(current)) item.classList.add('active');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            initScrollSpy();
+            showFactor(1);
+        });
+    </script>
+</body>
+</html>
