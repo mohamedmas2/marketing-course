@@ -17,19 +17,22 @@
     "id": 3,
     "courseId": "marketing",
     "title": "المحاضرة الثالثة",
-    "file": "marketing/lectures/lecture3.html"
+    "file": "marketing/lectures/lecture3.html",
+    "pdf": "assets/pdfs/marketing/3.pdf"
   },
   {
       "id": 4,
     "courseId": "marketing",
     "title": "المحاضرة الرابعه",
-    "file": "marketing/lectures/lectures4.html"
+    "file": "marketing/lectures/lectures4.html",
+    "pdf": "assets/pdfs/marketing/4.pdf"
   },
   {
       "id": 5,
     "courseId": "marketing",
     "title": "المحاضرة الخامسة",
-    "file": "marketing/lectures/lectures5.html"
+    "file": "marketing/lectures/lectures5.html",
+    "pdf": "assets/pdfs/marketing/5.pdf"
   },
   {
     "id": 6,
