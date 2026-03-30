@@ -60,12 +60,19 @@
       {
     "id": 10,
     "courseId": "Islamic",
+    "title": "المحاضرة الثانية",
+    "file": "Islamic/lectures/lecture2.html",
+    "pdf": "assets/pdfs/Islamic/2.pdf"
+  },
+      {
+    "id": 11,
+    "courseId": "Islamic",
     "title": "المحاضرة الرابعه",
     "file": "Islamic/lectures/lecture4.html",
     "pdf": "assets/pdfs/Islamic/4.pdf"
   },
         {
-    "id": 10,
+    "id": 12,
     "courseId": "Islamic",
     "title": "المحاضرة الخامسة",
     "file": "Islamic/lectures/lecture5.html",
