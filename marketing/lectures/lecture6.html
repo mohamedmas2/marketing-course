@@ -1,1 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التسويق - المحاضرة السادسة (حماية المستهلك)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .nav-item.active {
+            background-color: #E0F2FE;
+            color: #0369A1;
+            border-right: 4px solid #0369A1;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        /* Custom classes for quiz */
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 250px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+        /* Custom Table Styling */
+        .custom-table th {
+            background-color: #f3e8ff; /* purple-50 */
+            color: #581c87; /* purple-900 */
+        }
+        .custom-table tr:hover td {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" 
+                   class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">
+                    ⬅ الرجوع
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
+            <p class="text-sm text-amber-600 font-semibold">المحاضرة السادسة - حماية المستهلك</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1 text-sm lg:text-base">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مفهوم حماية المستهلك</button></li>
+                <li><button onclick="scrollToSection('protection_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع الحماية (من النفس والغير)</button></li>
+                <li><button onclick="scrollToSection('exploitation_areas')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مجالات الاستغلال الثمانية</button></li>
+                <li><button onclick="scrollToSection('responsibility')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مسئولية حماية المستهلك</button></li>
+                <li><button onclick="scrollToSection('methods')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أساليب توفير الحماية</button></li>
+                <li><button onclick="scrollToSection('gray_black')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التسويق الأسود والرمادي</button></li>
+                <li><button onclick="scrollToSection('remembers')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-amber-600">خلاصة (تذكر أن)</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700 font-bold">
+                <option value="intro">مفهوم حماية المستهلك</option>
+                <option value="protection_types">أنواع الحماية</option>
+                <option value="exploitation_areas">مجالات الاستغلال</option>
+                <option value="responsibility">مسئولية الحماية</option>
+                <option value="methods">أساليب توفير الحماية</option>
+                <option value="gray_black">التسويق الأسود والرمادي</option>
+                <option value="remembers">خلاصة (تذكر أن)</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section: Intro -->
+        <section id="intro" class="p-6 md:p-8 border-b border-gray-200 bg-white flex flex-col justify-center min-h-[20vh]">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-gray-50 rounded-xl p-5 md:p-6 shadow-sm border border-sky-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">حماية المستهلك (Consumer Protection)</h2>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-4">
+                        يهدف هذا المحتوى إلى تعريف الباحث بمفهوم حماية المستهلك وكيفية الحفاظ على حقوقه الاقتصادية والاجتماعية والصحية. الحماية لا تقتصر فقط على منعه من التعرض للغش، بل تشمل حمايته من قراراته الخاطئة ومن استغلال الأطراف الأخرى في السوق.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm text-gray-600">
+                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
+                        <div class="flex items-center gap-2"><span>📅</span> السبت 11 أبريل 2026م</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> أستاذ إدارة الأعمال - جامعة الأزهر</div>
+                        <div class="flex items-center gap-2"><span>☎️</span> الخط الساخن للحماية: 19588</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1- Concept & Importance -->
+        <section id="protection_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مفهوم وأنواع الحماية</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">حماية المستهلك هي حفظ حقوقه وضمان حصوله عليها، وحمايته مما قد يلحق به ضرراً ظاهراً أو غير ظاهر.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Concept -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">1. المفهوم العام</h4>
+                        <p class="text-gray-600 mb-3 text-sm">ضمان حصول المستهلك على منتجات لا تضره صحياً أو اقتصادياً، سواء كان المستهلك مدركاً لهذا الضرر أم لا.</p>
+                        <div class="bg-white p-3 rounded text-sm border-r-2 border-sky-400">
+                            <strong class="text-sky-700">مثال واقعي:</strong> سحب سيارة من السوق لوجود خلل في "الوسائد الهوائية" حتى لو لم يشتكِ العميل، لأن الشركة ملزمة بحمايته من ضرر غير ظاهر.
+                        </div>
+                    </div>
+                    <!-- Protection from Self -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
+                        <div class="text-4xl mb-4">👤</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">2. الحماية من النفس</h4>
+                        <p class="text-gray-600 mb-3 text-sm">حماية المستهلك من رغباته التي قد تضره، مثل استهلاك السجائر، الأسلحة، أو الأدوية بدون استشارة طبيب.</p>
+                        <div class="bg-white p-3 rounded text-sm border-r-2 border-amber-400">
+                            <strong class="text-amber-700">مثال واقعي:</strong> قوانين "منع بيع السجائر للقصر" هي حماية للمستهلك من نفسه ومن فضوله الذي قد يدمر صحته مستقبلاً.
+                        </div>
+                    </div>
+                    <!-- Protection from Others -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-colors">
+                        <div class="text-4xl mb-4">🏢</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">3. الحماية من الغير</h4>
+                        <p class="text-gray-600 mb-3 text-sm">منع المنتجين والموزعين من استغلال المستهلك عبر الاحتكار، الغش التجاري، أو الأسعار المبالغ فيها.</p>
+                        <div class="bg-white p-3 rounded text-sm border-r-2 border-emerald-400">
+                            <strong class="text-emerald-700">مثال واقعي:</strong> فرض عقوبات على السلاسل التجارية التي ترفع سعر "السكر" فجأة وبدون مبرر قانوني للاستفادة من حاجة الناس.
+                        </div>
+                    </div>
+                    <!-- Protection from Exploitation -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-300 transition-colors">
+                        <div class="text-4xl mb-4">📢</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">4. الحماية الإعلامية</h4>
+                        <p class="text-gray-600 mb-3 text-sm">حمايته من الإعلانات المضللة التي تعطيه وعوداً وهمية عن جودة المنتج أو خصائصه.</p>
+                        <div class="bg-white p-3 rounded text-sm border-r-2 border-purple-400">
+                            <strong class="text-purple-700">مثال واقعي:</strong> حظر إعلانات "أدوية التخسيس" التي تدعي إنقاص الوزن في يومين دون تصريح طبي، حمايةً للمستهلك من التضليل.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2- Exploitation Areas -->
+        <section id="exploitation_areas" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مجالات الاستغلال الثمانية</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">تتنوع الطرق التي يمكن من خلالها استغلال المستهلك، ويجب أن يكون الباحث على دراية بها لكشف أي خلل.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">📉</div>
+                        <h4 class="font-bold text-gray-800 text-sm">انخفاض الجودة</h4>
+                        <p class="text-xs text-gray-500 mt-1">تغيير المكونات بمواد رخيصة.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">💰</div>
+                        <h4 class="font-bold text-gray-800 text-sm">المغالاة في السعر</h4>
+                        <p class="text-xs text-gray-500 mt-1">استغلال نقص المعروض لرفع السعر.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">🛑</div>
+                        <h4 class="font-bold text-gray-800 text-sm">الاحتكار</h4>
+                        <p class="text-xs text-gray-500 mt-1">منع المنافسين من دخول السوق.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">🤥</div>
+                        <h4 class="font-bold text-gray-800 text-sm">الإعلان المضلل</h4>
+                        <p class="text-xs text-gray-500 mt-1">إعطاء بيانات غير صحيحة.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">📦</div>
+                        <h4 class="font-bold text-gray-800 text-sm">التغليف الخادع</h4>
+                        <p class="text-xs text-gray-500 mt-1">تصغير حجم العبوة مع بقاء السعر.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">🛠️</div>
+                        <h4 class="font-bold text-gray-800 text-sm">ضعف الخدمة</h4>
+                        <p class="text-xs text-gray-500 mt-1">إهمال خدمة ما بعد البيع.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">⚖️</div>
+                        <h4 class="font-bold text-gray-800 text-sm">تطفيف الموازين</h4>
+                        <p class="text-xs text-gray-500 mt-1">البيع بوزن أقل من المكتوب.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="text-2xl mb-2">📄</div>
+                        <h4 class="font-bold text-gray-800 text-sm">البيانات الناقصة</h4>
+                        <p class="text-xs text-gray-500 mt-1">عدم كتابة المكونات أو تاريخ الصلاحية.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-sky-50 p-5 rounded-xl border-r-4 border-sky-500">
+                    <p class="text-sm text-sky-900 leading-relaxed">
+                        <strong class="text-sky-700">مثال واقعي شامل:</strong> عندما تقوم شركة عصائر بتقليل نسبة "الفاكهة الطبيعية" وزيادة "السكر" دون تعديل المكتوب على العبوة، فهي تخل بـ (الجودة، الإعلان المضلل، والبيانات الناقصة) معاً.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3- Responsibility -->
+        <section id="responsibility" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-sky-800 mb-2">مسئولية حماية المستهلك</h2>
+                    <p class="text-base text-gray-600">الحماية ليست وظيفة جهة واحدة، بل هي مثلث يجمع الدولة، المنظمات، والمستهلك نفسه.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">🏛️</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">1. مسئولية الدولة</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">سن التشريعات والقوانين، وإنشاء أجهزة رقابية (مثل جهاز حماية المستهلك) وتطبيق الغرامات.</p>
+                        <p class="text-xs mt-2 bg-white p-2 rounded border border-sky-100 italic">"الدولة هي الحاكم والمراقب للسوق."</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">🏢</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">2. مسئولية المنظمات</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">الالتزام بالأخلاقيات، الصدق في الإعلانات، وضمان جودة المنتج وتوفير قطع الغيار.</p>
+                        <p class="text-xs mt-2 bg-white p-2 rounded border border-amber-100 italic">"المنظمة تضمن استمرارها برضا العميل."</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="text-2xl mb-2 text-center">👤</div>
+                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">3. مسئولية المستهلك</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">الوعي بحقوقه، قراءة البيانات، التبليغ عن المخالفات، وعدم شراء سلع مجهولة المصدر.</p>
+                        <p class="text-xs mt-2 bg-white p-2 rounded border border-emerald-100 italic">"المستهلك الواعي هو خط الدفاع الأول."</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-sm">
+                    <h3 class="text-lg font-bold text-sky-900 mb-3 flex items-center gap-2"><span>📌</span> ملاحظة هامة: الخط الساخن (19588)</h3>
+                    <p class="text-sm text-gray-700 mb-2 leading-relaxed">
+                        يعد جهاز حماية المستهلك في مصر هو الجهة الرسمية المنوط بها تلقي الشكاوى.
+                    </p>
+                    <div class="bg-emerald-50 p-4 rounded border-r-4 border-emerald-500 text-sm">
+                        <strong class="text-emerald-700">مثال واقعي:</strong> إذا اشتريت "ثلاجة" واكتشفت بها عيباً ورفضت الشركة استبدالها، فإن مسئوليتك هي الاتصال بـ 19588 (الدولة) لإجبار الشركة (المنظمة) على إعادة حقك.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4- Methods of Protection -->
+        <section id="methods" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">أساليب توفير الحماية للمستهلك</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">كيف تضمن الدولة حماية المواطن؟ هناك أساليب قانونية، تنظيمية، وإعلامية.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
+                            <span class="text-purple-600 font-bold">1.</span>
+                            <span class="text-gray-700 text-sm"><strong>الأسلوب التشريعي:</strong> قوانين تمنع الاحتكار وتحدد شروط الاسترجاع (14 يوم).</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
+                            <span class="text-purple-600 font-bold">2.</span>
+                            <span class="text-gray-700 text-sm"><strong>الأسلوب الرقابي:</strong> حملات تفتيشية مفاجئة على المصانع والأسواق للتأكد من الصلاحية.</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
+                            <span class="text-purple-600 font-bold">3.</span>
+                            <span class="text-gray-700 text-sm"><strong>الأسلوب التثقيفي:</strong> نشر برامج توعية للمواطنين لتعريفهم بالفرق بين الأصلي والمقلد.</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
+                            <span class="text-purple-600 font-bold">4.</span>
+                            <span class="text-gray-700 text-sm"><strong>الأسلوب التقني:</strong> إلزام الشركات بوضع "باركود" لتتبع المنتج وضمان مصدره.</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-purple-50 p-5 rounded-lg border-r-4 border-purple-500">
+                        <p class="text-sm text-purple-900 mb-2"><strong>تحليل:</strong> الأسلوب التثقيفي هو الأرخص والأكثر فعالية على المدى الطويل لأنه يقلل عدد المخالفات قبل حدوثها.</p>
+                        <p class="text-sm bg-white p-2 inline-block rounded border border-purple-200"><strong class="text-purple-700">مثال واقعي:</strong> حملات وزارة الصحة "تأكد من وجود العلامة المائية" على علب الدواء تمنع الناس من شراء الأدوية المغشوشة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5- Gray & Black Marketing -->
+        <section id="gray_black" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">التسويق الأسود والرمادي</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">هناك أسواق خفية تضر بالاقتصاد وبحقوق المستهلك، يجب التمييز بينها بدقة.</p>
+                </div>
+
+                <!-- جدول المقارنة -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 overflow-x-auto">
+                    <table class="w-full text-right border-collapse custom-table min-w-[700px]">
+                        <thead>
+                            <tr>
+                                <th class="p-3 border border-purple-200 font-bold w-1/4">النوع</th>
+                                <th class="p-3 border border-purple-200 font-bold w-1/3">المفهوم والتحليل</th>
+                                <th class="p-3 border border-purple-200 font-bold">مثال واقعي</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm text-gray-700">
+                            <tr>
+                                <td class="p-3 border border-gray-200 font-bold text-red-700 bg-red-50">التسويق الأسود (Black)</td>
+                                <td class="p-3 border border-gray-200">تجارة السلع المحرمة قانوناً ودولياً أو تهريبها، وهي أسواق خفية غير معلنة.</td>
+                                <td class="p-3 border border-gray-200">تجارة الأعضاء البشرية، الأسلحة المحرمة، والمخدرات.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-gray-200 font-bold text-gray-700 bg-gray-100">التسويق الرمادي (Gray)</td>
+                                <td class="p-3 border border-gray-200">بيع منتجات <strong>أصلية</strong> ولكن عبر قنوات توزيع <strong>غير معتمدة</strong>، مما يضيع حقوق الضمان.</td>
+                                <td class="p-3 border border-gray-200">شراء هاتف "آيفون" نسخة أمريكية في مصر؛ هو أصلي لكن لا يتمتع بضمان الوكيل الرسمي.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 p-4 bg-amber-50 rounded-lg text-sm border border-amber-200">
+                    <strong class="text-amber-800">كيفية مواجهة هذه الأسواق:</strong> مراجعة سلاسل التوريد، وضع غرامات، تسجيل العلامات التجارية، ونشر الوعي لدى المستهلك بالفرق بين المنتج المضمون وغير المضمون.
+                </div>
+            </div>
+        </section>
+
+        <!-- 6- Summary -->
+        <section id="remembers" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-600 mb-4">خلاصة (تذكر أن)</h2>
+                    <p class="text-lg text-gray-600">أهم النقاط الجوهرية التي يجب أن ترسخ في ذهنك من هذه المحاضرة.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 حماية المستهلك:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">هي حفظ الحقوق الاقتصادية والاجتماعية والصحية للمستهلك ضد الضرر الظاهر وغير الظاهر.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 مثلث المسئولية:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">تتوزع المسئولية بين الدولة (تشريع)، المنظمة (أخلاق)، والمستهلك (وعي).</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 الإخلال بالحماية:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">يحدث الإخلال في 8 مجالات أبرزها: السعر، الجودة، الاحتكار، والبيانات المضللة.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 الأسواق الموازية:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">التسويق الأسود (سلع غير قانونية)، التسويق الرمادي (سلع أصلية بقنوات غير رسمية).</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow md:col-span-2">
+                        <p class="text-gray-800 font-bold mb-1 text-center">💡 الرقم الذهبي:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed text-center">تذكر دائماً الخط الساخن لحماية المستهلك (19588) كأداة تنفيذية لحقوقك.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7- Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (أسئلة حماية المستهلك)</h2>
+                    <p class="text-lg text-gray-600">تأكد من قدرتك على تمييز أنواع الحماية ومجالات الاستغلال.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س1: ما هو الفرق الجوهري بين التسويق الأسود والتسويق الرمادي؟</h3>
+                        <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans1" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة:</p>
+                            <p class="text-gray-600 text-sm mt-1">التسويق الأسود يخص سلعاً <strong>غير قانونية</strong> (مثل السلاح)، أما الرمادي يخص سلعاً <strong>أصلية وقانونية</strong> ولكن تُباع بعيداً عن الوكيل المعتمد.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س2: قوانين منع بيع السجائر والمواد المخدرة تندرج تحت أي نوع من أنواع الحماية؟</h3>
+                        <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans2" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: حماية المستهلك من نفسه.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س3: ما هو الرقم الهاتفي (الخط الساخن) الذي وفرته الدولة المصرية لحماية المستهلك؟</h3>
+                        <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans3" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: 19588.</p>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">س4: إخفاء تاريخ انتهاء الصلاحية أو عدم كتابة المكونات يعتبر استغلالاً في مجال...</h3>
+                        <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة</button>
+                        <div id="ans4" class="quiz-answer">
+                            <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: البيانات الناقصة / التضليل الإعلامي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Scripts -->
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            if(!mainContent) return;
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) {
+                        item.classList.add('active');
+                    }
+                });
+                
+                if(current && mobileNav) {
+                    mobileNav.value = current;
+                }
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (!answerDiv) return;
+            
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة";
+                btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
+                btnElement.classList.replace('text-gray-700', 'text-sky-800');
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+                btnElement.classList.replace('bg-sky-100', 'bg-gray-200');
+                btnElement.classList.replace('text-sky-800', 'text-gray-700');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollSpy();
+        });
+    </script>
+</body>
+</html>
