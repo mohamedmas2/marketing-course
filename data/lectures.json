@@ -82,5 +82,12 @@
     "title": "المحاضرة الخامسة",
     "file": "Islamic/lectures/lecture5.html",
     "pdf": "assets/pdfs/Islamic/5.pdf"
+  },
+  {
+    "id": 1,
+    "courseId": "marketing",
+    "title": "المحاضرة السادسة-حماية المستهلك",
+    "file": "marketing/lectures/lecture6.html",
+    "pdf": "assets/pdfs/marketing/1.pdf"
   }
 ]
