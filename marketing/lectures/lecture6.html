@@ -10,31 +10,30 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #F9FAFB; color: #1F2937; }
         .nav-item.active { background-color: #E0F2FE; color: #0369A1; border-right: 4px solid #0369A1; }
-        .quiz-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .quiz-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; }
         .quiz-answer.show { max-height: 500px; padding-top: 1rem; border-top: 1px solid #e5e7eb; margin-top: 1rem; }
-        #mainContent::-webkit-scrollbar { width: 6px; }
-        #mainContent::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        #mainContent::-webkit-scrollbar { width: 8px; }
+        #mainContent::-webkit-scrollbar-track { background: #f1f1f1; }
+        #mainContent::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
     <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
-        <div class="p-4 md:p-6 border-b border-gray-100">
-            <div class="mb-4 md:mb-6">
-                <a href="#" onclick="history.back()" class="flex items-center justify-center bg-sky-500 text-white px-4 py-2 md:py-3 rounded-xl font-bold hover:bg-sky-600 transition shadow-lg shadow-sky-900/10">
-                    ⬅ الرجوع
-                </a>
+        <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20"> ⬅ الرجوع </a>
             </div>
-            <h1 class="text-xl md:text-2xl font-bold text-sky-800">إدارة التسويق</h1>
-            <p class="text-xs md:text-sm text-amber-600 font-semibold">المحاضرة 6 - حماية المستهلك</p>
+            <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
+            <p class="text-sm text-amber-600 font-semibold border-b pb-2">المحاضرة السادسة - حماية المستهلك</p>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-2 hidden md:block" id="desktopNav">
-            <ul class="space-y-1">
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1 text-sm lg:text-base">
                 <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المقدمة</button></li>
                 <li><button onclick="scrollToSection('protection_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع الحماية</button></li>
                 <li><button onclick="scrollToSection('exploitation_areas')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مجالات الاستغلال الثمانية</button></li>
-                <li><button onclick="scrollToSection('responsibility')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مسئولية الحماية</button></li>
+                <li><button onclick="scrollToSection('responsibility')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مسئولية حماية المستهلك</button></li>
                 <li><button onclick="scrollToSection('methods')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أساليب توفير الحماية</button></li>
                 <li><button onclick="scrollToSection('gray_black')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التسويق الأسود والرمادي</button></li>
                 <li><button onclick="scrollToSection('remembers')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-amber-600">خلاصة (تذكر أن)</button></li>
@@ -42,292 +41,146 @@
             </ul>
         </nav>
 
-        <div class="md:hidden p-3 bg-gray-50 border-b">
-            <select onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded-lg text-sm font-bold bg-white">
+        <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700 font-bold">
                 <option value="intro">المقدمة</option>
                 <option value="protection_types">أنواع الحماية</option>
-                <option value="exploitation_areas">مجالات الاستغلال</option>
-                <option value="responsibility">مسئولية الحماية</option>
-                <option value="methods">أساليب الحماية</option>
+                <option value="exploitation_areas">مجالات الاستغلال الثمانية</option>
+                <option value="responsibility">مسئولية حماية المستهلك</option>
+                <option value="methods">أساليب توفير الحماية</option>
                 <option value="gray_black">التسويق الأسود والرمادي</option>
-                <option value="remembers">خلاصة المحاضرة</option>
-                <option value="quiz">الاختبار التفاعلي</option>
+                <option value="remembers">خلاصة (تذكر أن)</option>
+                <option value="quiz">اختبر نفسك</option>
             </select>
         </div>
-        
-        <div class="p-4 border-t bg-gray-50 hidden md:block">
-            <p class="text-[10px] text-gray-400">أ.د/ ألفت إبراهيم جاد الرب - 12 أبريل 2026</p>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50 mt-auto text-right">
+            <p class="text-xs text-gray-500 font-bold mb-1">أ.د/ ألفت إبراهيم جاد الرب</p>
+            <p class="text-[10px] text-gray-400">الأحد 12 أبريل 2026م</p>
         </div>
     </aside>
 
-    <main class="flex-1 overflow-y-auto bg-gray-50 scroll-smooth relative" id="mainContent">
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
         
-        <section id="intro" class="p-4 md:p-10 border-b bg-white flex flex-col justify-center min-h-fit md:min-h-[40vh]">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-50 rounded-2xl p-5 md:p-8 shadow-sm border border-sky-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-1.5 h-full bg-sky-600"></div>
-                    
-                    <h2 class="text-2xl md:text-4xl font-extrabold text-sky-900 text-center mb-3 md:mb-6">حماية المستهلك</h2>
-                    
-                    <p class="text-sm md:text-base text-gray-600 leading-relaxed text-center mb-6 md:mb-8 border-b border-gray-200 pb-4">
-                        يهدف هذا المحتوى إلى تعريف الباحث بمفهوم حماية المستهلك وكيفية الحفاظ على حقوقه الاقتصادية والاجتماعية والصحية ضد أي استغلال أو قرارات خاطئة.
+        <section id="intro" class="p-4 md:p-8 border-b border-gray-200 bg-white flex flex-col justify-center min-h-fit md:min-h-[30vh]">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="bg-gray-50 rounded-xl p-4 md:p-8 shadow-sm border border-sky-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-sky-900 text-center mb-4 md:mb-6">حماية المستهلك (Consumer Protection)</h2>
+                    <p class="text-xs md:text-base text-gray-600 leading-relaxed text-center mb-6 max-w-4xl mx-auto">
+                        يهدف هذا المحتوى إلى تعريف الباحث بمفهوم حماية المستهلك وكيفية الحفاظ على حقوقه الاقتصادية والاجتماعية والصحية. الحماية لا تقتصر فقط على منعه من التعرض للغش، بل تشمل حمايته من قراراته الخاطئة ومن استغلال الأطراف الأخرى في السوق.
                     </p>
-
-                    <div class="grid grid-cols-2 gap-3 md:gap-6 text-[11px] md:text-sm text-gray-700">
-                        <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
-                            <span class="text-sky-600">👤</span>
-                            <span class="font-medium truncate">أ.د/ ألفت جاد الرب</span>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto">
+                        <div class="flex items-center justify-end gap-2 text-[10px] md:text-sm text-gray-700 bg-white p-2 rounded border border-gray-100">
+                            <span class="truncate">أ.د/ ألفت إبراهيم جاد الرب</span>
+                            <span class="text-sky-600 text-lg">👤</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
-                            <span class="text-sky-600">🗓️</span>
-                            <span>12 أبريل 2026م</span>
+                        <div class="flex items-center justify-end gap-2 text-[10px] md:text-sm text-gray-700 bg-white p-2 rounded border border-gray-100">
+                            <span>الأحد 12 أبريل 2026م</span>
+                            <span class="text-sky-600 text-lg">🗓️</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
-                            <span class="text-sky-600">🎓</span>
-                            <span class="truncate">العميد الأسبق</span>
+                        <div class="flex items-center justify-end gap-2 text-[10px] md:text-sm text-gray-700 bg-white p-2 rounded border border-gray-100">
+                            <span class="truncate leading-tight text-left">العميد الأسبق وعضو لجنة الترقيات</span>
+                            <span class="text-sky-600 text-lg">🎓</span>
                         </div>
-                        <div class="flex items-center gap-2 bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
-                            <span class="text-sky-600">📧</span>
-                            <span class="truncate text-[10px]">olfat@azhar.edu.eg</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="protection_types" class="p-6 md:p-12 border-b bg-white">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-2xl md:text-3xl font-bold text-sky-800 mb-8">أنواع الحماية الأساسية</h2>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-8">
-                    <div class="flex-1 bg-gray-50 p-6 rounded-2xl border border-amber-100 hover:shadow-md transition-all">
-                        <div class="text-4xl mb-3">👤</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">1. حماية المستهلك من نفسه</h4>
-                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">التدخل لحماية الفرد من رغباته الاندفاعية التي قد تضره صحياً أو اقتصادياً.</p>
-                        <div class="bg-white p-3 rounded-xl text-xs border-r-4 border-amber-500 text-right shadow-sm italic text-gray-700">
-                            <strong>مثال:</strong> منع بيع التبغ للقصر، وصرف الأدوية بروشتة طبية.
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-gray-50 p-6 rounded-2xl border border-emerald-100 hover:shadow-md transition-all">
-                        <div class="text-4xl mb-3">🏢</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">2. حماية المستهلك من الغير</h4>
-                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">حماية المستهلك من ممارسات الأطراف الأخرى (منتجين، موزعين) التي تستهدف استغلاله.</p>
-                        <div class="bg-white p-3 rounded-xl text-xs border-r-4 border-emerald-500 text-right shadow-sm italic text-gray-700">
-                            <strong>مثال:</strong> تشريعات الاسترجاع، ومنع الاحتكارات السعرية.
+                        <div class="flex items-center justify-end gap-2 text-[10px] md:text-sm text-gray-700 bg-white p-2 rounded border border-gray-100">
+                            <span class="truncate">Dr.olfat@azhar.edu.eg</span>
+                            <span class="text-sky-600 text-lg">📧</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="exploitation_areas" class="p-6 md:p-12 border-b bg-gray-50">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-8 md:mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold text-sky-800 mb-2">مجالات الاستغلال الثمانية</h2>
-                    <p class="text-sm text-gray-600 italic">انقر على الأيقونة لاستعراض التحليل</p>
-                </div>
-                <div class="grid grid-cols-4 gap-2 md:gap-4 mb-8" id="exploitationGrid"></div>
-                <div id="exploitationDetail" class="bg-white rounded-2xl p-6 shadow-md border border-sky-100 min-h-[250px] flex flex-col justify-center items-center text-center">
-                    <p class="text-gray-400 font-bold text-sm italic">اختر أحد المجالات أعلاه لاستعراض التفاصيل.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="responsibility" class="p-6 md:p-12 border-b bg-white">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold text-sky-800 mb-8 text-center">مسئولية حماية المستهلك</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-sky-800 mb-2 pb-2 border-b">🏛️ الحكومة</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">عبر التشريع، الرقابة، والقضاء للفصل في المنازعات بشكل عادل.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-sky-500 text-sky-700">قانون تحديد سعر الأرز ومنع تخزينه.</div>
+        <section id="protection_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">أنواع الحماية الأساسية</h2>
+                <div class="flex flex-col md:flex-row gap-8 justify-center items-stretch max-w-4xl mx-auto mt-12">
+                    <div class="flex-1 bg-gray-50 p-8 rounded-2xl shadow-sm border border-amber-100 hover:border-amber-300 transition-all">
+                        <div class="text-5xl mb-4">👤</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">1. حماية المستهلك من نفسه</h4>
+                        <p class="text-gray-600 mb-5 leading-relaxed text-center">التدخل لحماية الفرد من رغباته الاندفاعية التي قد تضره صحياً أو اقتصادياً نتيجة نقص الوعي أو التأثر بالعادات الخاطئة.</p>
+                        <div class="bg-white p-4 rounded-xl text-sm border-r-4 border-amber-500 text-right shadow-sm italic text-gray-800 font-medium">
+                            <strong>مثال:</strong> قوانين منع بيع التبغ للقصر، وفرض روشتة طبية لصرف الأدوية التي قد تُسبب الإدمان.
+                        </div>
                     </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-amber-800 mb-2 pb-2 border-b">👤 الأفراد</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">عبر الوعي الشخصي والامتناع عن شراء سلع مجهولة المصدر.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-amber-500 text-amber-700">فحص تاريخ الصلاحية والسعر المطبوع.</div>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-emerald-800 mb-2 pb-2 border-b">👥 التنظيمات الشعبية</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">الجمعيات الاستهلاكية التي تدافع عن حقوق الأعضاء وتمثل صوتهم.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-emerald-500 text-emerald-700">رفع دعاوى جماعية ضد الشركات المتلاعبة.</div>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-purple-800 mb-2 pb-2 border-b">🏢 المنظمات المنتجة</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">الرد على الشكاوى والالتزام بالضمان وخدمة ما بعد البيع.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-purple-500 text-purple-700">استبدال البطاريات المعيبة مجاناً.</div>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-red-800 mb-2 pb-2 border-b">💰 المصارف والبنوك</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">وضع تعليمات مشددة ضد المؤسسات التي يثبت تلاعبها مالياً.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-red-500 text-red-700">إيقاف خدمات الدفع للمتاجر الوهمية.</div>
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-xl border hover:shadow-md transition-all flex flex-col">
-                        <h4 class="font-bold text-sky-700 mb-2 pb-2 border-b">📺 أجهزة الإعلام</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-3 flex-grow">توعية الجماهير وتبني قضايا الحماية كقضايا قومية.</p>
-                        <div class="text-[10px] bg-white p-2 rounded border-r-2 border-sky-400 text-sky-800">فقرات تكشف "قائمة المحلات المتلاعبة".</div>
+                    <div class="flex-1 bg-gray-50 p-8 rounded-2xl shadow-sm border border-emerald-100 hover:border-emerald-300 transition-all">
+                        <div class="text-5xl mb-4">🏢</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">2. حماية المستهلك من الغير</h4>
+                        <p class="text-gray-600 mb-5 leading-relaxed text-center">حماية المستهلك من ممارسات الأطراف الأخرى في السوق (منتجين، موزعين) التي تستهدف استغلاله لتحقيق أرباح غير عادلة.</p>
+                        <div class="bg-white p-4 rounded-xl text-sm border-r-4 border-emerald-500 text-right shadow-sm italic text-gray-800 font-medium">
+                            <strong>مثال:</strong> تشريعات الاستبدال والاسترجاع، ومنع الاحتكارات السعرية التي تضر بالقوة الشرائية للمواطن.
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="methods" class="p-6 md:p-12 border-b bg-gray-50">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold text-sky-800 mb-8 text-center">أساليب توفير الحماية</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-sky-500 flex flex-col h-full">
-                        <div class="text-3xl mb-3">📢</div>
-                        <h4 class="font-bold mb-2">1. أساليب التوعية</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-4">نقل المعلومات الصحيحة وتوجيه المستهلك نحو الاختيار الرشيد.</p>
-                        <div class="bg-sky-50 p-3 rounded text-[10px] text-sky-900 italic border border-sky-100">حملات "اعرف حقك" الرسمية.</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-amber-500 flex flex-col h-full">
-                        <div class="text-3xl mb-3">📜</div>
-                        <h4 class="font-bold mb-2">2. التزام البائع</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-4">كتابة البيانات بوضوح تام على العبوة لتمكين المستهلك من المقارنة.</p>
-                        <div class="bg-amber-50 p-3 rounded text-[10px] text-amber-900 italic border border-amber-100">كتابة السعرات والمكونات المسببة للحساسية.</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4 border-emerald-500 flex flex-col h-full">
-                        <div class="text-3xl mb-3">🏛️</div>
-                        <h4 class="font-bold mb-2">3. الأساليب الرسمية</h4>
-                        <p class="text-xs text-gray-600 leading-relaxed mb-4">قوانين تنظيم التسعير، طرق التوزيع، والنقل والتخزين السليم.</p>
-                        <div class="bg-emerald-50 p-3 rounded text-[10px] text-emerald-900 italic border border-emerald-100">قانون منع احتكار القلة لسلع استراتيجية.</div>
-                    </div>
+        <section id="exploitation_areas" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center bg-gray-50">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4 text-center">مجالات الاستغلال الثمانية</h2>
+                    <p class="text-lg text-gray-600 mb-8 text-center">تحليل عميق لأبرز ثغرات الاستغلال التي قد يتعرض لها المستهلك (انقر للتفاصيل).</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="exploitationGrid"></div>
+                <div id="exploitationDetail" class="bg-white rounded-2xl p-8 shadow-md border border-sky-100 min-h-[400px] flex flex-col justify-center items-center text-center">
+                    <p class="text-gray-400 font-bold text-xl italic">اختر أحد المجالات أعلاه لاستعراض التحليل التفصيلي والمثال الواقعي.</p>
                 </div>
             </div>
         </section>
 
-        <section id="gray_black" class="p-6 md:p-12 border-b bg-white overflow-x-hidden">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold text-sky-800 mb-8 text-center">التسويق الأسود والرمادي</h2>
-                <div class="bg-white rounded-2xl shadow-md border overflow-x-auto">
-                    <table class="w-full text-right border-collapse min-w-[500px]">
-                        <thead>
-                            <tr class="bg-gray-100 text-sm">
-                                <th class="p-3 border">النوع</th>
-                                <th class="p-3 border">المفهوم</th>
-                                <th class="p-3 border">مثال واقعي</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-xs text-gray-700">
-                            <tr>
-                                <td class="p-3 border font-bold text-red-700 bg-red-50">الأسود (Black)</td>
-                                <td class="p-3 border">تجارة السلع المجرمة قانوناً وأخلاقياً في الخفاء.</td>
-                                <td class="p-3 border">الأعضاء البشرية، الأسلحة، المخدرات.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border font-bold text-gray-700 bg-gray-100">الرمادي (Gray)</td>
-                                <td class="p-3 border">منتجات أصلية عبر قنوات استيراد غير رسمية.</td>
-                                <td class="p-3 border">iPhone بضمان دولي من متجر غير معتمد.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="remembers" class="p-6 md:p-12 border-b bg-white">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold text-amber-600 mb-8 text-center">خلاصة (تذكر أن)</h2>
-                <div class="space-y-3">
-                    <div class="bg-white p-4 rounded-xl border-r-4 border-amber-500 shadow-sm text-xs leading-relaxed">
-                        <p class="font-bold text-gray-800">1. شمولية الحماية:</p> تشمل الأضرار الظاهرة والخفية، الاقتصادية والصحية.
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-r-4 border-amber-500 shadow-sm text-xs leading-relaxed">
-                        <p class="font-bold text-gray-800">2. ثمانية أبواب:</p> تشمل الإعلان، الضمان، التبيين، السعر، التوزيع، التعبئة، الموازين، والمنتجات.
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-r-4 border-amber-500 shadow-sm text-xs leading-relaxed">
-                        <p class="font-bold text-gray-800">3. مثلث الأساليب:</p> تتحقق عبر التوعية، التزام البائع، والقوة الرسمية للدولة.
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-r-4 border-amber-500 shadow-sm text-xs leading-relaxed">
-                        <p class="font-bold text-gray-800">4. سداسية المسئولية:</p> الحكومة، الأفراد، التنظيمات، المنظمات، المصارف، والإعلام.
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border-r-4 border-amber-500 shadow-sm text-xs leading-relaxed text-amber-800 font-bold">
-                        5. الخط الساخن لجهاز حماية المستهلك هو (19588).
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="quiz" class="p-6 md:p-12 bg-gray-50 min-h-screen flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <h2 class="text-2xl md:text-3xl font-bold text-emerald-600 mb-8 text-center">🧠 اختبر نفسك (15 سؤالاً)</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="quizContainer"></div>
-            </div>
-        </section>
-
-    </main>
+        </main>
 
     <script>
         const exploitationData = [
-            { id: 1, name: 'الاعلان', icon: '📺', desc: 'خداع بوعود كاذبة أو إخفاء عيوب جوهرية.', example: 'إعلانات التخسيس الوهمية لنتائج سريعة.' },
-            { id: 2, name: 'الضمان', icon: '🛡️', desc: 'التملص من الالتزامات بعد البيع بشروط معقدة.', example: 'رفض صيانة عيب مصنعي بدعوى سوء الاستخدام.' },
-            { id: 3, name: 'التبيين', icon: '🏷️', desc: 'تضليل عبر إخفاء مكونات أو تواريخ غير واضحة.', example: 'ادعاء أن المنتج "طبيعي" وهو مليء بالنكهات.' },
-            { id: 4, name: 'السعر', icon: '💰', desc: 'احتكار أو تخفيضات وهمية برفع السعر مسبقاً.', example: 'رفع السعر قبل Black Friday ثم عمل خصم وهمي.' },
-            { id: 5, name: 'التوزيع', icon: '🚚', desc: 'سوء التخزين أو "تعطيش السوق" لرفع الأسعار.', example: 'تخزين الأدوية في حرارة عالية مما يفسدها.' },
-            { id: 6, name: 'التعبئة', icon: '📦', desc: 'ظاهرة "تضخم الانكماش" بتصغير المنتج بنفس السعر.', example: 'تقليل وزن كيس البطاطس مع بقاء شكل الغلاف.' },
-            { id: 7, name: 'الموازين', icon: '⚖️', desc: 'التلاعب المباشر في آلات القياس والمضخات.', example: 'ضبط مضخة الوقود لتعطي 9 لتر بدلاً من 10.' },
-            { id: 8, name: 'المنتجات', icon: '🛠️', desc: 'طرح سلع مجهولة المصدر أو غير مطابقة للمواصفات.', example: 'شواحن الهواتف المقلدة التي تسبب حرائق.' }
+            { id: 1, name: 'الاعلان', icon: '📺', desc: 'استخدام الترويج لخداع المستهلك بوعود كاذبة، أو إخفاء عيوب جوهرية، أو المبالغة في النتائج التي يمكن تحقيقها، مما يدفع العميل لشراء سلعة لا تفي باحتياجاته.', example: 'إعلانات منتجات التخسيس التي تدعي فقدان 20 كيلو في أسبوع دون مجهود، وهي وعود طبية كاذبة تستغل رغبة المستهلك في نتائج سريعة.' },
+            { id: 2, name: 'الضمان', icon: '🛡️', desc: 'التملص من الالتزامات القانونية بعد البيع؛ مثل كتابة شروط معقدة في "الخط الصغير" تجعل الضمان غير قابل للتطبيق، أو عدم توفير قطع غيار أصلية لسنوات كافية.', example: 'شركات الأجهزة التي ترفض صيانة العيوب المصنعية بدعوى "سوء الاستخدام" أو تضع أسعاراً فلكية لقطع الغيار تجعل شراء منتج جديد أرخص من الصيانة.' },
+            { id: 3, name: 'التبيين (Labeling)', icon: '🏷️', desc: 'تضليل المستهلك عبر البيانات المكتوبة؛ مثل إخفاء المكونات المسببة للحساسية، أو كتابة تاريخ انتهاء غير واضح، أو ادعاء أن المنتج "طبيعي" وهو مليء بالمواد الحافظة.', example: 'كتابة "عسل نحل طبيعي" بخط عريض، بينما المكونات الحقيقية هي جلوكوز ونكهات صناعية مكتوبة بخط صغير جداً.' },
+            { id: 4, name: 'السعر', icon: '💰', desc: 'استغلال تقلبات السوق لفرض أسعار احتكارية، أو القيام بـ "التسعير الخوارزمي" المبالغ فيه وقت الذروة، أو وضع تخفيضات وهمية برفع السعر قبل الخصم.', example: 'قيام بعض المتاجر في الـ "Black Friday" برفع سعر المنتج بنسبة 40% قبل أسبوع، ثم وضع ملصق خصم 30%، ليبيع المنتج أغلى من سعره الأصلي.' },
+            { id: 5, name: 'التوزيع', icon: '🚚', desc: 'الإضرار بالمستهلك عبر سوء التخزين (تعرض السلع للحرارة)، أو تعمد "تعطيش السوق" عبر إخفاء السلع في المخازن لرفع سعرها لاحقاً في السوق السوداء.', example: 'تخزين الأدوية في مخازن غير مكيفة تحت درجات حرارة عالية، مما يفسد المادة الفعالة ويحولها لمواد ضارة بالصحة.' },
+            { id: 6, name: 'التعبئة والتغليف', icon: '📦', desc: 'ظاهرة "تضخم الانكماش" (Shrinkflation)؛ وهي تصغير حجم المنتج تدريجياً مع بقاء السعر ثابتاً، مما يعطي انطباعاً كاذباً بالاستقرار السعري.', example: 'تقليل وزن كيس البطاطس المقلية من 50 جرام إلى 40 جرام مع الاحتفاظ بنفس شكل الغلاف والسعر، مما يعتبر خداعاً بصرياً للمستهلك.' },
+            { id: 7, name: 'المقاييس والأوزان', icon: '⚖️', desc: 'التلاعب المباشر في الموازين وآلات القياس؛ وهو من أبشع أنواع الغش. ويشمل التلاعب بمكائن ضخ الوقود، أو استخدام موازين غير دقيقة تُظهر وزناً أكبر.', example: 'قيام بعض محطات البنزين بضبط ماكينة الضخ لتعطي 9 لترات بدلاً من 10، وهي خسارة مادية مباشرة وخيانة للأمانة التجارية.' },
+            { id: 8, name: 'المنتجات', icon: '🛠️', desc: 'طرح منتجات غير مطابقة للمواصفات الفنية أو مجهولة المصدر، وتداول المنتجات المقلدة التي لا تلتزم بمعايير السلامة، مما يعرض حياة المستهلك للخطر.', example: 'شواحن وبطاريات الهواتف المقلدة التي تفتقر لدوائر الحماية، مما يتسبب في انفجار الهواتف أو اندلاع حرائق في المنازل.' }
         ];
 
-        const quizData = [
-            { q: "س1: هل تقتصر الحماية على الضرر الظاهر؟", a: "لا، تشمل الأضرار الظاهرة والخفية." },
-            { q: "س2: ما الفرق بين الحماية من النفس والغير؟", a: "النفس ضد الاندفاع، والغير ضد الاستغلال." },
-            { q: "س3: كيف يتم الاستغلال في التعبئة؟", a: "عبر ظاهرة تضخم الانكماش (تقليل الوزن)." },
-            { q: "س4: ما هو التسويق الرمادي؟", a: "بيع سلع أصلية عبر قنوات غير معتمدة." },
-            { q: "س5: لماذا المصارف مسئولة؟", a: "لقدرتها على حظر التعامل مع المتلاعبين مالياً." },
-            { q: "س6: ما هي أداة التوعية؟", a: "تحويل الترويج لرسالة إرشادية تثقيفية." },
-            { q: "س7: كيف يتم الاستغلال في التوزيع؟", a: "إخفاء السلع لخلق سوق سوداء." },
-            { q: "س8: ما دور الإعلام؟", a: "فضح أساليب الغش وتبني قضايا المستهلك." },
-            { q: "س9: ما هي البيانات الإلزامية؟", a: "التي لا يجوز إغفالها كالصلاحية والمنشأ." },
-            { q: "س10: عرف التسويق الأسود؟", a: "تجارة السلع المحرمة قانوناً كالأعضاء." },
-            { q: "س11: هدف الأساليب الرسمية؟", a: "ضبط آليات السوق ومنع الاحتكار قانوناً." },
-            { q: "س12: غش المقاييس؟", a: "التلاعب في الموازين لبيع كمية أقل." },
-            { q: "س13: استغلال الضمان؟", a: "التملص من الصيانة بشروط صعبة." },
-            { q: "س14: مصلحة من هي الأولى؟", a: "الأفراد؛ فهم المتضرر الأول." },
-            { q: "س15: رقم حماية المستهلك؟", a: "الخط الساخن هو (19588)." }
-        ];
-
-        function initApp() {
+        function initExploitation() {
             const grid = document.getElementById('exploitationGrid');
             exploitationData.forEach(item => {
                 const btn = document.createElement('button');
-                btn.className = 'bg-white p-2 md:p-4 rounded-xl border border-sky-100 hover:bg-sky-50 transition-all font-bold text-[10px] md:text-sm flex flex-col items-center gap-1 shadow-sm';
-                btn.innerHTML = `<span class="text-xl md:text-2xl">${item.icon}</span> ${item.name}`;
+                btn.className = 'bg-white p-5 rounded-xl border border-sky-100 shadow-sm hover:bg-sky-100 transition-all font-bold text-gray-800 text-sm flex flex-col items-center gap-2 focus:ring-2 focus:ring-sky-500 outline-none';
+                btn.innerHTML = `<span class="text-3xl">${item.icon}</span> ${item.name}`;
                 btn.onclick = () => showExploitationDetail(item);
                 grid.appendChild(btn);
-            });
-
-            const quizCont = document.getElementById('quizContainer');
-            quizData.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = 'bg-white p-4 rounded-xl border shadow-sm';
-                div.innerHTML = `
-                    <h3 class="text-xs font-bold mb-2">${item.q}</h3>
-                    <button onclick="this.nextElementSibling.classList.toggle('show')" class="text-[10px] bg-sky-100 text-sky-800 px-2 py-1 rounded">إجابة</button>
-                    <div class="quiz-answer text-[11px] text-emerald-700 font-medium">${item.a}</div>
-                `;
-                quizCont.appendChild(div);
             });
         }
 
         function showExploitationDetail(item) {
             const detail = document.getElementById('exploitationDetail');
             detail.innerHTML = `
-                <div class="text-4xl md:text-5xl mb-3">${item.icon}</div>
-                <h3 class="text-xl font-bold text-sky-800 mb-2 border-b-2 border-sky-100 px-4">${item.name}</h3>
-                <p class="text-gray-700 text-sm mb-4 max-w-xl">${item.desc}</p>
-                <div class="bg-sky-50 p-3 rounded-lg border-r-4 border-sky-600 text-right w-full text-xs">
-                    <strong>مثال:</strong> ${item.example}
+                <div class="text-6xl mb-4">${item.icon}</div>
+                <h3 class="text-2xl font-bold text-sky-800 mb-4 border-b-2 border-sky-200 pb-2">${item.name}</h3>
+                <p class="text-gray-700 leading-relaxed mb-6 max-w-3xl text-lg text-center">${item.desc}</p>
+                <div class="bg-sky-50 p-5 rounded-xl border-r-8 border-sky-600 text-right w-full max-w-2xl shadow-sm">
+                    <p class="text-gray-900"><strong>مثال من الواقع الحديث:</strong> ${item.example}</p>
                 </div>
             `;
         }
 
         function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) document.getElementById('mainContent').scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
+            const section = document.getElementById(id);
+            if (section) document.getElementById('mainContent').scrollTo({ top: section.offsetTop, behavior: 'smooth' });
         }
 
-        document.addEventListener('DOMContentLoaded', initApp);
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            answerDiv.classList.toggle('show');
+            btnElement.innerText = answerDiv.classList.contains('show') ? "إخفاء الإجابة" : "إظهار الإجابة";
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initExploitation();
+        });
     </script>
 </body>
 </html>
