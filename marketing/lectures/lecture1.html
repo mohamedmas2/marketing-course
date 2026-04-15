@@ -88,6 +88,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                 <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المزيج التسويقي (4Ps)</button></li>
                 <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مراحل تطور التسويق</button></li>
                 <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أهمية التسويق</button></li>
+                <li><button onclick="scrollToSection('goods_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع السلع</button></li>
                 <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحديات القرن 21</button></li>
                 <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك (20 سؤال)</button></li>
             </ul>
@@ -281,7 +282,65 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
             </div>
         </section>
 
-        <!-- Section 5: Challenges (Updated to match Image Exactly) -->
+        <!-- Section 5: Types of Goods -->
+        <section id="goods_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-10 text-center">أنواع السلع الاستهلاكية</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Convenience Goods -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-sky-300 transition-all">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-sky-500"></div>
+                        <div class="text-4xl mb-4">🍞</div>
+                        <h3 class="text-xl font-bold text-sky-800 mb-3">السلع الميسرة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">وهي السلع التي يشتريها المستهلك بشكل متكرر وبأقل مجهود، وتتميز بارتفاع معدل دوران مبيعاتها مما يتطلب توفير تغطية شاملة لها في الأسواق.</p>
+                        <div class="mt-auto pt-4 border-t border-gray-50">
+                            <h4 class="text-xs font-bold text-sky-600 mb-2 uppercase tracking-wider">أمثلة واقعية:</h4>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• المواد الغذائية (الخبز، الحليب)</li>
+                                <li>• الصحف والجلات</li>
+                                <li>• المنظفات المنزلية البسيطة</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Shopping Goods -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-amber-300 transition-all">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-amber-500"></div>
+                        <div class="text-4xl mb-4">📺</div>
+                        <h3 class="text-xl font-bold text-amber-800 mb-3">سلع التسوق</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">وهي السلع التي يقارن المستهلك بين أنواعها المختلفة من حيث الجودة والسعر والطراز قبل اتخاذ قرار الشراء.</p>
+                        <div class="mt-auto pt-4 border-t border-gray-50">
+                            <h4 class="text-xs font-bold text-amber-600 mb-2 uppercase tracking-wider">أمثلة واقعية:</h4>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• الملابس الجاهزة</li>
+                                <li>• الأثاث المنزلي</li>
+                                <li>• الأجهزة الكهربائية (ثلاجات، غسالات)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Speciality Goods -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-emerald-300 transition-all">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-emerald-500"></div>
+                        <div class="text-4xl mb-4">💎</div>
+                        <h3 class="text-xl font-bold text-emerald-800 mb-3">السلع الخاصة</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">وهي السلع التي يمتلك المستهلك ولاءً خاصاً لعلامتها التجارية ويبذل مجهوداً خاصاً للحصول عليها.</p>
+                        <div class="mt-auto pt-4 border-t border-gray-50">
+                            <h4 class="text-xs font-bold text-emerald-600 mb-2 uppercase tracking-wider">أمثلة واقعية:</h4>
+                            <ul class="text-xs text-gray-500 space-y-1">
+                                <li>• ساعات رولكس الفاخرة</li>
+                                <li>• السيارات الرياضية</li>
+                                <li>• معدات التصوير الاحترافية</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Challenges -->
         <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-6xl mx-auto w-full">
                 <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التحديات التسويقية في القرن الحادي والعشرين</h2>
@@ -396,7 +455,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
             </div>
         </section>
 
-        <!-- Section 6: Quiz -->
+        <!-- Section 7: Quiz -->
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
