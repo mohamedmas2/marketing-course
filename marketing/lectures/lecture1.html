@@ -42,13 +42,13 @@
         .quiz-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
         }
         .quiz-answer.show {
-            max-height: 400px;
-            padding-top: 1rem;
+            max-height: 800px;
+            padding-top: 1.5rem;
             border-top: 1px solid #e5e7eb;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         .concept-card {
             border-right: 4px solid #0369A1;
@@ -57,7 +57,6 @@
         .market-basis-card {
             border-right: 4px solid #f59e0b;
         }
-        /* Flowchart Arrow Animation */
         .arrow-down {
             width: 0; 
             height: 0; 
@@ -90,7 +89,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                 <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أهمية التسويق</button></li>
                 <li><button onclick="scrollToSection('goods_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع السلع</button></li>
                 <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحديات القرن 21</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك (20 سؤال)</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك (بنك الأسئلة الشامل)</button></li>
             </ul>
         </nav>
         <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block">
@@ -198,7 +197,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                     </div>
                     <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm">
                         <h4 class="font-bold text-amber-800 mb-2">الأسواق الجغرافية (Geographic Markets):</h4>
-                        <p class="text-gray-600 text-sm">ويتم التقسيم فيها حسب الموقع المكاني، مثل سوق القاهرة أو أسواق الأقاليم.</p>
+                        <p class="text-gray-600 text-sm">ويتم التقسيم فيها حسب الموقع المكانى، مثل سوق القاهرة أو أسواق الأقاليم.</p>
                     </div>
                     <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm">
                         <h4 class="font-bold text-amber-800 mb-2">أسواق السلع (Goods Markets):</h4>
@@ -288,7 +287,6 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                 <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-10 text-center">أنواع السلع الاستهلاكية</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     
-                    <!-- Convenience Goods -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-sky-300 transition-all">
                         <div class="absolute top-0 right-0 w-1.5 h-full bg-sky-500"></div>
                         <div class="text-4xl mb-4">🍞</div>
@@ -298,13 +296,12 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                             <h4 class="text-xs font-bold text-sky-600 mb-2 uppercase tracking-wider">أمثلة واقعية:</h4>
                             <ul class="text-xs text-gray-500 space-y-1">
                                 <li>• المواد الغذائية (الخبز، الحليب)</li>
-                                <li>• الصحف والجلات</li>
+                                <li>• الصحف والمجلات</li>
                                 <li>• المنظفات المنزلية البسيطة</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Shopping Goods -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-amber-300 transition-all">
                         <div class="absolute top-0 right-0 w-1.5 h-full bg-amber-500"></div>
                         <div class="text-4xl mb-4">📺</div>
@@ -320,7 +317,6 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                         </div>
                     </div>
 
-                    <!-- Speciality Goods -->
                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-emerald-300 transition-all">
                         <div class="absolute top-0 right-0 w-1.5 h-full bg-emerald-500"></div>
                         <div class="text-4xl mb-4">💎</div>
@@ -346,121 +342,69 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                 <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">التحديات التسويقية في القرن الحادي والعشرين</h2>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                    
-                    <!-- Right Column: Timeline of Challenges -->
                     <div class="order-1 lg:order-2">
                         <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2"><span>🌪️</span> ضغوط وتحديات العصر</h3>
-                        
                         <div class="relative border-r-4 border-blue-100 pr-8 space-y-12">
-                            
-                            <!-- Challenge 1 -->
                             <div class="relative">
                                 <div class="absolute -right-[42px] top-0 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
                                 <h4 class="text-xl font-extrabold text-gray-800">1. الاتجاه المتزايد نحو العولمة</h4>
-                                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                                    <span class="font-bold">شرح مبسط:</span> العالم أصبح قرية صغيرة، ولم يعد السوق محلياً فقط. عليك منافسة شركات من قارات أخرى.
-                                </p>
-                                <div class="mt-2 bg-blue-50 p-3 rounded-lg border border-blue-100 text-xs text-blue-900 italic">
-                                    مثال: مصنع ملابس محلي في مصر ينافس علامات تجارية عالمية مثل Zara و H&M.
-                                </div>
+                                <p class="text-gray-600 mt-2 text-sm leading-relaxed"><span class="font-bold">شرح مبسط:</span> العالم أصبح قرية صغيرة، ولم يعد السوق محلياً فقط.</p>
+                                <div class="mt-2 bg-blue-50 p-3 rounded-lg border border-blue-100 text-xs text-blue-900 italic">مثال: مصنع ملابس محلي ينافس Zara و H&M.</div>
                             </div>
-
-                            <!-- Challenge 2 -->
                             <div class="relative">
                                 <div class="absolute -right-[42px] top-0 bg-red-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
                                 <h4 class="text-xl font-extrabold text-gray-800">2. كبر حجم المنظمات (الاندماج)</h4>
-                                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                                    <span class="font-bold">شرح مبسط:</span> الشركات تندمج وتشتري بعضها لتصبح كيانات عملاقة يصعب على الشركات الصغيرة منافستها.
-                                </p>
-                                <div class="mt-2 bg-red-50 p-3 rounded-lg border border-red-100 text-xs text-red-900 italic">
-                                    مثال: استحواذ فيسبوك على واتساب وإنستجرام لتكوين كيان تسويقي وتقني جبار (Meta).
-                                </div>
+                                <p class="text-gray-600 mt-2 text-sm leading-relaxed"><span class="font-bold">شرح مبسط:</span> الشركات تندمج وتشتري بعضها لتصبح كيانات عملاقة.</p>
+                                <div class="mt-2 bg-red-50 p-3 rounded-lg border border-red-100 text-xs text-red-900 italic">مثال: استحواذ فيسبوك على واتساب وإنستجرام (Meta).</div>
                             </div>
-
-                            <!-- Challenge 3 -->
                             <div class="relative">
                                 <div class="absolute -right-[42px] top-0 bg-emerald-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
                                 <h4 class="text-xl font-extrabold text-gray-800">3. التكنولوجيا والبيانات الضخمة</h4>
-                                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                                    <span class="font-bold">شرح مبسط:</span> ظهور صناعات ضخمة للتكنولوجيا وصعوبة معالجة وفهم الكم الهائل من بيانات العملاء.
-                                </p>
-                                <div class="mt-2 bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-xs text-emerald-900 italic">
-                                    مثال: خوارزميات نتفليكس التي تحلل ملايين البيانات لتقترح لك مسلسلاً يناسب ذوقك تماماً.
-                                </div>
+                                <p class="text-gray-600 mt-2 text-sm leading-relaxed"><span class="font-bold">شرح مبسط:</span> ظهور صناعات ضخمة وصعوبة فهم كم البيانات.</p>
+                                <div class="mt-2 bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-xs text-emerald-900 italic">مثال: خوارزميات نتفليكس لتحليل البيانات.</div>
                             </div>
-
-                            <!-- Challenge 4 -->
                             <div class="relative">
                                 <div class="absolute -right-[42px] top-0 bg-amber-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
                                 <h4 class="text-xl font-extrabold text-amber-600">4. المنافسة الشرسة</h4>
-                                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                                    <span class="font-bold">شرح مبسط:</span> بسبب كثرة الخيارات، أصبح ولاء العميل نادراً، وتتنافس الشركات على كسب رضاه بأي ثمن.
-                                </p>
-                                <div class="mt-2 bg-amber-50 p-3 rounded-lg border border-amber-100 text-xs text-amber-900 italic">
-                                    مثال: حرب الأسعار والعروض المستمرة بين شركات الاتصالات لجذب العملاء من بعضهم.
-                                </div>
+                                <p class="text-gray-600 mt-2 text-sm leading-relaxed"><span class="font-bold">شرح مبسط:</span> ندرة ولاء العميل بسبب كثرة الخيارات.</p>
+                                <div class="mt-2 bg-amber-50 p-3 rounded-lg border border-amber-100 text-xs text-amber-900 italic">مثال: حرب الأسعار بين شركات الاتصالات.</div>
                             </div>
-
                         </div>
                     </div>
-
-                    <!-- Left Column: Summary & Conclusion -->
                     <div class="order-2 lg:order-1 space-y-6">
-                        
-                        <!-- Main Conclusion Box -->
                         <div class="bg-white p-8 rounded-2xl shadow-lg border border-emerald-100 relative">
                             <div class="absolute top-4 left-4 text-2xl">🛡️</div>
                             <h3 class="text-2xl font-bold text-emerald-600 mb-6 border-b pb-2 inline-block">الخلاصة: حتمية التكيف</h3>
-                            
                             <div class="bg-emerald-50 p-5 rounded-xl text-center mb-6">
                                 <h4 class="font-bold text-emerald-800 text-lg mb-2">البقاء للأكثر استجابة</h4>
-                                <p class="text-sm text-gray-600">في ظل هذه التحديات، التسويق ليس ترفاً بل هو وسيلة النجاة الوحيدة للمنظمات.</p>
                             </div>
-
-                            <!-- Flowchart -->
                             <div class="space-y-2">
-                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm">
-                                    فهم التغيرات العالمية 🌏
-                                </div>
+                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm">فهم التغيرات العالمية 🌏</div>
                                 <div class="arrow-down"></div>
-                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm">
-                                    تعديل الاستراتيجية التسويقية 📝
-                                </div>
+                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm">تعديل الاستراتيجية التسويقية 📝</div>
                                 <div class="arrow-down"></div>
-                                <div class="bg-emerald-100 border-2 border-emerald-500 p-3 rounded-lg text-center font-bold text-emerald-800 text-sm shadow-md">
-                                    البقاء والنمو في السوق 🏆
-                                </div>
+                                <div class="bg-emerald-100 border-2 border-emerald-500 p-3 rounded-lg text-center font-bold text-emerald-800 text-sm shadow-md">البقاء والنمو في السوق 🏆</div>
                             </div>
                         </div>
-
-                        <!-- Lesson Learned Box -->
                         <div class="bg-slate-50 p-6 rounded-xl border-r-8 border-slate-400 shadow-sm">
                             <h4 class="font-bold text-slate-800 mb-2">الدرس المستفاد من التحديات:</h4>
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                الشركات التي لا تراقب بيئتها ولا تتطور مع التكنولوجيا وتتجاهل العولمة، مصيرها الخروج من السوق، بغض النظر عن حجمها السابق.
-                            </p>
+                            <p class="text-xs text-slate-600">الشركات التي لا تراقب بيئتها مصيرها الخروج من السوق.</p>
                         </div>
-
-                        <!-- Harsh Example Box (Kodak) -->
                         <div class="bg-red-50 p-6 rounded-xl border-r-8 border-red-400 shadow-sm">
                             <h4 class="font-bold text-red-800 mb-2">مثال قاسي من الواقع:</h4>
-                            <p class="text-xs text-red-900 leading-relaxed">
-                                شركة "كوداك" للتصوير تجاهلت التكنولوجيا (الكاميرات الرقمية) واكتفت بنجاحها القديم، فكانت النتيجة إفلاسها أمام المنافسة الشرسة.
-                            </p>
+                            <p class="text-xs text-red-900">شركة "كوداك" تجاهلت التكنولوجيا فكانت النتيجة إفلاسها.</p>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- Section 7: Quiz -->
+        <!-- Section 7: Quiz (Updated with User Content Verbatim) -->
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4">اختبر نفسك (20 سؤال)</h2>
-                    <p class="text-gray-600">تأكد من استيعابك للمفاهيم السابقة من خلال هذا الاختبار.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4">اختبر نفسك </h2>
+                    <p class="text-gray-600">مجموعة أسئلة لقياس مستوى الفهم والقدرة على التحليل.</p>
                 </div>
                 <div class="space-y-4" id="quizContainer"></div>
             </div>
@@ -469,27 +413,68 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
     </main>
 
     <script>
+        // Quiz Data - Updated to match user's requested text verbatim
         const quizData = [
-            { q: "س1: ما هو المفهوم الذي يشير إلى الشعور بالحرمان من المتطلبات الأساسية؟", a: "الحاجات (Needs).", r: "مثل الطعام أو الأمان، وهي فطرية." },
-            { q: "س2: ما الفرق الجوهري بين الحاجة والرغبة؟", a: "الحاجة عامة، والرغبة محددة وتتشكل حسب الثقافة والشخصية.", r: "الجوع حاجة، والرغبة في 'برجر' رغبة." },
-            { q: "س3: متى تتحول الرغبة إلى 'طلب' (Demand)؟", a: "عندما تكون الرغبة مدعومة بقدرة شرائية فعلية.", r: "بدون مال، تظل الرغبة مجرد تمني." },
-            { q: "س4: ما هي وحدة القياس في عملية التبادل التسويقي؟", a: "المعاملات (Transactions).", r: "تحدث باتفاق الطرفين على الزمان والمكان." },
-            { q: "س5: يُعد 'التبادل' هو ........... العملية التسويقية.", a: "جوهر.", r: "قائم على تبادل القيم والمنافع." },
-            { q: "س6: ما هي عناصر المزيج التسويقي التقليدي الـ 4Ps؟", a: "المنتج، السعر، التوزيع، الترويج.", r: "Product, Price, Place, Promotion." },
-            { q: "س7: أي عنصر في المزيج التسويقي هو المسؤول عن توليد الإيرادات؟", a: "السعر (Price).", r: "باقي العناصر تعتبر تكاليف." },
-            { q: "س8: في أي مرحلة كان شعار المنظمات 'يمكن للعميل الحصول على أي لون طالما أنه الأسود'؟", a: "مرحلة التوجه بالمنتج.", r: "اشتهر بها هنري فورد." },
-            { q: "س9: ما هو هدف 'التوجه بالبيع'؟", a: "تصريف المنتجات المكدسة من خلال الإقناع القوي.", r: "التركيز على مصلحة البائع." },
-            { q: "س10: ما هي نقطة البداية في 'التوجه بالتسويق'؟", a: "دراسة السوق وفهم احتياجات العميل.", r: "بدلاً من صنع ما يمكننا، نصنع ما يريده العميل." },
-            { q: "س11: هل ينتهي دور التسويق بمجرد إتمام عملية البيع؟", a: "لا، يمتد لخدمات ما بعد البيع.", r: "بناء علاقة مستمرة لضمان الولاء." },
-            { q: "س12: ما المقصود بـ 'المنتجات' في المفهوم التسويقي؟", a: "كل ما يشبع حاجة، سواء كان سلعة أو خدمة أو فكرة.", r: "المنتج قد يكون رحلة سياحية." },
-            { q: "س13: ما هو تعريف 'السوق' في المفهوم الحديث؟", a: "مجموعة من المستهلكين المحتملين لديهم رغبة وقدرة واستعداد.", r: "الرغبة والقدرة والاستعداد للتبادل." },
-            { q: "س14: اذكر أحد تحديات العولمة.", a: "اضطرار الشركات المحلية لمنافسة شركات عالمية.", r: "انفتاح الأسواق جعل المنافسة عالمية." },
-            { q: "س15: لماذا يبدأ التسويق قبل الإنتاج؟", a: "لأنه يحدد مواصفات المنتج المطلوب بناءً على السوق.", r: "التسويق يوجه المصنع للإنتاج الصحيح." },
-            { q: "س16: ما معنى تحدي 'البيانات الضخمة'؟", a: "الحاجة لتحليل كميات هائلة من المعلومات لمعرفة سلوك العميل.", r: "خوارزميات أمازون ونتفليكس هي أمثلة." },
-            { q: "س17: ما سبب فشل شركة 'كوداك'؟", a: "تجاهل التطور التكنولوجي (التصوير الرقمي).", r: "عدم التكيف مع التحديات الحديثة." },
-            { q: "س18: أي عنصر يشمل 'التغليف والضمان'؟", a: "عنصر المنتج (Product).", r: "المنتج يشمل كل المزايا الملحقة به." },
-            { q: "س19: ما معنى 'ثقافة التوجيه بالمستهلك'؟", a: "أن كل فرد في المنظمة هدفه إرضاء العميل.", r: "عقلية مؤسسة كاملة." },
-            { q: "س20: 'صنع ما يمكن بيعه' هو شعار أي مرحلة؟", a: "مرحلة التوجه بالتسويق الحديثة.", r: "لأنها تجعل السوق هو المحرك." }
+            { q: "س: التسويق يعني بيع المنتج وتحقيق الربح فقط.", a: "خطأ", r: "التعليل: التسويق يشمل فهم احتياجات العميل وإشباعها وليس مجرد البيع." },
+            { q: "س: كل رغبة يمكن أن تتحول إلى طلب.", a: "خطأ", r: "التعليل: تتحول الرغبة إلى طلب فقط إذا توفرت القدرة الشرائية." },
+            { q: "س: الحاجات الإنسانية تختلف من مجتمع لآخر.", a: "خطأ", r: "التعليل: الحاجات ثابتة نسبياً، بينما الرغبات تختلف حسب الثقافة." },
+            { q: "س: التبادل يتطلب وجود طرفين على الأقل.", a: "صح", r: "التعليل: لا يمكن أن تتم عملية التبادل بدون طرفين." },
+            { q: "س: الإعلان يمثل جوهر التسويق.", a: "خطأ", r: "التعليل: الإعلان جزء من الترويج وليس التسويق بالكامل." },
+            { q: "س: المفهوم التسويقي يبدأ من المنتج.", a: "خطأ", r: "التعليل: يبدأ من العميل واحتياجاته." },
+            { q: "س: السوق يتكون فقط من المشترين الحاليين.", a: "خطأ", r: "التعليل: يشمل المشترين الحاليين والمحتملين." },
+            { q: "س: كل طلب يعبر عن حاجة.", a: "صح", r: "التعليل: الطلب هو رغبة مدعومة بالقدرة الشرائية." },
+            { q: "س: التبادل لا يحتاج إلى قيمة متبادلة.", a: "خطأ", r: "التعليل: لا يتم التبادل بدون وجود قيمة لكل طرف." },
+            { q: "س: المفهوم التسويقي يركز على الربح قصير المدى.", a: "خطأ", r: "التعليل: يركز على رضا العميل والربح طويل المدى." },
+            { 
+                q: "س: ما الفرق الجوهري بين الحاجة والرغبة والطلب؟", 
+                a: "ج: الحاجة: شعور بالنقص أو الحرمان الأساسي (مثل الجوع). الرغبة: شكل الحاجة حسب الثقافة (مثل الرغبة في بيتزا). الطلب: رغبة مدعومة بقدرة شرائية (شراء البيتزا فعلياً).", 
+                r: "التعليل: العلاقة: الحاجة تتحول إلى رغبة ثم إلى طلب إذا توفر المال." 
+            },
+            { 
+                q: "س: هل التسويق يخلق الحاجة أم يخلق الرغبة؟ وضّح.", 
+                a: "ج: التسويق لا يخلق الحاجة لأنها فطرية، لكنه يؤثر على الرغبات ويوجهها.", 
+                r: "التعليل: مثال: الحاجة = الأكل، الرغبة = ماكدونالدز أو كشري. إذن التسويق يعيد تشكيل الاختيارات وليس خلق الاحتياج." 
+            },
+            { 
+                q: "س: اشرح مفهوم التبادل وشروط نجاحه.", 
+                a: "ج: التبادل هو عملية الحصول على شيء مقابل تقديم شيء آخر ذو قيمة.", 
+                r: "شروطه: 1- وجود طرفين على الأقل، 2- وجود قيمة لكل طرف، 3- حرية الاختيار، 4- القدرة على التواصل والتنفيذ. بدون هذه الشروط يفشل التبادل." 
+            },
+            { 
+                q: "س: لماذا يعتبر المستهلك محور العملية التسويقية؟", 
+                a: "ج: لأن جميع القرارات التسويقية (منتج – سعر – ترويج – توزيع) تبنى على احتياجاته.", 
+                r: "التعليل: تجاهله يؤدي إلى فشل المنتج حتى لو كان جيداً تقنياً." 
+            },
+            { 
+                q: "س: قارن بين المفهوم البيعي والمفهوم التسويقي.", 
+                a: "ج: البيعي: يركز على تصريف المنتج وزيادة المبيعات بأي وسيلة. التسويقي: يركز على فهم العميل وإشباع احتياجاته بشكل أفضل من المنافسين.", 
+                r: "الفرق الجوهري: البيعي يبدأ من المصنع، التسويقي يبدأ من العميل." 
+            },
+            { 
+                q: "س: شركة تبيع موبايلات فلاجشيب غالية، حلل (حاجة – رغبة – طلب).", 
+                a: "ج: الحاجة: التواصل والتكنولوجيا. الرغبة: امتلاك موبايل فخم ببراند معين. الطلب: يظهر فقط عند من يملك القدرة المالية.", 
+                r: "الاستنتاج: ليس كل من يرغب يشتري." 
+            },
+            { 
+                q: "س: هل المياه المعدنية منتج يعتمد على الحاجة أم الرغبة؟", 
+                a: "ج: الأساس حاجة (الشرب)، لكن المنافسة تكون على مستوى الرغبة (نقاء – براند – شكل).", 
+                r: "التعليل: لذلك الشركات تميز نفسها في الرغبات وليس الحاجة." 
+            },
+            { 
+                q: "س: إعلان يجعل الناس تشتري منتج غير ضروري، هل هذا نجاح تسويقي؟", 
+                a: "ج: جزئياً نعم لأنه نجح في التأثير، لكنه قد يكون غير مستدام إذا لم يحقق قيمة حقيقية.", 
+                r: "التعليل: النجاح الحقيقي = رضا العميل واستمرارية الشراء." 
+            },
+            { 
+                q: "س: شركة ركزت على المنتج فقط وفشلت، لماذا؟", 
+                a: "ج: لأنها تجاهلت احتياجات العميل واعتمدت على منطق 'المنتج الجيد سيبيع نفسه'.", 
+                r: "التعليل: وهو عكس المفهوم التسويقي." 
+            },
+            { 
+                q: "س: ناقش: 'التركيز على العميل فقط قد يضر الشركة'.", 
+                a: "ج: صحيح جزئياً، لأن التركيز المبالغ فيه على العميل قد يؤدي إلى: زيادة التكاليف، تلبية رغبات غير مربحة، وإهمال أهداف الشركة.", 
+                r: "التعليل: لذلك يجب تحقيق توازن بين رضا العميل وربحية الشركة." 
+            }
         ];
 
         const internalEnvData = [
@@ -537,7 +522,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
                 <h3 class="text-2xl font-bold text-sky-800 mb-4">${item.name}</h3>
                 <div class="max-w-2xl text-right">
                     <p class="text-gray-700 leading-relaxed mb-4"><strong>التعريف:</strong> ${item.desc}</p>
-                    <div class="p-4 bg-sky-50 rounded-lg border-r-4 border-sky-400">
+                    <div class="p-4 bg-sky-50 rounded-lg border-r-4 border-sky-400 shadow-inner">
                         <p class="text-sm text-sky-900"><strong>مثال واقعي:</strong> ${item.example}</p>
                     </div>
                 </div>
@@ -548,13 +533,13 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
             const container = document.getElementById('quizContainer');
             quizData.forEach((item, index) => {
                 const quizBox = document.createElement('div');
-                quizBox.className = "bg-white p-6 rounded-xl shadow-sm border border-gray-200";
+                quizBox.className = "bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-emerald-200 transition-all";
                 quizBox.innerHTML = `
                     <h3 class="text-lg font-bold text-gray-800 mb-3">${item.q}</h3>
-                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-xs font-bold hover:bg-sky-200">إظهار الإجابة</button>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-emerald-50 text-emerald-800 px-5 py-2 rounded-lg text-xs font-bold hover:bg-emerald-100 transition-colors">إظهار الإجابة والتعليل</button>
                     <div id="ans${index}" class="quiz-answer">
-                        <p class="text-emerald-700 font-bold">✅ الإجابة: ${item.a}</p>
-                        <p class="text-gray-500 text-xs mt-1">💡 التوضيح: ${item.r}</p>
+                        <p class="text-emerald-700 font-bold text-lg mb-2">${item.a}</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">${item.r}</p>
                     </div>
                 `;
                 container.appendChild(quizBox);
@@ -576,7 +561,7 @@ class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:b
             const answerDiv = document.getElementById(answerId);
             if (answerDiv.classList.contains('show')) {
                 answerDiv.classList.remove('show');
-                btnElement.innerText = "إظهار الإجابة";
+                btnElement.innerText = "إظهار الإجابة والتعليل";
             } else {
                 answerDiv.classList.add('show');
                 btnElement.innerText = "إخفاء الإجابة";
