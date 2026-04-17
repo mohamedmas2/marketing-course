@@ -84,10 +84,16 @@
     "pdf": "assets/pdfs/Islamic/5.pdf"
   },
   {
-    "id": 1,
+    "id": 13,
     "courseId": "marketing",
     "title": "المحاضرة السادسة-حماية المستهلك",
     "file": "marketing/lectures/lecture6.html",
     "pdf": "assets/pdfs/marketing/1.pdf"
+  },
+  {
+    "id": 14,
+    "courseId": "hr",
+    "title": "المحاضرة السادسة-تدريب وتنمية الموارد البشرية",
+    "file": "hr/lectures/lecture2.html"
   }
 ]
