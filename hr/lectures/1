@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الموارد البشرية - المحاضرة الرابعة: تدريب وتنمية الموارد البشرية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+            max-height: 60vh;
+        }
+        .sidebar-dark {
+            background-color: #0f172a;
+            color: white;
+        }
+        .nav-item {
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .nav-item.active {
+            background-color: #1e293b;
+            color: white;
+            border-right: 4px solid #38bdf8;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 500px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <aside class="w-full md:w-72 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-6 border-b border-slate-700">
+            <div class="mb-6 text-center">
+                <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition w-full">
+                    ⬅ الرجوع إلى المحاضرات
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-white mb-1">إدارة الموارد البشرية</h1>
+            <p class="text-sm text-sky-400 font-semibold">المحاضرة 4: التدريب والتنمية</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 transition-colors font-medium">المفهوم والفروق الجوهرية</button></li>
+                <li><button onclick="scrollToSection('importance')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أهمية التدريب ومخاطر التجاهل</button></li>
+                <li><button onclick="scrollToSection('dimensions')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أنواع التدريب وتطبيقاته</button></li>
+                <li><button onclick="scrollToSection('demand')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">أساليب التدريب (تقليدي/حديث)</button></li>
+                <li><button onclick="scrollToSection('supply')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">العملية التدريبية والأخطاء الشائعة</button></li>
+                <li><button onclick="scrollToSection('factors_chart')" class="nav-item w-full text-right px-6 py-3 transition-colors font-medium">فجوة قياس العائد (ROI)</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 transition-colors font-bold text-emerald-400">اختبر نفسك (20 سؤال)</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-slate-700 bg-slate-800">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 bg-slate-900 border border-slate-700 rounded text-white outline-none">
+                <option value="intro">المفهوم والفروق الجوهرية</option>
+                <option value="importance">أهمية التدريب</option>
+                <option value="dimensions">أنواع التدريب</option>
+                <option value="demand">أساليب التدريب</option>
+                <option value="supply">العملية التدريبية</option>
+                <option value="factors_chart">فجوة قياس العائد</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-6 bg-slate-950 border-t border-slate-800 text-xs text-slate-400 hidden md:block">
+            <p class="font-bold text-slate-300">تحليل وتصميم المحتوى</p>
+            <p>منظور تحليلي نقدي لسوق العمل</p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Definition & Difference -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">ما هو التدريب والتنمية؟</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        التدريب ليس مجرد "إعطاء كورسات" للموظفين، بل هو <strong>استثمار استراتيجي</strong> يهدف إلى سد الفجوة بين الأداء الحالي (الواقع) والأداء المستهدف (المطلوب). بينما <strong>التنمية</strong> هي إعداد الموظف لتحديات مستقبلية غير موجودة اليوم.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-xl border-r-4 border-blue-400">
+                        <p class="text-blue-900"><strong>💡 القاعدة الذهبية (الفرق بينهما):</strong> التدريب يركز على <strong>الآن</strong> (كيف تؤدي وظيفتك الحالية بكفاءة أفضل؟)، بينما التنمية تركز على <strong>المستقبل</strong> (كيف نعدك لتصبح مدير فرع بعد 3 سنوات؟).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mix-card transition-all">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>🏢</span> مثال من الحياة الواقعية</h4>
+                    <p class="text-gray-600">في شركة اتصالات: عندما يتدرب موظف خدمة العملاء على نظام (Software) جديد للرد على الشكاوى.. هذا <strong>تدريب (Training)</strong>. لكن عندما تقوم الشركة بإلحاق نفس الموظف ببرنامج "إعداد القادة" لتهيئته لمنصب مشرف فريق في المستقبل.. هذه <strong>تنمية (Development)</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Importance & Risks -->
+        <section id="importance" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">لماذا ندرب؟ وما تكلفة الجهل؟</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-300 transition-all">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">للمنظمة (العائد الاستثماري)</h4>
+                        <p class="text-gray-600 text-sm">التدريب يقلل الأخطاء التشغيلية، يرفع جودة المنتج، ويقلل من الحاجة للإشراف الدقيق. مالياً: هو إنفاق رأسمالي يقلل من المصروفات التشغيلية (OPEX) الناتجة عن الهدر.</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-all">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h4 class="text-xl font-bold text-emerald-800 mb-2">للموظف (القيمة السوقية)</h4>
+                        <p class="text-gray-600 text-sm">يزيد من ثقة الموظف، يقلل من التوتر، ويجعله أكثر قابلية للترقي. الموظف المدرب يمتلك "أماناً وظيفياً" نابعاً من مهاراته، وليس من أقدميته.</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-all">
+                        <div class="text-4xl mb-4">⚠️</div>
+                        <h4 class="text-xl font-bold text-amber-800 mb-2">تكلفة عدم التدريب</h4>
+                        <p class="text-gray-600 text-sm">إذا كنت تعتقد أن التدريب مكلف، فجرب "الجهل". الموظف غير المدرب يضيع المواد الخام، يخسر العملاء، ويزيد من معدل دوران العمالة (Turnover).</p>
+                    </div>
+                    <div class="mix-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-rose-300 transition-all">
+                        <div class="text-4xl mb-4">🛑</div>
+                        <h4 class="text-xl font-bold text-rose-800 mb-2">التقادم الوظيفي</h4>
+                        <p class="text-gray-600 text-sm">الأسواق تتغير بسرعة. عدم التدريب يعني أن شركتك تعمل بأدوات الأمس في سوق اليوم، مما يؤدي حتماً إلى الخروج من المنافسة.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-slate-800 text-white p-6 rounded-2xl">
+                    <p class="text-lg"><strong>💡 مثال واقعي:</strong> مقولة شهيرة لمدير مالي (CFO) لمدير الموارد البشرية: "ماذا لو أنفقنا أموالاً طائلة على تدريب الموظفين ثم استقالوا؟".. فرد عليه: "وماذا لو لم ندربهم، وبقوا معنا في الشركة؟" (هنا تكمن الكارثة الحقيقية).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Types of Training -->
+        <section id="dimensions" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12">أنواع التدريب: لكل مشكلة دواء</h2>
+                <div class="flex flex-wrap justify-center gap-4 mb-8" id="internalButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+                <div id="internalDetail" class="bg-sky-50 rounded-2xl p-8 text-center min-h-[250px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-sky-800 mb-2">انقر على نوع التدريب أعلاه</h3>
+                    <p class="text-gray-600 text-lg">لتفهم متى نستخدم كل نوع وكيف نطبقه بشكل عملي.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Training Methods -->
+        <section id="demand" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center">كيف ندرب؟ (الأساليب)</h2>
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('non-quant')" id="btn-non-quant" class="tab-btn active flex-1 py-4 text-lg font-bold transition-colors">أساليب تقليدية (كلاسيكية)</button>
+                        <button onclick="switchTab('quant')" id="btn-quant" class="tab-btn flex-1 py-4 text-lg font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">أساليب حديثة (تكنولوجية)</button>
+                    </div>
+                    <div class="p-8">
+                        <div id="content-non-quant" class="block">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">المحاضرات والتوجيه المباشر (On-the-job)</h4>
+                            <p class="text-gray-600 mb-4">تعتمد على وجود مدرب يشرح، أو وضع الموظف الجديد بجوار موظف قديم للتعلم منه (الملازمة).<br><strong class="text-rose-600">العيب:</strong> بطيئة، تكلفة التفرغ عالية، وتعتمد بقوة على "مزاج" الموظف القديم ومهارته في الشرح.</p>
+                            <div class="bg-amber-50 p-4 rounded-lg border-r-4 border-amber-400 text-sm">
+                                <strong>💡 مثال واقعي:</strong> نجار يضع متدرباً بجواره ليراقبه وهو يقطع الخشب. طريقة ممتازة لنقل "الصنعة" لكنها لا تصلح لتدريب 1000 شخص في نفس الوقت.
+                            </div>
+                        </div>
+                        <div id="content-quant" class="hidden">
+                            <h4 class="text-xl font-bold text-sky-800 mb-4">المحاكاة (Simulation) والتعليم الإلكتروني</h4>
+                            <p class="text-gray-600 mb-4">استخدام التكنولوجيا والواقع الافتراضي لوضع الموظف في بيئة مشابهة للعمل، أو منصات التعلم المصغر (Micro-learning).<br><strong class="text-emerald-600">الميزة:</strong> قابلة للتوسع السريع، تكلفة حدية شبه صفرية بعد التأسيس، وتسمح بالخطأ دون خسائر حقيقية.</p>
+                            <div class="bg-emerald-50 p-4 rounded-lg border-r-4 border-emerald-400 text-sm">
+                                <strong>💡 مثال واقعي:</strong> شركة طيران لا تدرب الطيارين الجدد على طائرات حقيقية بملايين الدولارات، بل تضعهم في "جهاز محاكاة" (Simulator) يطابق الواقع تماماً.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Training Process & Mistakes -->
+        <section id="supply" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center">العملية التدريبية والأخطاء القاتلة</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>🔄</span> خطوات لا يمكن تخطيها</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">1. تحديد الاحتياجات (TNA)</h4>
+                                <p class="text-gray-600 mt-1 text-sm"><strong>الأهم على الإطلاق.</strong> وصف الدواء بدون تشخيص هو جريمة. يجب تحديد: من يحتاج التدريب؟ وما هو النقص في مهارته بالضبط؟</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-600 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">2. التصميم والتنفيذ</h4>
+                                <p class="text-gray-600 mt-1 text-sm">اختيار المادة العلمية، المدرب، المكان، والأسلوب المناسب (محاضرة، ورشة عمل، أونلاين).</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-bold text-gray-800">3. التقييم المستمر</h4>
+                                <p class="text-gray-600 mt-1 text-sm">قياس هل تغير سلوك الموظف في العمل؟ وهل زادت أرباح الشركة بعد التدريب؟</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-2xl font-bold text-rose-600 mb-6 flex items-center gap-2"><span>❌</span> أخطاء شائعة (تفكير نقدي)</h3>
+                        <div class="p-4 bg-rose-50 rounded-lg border-2 border-rose-200 space-y-3">
+                            <p class="text-gray-800 leading-relaxed text-sm">
+                                <strong>1. التدريب كـ "عطلة":</strong> إرسال الموظفين لتدريب في فنادق 5 نجوم كنوع من المكافأة، دون الاهتمام بالمحتوى. (إهدار للميزانية).
+                            </p>
+                            <p class="text-gray-800 leading-relaxed text-sm">
+                                <strong>2. الكورسات الجاهزة (Off-the-shelf):</strong> شراء برامج تدريبية عامة لا تحل المشكلة الدقيقة للشركة.
+                            </p>
+                            <div class="mt-3 pt-3 border-t border-rose-200">
+                                <strong>💡 تحليل واقعي:</strong> شركة تقنية دفعت 100 ألف دولار لتدريب مديريها على "القيادة العامة"، بينما كانت مشكلتهم الحقيقية هي "إدارة المشاريع الرشيقة (Agile)". النتيجة؟ صفر عائد على الاستثمار لأنهم تخطوا مرحلة "تحديد الاحتياجات الدقيقة".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Chart (ROI Evaluation) -->
+        <section id="factors_chart" class="min-h-screen p-8 md:p-12 bg-white flex flex-col justify-center border-b border-gray-200">
+            <div class="max-w-5xl mx-auto w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">فجوة التقييم: هل ينجح التدريب حقاً؟</h2>
+                <p class="text-lg text-gray-600 mb-10">يوضح الرسم (نموذج كيركباتريك) كيف أن الشركات تقيس "سعادة" الموظفين بالتدريب، لكنها تفشل في قياس "العائد المالي" الحقيقي منه.</p>
+                <div class="chart-container">
+                    <canvas id="supplyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>🧠</span> اختبر نفسك (20 سؤال)</h2>
+                    <p class="text-lg text-gray-600">أسئلة تحليلية لقياس فهمك لمنطق التدريب وأثره الحقيقي.</p>
+                </div>
+
+                <div id="quizContainer" class="space-y-4">
+                    <!-- Questions will be populated here via script for cleaner HTML -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Data for interactive dimensions (Types of Training)
+        const dimensionsData = [
+            { id: 1, name: 'التدريب التوجيهي (Orientation)', icon: '👋', desc: 'يُقدم للموظفين الجدد. هدفه تعريفهم بسياسات الشركة، ثقافتها، والهيكل التنظيمي لكسر حاجز الخوف وتسريع اندماجهم.', example: 'جولة تعريفية لموظف جديد في مقر الشركة مع تسليمه كُتيب يوضح حقوقه وواجباته وقيم الشركة.' },
+            { id: 2, name: 'التدريب الفني/المهني', icon: '⚙️', desc: 'يركز على إكساب الموظف المهارات الصلبة (Hard Skills) اللازمة لأداء عمله اليومي بكفاءة.', example: 'تدريب محاسب على استخدام برنامج (ERP) جديد، أو تدريب عامل في مصنع على تشغيل آلة حديثة.' },
+            { id: 3, name: 'التدريب السلوكي/الإداري', icon: '🤝', desc: 'يركز على المهارات الناعمة (Soft Skills) مثل التواصل، القيادة، حل النزاعات، وإدارة الوقت.', example: 'تدريب مديري الأقسام على كيفية "إعطاء التغذية الراجعة (Feedback)" للموظفين دون تدمير معنوياتهم.' }
+        ];
+
+        function initDimensionsSection() {
+            const container = document.getElementById('internalButtons');
+            dimensionsData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-6 py-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-full font-bold hover:bg-slate-700 hover:text-white transition-all shadow-sm outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showDimensionDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showDimensionDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
+            detailContainer.style.opacity = '0';
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <h3 class="text-3xl font-bold text-sky-800 mb-3">${item.name}</h3>
+                    <p class="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed"><strong>التعريف:</strong> ${item.desc}</p>
+                    <div class="mt-6 bg-white p-5 rounded-xl border-r-4 border-sky-600 shadow-sm text-right w-full max-w-3xl mx-auto">
+                        <p class="text-gray-700 text-lg"><strong>💡 مثال:</strong> ${item.example}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-non-quant').classList.add('hidden');
+            document.getElementById('content-quant').classList.add('hidden');
+            document.getElementById('btn-non-quant').classList.replace('active', 'bg-gray-100');
+            document.getElementById('btn-quant').classList.replace('active', 'bg-gray-100');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.replace('bg-gray-100', 'active');
+            
+            const allTabs = document.querySelectorAll('.tab-btn');
+            allTabs.forEach(t => { t.style.backgroundColor = ''; t.style.color = ''; });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.style.backgroundColor = '#0369A1';
+            activeBtn.style.color = 'white';
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) item.classList.add('active');
+                });
+                if(current) mobileNav.value = current;
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('supplyChart').getContext('2d');
+            Chart.defaults.font.family = "'Tajawal', sans-serif";
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['المستوى 1: رد الفعل (سعادة المتدرب)', 'المستوى 2: التعلم (نجاح في الاختبار)', 'المستوى 3: السلوك (تطبيق في العمل)', 'المستوى 4: النتائج (عائد مالي للشركة)'],
+                    datasets: [{
+                        label: 'نسبة الشركات التي تطبق هذا التقييم (%)',
+                        data: [90, 70, 30, 10],
+                        backgroundColor: [
+                            '#38bdf8', '#0ea5e9', '#0284c7', '#075985'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+        }
+
+        // Quiz Generator (Analytical & Realistic HR Questions)
+        const quizQuestions = [
+            { q: "ما هو الفارق الجوهري بين التدريب والتنمية؟", a: "التدريب يركز على الوظيفة الحالية وسد الفجوات الحالية، بينما التنمية تركز على المستقبل وتأهيل الموظف لمناصب أعلى." },
+            { q: "لماذا يُعتبر التدريب إنفاقاً رأسمالياً (استثماراً) وليس مصروفاً مهداراً؟", a: "لأنه يقلل الأخطاء التشغيلية، يرفع الكفاءة، ويوفر تكاليف الهدر وإعادة العمل في المستقبل." },
+            { q: "شركة أرسلت مديريها لتدريب 'تواصل' فاخر، لكن المبيعات لم تتحسن. ما الخطأ المحتمل؟", a: "تجاهل مرحلة 'تحديد الاحتياجات'، فربما كانت المشكلة في تسعير المنتج وليس في مهارات تواصل المديرين." },
+            { q: "ما المقصود بـ 'تكلفة عدم التدريب'؟", a: "هي الخسائر الخفية الناتجة عن جهل الموظف، مثل خسارة العملاء، إهدار المواد الخام، وحوادث العمل." },
+            { q: "متى نستخدم أسلوب 'المحاكاة (Simulation)' بشكل أساسي؟", a: "عندما يكون التدريب على الواقع عالي الخطورة أو مكلف جداً (مثل الطيران، أو إجراء جراحات طبية)." },
+            { q: "ما هو الهدف من 'التدريب التوجيهي (Orientation)'؟", a: "تسريع انسجام الموظف الجديد مع ثقافة الشركة، وتقليل توتره، وتعريفه بالقوانين الداخلية." },
+            { q: "موظف مبيعات يتدرب على نظام الدفع الإلكتروني الجديد. ما نوع هذا التدريب؟", a: "تدريب فني / مهني (Hard Skills)." },
+            { q: "لماذا تفشل الكثير من 'الكورسات الجاهزة' (Off-the-shelf)؟", a: "لأنها تكون عامة ولا تعالج المشاكل أو التحديات الدقيقة الخاصة بالشركة المعنية." },
+            { q: "ما هي أهم وأول خطوة في العملية التدريبية؟", a: "تحديد الاحتياجات التدريبية (TNA) لتشخيص الفجوة الحقيقية قبل صرف الميزانية." },
+            { q: "لماذا يُفضل التدريب الإلكتروني في الشركات متعددة الجنسيات؟", a: "لأنه قابل للتوسع، تكلفته الحدية منخفضة، ويضمن توحيد الرسالة التدريبية في كل الفروع." },
+            { q: "حسب التفكير النقدي، ما هو الخطر الأكبر لعدم تدريب الموظفين في عصر التكنولوجيا؟", a: "التقادم الوظيفي، حيث تعمل الشركة بأدوات الأمس في سوق اليوم فتفقد تنافسيتها." },
+            { q: "ماذا يقيس 'المستوى الرابع' في تقييم التدريب (نموذج كيركباتريك)؟", a: "يقيس 'النتائج'، أي العائد المالي أو الأثر المباشر للتدريب على أرباح وأداء المنظمة ككل." },
+            { q: "لماذا معظم الشركات تتوقف عند تقييم 'رد فعل' المتدرب (المستوى الأول)؟", a: "لأنه الأسهل (مجرد استبيان رأي حول جودة البوفيه والمدرب)، بينما قياس العائد المالي يحتاج لمعادلات معقدة ووقت." },
+            { q: "مدير يرفض تدريب الموظفين خوفاً من استقالتهم وانتقالهم للمنافس. ما الرد التحليلي عليه؟", a: "الخطر الأكبر هو ألا تدربهم ويبقوا في الشركة، فيدمروا العمل بكفاءتهم المنخفضة." },
+            { q: "تدريب على 'إدارة الغضب وحل النزاعات' يندرج تحت أي نوع؟", a: "التدريب السلوكي / الإداري (Soft Skills)." },
+            { q: "ما هو عيب طريقة 'التدريب أثناء العمل' عن طريق الملازمة؟", a: "تعتمد بشكل كبير على قدرة الموظف القديم على الشرح، وقد تنقل عادات العمل الخاطئة للمتدرب الجديد." },
+            { q: "كيف يزيد التدريب من 'الأمان الوظيفي' للموظف؟", a: "لأنه يجعله يمتلك مهارات حديثة ومطلوبة في السوق، فلا يسهل الاستغناء عنه." },
+            { q: "ماذا تعني 'الفجوة' في سياق التدريب؟", a: "هي المسافة بين ما يعرفه الموظف حالياً، وما يجب أن يعرفه لأداء وظيفته بشكل مثالي." },
+            { q: "إذا اكتشفنا أن سبب تأخر الموظفين هو الزحام المروري، فهل نحل المشكلة بالتدريب؟", a: "لا، التدريب يحل مشكلات 'نقص المعرفة أو المهارة'، أما المشاكل البيئية والإدارية فتحتاج لقرارات إدارية." },
+            { q: "هل يقتصر التدريب على الموظفين ذوي الأداء الضعيف؟", a: "لا، التدريب يشمل المتميزين أيضاً لاطلاعهم على التكنولوجيا الجديدة وتطويرهم لمناصب قيادية (تنمية)." }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            quizQuestions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'bg-white p-6 rounded-2xl shadow-sm border border-gray-200';
+                qDiv.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">س${index + 1}: ${item.q}</h3>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-sky-100 text-sky-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة (تفكير تحليلي)</button>
+                    <div id="ans${index}" class="quiz-answer">
+                        <p class="text-emerald-700 font-bold text-lg">✅ الإجابة: ${item.a}</p>
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار الإجابة (تفكير تحليلي)";
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء الإجابة";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initDimensionsSection();
+            initScrollSpy();
+            switchTab('non-quant');
+            initChart();
+            loadQuiz();
+        });
+    </script>
+</body>
+</html>
