@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الموارد البشرية - المبحث الثاني: تخطيط الموارد البشرية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .sidebar-dark {
+            background-color: #0f172a;
+            color: white;
+        }
+        .nav-item {
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .nav-item.active {
+            background-color: #1e293b;
+            color: white;
+            border-right: 4px solid #38bdf8;
+        }
+        .tab-btn.active {
+            background-color: #0369A1;
+            color: white;
+        }
+        .mix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        /* Infographic Specific Styles */
+        .info-node {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+        .connector-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .quiz-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .quiz-answer.show {
+            max-height: 500px;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+    
+<body class="flex flex-col md:flex-row h-screen overflow-hidden text-lg">
+
+       <aside class="w-full md:w-80 sidebar-dark shadow-2xl flex flex-col z-20 md:h-full h-auto flex-shrink-0">
+        <div class="p-8 border-b border-slate-700">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" 
+class="inline-block bg-sky-500 text-white px-6 py-4 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20 text-lg">
+    ⬅ الرجوع
+</a>
+            </div>
+            <h1 class="text-3xl font-bold text-white mb-2">إدارة الموارد البشرية</h1>
+            <p class="text-base text-sky-400 font-semibold">المبحث 2: تخطيط الموارد البشرية</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-8 py-4 transition-colors font-medium text-lg">المفهوم وجوهر التخطيط</button></li>
+                <li><button onclick="scrollToSection('significance')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">أهمية التخطيط (الدرع الواقي)</button></li>
+                <li><button onclick="scrollToSection('objectives')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">أهداف التخطيط (الخارطة المالية)</button></li>
+                <li><button onclick="scrollToSection('importance')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">أبعاد التخطيط وتكلفة العشوائية</button></li>
+                <li><button onclick="scrollToSection('dimensions')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">محددات اختيار أسلوب التنبؤ</button></li>
+                <li><button onclick="scrollToSection('demand')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">الطلب والعرض (أساليب التنبؤ)</button></li>
+                <li><button onclick="scrollToSection('supply')" class="nav-item w-full text-right px-8 py-4 transition-colors font-medium text-lg">عملية التوافق والأخطاء القاتلة</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-8 py-4 transition-colors font-bold text-emerald-400 text-lg">اختبر نفسك (20 سؤال)</button></li>
+            </ul>
+        </nav>
+        <div class="md:hidden p-4 border-b border-slate-700 bg-slate-800">
+            <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-3 text-lg bg-slate-900 border border-slate-700 rounded text-white outline-none">
+                <option value="intro">المفهوم وجوهر التخطيط</option>
+                <option value="significance">أهمية التخطيط</option>
+                <option value="objectives">أهداف التخطيط</option>
+                <option value="importance">أبعاد التخطيط</option>
+                <option value="dimensions">محددات اختيار أسلوب التنبؤ</option>
+                <option value="demand">الطلب والعرض</option>
+                <option value="supply">عملية التوافق</option>
+                <option value="quiz">اختبر نفسك</option>
+            </select>
+        </div>
+        <div class="p-8 bg-slate-950 border-t border-slate-800 text-sm text-slate-400 hidden md:block">
+            <p class="font-bold text-slate-300 text-base mb-1"> دكتورة/ ليلى حسام الدين شكر </p>
+            <p>أستاذ إدارة الأعمال - جامعة الأزهر </p>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth" id="mainContent">
+        
+        <!-- Section 1: Definition & Difference -->
+        <section id="intro" class="min-h-screen p-8 md:p-16 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-screen-xl mx-auto w-full">
+                <div class="bg-white rounded-3xl p-10 shadow-sm border border-sky-100 mb-10 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-3 h-full bg-sky-600"></div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">ما هو تخطيط الموارد البشرية؟</h2>
+                    <p class="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">
+                        تخطيط الموارد البشرية هو <strong>نظام توافق (Matching System)</strong>. هو مجموعة من السياسات والإجراءات لضمان توفير <strong>العدد المناسب</strong>، بالـ <strong>النوعية (الكفاءة) المناسبة</strong>، في <strong>التوقيت الملائم</strong> لأداء الأعمال. باختصار: هو موازنة عرض الأفراد (الداخلي والخارجي) مع الطلب المتوقع للمنظمة عبر فترة زمنية محددة.
+                    </p>
+                    <div class="bg-blue-50 p-6 rounded-2xl border-r-4 border-blue-400">
+                        <p class="text-blue-900 text-xl leading-relaxed"><strong>💡 القاعدة الذهبية للمحلل:</strong> التخطيط ليس مجرد "توقع" أعداد. إنه إدارة مالية. تعيين عدد زائد يعني (إهدار الرواتب وزيادة المصروفات الثابتة)، وتعيين عدد ناقص يعني (خسارة إيرادات وعملاء بسبب العجز التشغيلي).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mix-card transition-all">
+                    <h4 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 flex items-center gap-3"><span>🏢</span> مثال من الحياة الواقعية</h4>
+                    <p class="text-gray-600 text-xl leading-relaxed">مستشفى تتوسع وتفتتح قسم طوارئ جديد بعد 6 أشهر. التخطيط هنا ليس انتظار الافتتاح ثم البحث عن أطباء. التخطيط هو دراسة: كم طبيباً وممرضاً نحتاج؟ (الطلب)، كم ممرضاً موجوداً حالياً يمكن نقله للقسم الجديد؟ (العرض الداخلي)، وما هي التخصصات الدقيقة المطلوبة للتوظيف من الخارج؟ التخطيط يجعل المستشفى جاهزة للعمل من "اليوم الأول" دون تعثر أو دفع أجور مضاعفة (Overtime) لسد العجز المفاجئ.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1.5: Significance of Planning -->
+        <section id="significance" class="min-h-screen p-8 md:p-16 border-b border-gray-200 bg-slate-50 flex flex-col justify-center">
+            <div class="max-w-[1500px] mx-auto w-full">
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-8 text-center leading-tight">أهمية تخطيط الموارد البشرية (الدرع المالي والتشغيلي)</h2>
+                <div class="bg-slate-800 text-white p-8 rounded-3xl mb-12 text-center max-w-6xl mx-auto shadow-lg">
+                    <p class="text-xl md:text-2xl leading-relaxed">تكمن أهمية تخطيط الموارد البشرية في كونه حجر الزاوية الذي يضمن للمنظمة الاستمرار والنجاح. التخطيط المسبق يحمي المنظمة من <strong>"المفاجآت المكلفة"</strong>؛ فبدلاً من البحث العشوائي تحت ضغط الأزمات، يوفر التخطيط رؤية استباقية لسد الفجوات بذكاء مالي وإداري.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Point 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">🔭</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">1. التنبؤ بالاحتياجات المستقبلية</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">رسم السياسات لتقدير أعداد الموظفين والمهارات المطلوبة بناءً على دراسة دقيقة لحالة العرض والطلب.</p>
+                        <div class="bg-sky-50 p-4 rounded-xl text-lg border-r-4 border-sky-400 text-sky-900 leading-relaxed">
+                            <strong>💡 تحليل:</strong> شركة تجزئة تحلل مبيعاتها السابقة لتوقع حجم العمل في "موسم الأعياد"، فتقوم بتعيين عمالة مؤقتة مسبقاً لتجنب خسارة العملاء بسبب الزحام.
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">🔄</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">2. ضمان الاستمرارية</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">التأكد من توافر "عرض دائم" من المتخصصين، مما يسمح للمنظمة بالاستجابة للحاجات المتزايدة دون انقطاع.</p>
+                        <div class="bg-emerald-50 p-4 rounded-xl text-lg border-r-4 border-emerald-400 text-emerald-900 leading-relaxed">
+                            <strong>💡 تحليل:</strong> تجهيز "صف ثانٍ" من المديرين (Succession Planning). إذا استقال مدير فرع فجأة، لن يتوقف العمل ولن تنهار الإيرادات لأن البديل جاهز للعمل فوراً.
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">⚙️</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">3. الاستخدام الأمثل للموارد</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">تحقيق أقصى استفادة ممكنة من الكوادر الحالية داخل المنظمة وتنمية قدراتهم بدلاً من الهدر المالي.</p>
+                        <div class="bg-amber-50 p-4 rounded-xl text-lg border-r-4 border-amber-400 text-amber-900 leading-relaxed">
+                            <strong>💡 تحليل:</strong> بدلاً من تعيين موظف جديد لمهام المخازن، يتم تدريب "كاشير" حالي للقيام بمهام الجرد أثناء ساعات الركود، مما يوفر رواتب إضافية.
+                        </div>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-rose-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">4. تجنب المشكلات الإدارية</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">توقع المشكلات والأزمات قبل وقوعها، مما يسهل عملية تصحيح المسار وتفادي القرارات الانفعالية.</p>
+                        <div class="bg-rose-50 p-4 rounded-xl text-lg border-r-4 border-rose-400 text-rose-900 leading-relaxed">
+                            <strong>💡 تحليل:</strong> معرفة أن 10 من كبار المهندسين سيتقاعدون العام القادم يسمح ببدء التوظيف ونقل الخبرات الآن، لتجنب كارثة نقص الكفاءات الفجائية.
+                        </div>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-indigo-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">🔗</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">5. دعم أنشطة الموارد الأخرى</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">التخطيط هو حجر الأساس الذي يحدد متى نحتاج للاستقطاب، ومن يحتاج للبرامج التدريبية.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl text-lg border-r-4 border-indigo-400 text-indigo-900 leading-relaxed">
+                            <strong>💡 تحليل:</strong> لا يمكن للمنظمة وضع ميزانية "تدريب" فعالة ما لم تحدد خطة الموارد أولاً: ما هي الفجوة المهارية الموجودة ومن بالضبط يحتاج لهذا التدريب.
+                        </div>
+                    </div>
+
+                    <!-- Point 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-teal-400 transition-all mix-card">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">6. الربط بين الميزانية والقوى العاملة</h4>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">إعداد موازنات دقيقة تكفل تغطية تكاليف الأجور والمكافآت، مما يضمن عدم حدوث عجز مالي (Liquidity Crisis).</p>
+                        <div class="bg-teal-50 p-4 rounded-xl text-lg border-r-4 border-teal-400 text-teal-900 leading-relaxed">
+                            <strong>💡 تحليل مالي صارم:</strong> خطة التوظيف تترجم فوراً لتدفقات نقدية خارجة (رواتب). التخطيط يضمن أن تعيينات الربع الثالث مغطاة فعلياً بإيرادات الشركة، ولا تؤدي للإفلاس.
+                        </div>
+                    </div>
+
+                    <!-- Point 7 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-400 transition-all mix-card lg:col-span-3 max-w-4xl mx-auto w-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="text-4xl">⭐</div>
+                            <h4 class="text-2xl font-bold text-gray-800">7. تحسين الأداء والرضا الوظيفي</h4>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-5 leading-relaxed">من خلال وضع الشخص المناسب في العمل المناسب، مما يساهم في استغلال القدرات لتحقيق أهداف الإنتاج وإشباع دوافع الموظف.</p>
+                        <div class="bg-purple-50 p-5 rounded-xl text-lg border-r-4 border-purple-400 text-purple-900 leading-relaxed">
+                            <strong>💡 تحليل تشغيلي:</strong> وضع الموظف ذو العقلية التحليلية في قسم "المراجعة"، والموظف ذو الذكاء الاجتماعي في "المبيعات". هذا التوافق يرفع الإنتاجية ويقلل من معدلات دوران العمالة (الاستقالات) المكلفة جداً للمنظمة.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1.7: Objectives of Planning (8 Points + Infographic) -->
+        <section id="objectives" class="min-h-screen p-8 md:p-16 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-[1500px] mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-6 leading-tight">أهداف تخطيط الموارد البشرية (موازنة الأداء والتكاليف)</h2>
+                    <p class="text-xl md:text-2xl text-gray-600 max-w-5xl mx-auto mb-12 leading-relaxed">يعتبر تخطيط الموارد البشرية <strong>"الموجّه"</strong> لبقية أنشطة الإدارة. فلا يمكن التوظيف أو التدريب أو صرف الأجور بشكل فعّال ومربح دون خطة واضحة. الأهداف التالية ليست مجرد تنظير، بل هي إجراءات لحماية التدفقات النقدية والعمليات التشغيلية:</p>
+                </div>
+
+                <!-- INFOGRAPHIC: Visual Summary -->
+                <div class="mb-20 bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden border-4 border-slate-800">
+                    <!-- Decorational Blurs -->
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-sky-500 rounded-full mix-blend-overlay filter blur-[100px] opacity-40"></div>
+                    <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500 rounded-full mix-blend-overlay filter blur-[100px] opacity-40"></div>
+                    
+                    <div class="text-center mb-10 relative z-10">
+                        <h3 class="text-3xl font-black text-white tracking-wide">مخطط معلوماتي <span class="text-sky-400">(Infographic)</span></h3>
+                        <p class="text-slate-300 text-lg mt-3">خريطة الترابط بين أهداف التخطيط وأثرها على المنظمة</p>
+                    </div>
+
+                    <div class="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+                        <!-- Connector Line for Desktop -->
+                        <div class="connector-line hidden lg:block"></div>
+                        
+                        <!-- Node 1 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-3xl mb-4 border border-blue-500/50">🎯</div>
+                            <h4 class="text-white font-bold text-lg mb-2">استيفاء الاحتياجات</h4>
+                            <p class="text-base text-slate-300">توفير الأعداد المطلوبة</p>
+                        </div>
+                        <!-- Node 2 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mb-4 border border-emerald-500/50">⬆️</div>
+                            <h4 class="text-white font-bold text-lg mb-2">ملء الشواغر والترقية</h4>
+                            <p class="text-base text-slate-300">التنبؤ بالتقاعد والاستقالات</p>
+                        </div>
+                        <!-- Node 3 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-3xl mb-4 border border-amber-500/50">💡</div>
+                            <h4 class="text-white font-bold text-lg mb-2">تصميم التدريب</h4>
+                            <p class="text-base text-slate-300">تحديد الفجوات المهارية</p>
+                        </div>
+                        <!-- Node 4 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-3xl mb-4 border border-rose-500/50">💰</div>
+                            <h4 class="text-white font-bold text-lg mb-2">تقدير التكاليف</h4>
+                            <p class="text-base text-slate-300">حماية الموازنات المالية</p>
+                        </div>
+                        <!-- Node 5 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-3xl mb-4 border border-purple-500/50">🔎</div>
+                            <h4 class="text-white font-bold text-lg mb-2">تحسين الاستقطاب</h4>
+                            <p class="text-base text-slate-300">جذب الكفاءات الدقيقة</p>
+                        </div>
+                        <!-- Node 6 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-3xl mb-4 border border-teal-500/50">⚙️</div>
+                            <h4 class="text-white font-bold text-lg mb-2">الاستخدام الأمثل</h4>
+                            <p class="text-base text-slate-300">تعظيم العائد من الكوادر</p>
+                        </div>
+                        <!-- Node 7 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-3xl mb-4 border border-orange-500/50">🛡️</div>
+                            <h4 class="text-white font-bold text-lg mb-2">تجنب الأزمات</h4>
+                            <p class="text-base text-slate-300">إدارة المخاطر الاستباقية</p>
+                        </div>
+                        <!-- Node 8 -->
+                        <div class="info-node bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-3xl p-6 text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mb-4 border border-indigo-500/50">🤝</div>
+                            <h4 class="text-white font-bold text-lg mb-2">التوفيق والمواءمة</h4>
+                            <p class="text-base text-slate-300">مصلحة الموظف والمنظمة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed 8 Objectives with Financial/Critical Examples -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Point 1 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-blue-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">1. استيفاء الاحتياجات من الأفراد</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">العمل على توفير الأعداد المطلوبة من الموظفين في الوقت المناسب والمكان المناسب.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-blue-100 shadow-sm text-blue-900 leading-relaxed">
+                            <strong>💡 منظور مدقق مالي:</strong> الكرسي الشاغر في خط الإنتاج أو قسم المبيعات ليس مجرد "نقص عمالة"، بل هو إيراد ضائع (Lost Revenue) مباشر. غياب التخطيط يعني أنك تدفع الإيجار والكهرباء (Fixed Costs) بينما آلاتك معطلة بسبب نقص المشغلين.
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">2. الإعداد لملء الشواغر والترقيات</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">التنبؤ بالوظائف الشاغرة (تقاعد، استقالات) ورسم مسارات الترقية وحركة النقل الداخلي.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-emerald-100 shadow-sm text-emerald-900 leading-relaxed">
+                            <strong>💡 تحليل تشغيلي:</strong> تكلفة التوظيف الطارئ من الخارج تعادل 150% من الراتب المعتاد للوظيفة بسبب العجلة. إعداد بديل داخلي جاهز للترقية يحمي هوامش الربح ويضمن عدم توقف دورة العمل ليوم واحد.
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-amber-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">3. تصميم برامج التدريب والتهيئة</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">تحديد الاحتياجات التدريبية اللازمة لإعداد الأفراد وتأهيلهم لتولي مهامهم بكفاءة.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-amber-100 shadow-sm text-amber-900 leading-relaxed">
+                            <strong>💡 تقييم استثماري (ROI):</strong> التدريب العشوائي هو مصروف مهدر (Sunk Cost). التخطيط الدقيق يحدد الفجوة المهارية، ليتحول التدريب من "مجرد كورس" إلى إنفاق رأسمالي يقلل الأخطاء التشغيلية ويزيد المبيعات.
+                        </div>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-rose-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">4. تقدير التكاليف المالية</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">حساب التكاليف المتوقعة وإعداد الموازنات التقديرية للرواتب والمكافآت والحوافز.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-rose-100 shadow-sm text-rose-900 leading-relaxed">
+                            <strong>💡 تحذير مالي:</strong> الأجور تمثل أضخم بند في المصروفات التشغيلية (OPEX). التعيين العشوائي بلا غطاء مالي مدروس في الموازنة هو أقصر طريق لإدخال الشركة في أزمة سيولة (Liquidity Crisis).
+                        </div>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-purple-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">5. تحسين عمليات الاستقطاب والاختيار</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">يوفر التخطيط الأساس المتين للبدء في أعمال البحث عن الكفاءات واختيار الأنسب وتعيينهم.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-purple-100 shadow-sm text-purple-900 leading-relaxed">
+                            <strong>💡 نقد إداري:</strong> لا يمكنك كتابة "إعلان توظيف" إن لم تعرف بدقة ماذا تريد. الاستقطاب دون خطة يجلب موظفين غير مناسبين، وتكلفة "التعيين الخاطئ" تعادل دفع راتب 6 أشهر بلا إنتاجية.
+                        </div>
+                    </div>
+
+                    <!-- Point 6 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-teal-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">6. الاستخدام الأمثل للموارد المتاحة</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">تحقيق أقصى استفادة من القوى العاملة الموجودة حالياً في المنظمة وتنمية قدراتهم.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-teal-100 shadow-sm text-teal-900 leading-relaxed">
+                            <strong>💡 كفاءة تشغيلية:</strong> بدلاً من تعيينات جديدة، نقل موظف من قسم يعاني من "بطالة مقنعة" إلى قسم يواجه ضغطاً يرفع إنتاجية الشركة لـ 100% بتكلفة "صفر" إضافية على بند الرواتب.
+                        </div>
+                    </div>
+
+                    <!-- Point 7 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-orange-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">7. تجنب الأزمات الإدارية</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">يساعد التخطيط في توقع المشكلات قبل وقوعها ومعالجتها في الوقت المناسب.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-orange-100 shadow-sm text-orange-900 leading-relaxed">
+                            <strong>💡 إدارة المخاطر:</strong> اكتشاف أن 5 مبرمجين أساسيين سيتقاعدون العام القادم يسمح ببدء نقل معرفتهم (Knowledge Transfer) اليوم. غياب هذا التخطيط قد يوقف أنظمة الشركة بالكامل فجأة.
+                        </div>
+                    </div>
+
+                    <!-- Point 8 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 mix-card relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-indigo-500"></div>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-3">8. التوفيق بين مصلحة المنظمة والموظف</h4>
+                        <p class="text-gray-600 text-lg mb-4 leading-relaxed">وضع الشخص المناسب بالمكان المناسب لتحقيق الأهداف الإنتاجية وإشباع طموحات الأفراد.</p>
+                        <div class="bg-white p-5 rounded-xl text-lg border border-indigo-100 shadow-sm text-indigo-900 leading-relaxed">
+                            <strong>💡 تحليل الاحتفاظ:</strong> تجاهل مسار الموظف الطموح وإبقاءه في وظيفة روتينية يدفعه للاستقالة. التخطيط يجعلك تستثمر في شغفه لصالح مشاريعك الجديدة، مما يخفض معدل الدوران (Turnover) المكلف جداً.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Importance & Risks -->
+        <section id="importance" class="min-h-screen p-8 md:p-16 border-b border-gray-200 bg-slate-50 flex flex-col justify-center">
+            <div class="max-w-[1500px] mx-auto w-full">
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-10 text-center leading-tight">أبعاد التخطيط الثلاثة وتكلفة العشوائية</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-blue-300 transition-all">
+                        <div class="text-5xl mb-5">🔢</div>
+                        <h4 class="text-2xl font-bold text-blue-800 mb-3">العدد المناسب (الكم)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed">منع التكدس الوظيفي (البطالة المقنعة) الذي يستنزف التدفقات النقدية، ومنع العجز الوظيفي الذي يؤدي إلى احتراق الموظفين الحاليين (Burnout) وتأخر تسليم المشاريع.</p>
+                    </div>
+                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-all">
+                        <div class="text-5xl mb-5">🎯</div>
+                        <h4 class="text-2xl font-bold text-emerald-800 mb-3">النوعية المناسبة (الكيف)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed">توظيف 10 عمال غير مهرة لا يعوض غياب مهندس خبير واحد. التخطيط يحدد بدقة المهارات، الخبرات، والقدرات التي تفتقدها المنظمة لتحقيق أهدافها الاستراتيجية.</p>
+                    </div>
+                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-amber-300 transition-all">
+                        <div class="text-5xl mb-5">⏳</div>
+                        <h4 class="text-2xl font-bold text-amber-800 mb-3">التوقيت الملائم (الزمن)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed">توظيف مندوبي مبيعات قبل توفر المنتج في المخازن هو إهدار. توظيفهم بعد إطلاق المنتج بشهر هو ضياع لحصة سوقية. التوقيت هو جوهر الكفاءة المالية للتوظيف.</p>
+                    </div>
+                    <div class="mix-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:border-rose-300 transition-all">
+                        <div class="text-5xl mb-5">🛑</div>
+                        <h4 class="text-2xl font-bold text-rose-800 mb-3">تكلفة العشوائية (غياب التخطيط)</h4>
+                        <p class="text-gray-600 text-lg leading-relaxed">الاعتماد على سياسة "إطفاء الحرائق" (التوظيف فقط عندما يستقيل شخص). يؤدي ذلك إلى تعيينات متسرعة، رواتب مبالغ فيها لإنقاذ الموقف، وانخفاض حاد في جودة الأداء.</p>
+                    </div>
+                </div>
+
+                <div class="mt-10 bg-slate-800 text-white p-8 rounded-3xl">
+                    <p class="text-xl md:text-2xl leading-relaxed"><strong>💡 رؤية تحليلية:</strong> التخطيط الكلي للمنظمة (مثل قرار زيادة الإنتاج بـ 20%) لا قيمة له ما لم يترجم إلى تخطيط الموارد البشرية (كم عاملاً وتقنياً نحتاج لتشغيل الخطوط الإضافية؟). التخطيط الاستراتيجي وتخطيط العمالة وجهان لعملة واحدة.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Variables of Forecasting -->
+        <section id="dimensions" class="min-h-screen p-8 md:p-16 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-[1500px] mx-auto w-full text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-14 leading-tight">محددات اختيار أسلوب التنبؤ</h2>
+                <div class="flex flex-wrap justify-center gap-5 mb-10" id="internalButtons">
+                    <!-- Buttons generated by JS -->
+                </div>
+                <div id="internalDetail" class="bg-sky-50 rounded-[2.5rem] p-12 text-center min-h-[300px] flex flex-col justify-center items-center transition-all duration-300 border border-sky-100">
+                    <div class="text-6xl mb-6">📊</div>
+                    <h3 class="text-3xl font-bold text-sky-800 mb-4">انقر على المحدد أعلاه</h3>
+                    <p class="text-gray-600 text-xl md:text-2xl">لتفهم كيف تؤثر هذه العوامل على قرار اختيار الأسلوب الرياضي أو الشخصي في التنبؤ.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Forecasting Methods (Demand vs Supply) -->
+        <section id="demand" class="min-h-screen p-8 md:p-16 border-b border-gray-200 flex flex-col justify-center bg-slate-50">
+            <div class="max-w-[1500px] mx-auto w-full">
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-10 text-center leading-tight">تقدير الاحتياجات: الطلب والعرض</h2>
+                
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="flex border-b border-gray-200">
+                        <button onclick="switchTab('non-quant')" id="btn-non-quant" class="tab-btn active flex-1 py-6 text-xl md:text-2xl font-bold transition-colors">تنبؤ "الطلب" (احتياجاتنا المستقبلية)</button>
+                        <button onclick="switchTab('quant')" id="btn-quant" class="tab-btn flex-1 py-6 text-xl md:text-2xl font-bold bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200">تنبؤ "العرض" (المتاح لدينا حالياً)</button>
+                    </div>
+                    <div class="p-10">
+                        <div id="content-non-quant" class="block">
+                            <h4 class="text-2xl font-bold text-sky-800 mb-5">التنبؤ بالطلب (Demand Forecasting)</h4>
+                            <p class="text-gray-600 text-xl mb-6 leading-relaxed">تحديد كم ونوع العمالة التي ستحتاجها المنظمة. تتراوح الأساليب بين التخمين المبسط (الحكم الشخصي للخبراء والمديرين) إلى النماذج الإحصائية والرياضية المعقدة عبر الحاسب الآلي.</p>
+                            <div class="bg-amber-50 p-6 rounded-2xl border-r-4 border-amber-400 text-lg leading-relaxed">
+                                <strong>💡 قاعدة ذهبية:</strong> "أفضل خطة هي مزيج من الأسلوب الكمي والحكم الشخصي". النماذج الرياضية لا تتوقع الأزمات المفاجئة، والتقدير الشخصي وحده عرضة للانحياز والعاطفة. يجب دمج لغة الأرقام مع بصيرة الإدارة.
+                            </div>
+                        </div>
+                        <div id="content-quant" class="hidden">
+                            <h4 class="text-2xl font-bold text-sky-800 mb-5">التنبؤ بالعرض (Supply Forecasting)</h4>
+                            <p class="text-gray-600 text-xl mb-6 leading-relaxed">يتم دراسة "العرض الداخلي" عبر تحليل الموظفين الحاليين. كم منهم سيترقى؟ كم سيستقيل؟ كم سيصل لسن التقاعد؟ ويتأثر هذا العرض بشدة بسياسات الشركة الداخلية (التدريب، النقل، الأجور، الحوافز).</p>
+                            <div class="bg-emerald-50 p-6 rounded-2xl border-r-4 border-emerald-400 text-lg leading-relaxed">
+                                <strong>💡 تحليل نقدي:</strong> إذا كانت أجورك ضعيفة، فإن معدل دوران العمالة (الاستقالات) سيكون مرتفعاً. هذا يعني أن "العرض الداخلي" الخاص بك سينهار سريعاً، وستكون دائماً في حاجة مكلفة لجلب عمالة من "العرض الخارجي".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Planning Match & Mistakes -->
+        <section id="supply" class="min-h-screen p-8 md:p-16 border-b border-gray-200 flex flex-col justify-center bg-white">
+            <div class="max-w-[1500px] mx-auto w-full">
+                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-14 text-center leading-tight">مراحل التخطيط والأخطاء القاتلة</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-3"><span>🔄</span> آلية عمل الموارد البشرية</h3>
+                        <div class="relative border-r-4 border-sky-200 pr-8 space-y-10">
+                            <div class="relative">
+                                <div class="absolute -right-[42px] bg-sky-500 w-8 h-8 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-2xl font-bold text-gray-800">1. تحديد الطلب (ماذا نحتاج؟)</h4>
+                                <p class="text-gray-600 mt-2 text-lg leading-relaxed">دراسة أهداف الشركة وخطط الإنتاج المستقبلية لتحديد حجم ونوع المهارات المطلوبة في السوق.</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[42px] bg-sky-600 w-8 h-8 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-2xl font-bold text-gray-800">2. تقييم العرض (ماذا نملك؟)</h4>
+                                <p class="text-gray-600 mt-2 text-lg leading-relaxed">فحص المخزون البشري الحالي للشركة، وتوقع التغيرات فيه (ترقيات، نقل، إنهاء خدمة، تقاعد).</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -right-[42px] bg-sky-700 w-8 h-8 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-2xl font-bold text-gray-800">3. التوافق / المقابلة (Matching)</h4>
+                                <p class="text-gray-600 mt-2 text-lg leading-relaxed">مقارنة (الطلب) مع (العرض). هل لدينا فائض يتطلب تسريح أو إعادة تدريب؟ أم لدينا عجز يتطلب تعيينات جديدة؟</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-200">
+                        <h3 class="text-3xl font-bold text-rose-600 mb-8 flex items-center gap-3"><span>❌</span> أخطاء تخطيطية كارثية (تفكير نقدي)</h3>
+                        <div class="p-6 bg-rose-50 rounded-2xl border-2 border-rose-200 space-y-5">
+                            <p class="text-gray-800 leading-relaxed text-lg">
+                                <strong>1. الانفصال عن الإدارة العليا:</strong> أن تخطط الموارد البشرية للتوظيف في قطاع التجزئة، بينما خطة المنظمة الإستراتيجية هي التحول 100% للتجارة الإلكترونية!
+                            </p>
+                            <p class="text-gray-800 leading-relaxed text-lg">
+                                <strong>2. الثقة العمياء في الحواسيب:</strong> الاعتماد المطلق على نماذج التنبؤ الرياضية وتجاهل العوامل النوعية (مثل تغير التشريعات العمالية أو دخول منافس شرس للسوق).
+                            </p>
+                            <div class="mt-5 pt-5 border-t border-rose-200">
+                                <p class="text-lg leading-relaxed"><strong>💡 تحليل مالي:</strong> التخطيط الخاطئ يظهر فوراً في (قائمة الدخل). زيادة بند (الأجور والمرتبات) دون زيادة مقابلة في (الإيرادات التشغيلية) يعني أنك قمت بتعيين أفراد لا يشكلون قيمة مضافة، بسبب خطأ في تنبؤ "الطلب".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-16 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-screen-xl mx-auto w-full">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-emerald-600 mb-6 flex items-center justify-center gap-4"><span>🧠</span> اختبر نفسك (20 سؤال تحليلي)</h2>
+                    <p class="text-xl md:text-2xl text-gray-600">أسئلة تحليلية ناقدة لقياس فهمك لجوهر تخطيط الموارد البشرية بعيداً عن الحفظ الأعمى.</p>
+                </div>
+
+                <div id="quizContainer" class="space-y-6">
+                    <!-- Questions will be populated here via script for cleaner HTML -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Data for interactive dimensions (Forecasting Determinants)
+        const dimensionsData = [
+            { id: 1, name: 'الهدف من التخطيط', icon: '🎯', desc: 'تحديد الغاية الأساسية. هل نخطط لتوسعة الفروع؟ أم لتقليص النفقات ودمج الإدارات؟ الهدف يحدد مدى دقة التنبؤ المطلوب ونوع العمالة المستهدفة.', example: 'تخطيط الموارد لافتتاح مصنع جديد يتطلب نماذج رياضية دقيقة ومعقدة، بينما التخطيط لتنظيم قسم صغير قد يكتفي بالتقدير الشخصي للمدير.' },
+            { id: 2, name: 'النطاق الزمني', icon: '⏳', desc: 'المدى الذي تغطيه الخطة. تخطيط قصير الأجل (أقل من سنة)، متوسط، أو طويل الأجل. كلما زاد النطاق الزمني، زادت نسبة الشك، واحتجنا لأساليب مرنة.', example: 'لا يمكنك استخدام بيانات مبيعات الشهر الماضي (قصيرة الأجل) للتنبؤ باحتياجاتك من الموظفين بعد 5 سنوات (تغير التكنولوجيا وظروف السوق).' },
+            { id: 3, name: 'توافر البيانات والمعلومات', icon: '📂', desc: 'البيانات هي وقود النماذج الرياضية. إذا لم يكن لديك أرشيف واضح للإنتاجيات السابقة، ومعدلات الدوران، وتكاليف العمالة، فإن الأساليب الكمية تصبح بلا فائدة.', example: 'شركة ناشئة (Start-up) ليس لديها بيانات تاريخية، لذا ستعتمد بشكل كامل على (التخمين والحكم الشخصي للخبراء) بدلاً من (المعادلات الإحصائية).' },
+            { id: 4, name: 'تسهيلات الحاسب الآلي والخبرة', icon: '💻', desc: 'مدى امتلاك المنظمة للبرمجيات الإحصائية المعقدة وكفاءة المحللين القادرين على تشغيلها وتفسير مخرجاتها.', example: 'استخدام نماذج "الانحدار الخطي" للتنبؤ يتطلب محللين ذوي خلفية إحصائية. شرائها بدون كوادر خبيرة هو إهدار للموارد.' }
+        ];
+
+        function initDimensionsSection() {
+            const container = document.getElementById('internalButtons');
+            dimensionsData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'px-8 py-4 text-xl md:text-2xl bg-slate-800 border border-slate-700 text-slate-300 rounded-full font-bold hover:bg-slate-700 hover:text-white transition-all shadow-sm outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showDimensionDetail(item);
+                container.appendChild(btn);
+            });
+        }
+
+        function showDimensionDetail(item) {
+            const detailContainer = document.getElementById('internalDetail');
+            detailContainer.style.opacity = '0';
+            setTimeout(() => {
+                detailContainer.innerHTML = `
+                    <div class="text-7xl mb-6">${item.icon}</div>
+                    <h3 class="text-4xl font-bold text-sky-800 mb-5">${item.name}</h3>
+                    <p class="text-gray-700 text-2xl max-w-4xl mx-auto leading-relaxed"><strong>التحليل:</strong> ${item.desc}</p>
+                    <div class="mt-8 bg-white p-6 rounded-2xl border-r-4 border-sky-600 shadow-sm text-right w-full max-w-4xl mx-auto">
+                        <p class="text-gray-700 text-xl leading-relaxed"><strong>💡 مثال وتطبيق:</strong> ${item.example}</p>
+                    </div>
+                `;
+                detailContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('content-non-quant').classList.add('hidden');
+            document.getElementById('content-quant').classList.add('hidden');
+            document.getElementById('btn-non-quant').classList.replace('active', 'bg-gray-100');
+            document.getElementById('btn-quant').classList.replace('active', 'bg-gray-100');
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.replace('bg-gray-100', 'active');
+            
+            const allTabs = document.querySelectorAll('.tab-btn');
+            allTabs.forEach(t => { t.style.backgroundColor = ''; t.style.color = ''; });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.style.backgroundColor = '#0369A1';
+            activeBtn.style.color = 'white';
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('#desktopNav .nav-item');
+            const mainContent = document.getElementById('mainContent');
+            const mobileNav = document.getElementById('mobileNav');
+
+            mainContent.addEventListener('scroll', () => {
+                let current = '';
+                const scrollPos = mainContent.scrollTop + (window.innerHeight / 3);
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.clientHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(current)) item.classList.add('active');
+                });
+                if(current) mobileNav.value = current;
+            });
+        }
+
+        // Quiz Generator (Analytical HR Planning Questions)
+        const quizQuestions = [
+            { q: "ما هو التعريف الدقيق لتخطيط الموارد البشرية من منظور إداري؟", a: "هو نظام موازنة ومقابلة (Matching) بين الطلب المتوقع على العمالة والعرض المتاح (داخلياً وخارجياً) في فترة زمنية محددة." },
+            { q: "لماذا لا يجب أن يكون التخطيط الكلي للمنظمة بمعزل عن تخطيط الموارد البشرية؟", a: "لأن أي هدف استراتيجي (مثل زيادة المبيعات) يتطلب قوة بشرية لتنفيذه. الخطط توضع على الورق، لكن البشر هم من ينفذونها." },
+            { q: "وفقاً للنص، ما هي الأبعاد الثلاثة لضمان نجاح تخطيط العمالة؟", a: "توفير (العدد المناسب)، بـ (النوعية/الكفاءة المناسبة)، وفي (التوقيت الملائم)." },
+            { q: "لماذا نعتبر توفير العمالة في غير 'التوقيت الملائم' فشلاً تخطيطياً، حتى لو كان العدد والكفاءة صحيحين؟", a: "لأن التأخير يعني تعطل الإنتاج وخسارة الإيرادات، والتبكير الشديد يعني دفع رواتب لفترة بدون وجود عمل فعلي (Idle Time)." },
+            { q: "هل الأساليب الرياضية المعقدة عبر الحاسب الآلي كافية وحدها للتنبؤ بقوة العمل المستقبلية؟", a: "لا، يؤكد النص أن التنبؤ يجب أن يكون مزيجاً بين (الأسلوب الكمي الرياضي) و (الحكم الشخصي للإدارة)، لأن الأرقام لا تتوقع المتغيرات السياسية أو التكنولوجية المفاجئة." },
+            { q: "كيف يتم تقدير 'العرض الداخلي' للموارد البشرية؟", a: "من خلال دراسة العمالة الحالية، مهاراتهم، وأنماط التغير السابقة (حالات النقل، الاستقالات، إنهاء الخدمة، التقاعد)." },
+            { q: "إذا قررت شركة تخفيض الرواتب ووقف التدريب، كيف سيؤثر ذلك على 'العرض الداخلي'؟", a: "سيؤدي إلى انهيار العرض الداخلي بسبب زيادة معدلات دوران العمالة (الاستقالات)، مما يضطر الشركة لزيادة الاعتماد على السوق الخارجي." },
+            { q: "أيهما أكثر عرضة للخطأ: التخطيط قصير الأجل أم طويل الأجل؟ ولماذا؟", a: "طويل الأجل؛ لأن المتغيرات البيئية والاقتصادية والتكنولوجية تزداد تعقيداً كلما طالت الفترة، مما يقلل من دقة التنبؤ." },
+            { q: "محلل يعتمد كلياً على 'التخمين الشخصي' لتحديد عمالة مصنع ضخم. ما الخطر هنا؟", a: "الحكم الشخصي البحت عرضة للانحياز والعاطفة. في المؤسسات الضخمة، يجب الاستناد إلى بيانات إحصائية دقيقة لتقليل الهدر المالي." },
+            { q: "شركة ناشئة ليس لديها أي بيانات تاريخية عن الإنتاج. ما هو الأسلوب الأقرب للتنبؤ باحتياجاتها؟", a: "أساليب التنبؤ غير الكمية (مثل التقدير الشخصي للخبراء)، لعدم وجود بيانات سابقة يمكن بناء نماذج إحصائية عليها." },
+            { q: "ماذا يعني 'التوافق' (Matching) في عملية التخطيط؟", a: "هو المقارنة بين نتائج (تنبؤ الطلب) و (تنبؤ العرض) لتحديد ما إذا كانت المنظمة تعاني من 'عجز' يحتاج لتوظيف، أو 'فائض' يحتاج لتقليص." },
+            { q: "إذا كان التنبؤ يشير إلى أن (العرض > الطلب). ما هي المشكلة المالية هنا؟", a: "هذه حالة (فائض عمالة). المشكلة هي تضخم بند الأجور والمرتبات دون إنتاجية مقابلة، مما يأكل الأرباح الصافية." },
+            { q: "إذا كان (الطلب > العرض). لماذا يُعتبر هذا خطراً تشغيلياً؟", a: "هذه حالة (عجز عمالة). ستعجز الشركة عن تلبية طلبات العملاء، سيرهق الموظفون الحاليون (مما يزيد الأخطاء والاستقالات)، وقد تُضطر لدفع أجور إضافية باهظة." },
+            { q: "هل تقتصر سياسات الموارد البشرية المؤثرة على التخطيط على 'التوظيف' فقط؟", a: "لا، تتأثر برامج التخطيط بجميع سياسات الموارد الأخرى مثل: التدريب والتنمية، الأجور والحوافز، وسياسات التقاعد." },
+            { q: "لماذا يُعد غياب 'توافر البيانات' عائقاً أمام التخطيط الجيد؟", a: "لأن التخطيط الحديث يبنى على تحليل الاتجاهات السابقة لاستشراف المستقبل. بلا بيانات موثوقة (Trash in)، تكون النتيجة قرارات خاطئة (Trash out)." },
+            { q: "كيف تؤثر برامج 'التدريب' على العرض الداخلي؟", a: "التدريب يرفع من كفاءة العرض الداخلي، مما يسمح للمنظمة بسد احتياجات الوظائف العليا (الطلب) من الداخل عبر الترقية بدلاً من التعيين الخارجي." },
+            { q: "مدير يقول: 'لن نخطط للعمالة، سنقوم بالتوظيف فقط عندما يستقيل شخص'. ما الرد التحليلي القاطع؟", a: "هذه 'إدارة أزمات' وليست إدارة موارد. البحث عن بديل وتدريبه يأخذ وقتاً طويلاً (شهور أحياناً)، وخلال هذا الوقت ستخسر المنظمة إنتاجية هذا المقعد بالكامل." },
+            { q: "كيف نربط تخطيط الموارد البشرية بـ 'موازنة الشركة' (Budget)؟", a: "مخرجات تخطيط الموارد (عدد الموظفين المتوقع تعيينهم ورواتبهم) هي المدخل الأساسي لإعداد بند 'الأجور والمرتبات' في الموازنة المالية السنوية." },
+            { q: "لماذا يُعتبر 'نظام المعلومات الإدارية' (MIS) القوي ضرورة لتخطيط العمالة؟", a: "لأنه يوفر قاعدة بيانات دقيقة ومحدثة عن الموظفين الحاليين (أعمارهم، مهاراتهم، أدائهم) مما يسهل حسابات 'العرض الداخلي' بدقة وسرعة." },
+            { q: "ما هو المحصلة النهائية والأهم من المبحث الثاني لتخطيط الموارد؟", a: "التخطيط ليس هدفاً بحد ذاته، بل هو أداة لتحقيق (الكفاءة) التشغيلية والمالية، وضمان جاهزية المنظمة لمواجهة خططها المستقبلية بدون اختناقات." }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            quizQuestions.forEach((item, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'bg-white p-8 rounded-3xl shadow-sm border border-gray-200';
+                qDiv.innerHTML = `
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 leading-relaxed">س${index + 1}: ${item.q}</h3>
+                    <button onclick="toggleAnswer('ans${index}', this)" class="bg-sky-100 text-sky-800 px-6 py-3 rounded-xl text-lg font-bold hover:bg-sky-200 transition-colors">إظهار التحليل النقدي</button>
+                    <div id="ans${index}" class="quiz-answer">
+                        <p class="text-emerald-700 font-bold text-xl leading-relaxed mt-2">✅ الإجابة: ${item.a}</p>
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function toggleAnswer(answerId, btnElement) {
+            const answerDiv = document.getElementById(answerId);
+            if (answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btnElement.innerText = "إظهار التحليل النقدي";
+            } else {
+                answerDiv.classList.add('show');
+                btnElement.innerText = "إخفاء التحليل";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initDimensionsSection();
+            initScrollSpy();
+            switchTab('non-quant');
+            loadQuiz();
+        });
+    </script>
+</body>
+</html>
