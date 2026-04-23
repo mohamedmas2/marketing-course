@@ -37,14 +37,14 @@
   {
     "id": 6,
     "courseId": "hr",
-    "title": "المحاضرة الأولى",
+    "title": "المحاضرة الأولى-أهمية المورد البشري",
     "file": "hr/lectures/lecture1.html",
     "pdf": "assets/pdfs/hr/1.pdf"  
   },
     {
     "id": 7,
     "courseId": "hr",
-    "title": "المحاضرة الثانية",
+    "title": "المحاضرة الثانية-تخطيط الموارد البشرية",
     "file": "hr/lectures/lecture2.html"
   },
       {
