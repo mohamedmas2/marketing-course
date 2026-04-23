@@ -45,8 +45,9 @@
     "id": 7,
     "courseId": "hr",
     "title": "المحاضرة الثانية-تخطيط الموارد البشرية",
-    "file": "hr/lectures/lecture2.html"
-  },
+    "file": "hr/lectures/lecture2.html",
+      "pdf": "assets/pdfs/hr/2.pdf" 
+    },
       {
     "id": 8,
     "courseId": "hr",
