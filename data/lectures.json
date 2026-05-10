@@ -97,12 +97,12 @@
     "title": "المحاضرة الثامنة-تدريب وتنمية الموارد البشرية",
     "file": "hr/lectures/lecture8.html",
     "pdf": "assets/pdfs/hr/8.pdf"  
-  }
-],
+  },
   {
-    "id": 15,
+    "id": 1,
     "courseId": "marketing",
-    "title": "المحاضرة الاولي",
+    "title": "المحاضرة الاولي - المفهوم التسويقي",
     "file": "marketing/lectures/lecture7.html",
-    "pdf": "assets/pdfs/marketing/2.pdf"
+    "pdf": "assets/pdfs/marketing/1.pdf"
   }
+]
