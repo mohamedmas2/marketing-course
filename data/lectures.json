@@ -98,4 +98,11 @@
     "file": "hr/lectures/lecture8.html",
     "pdf": "assets/pdfs/hr/8.pdf"  
   }
-]
+],
+  {
+    "id": 15,
+    "courseId": "marketing",
+    "title": "المحاضرة الاولي",
+    "file": "marketing/lectures/lecture7.html",
+    "pdf": "assets/pdfs/marketing/2.pdf"
+  }
