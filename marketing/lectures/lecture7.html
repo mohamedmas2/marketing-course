@@ -40,18 +40,22 @@
             transition: all 0.3s ease;
         }
         
+        /* Fixed expansion logic to prevent overlap */
         .academic-details {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
+            transition: max-height 0.8s ease, opacity 0.4s ease, margin-top 0.4s ease, padding-top 0.4s ease;
             opacity: 0;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 1px dashed transparent;
         }
         .academic-details.expanded {
-            max-height: 800px;
+            max-height: 3000px;
             opacity: 1;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px dashed #e2e8f0;
+            border-top-color: #e2e8f0;
         }
 
         /* Search Dimming */
@@ -108,58 +112,72 @@
 </head>
 <body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
-    <!-- Sidebar Navigation -->
-    <aside class="w-full md:w-80 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0 relative">
-        <div class="p-6 border-b border-gray-100">
-            <div class="mb-6 text-center">
-                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold text-lg hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">
-                    ⬅ الرجوع
+    <!-- Compact Sidebar Navigation (Dropdown on Mobile) -->
+    <aside class="w-full md:w-80 bg-white shadow-xl flex flex-col z-50 h-auto md:h-full flex-shrink-0 relative">
+        <!-- Header / Top Bar -->
+        <div class="p-4 md:p-6 border-b border-gray-100 flex items-center justify-between md:flex-col md:items-stretch bg-white relative z-50 shrink-0">
+            <div class="flex items-center gap-3 md:mb-6 md:justify-center md:flex-col w-full">
+                <!-- Back Button -->
+                <a href="#" onclick="history.back()" class="flex-shrink-0 bg-sky-500 text-white px-3 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl font-bold text-sm md:text-lg hover:bg-sky-600 transition shadow-md md:w-full md:text-center order-1 md:order-none">
+                    <i class="fa-solid fa-arrow-right md:hidden"></i>
+                    <span class="hidden md:inline">⬅ الرجوع</span>
                 </a>
+                <!-- Title -->
+                <div class="flex flex-col md:text-center w-full">
+                    <h1 class="text-xl md:text-3xl font-bold text-sky-800">إدارة التسويق</h1>
+                    <p class="text-xs md:text-base text-amber-600 font-bold hidden md:block mt-2">الماجستير المهني - المحاضرة الأولى</p>
+                </div>
             </div>
-            <h1 class="text-3xl font-bold text-sky-800 mb-2">إدارة التسويق</h1>
-            <p class="text-base text-amber-600 font-bold">الماجستير المهني - المحاضرة الأولى</p>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="md:hidden text-sky-800 text-2xl px-3 py-2 order-2 focus:outline-none bg-sky-50 rounded-lg transition-colors" onclick="toggleMobileMenu()">
+                <i class="fa-solid fa-bars" id="menuToggleIcon"></i>
+            </button>
         </div>
-        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
-            <ul class="space-y-1">
-                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">المفاهيم السبعة والجوهر</button></li>
-                <li><button onclick="scrollToSection('market_foundations')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">أسس تحديد السوق</button></li>
-                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">المزيج التسويقي (4Ps)</button></li>
-                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">مراحل تطور التسويق</button></li>
-                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">أهمية التسويق</button></li>
-                <li><button onclick="scrollToSection('goods_types')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">أنواع السلع</button></li>
-                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-gray-700">تحديات القرن 21</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-lg font-bold text-emerald-600">اختبر نفسك (بنك الأسئلة)</button></li>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex flex-1 min-h-0 overflow-y-auto py-2 md:py-4 flex-col bg-white w-full absolute md:relative top-full md:top-auto left-0 shadow-2xl md:shadow-none border-b border-gray-200 md:border-none z-40" id="mainNav">
+            <ul class="space-y-1 w-full pb-4 md:pb-0">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">المفاهيم السبعة والجوهر</button></li>
+                <li><button onclick="scrollToSection('market_foundations')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">أسس تحديد السوق</button></li>
+                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">المزيج التسويقي (4Ps)</button></li>
+                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">مراحل تطور التسويق</button></li>
+                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">أهمية التسويق</button></li>
+                <li><button onclick="scrollToSection('goods_types')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">أنواع السلع</button></li>
+                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-gray-700 border-b md:border-none border-gray-50">تحديات القرن 21</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-4 hover:bg-gray-50 transition-colors text-base md:text-lg font-bold text-emerald-600">اختبر نفسك (بنك الأسئلة)</button></li>
             </ul>
         </nav>
-        <div class="p-5 bg-gray-50 border-t border-gray-200 text-sm font-medium text-gray-500 hidden md:block">
-            <p>أ.د/ ألفت إبراهيم جاد الرب</p>
-            <p>21 فبراير 2026</p>
+        
+        <!-- Sidebar Footer Data (Always visible on desktop) -->
+        <div class="p-5 bg-gray-50 border-t border-gray-200 text-sm hidden md:block shrink-0 relative z-50">
+            <p class="font-bold text-gray-700">أ.د/ ألفت إبراهيم جاد الرب</p>
+            <p class="text-sky-600 font-semibold mt-1">21 فبراير 2026</p>
         </div>
     </aside>
 
     <!-- Main Content -->
-    <!-- Added scroll-padding-top to perfectly align sections below the search bar -->
-    <main class="flex-1 overflow-y-auto bg-gray-50 relative flex flex-col" id="mainContent" style="scroll-padding-top: 100px; scroll-behavior: smooth;">
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative flex flex-col z-10" id="mainContent" style="scroll-padding-top: 100px; scroll-behavior: smooth;">
         
         <!-- Live Search Bar (Sticky) -->
-        <div class="sticky top-0 bg-white/95 backdrop-blur-md z-40 p-4 border-b border-gray-200 shadow-sm flex items-center justify-center h-[88px]">
+        <div class="sticky top-0 bg-white/95 backdrop-blur-md z-40 p-4 border-b border-gray-200 shadow-sm flex items-center justify-center min-h-[88px] shrink-0">
             <div class="relative w-full max-w-2xl">
                 <i class="fa-solid fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-sky-400 text-xl"></i>
-                <input type="text" id="liveSearch" onkeyup="performSearch()" placeholder="ابحث في المحاضرة (مفاهيم، أمثلة، أسئلة)..." class="w-full bg-gray-100 border border-gray-200 text-gray-800 rounded-full py-4 pr-12 pl-4 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all text-lg font-medium shadow-inner">
+                <input type="text" id="liveSearch" onkeyup="performSearch()" placeholder="ابحث في المحاضرة (مفاهيم، أمثلة، أسئلة)..." class="w-full bg-gray-100 border border-gray-200 text-gray-800 rounded-full py-3 md:py-4 pr-12 pl-4 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all text-base md:text-lg font-medium shadow-inner">
             </div>
         </div>
 
         <!-- Section 1: Intro & 7 Core Concepts -->
-        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <section id="intro" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200">
             <div class="max-w-5xl mx-auto w-full">
                 <!-- Header Info -->
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden searchable-item">
+                <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden searchable-item">
                     <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-5 searchable-text">المفهوم التسويقي</h2>
-                    <p class="text-xl text-gray-600 leading-relaxed mb-6 searchable-text font-medium">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-5 searchable-text">المفهوم التسويقي</h2>
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed mb-6 searchable-text font-medium">
                         يتناول هذا الفصل دراسة أساسيات التسويق، أهميته لمنظمات الأعمال، عناصر المزيج التسويقي الأساسية، والتحديات المعاصرة في القرن الحادي والعشرين.
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base font-medium text-gray-600 bg-gray-50 p-4 rounded-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base font-medium text-gray-600 bg-gray-50 p-4 rounded-xl">
                         <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
                         <div class="flex items-center gap-2"><span>📅</span> السبت 21 فبراير 2026م</div>
                         <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
@@ -167,15 +185,15 @@
                     </div>
                 </div>
 
-                <h3 class="text-3xl font-bold text-sky-800 mb-6 flex items-center gap-3"><span>📘</span> المفاهيم الأساسية للتسويق (السبعة)</h3>
+                <h3 class="text-2xl md:text-3xl font-bold text-sky-800 mb-6 flex items-center gap-3"><span>📘</span> المفاهيم الأساسية للتسويق (السبعة)</h3>
                 
                 <!-- Mini Visual Map -->
                 <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 mb-10 bg-sky-50 p-6 rounded-2xl border border-sky-100 shadow-inner searchable-item">
-                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center text-lg searchable-text">الحاجة <br><span class="text-sm text-gray-500 font-normal">نقص فطري</span></div>
-                    <div class="text-sky-400 font-bold text-lg text-center">← تتشكل لـ ←</div>
-                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center text-lg searchable-text">الرغبة <br><span class="text-sm text-gray-500 font-normal">تأثير ثقافي</span></div>
-                    <div class="text-sky-400 font-bold text-lg text-center">← مع قدرة مالية ←</div>
-                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-emerald-500 text-center text-lg searchable-text">الطلب <br><span class="text-sm text-gray-500 font-normal">شراء فعلي</span></div>
+                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center w-full md:w-auto text-lg searchable-text">الحاجة <br><span class="text-sm text-gray-500 font-normal">نقص فطري</span></div>
+                    <div class="text-sky-400 font-bold text-lg text-center transform md:rotate-0 rotate-90">←</div>
+                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center w-full md:w-auto text-lg searchable-text">الرغبة <br><span class="text-sm text-gray-500 font-normal">تأثير ثقافي</span></div>
+                    <div class="text-sky-400 font-bold text-lg text-center transform md:rotate-0 rotate-90">←</div>
+                    <div class="bg-white px-6 py-4 rounded-xl shadow font-bold text-sky-800 border-r-4 border-emerald-500 text-center w-full md:w-auto text-lg searchable-text">الطلب <br><span class="text-sm text-gray-500 font-normal">شراء فعلي</span></div>
                 </div>
 
                 <!-- 7 Concepts Cards with Zoom into Knowledge -->
@@ -258,40 +276,40 @@
                     </div>
                 </div>
 
-                <h3 class="text-3xl font-bold text-sky-800 mb-6 flex items-center gap-3"><span>🌟</span> ما هو جوهر العملية التسويقية؟</h3>
+                <h3 class="text-2xl md:text-3xl font-bold text-sky-800 mb-6 flex items-center gap-3"><span>🌟</span> ما هو جوهر العملية التسويقية؟</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
                         <div class="text-5xl mb-4">🔍</div>
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 searchable-text">اكتشاف الحاجات</h4>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-4 searchable-text">التسويق يبدأ بالبحث عن ما يحتاجه الناس فعلاً قبل التفكير في تصنيع أي شيء.</p>
-                        <div class="bg-sky-50 p-4 rounded-lg text-base text-sky-800 border-r-4 border-sky-400 searchable-text"><strong>مثال:</strong> شركة أبل ابتكرت الآيفون لسد حاجة الجمع بين الهاتف والإنترنت.</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 searchable-text">اكتشاف الحاجات</h4>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4 searchable-text">التسويق يبدأ بالبحث عن ما يحتاجه الناس فعلاً قبل التفكير في تصنيع أي شيء.</p>
+                        <div class="bg-sky-50 p-4 rounded-lg text-sm md:text-base text-sky-800 border-r-4 border-sky-400 searchable-text"><strong>مثال:</strong> شركة أبل ابتكرت الآيفون لسد حاجة الجمع بين الهاتف والإنترنت.</div>
                     </div>
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
                         <div class="text-5xl mb-4">🤝</div>
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 searchable-text">إشباع الرغبات</h4>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-4 searchable-text">تقديم منتج يلبي هذه الحاجة بطريقة ترضي العميل وتشعره بالقيمة الحقيقية.</p>
-                        <div class="bg-amber-50 p-4 rounded-lg text-base text-amber-800 border-r-4 border-amber-400 searchable-text"><strong>مثال:</strong> مطاعم الوجبات السريعة تبيع "السرعة والراحة" وليس فقط الطعام.</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 searchable-text">إشباع الرغبات</h4>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4 searchable-text">تقديم منتج يلبي هذه الحاجة بطريقة ترضي العميل وتشعره بالقيمة الحقيقية.</p>
+                        <div class="bg-amber-50 p-4 rounded-lg text-sm md:text-base text-amber-800 border-r-4 border-amber-400 searchable-text"><strong>مثال:</strong> مطاعم الوجبات السريعة تبيع "السرعة والراحة" وليس فقط الطعام.</div>
                     </div>
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
                         <div class="text-5xl mb-4">📈</div>
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 searchable-text">تحقيق الأهداف</h4>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-4 searchable-text">الربط الدقيق والمستدام بين رضاء العميل وتحقيق أرباح المنظمة.</p>
-                        <div class="bg-emerald-50 p-4 rounded-lg text-base text-emerald-800 border-r-4 border-emerald-400 searchable-text"><strong>مثال:</strong> شركة تويوتا تحقق أرباحاً لأنها تقدم سيارات عملية واقتصادية.</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 searchable-text">تحقيق الأهداف</h4>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4 searchable-text">الربط الدقيق والمستدام بين رضاء العميل وتحقيق أرباح المنظمة.</p>
+                        <div class="bg-emerald-50 p-4 rounded-lg text-sm md:text-base text-emerald-800 border-r-4 border-emerald-400 searchable-text"><strong>مثال:</strong> شركة تويوتا تحقق أرباحاً لأنها تقدم سيارات عملية واقتصادية.</div>
                     </div>
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 searchable-item">
                         <div class="text-5xl mb-4">🔄</div>
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3 searchable-text">نشاط مستمر</h4>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-4 searchable-text">التسويق لا ينتهي بالبيع، بل يمتد لخدمات ما بعد البيع وبناء العلاقة.</p>
-                        <div class="bg-purple-50 p-4 rounded-lg text-base text-purple-800 border-r-4 border-purple-400 searchable-text"><strong>مثال:</strong> اتصال الشركة بك بعد الصيانة للتأكد من رضاك عن الخدمة.</div>
+                        <h4 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 searchable-text">نشاط مستمر</h4>
+                        <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-4 searchable-text">التسويق لا ينتهي بالبيع، بل يمتد لخدمات ما بعد البيع وبناء العلاقة.</p>
+                        <div class="bg-purple-50 p-4 rounded-lg text-sm md:text-base text-purple-800 border-r-4 border-purple-400 searchable-text"><strong>مثال:</strong> اتصال الشركة بك بعد الصيانة للتأكد من رضاك عن الخدمة.</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section 2: Market Foundations -->
-        <section id="market_foundations" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <section id="market_foundations" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200 bg-white">
             <div class="max-w-5xl mx-auto w-full">
-                <h2 class="text-4xl md:text-5xl font-bold text-amber-600 mb-10 text-center searchable-text">الأسس التي يتم على أساسها تحديد السوق</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-10 text-center searchable-text">الأسس التي يتم على أساسها تحديد السوق</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                     <div class="bg-gray-50 p-6 rounded-xl market-basis-card shadow-sm searchable-item">
@@ -364,33 +382,33 @@
                     </div>
                 </div>
 
-                <div class="bg-amber-600 p-8 rounded-2xl text-white text-center shadow-lg searchable-item">
-                    <h3 class="text-2xl font-bold mb-4 searchable-text">المفهوم التسويقي الحديث للسوق</h3>
-                    <p class="text-xl leading-relaxed searchable-text">مجموعة من المستهلكين المحتملين الذين لديهم <span class="underline decoration-amber-300 font-extrabold">الرغبة والقدرة والاستعداد</span> لإتمام عملية التبادل لإشباع حاجاتهم.</p>
+                <div class="bg-amber-600 p-6 md:p-8 rounded-2xl text-white text-center shadow-lg searchable-item">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 searchable-text">المفهوم التسويقي الحديث للسوق</h3>
+                    <p class="text-lg md:text-xl leading-relaxed searchable-text">مجموعة من المستهلكين المحتملين الذين لديهم <span class="underline decoration-amber-300 font-extrabold">الرغبة والقدرة والاستعداد</span> لإتمام عملية التبادل لإشباع حاجاتهم.</p>
                 </div>
             </div>
         </section>
 
         <!-- Section 3: Marketing Mix (Infographic Tree) -->
-        <section id="internal" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-gray-50 flex flex-col justify-center">
+        <section id="internal" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200 bg-gray-50">
             <div class="max-w-6xl mx-auto w-full">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-5 searchable-text">عناصر المزيج التسويقي ($4Ps$)</h2>
-                    <p class="text-xl text-gray-700 searchable-text">الهيكل التفاعلي الشامل لعناصر المنظومة الداخلية للشركة.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-sky-800 mb-5 searchable-text">عناصر المزيج التسويقي ($4Ps$)</h2>
+                    <p class="text-lg md:text-xl text-gray-700 searchable-text">الهيكل التفاعلي الشامل لعناصر المنظومة الداخلية للشركة.</p>
                 </div>
 
                 <!-- CSS Infographic Tree -->
                 <div class="flex flex-col items-center">
                     <!-- Root Node -->
-                    <div class="bg-sky-800 text-white font-bold text-2xl px-10 py-5 rounded-full shadow-lg z-10 border-4 border-sky-200 searchable-item">
+                    <div class="bg-sky-800 text-white font-bold text-xl md:text-2xl px-8 md:px-10 py-4 md:py-5 rounded-full shadow-lg z-10 border-4 border-sky-200 searchable-item text-center">
                         <span class="searchable-text">المزيج التسويقي (Marketing Mix)</span>
                     </div>
                     
                     <!-- Vertical Line -->
                     <div class="tree-line-v h-10 md:h-16"></div>
                     
-                    <!-- Horizontal Line connecting branches -->
-                    <div class="w-full max-w-5xl border-t-4 border-sky-300 hidden md:block relative">
+                    <!-- Horizontal Line connecting branches (Hidden on mobile to stack vertically) -->
+                    <div class="w-full max-w-5xl border-t-4 border-sky-300 hidden lg:block relative">
                         <!-- Downward stubs -->
                         <div class="absolute top-0 left-[12.5%] w-1 h-8 bg-sky-300"></div>
                         <div class="absolute top-0 left-[37.5%] w-1 h-8 bg-sky-300"></div>
@@ -399,14 +417,14 @@
                     </div>
 
                     <!-- Leaves / Branches -->
-                    <div class="flex flex-col md:flex-row w-full max-w-6xl justify-between gap-6 mt-0 md:mt-8">
+                    <div class="flex flex-col lg:flex-row w-full max-w-6xl justify-between gap-6 mt-0 lg:mt-8">
                         
                         <!-- Product -->
                         <div class="flex-1 bg-white p-6 rounded-2xl shadow border-t-8 border-sky-500 searchable-item hover:-translate-y-2 transition-transform cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                             <div class="text-4xl mb-3 text-center">📦</div>
                             <h3 class="font-bold text-xl text-sky-800 text-center mb-3 searchable-text">المنتج (Product)</h3>
-                            <p class="text-sm text-gray-600 text-center mb-4 font-bold searchable-text">ما يتم عرضه لإشباع رغبة.</p>
-                            <button class="w-full bg-sky-50 text-sky-700 py-3 rounded-lg text-sm font-bold hover:bg-sky-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
+                            <p class="text-base text-gray-600 text-center mb-4 font-bold searchable-text">ما يتم عرضه لإشباع رغبة.</p>
+                            <button class="w-full bg-sky-50 text-sky-700 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-sky-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
                                 إظهار التفاصيل والمثال
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
@@ -419,8 +437,8 @@
                         <div class="flex-1 bg-white p-6 rounded-2xl shadow border-t-8 border-emerald-500 searchable-item hover:-translate-y-2 transition-transform cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                             <div class="text-4xl mb-3 text-center">💵</div>
                             <h3 class="font-bold text-xl text-emerald-800 text-center mb-3 searchable-text">السعر (Price)</h3>
-                            <p class="text-sm text-gray-600 text-center mb-4 font-bold searchable-text">مصدر الإيرادات الوحيد.</p>
-                            <button class="w-full bg-emerald-50 text-emerald-700 py-3 rounded-lg text-sm font-bold hover:bg-emerald-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
+                            <p class="text-base text-gray-600 text-center mb-4 font-bold searchable-text">مصدر الإيرادات الوحيد.</p>
+                            <button class="w-full bg-emerald-50 text-emerald-700 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-emerald-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
                                 إظهار التفاصيل والمثال
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
@@ -433,8 +451,8 @@
                         <div class="flex-1 bg-white p-6 rounded-2xl shadow border-t-8 border-amber-500 searchable-item hover:-translate-y-2 transition-transform cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                             <div class="text-4xl mb-3 text-center">🏪</div>
                             <h3 class="font-bold text-xl text-amber-800 text-center mb-3 searchable-text">التوزيع (Place)</h3>
-                            <p class="text-sm text-gray-600 text-center mb-4 font-bold searchable-text">التغطية والوصول الجغرافي.</p>
-                            <button class="w-full bg-amber-50 text-amber-700 py-3 rounded-lg text-sm font-bold hover:bg-amber-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
+                            <p class="text-base text-gray-600 text-center mb-4 font-bold searchable-text">التغطية والوصول الجغرافي.</p>
+                            <button class="w-full bg-amber-50 text-amber-700 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-amber-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
                                 إظهار التفاصيل والمثال
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
@@ -447,8 +465,8 @@
                         <div class="flex-1 bg-white p-6 rounded-2xl shadow border-t-8 border-purple-500 searchable-item hover:-translate-y-2 transition-transform cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                             <div class="text-4xl mb-3 text-center">📢</div>
                             <h3 class="font-bold text-xl text-purple-800 text-center mb-3 searchable-text">الترويج (Promotion)</h3>
-                            <p class="text-sm text-gray-600 text-center mb-4 font-bold searchable-text">الاتصال والإقناع بالفوائد.</p>
-                            <button class="w-full bg-purple-50 text-purple-700 py-3 rounded-lg text-sm font-bold hover:bg-purple-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
+                            <p class="text-base text-gray-600 text-center mb-4 font-bold searchable-text">الاتصال والإقناع بالفوائد.</p>
+                            <button class="w-full bg-purple-50 text-purple-700 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-purple-100 transition" onclick="event.stopPropagation(); toggleDetails(this)">
                                 إظهار التفاصيل والمثال
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
@@ -463,50 +481,50 @@
         </section>
 
         <!-- Section 4: Evolution & Importance -->
-        <section id="external" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <section id="external" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200 bg-white">
             <div class="max-w-6xl mx-auto w-full">
                 
-                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-12 text-center searchable-text">مراحل تطور الفكر التسويقي</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-sky-800 mb-12 text-center searchable-text">مراحل تطور الفكر التسويقي</h2>
                 
                 <!-- Timeline Infographic -->
                 <div class="flex flex-col md:flex-row gap-0 items-center justify-center mb-20 searchable-item">
-                    <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm">
-                        <h5 class="text-2xl font-bold text-sky-800 mb-3 searchable-text">التوجه بالمنتج</h5>
-                        <p class="text-base font-medium text-gray-600 leading-relaxed searchable-text">التركيز على الإنتاج الضخم بأقل تكلفة (مثل: نظام هنري فورد للإنتاج).</p>
+                    <div class="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm">
+                        <h5 class="text-xl md:text-2xl font-bold text-sky-800 mb-3 searchable-text">التوجه بالمنتج</h5>
+                        <p class="text-sm md:text-base font-medium text-gray-600 leading-relaxed searchable-text">التركيز على الإنتاج الضخم بأقل تكلفة (مثل: نظام هنري فورد للإنتاج).</p>
                     </div>
                     
-                    <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm mt-8 md:mt-0">
-                        <h5 class="text-2xl font-bold text-amber-600 mb-3 searchable-text">التوجه بالبيع</h5>
-                        <p class="text-base font-medium text-gray-600 leading-relaxed searchable-text">تكثيف الإعلانات والضغط لتصريف المخزون المكدس دون اهتمام بالاحتياج الحقيقي.</p>
+                    <div class="bg-gray-50 border border-gray-200 p-6 md:p-8 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm mt-8 md:mt-0">
+                        <h5 class="text-xl md:text-2xl font-bold text-amber-600 mb-3 searchable-text">التوجه بالبيع</h5>
+                        <p class="text-sm md:text-base font-medium text-gray-600 leading-relaxed searchable-text">تكثيف الإعلانات والضغط لتصريف المخزون المكدس دون اهتمام بالاحتياج الحقيقي.</p>
                     </div>
                     
-                    <div class="bg-emerald-50 border-4 border-emerald-500 p-10 rounded-xl w-full md:w-1/3 text-center z-10 shadow-lg mt-8 md:mt-0 transform md:scale-110 relative">
+                    <div class="bg-emerald-50 border-4 border-emerald-500 p-8 md:p-10 rounded-xl w-full md:w-1/3 text-center z-10 shadow-lg mt-8 md:mt-0 transform md:scale-110 relative">
                         <div class="absolute -top-4 -right-4 text-4xl">👑</div>
-                        <h5 class="font-bold text-emerald-800 mb-3 text-3xl searchable-text">التسويق الحديث</h5>
-                        <p class="text-lg text-gray-800 font-bold mb-4 leading-relaxed searchable-text">"العميل هو الملك". دراسة السوق جيداً قبل الإنتاج.</p>
-                        <div class="inline-block bg-white px-4 py-2 rounded-lg text-base font-bold text-emerald-900 border border-emerald-200 shadow-sm searchable-text">أمثلة: أمازون وأوبر</div>
+                        <h5 class="font-bold text-emerald-800 mb-3 text-2xl md:text-3xl searchable-text">التسويق الحديث</h5>
+                        <p class="text-base md:text-lg text-gray-800 font-bold mb-4 leading-relaxed searchable-text">"العميل هو الملك". دراسة السوق جيداً قبل الإنتاج.</p>
+                        <div class="inline-block bg-white px-4 py-2 rounded-lg text-sm md:text-base font-bold text-emerald-900 border border-emerald-200 shadow-sm searchable-text">أمثلة: أمازون وأوبر</div>
                     </div>
                 </div>
 
                 <div id="reasons" class="text-center pt-10">
-                    <h2 class="text-4xl font-bold text-sky-800 mb-10 searchable-text">أسباب إدراك أهمية التسويق</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-10 searchable-text">أسباب إدراك أهمية التسويق</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="mix-card bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
-                            <h3 class="text-2xl font-bold text-sky-700 mb-3 searchable-text">1. نشاط جوهري ورئيسي</h3>
-                            <button class="mt-4 text-base font-bold text-sky-600 hover:text-sky-800 flex items-center justify-center w-full gap-2 bg-sky-100 py-3 rounded-lg" onclick="event.stopPropagation(); toggleDetails(this)">
+                        <div class="mix-card bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
+                            <h3 class="text-xl md:text-2xl font-bold text-sky-700 mb-3 searchable-text">1. نشاط جوهري ورئيسي</h3>
+                            <button class="mt-4 text-sm md:text-base font-bold text-sky-600 hover:text-sky-800 flex items-center justify-center w-full gap-2 bg-sky-100 py-3 rounded-lg" onclick="event.stopPropagation(); toggleDetails(this)">
                                 <i class="fa-solid fa-expand"></i> <span>إظهار التفاصيل الأكاديمية</span>
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
-                                <p class="text-gray-700 text-lg leading-relaxed mt-4 bg-white p-4 rounded-xl border border-gray-100 searchable-text">يوازي أو يفوق الإنتاج والتمويل أهمية في الوقت الحالي، حيث لا فائدة من إنتاج متميز أو ابتكار تكنولوجي بدون وجود قدرة حقيقية على تسويقه وبيعه للعملاء.</p>
+                                <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-4 bg-white p-4 rounded-xl border border-gray-100 searchable-text">يوازي أو يفوق الإنتاج والتمويل أهمية في الوقت الحالي، حيث لا فائدة من إنتاج متميز أو ابتكار تكنولوجي بدون وجود قدرة حقيقية على تسويقه وبيعه للعملاء.</p>
                             </div>
                         </div>
-                        <div class="mix-card bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
-                            <h3 class="text-2xl font-bold text-amber-700 mb-3 searchable-text">2. يبدأ قبل التشغيل والإنتاج</h3>
-                            <button class="mt-4 text-base font-bold text-amber-600 hover:text-amber-800 flex items-center justify-center w-full gap-2 bg-amber-100 py-3 rounded-lg" onclick="event.stopPropagation(); toggleDetails(this)">
+                        <div class="mix-card bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
+                            <h3 class="text-xl md:text-2xl font-bold text-amber-700 mb-3 searchable-text">2. يبدأ قبل التشغيل والإنتاج</h3>
+                            <button class="mt-4 text-sm md:text-base font-bold text-amber-600 hover:text-amber-800 flex items-center justify-center w-full gap-2 bg-amber-100 py-3 rounded-lg" onclick="event.stopPropagation(); toggleDetails(this)">
                                 <i class="fa-solid fa-expand"></i> <span>إظهار التفاصيل الأكاديمية</span>
                             </button>
                             <div class="academic-details cursor-text" onclick="event.stopPropagation()">
-                                <p class="text-gray-700 text-lg leading-relaxed mt-4 bg-white p-4 rounded-xl border border-gray-100 searchable-text">يحدد قسم التسويق مواصفات المنتج (اللون، الحجم، السعر المستهدف) بناءً على دراسة السوق، وذلك قبل دوران عجلة المصنع لضمان تقبل السوق له وعدم تكدس المخزون.</p>
+                                <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-4 bg-white p-4 rounded-xl border border-gray-100 searchable-text">يحدد قسم التسويق مواصفات المنتج (اللون، الحجم، السعر المستهدف) بناءً على دراسة السوق، وذلك قبل دوران عجلة المصنع لضمان تقبل السوق له وعدم تكدس المخزون.</p>
                             </div>
                         </div>
                     </div>
@@ -515,18 +533,18 @@
         </section>
 
         <!-- Section 5: Types of Goods -->
-        <section id="goods_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-gray-50 flex flex-col justify-center">
+        <section id="goods_types" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200 bg-gray-50">
             <div class="max-w-6xl mx-auto w-full">
-                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-12 text-center searchable-text">أنواع السلع الاستهلاكية</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-sky-800 mb-12 text-center searchable-text">أنواع السلع الاستهلاكية</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-sky-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-sky-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                         <div class="absolute top-0 right-0 w-2 h-full bg-sky-500"></div>
-                        <div class="text-5xl mb-6 text-center">🍞</div>
-                        <h3 class="text-2xl font-bold text-sky-800 mb-3 text-center searchable-text">السلع الميسرة</h3>
-                        <p class="text-gray-600 text-base text-center font-bold mb-5 searchable-text">شراء متكرر بأقل مجهود يومي.</p>
+                        <div class="text-4xl md:text-5xl mb-6 text-center">🍞</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-sky-800 mb-3 text-center searchable-text">السلع الميسرة</h3>
+                        <p class="text-gray-600 text-sm md:text-base text-center font-bold mb-5 searchable-text">شراء متكرر بأقل مجهود يومي.</p>
                         
-                        <button class="w-full bg-sky-50 text-sky-800 py-3 rounded-lg text-base font-bold hover:bg-sky-100 transition border border-sky-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
+                        <button class="w-full bg-sky-50 text-sky-800 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-sky-100 transition border border-sky-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
                         
                         <div class="academic-details cursor-text" onclick="event.stopPropagation()">
                             <p class="text-gray-700 text-base leading-relaxed mb-4 mt-4 searchable-text">وهي السلع التي يشتريها المستهلك بشكل متكرر وبأقل مجهود ذهني وبدني، وتتميز بارتفاع معدل دوران مبيعاتها مما يتطلب توفير التوزيع المكثف لها.</p>
@@ -541,13 +559,13 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-amber-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-amber-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                         <div class="absolute top-0 right-0 w-2 h-full bg-amber-500"></div>
-                        <div class="text-5xl mb-6 text-center">📺</div>
-                        <h3 class="text-2xl font-bold text-amber-800 mb-3 text-center searchable-text">سلع التسوق</h3>
-                        <p class="text-gray-600 text-base text-center font-bold mb-5 searchable-text">تتطلب مقارنة السعر والجودة.</p>
+                        <div class="text-4xl md:text-5xl mb-6 text-center">📺</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-amber-800 mb-3 text-center searchable-text">سلع التسوق</h3>
+                        <p class="text-gray-600 text-sm md:text-base text-center font-bold mb-5 searchable-text">تتطلب مقارنة السعر والجودة.</p>
                         
-                        <button class="w-full bg-amber-50 text-amber-800 py-3 rounded-lg text-base font-bold hover:bg-amber-100 transition border border-amber-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
+                        <button class="w-full bg-amber-50 text-amber-800 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-amber-100 transition border border-amber-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
                         
                         <div class="academic-details cursor-text" onclick="event.stopPropagation()">
                             <p class="text-gray-700 text-base leading-relaxed mb-4 mt-4 searchable-text">وهي السلع التي يقارن المستهلك بين أنواعها المختلفة من حيث الجودة والسعر والطراز قبل اتخاذ قرار الشراء نظراً لارتفاع قيمتها نسبياً.</p>
@@ -562,13 +580,13 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-emerald-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100 relative overflow-hidden group hover:border-emerald-300 transition-all searchable-item cursor-pointer" onclick="toggleDetails(this.querySelector('button'))">
                         <div class="absolute top-0 right-0 w-2 h-full bg-emerald-500"></div>
-                        <div class="text-5xl mb-6 text-center">💎</div>
-                        <h3 class="text-2xl font-bold text-emerald-800 mb-3 text-center searchable-text">السلع الخاصة</h3>
-                        <p class="text-gray-600 text-base text-center font-bold mb-5 searchable-text">ولاء عالي ومجهود خاص للحصول عليها.</p>
+                        <div class="text-4xl md:text-5xl mb-6 text-center">💎</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-emerald-800 mb-3 text-center searchable-text">السلع الخاصة</h3>
+                        <p class="text-gray-600 text-sm md:text-base text-center font-bold mb-5 searchable-text">ولاء عالي ومجهود خاص للحصول عليها.</p>
                         
-                        <button class="w-full bg-emerald-50 text-emerald-800 py-3 rounded-lg text-base font-bold hover:bg-emerald-100 transition border border-emerald-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
+                        <button class="w-full bg-emerald-50 text-emerald-800 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-emerald-100 transition border border-emerald-100" onclick="event.stopPropagation(); toggleDetails(this)">تفاصيل أكاديمية</button>
                         
                         <div class="academic-details cursor-text" onclick="event.stopPropagation()">
                             <p class="text-gray-700 text-base leading-relaxed mb-4 mt-4 searchable-text">وهي السلع التي يمتلك المستهلك ولاءً خاصاً لعلامتها التجارية ويبذل مجهوداً غير عادي للسفر والبحث للحصول عليها تحديداً.</p>
@@ -588,20 +606,20 @@
         </section>
 
         <!-- Section 6: Challenges -->
-        <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <section id="philosophies" class="min-h-screen pt-28 pb-16 px-5 md:px-12 border-b border-gray-200 bg-white">
             <div class="max-w-6xl mx-auto w-full">
-                <h2 class="text-4xl md:text-5xl font-bold text-sky-800 mb-14 text-center searchable-text">التحديات التسويقية في القرن الحادي والعشرين</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-sky-800 mb-14 text-center searchable-text">التحديات التسويقية في القرن الحادي والعشرين</h2>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div class="order-1 lg:order-2">
-                        <h3 class="text-3xl font-bold text-gray-800 mb-10 flex items-center gap-3 searchable-text"><span>🌪️</span> ضغوط وتحديات العصر</h3>
-                        <div class="relative border-r-4 border-blue-200 pr-10 space-y-12">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-10 flex items-center gap-3 searchable-text"><span>🌪️</span> ضغوط وتحديات العصر</h3>
+                        <div class="relative border-r-4 border-blue-200 pr-8 md:pr-10 space-y-12">
                             <!-- Challenge 1 -->
                             <div class="relative searchable-item">
-                                <div class="absolute -right-[46px] top-1 bg-blue-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
-                                <h4 class="text-2xl font-bold text-gray-800 searchable-text">1. الاتجاه المتزايد نحو العولمة</h4>
-                                <p class="text-gray-600 mt-3 text-lg font-bold searchable-text">العالم أصبح قرية صغيرة.</p>
-                                <button class="mt-3 text-sm text-blue-700 font-bold bg-blue-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="absolute -right-[40px] md:-right-[46px] top-1 bg-blue-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
+                                <h4 class="text-xl md:text-2xl font-bold text-gray-800 searchable-text">1. الاتجاه المتزايد نحو العولمة</h4>
+                                <p class="text-gray-600 mt-3 text-base md:text-lg font-bold searchable-text">العالم أصبح قرية صغيرة.</p>
+                                <button class="mt-3 text-xs md:text-sm text-blue-700 font-bold bg-blue-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
                                 <div class="academic-details">
                                     <p class="text-gray-700 mt-3 text-base leading-relaxed searchable-text">ولم يعد السوق محلياً فقط، بل مفتوحاً للمنافسة العالمية الشرسة.</p>
                                     <div class="mt-3 bg-blue-50 p-4 rounded-lg border border-blue-100 text-base text-blue-900 font-medium searchable-text">مثال: مصنع ملابس محلي ينافس Zara و H&M.</div>
@@ -610,10 +628,10 @@
                             
                             <!-- Challenge 2 -->
                             <div class="relative searchable-item">
-                                <div class="absolute -right-[46px] top-1 bg-red-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
-                                <h4 class="text-2xl font-bold text-gray-800 searchable-text">2. كبر حجم المنظمات (الاندماج)</h4>
-                                <p class="text-gray-600 mt-3 text-lg font-bold searchable-text">الشركات تندمج لتصبح كيانات عملاقة.</p>
-                                <button class="mt-3 text-sm text-red-700 font-bold bg-red-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="absolute -right-[40px] md:-right-[46px] top-1 bg-red-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
+                                <h4 class="text-xl md:text-2xl font-bold text-gray-800 searchable-text">2. كبر حجم المنظمات (الاندماج)</h4>
+                                <p class="text-gray-600 mt-3 text-base md:text-lg font-bold searchable-text">الشركات تندمج لتصبح كيانات عملاقة.</p>
+                                <button class="mt-3 text-xs md:text-sm text-red-700 font-bold bg-red-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
                                 <div class="academic-details">
                                     <div class="mt-3 bg-red-50 p-4 rounded-lg border border-red-100 text-base text-red-900 font-medium searchable-text">مثال: استحواذ فيسبوك على واتساب وإنستجرام (Meta) للسيطرة على السوق.</div>
                                 </div>
@@ -621,10 +639,10 @@
                             
                             <!-- Challenge 3 -->
                             <div class="relative searchable-item">
-                                <div class="absolute -right-[46px] top-1 bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
-                                <h4 class="text-2xl font-bold text-gray-800 searchable-text">3. التكنولوجيا والبيانات الضخمة</h4>
-                                <p class="text-gray-600 mt-3 text-lg font-bold searchable-text">صناعات تعتمد على فهم البيانات.</p>
-                                <button class="mt-3 text-sm text-emerald-700 font-bold bg-emerald-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="absolute -right-[40px] md:-right-[46px] top-1 bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
+                                <h4 class="text-xl md:text-2xl font-bold text-gray-800 searchable-text">3. التكنولوجيا والبيانات الضخمة</h4>
+                                <p class="text-gray-600 mt-3 text-base md:text-lg font-bold searchable-text">صناعات تعتمد على فهم البيانات.</p>
+                                <button class="mt-3 text-xs md:text-sm text-emerald-700 font-bold bg-emerald-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
                                 <div class="academic-details">
                                     <div class="mt-3 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-base text-emerald-900 font-medium searchable-text">مثال: خوارزميات نتفليكس لتحليل تفضيلات المشاهدين وتوقع الطلب.</div>
                                 </div>
@@ -632,10 +650,10 @@
                             
                             <!-- Challenge 4 -->
                             <div class="relative searchable-item">
-                                <div class="absolute -right-[46px] top-1 bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
-                                <h4 class="text-2xl font-bold text-amber-700 searchable-text">4. المنافسة الشرسة</h4>
-                                <p class="text-gray-600 mt-3 text-lg font-bold searchable-text">ندرة ولاء العميل بسبب كثرة الخيارات.</p>
-                                <button class="mt-3 text-sm text-amber-700 font-bold bg-amber-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="absolute -right-[40px] md:-right-[46px] top-1 bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow-md"></div>
+                                <h4 class="text-xl md:text-2xl font-bold text-amber-700 searchable-text">4. المنافسة الشرسة</h4>
+                                <p class="text-gray-600 mt-3 text-base md:text-lg font-bold searchable-text">ندرة ولاء العميل بسبب كثرة الخيارات.</p>
+                                <button class="mt-3 text-xs md:text-sm text-amber-700 font-bold bg-amber-50 px-4 py-2 rounded-lg" onclick="toggleDetails(this)">عرض المثال والشرح</button>
                                 <div class="academic-details">
                                     <div class="mt-3 bg-amber-50 p-4 rounded-lg border border-amber-100 text-base text-amber-900 font-medium searchable-text">مثال: حرب الأسعار المستمرة بين شركات الاتصالات لجذب العملاء.</div>
                                 </div>
@@ -643,27 +661,27 @@
                         </div>
                     </div>
                     
-                    <div class="order-2 lg:order-1 space-y-8">
-                        <div class="bg-white p-10 rounded-2xl shadow-lg border-2 border-emerald-100 relative searchable-item">
-                            <div class="absolute top-6 left-6 text-4xl">🛡️</div>
-                            <h3 class="text-3xl font-bold text-emerald-700 mb-8 border-b-2 border-emerald-100 pb-4 inline-block searchable-text">الخلاصة: حتمية التكيف</h3>
+                    <div class="order-2 lg:order-1 space-y-8 mt-12 lg:mt-0">
+                        <div class="bg-white p-6 md:p-10 rounded-2xl shadow-lg border-2 border-emerald-100 relative searchable-item">
+                            <div class="absolute top-4 left-4 md:top-6 md:left-6 text-3xl md:text-4xl">🛡️</div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-emerald-700 mb-8 border-b-2 border-emerald-100 pb-4 inline-block searchable-text">الخلاصة: حتمية التكيف</h3>
                             <div class="bg-emerald-50 p-6 rounded-xl text-center mb-8">
-                                <h4 class="font-bold text-emerald-900 text-2xl mb-2 searchable-text">البقاء للأكثر استجابة للتغيير</h4>
+                                <h4 class="font-bold text-emerald-900 text-xl md:text-2xl mb-2 searchable-text">البقاء للأكثر استجابة للتغيير</h4>
                             </div>
                             <div class="space-y-3">
-                                <div class="bg-white border-2 border-blue-200 p-4 rounded-xl text-center font-bold text-blue-900 text-lg shadow-sm searchable-text">فهم التغيرات العالمية 🌏</div>
+                                <div class="bg-white border-2 border-blue-200 p-4 rounded-xl text-center font-bold text-blue-900 text-base md:text-lg shadow-sm searchable-text">فهم التغيرات العالمية 🌏</div>
                                 <div class="arrow-down border-t-[15px] border-blue-400"></div>
-                                <div class="bg-white border-2 border-blue-200 p-4 rounded-xl text-center font-bold text-blue-900 text-lg shadow-sm searchable-text">تعديل الاستراتيجية التسويقية بمرونة 📝</div>
+                                <div class="bg-white border-2 border-blue-200 p-4 rounded-xl text-center font-bold text-blue-900 text-base md:text-lg shadow-sm searchable-text">تعديل الاستراتيجية التسويقية بمرونة 📝</div>
                                 <div class="arrow-down border-t-[15px] border-emerald-400"></div>
-                                <div class="bg-emerald-100 border-2 border-emerald-500 p-5 rounded-xl text-center font-bold text-emerald-900 text-xl shadow-md searchable-text">البقاء والنمو في السوق 🏆</div>
+                                <div class="bg-emerald-100 border-2 border-emerald-500 p-5 rounded-xl text-center font-bold text-emerald-900 text-lg md:text-xl shadow-md searchable-text">البقاء والنمو في السوق 🏆</div>
                             </div>
                         </div>
-                        <div class="bg-slate-50 p-8 rounded-2xl border-r-8 border-slate-400 shadow-sm searchable-item">
-                            <h4 class="font-bold text-slate-800 text-xl mb-3 searchable-text">الدرس المستفاد الاستراتيجي:</h4>
+                        <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border-r-8 border-slate-400 shadow-sm searchable-item">
+                            <h4 class="font-bold text-slate-800 text-lg md:text-xl mb-3 searchable-text">الدرس المستفاد الاستراتيجي:</h4>
                             <p class="text-base text-slate-700 font-medium leading-relaxed searchable-text">الشركات التي لا تراقب بيئتها ولا تواكب التكنولوجيا مصيرها المحتوم هو الخروج من السوق.</p>
                         </div>
-                        <div class="bg-red-50 p-8 rounded-2xl border-r-8 border-red-500 shadow-sm searchable-item">
-                            <h4 class="font-bold text-red-800 text-xl mb-3 searchable-text">مثال قاسي من الواقع التجاري:</h4>
+                        <div class="bg-red-50 p-6 md:p-8 rounded-2xl border-r-8 border-red-500 shadow-sm searchable-item">
+                            <h4 class="font-bold text-red-800 text-lg md:text-xl mb-3 searchable-text">مثال قاسي من الواقع التجاري:</h4>
                             <p class="text-base text-red-900 font-medium leading-relaxed searchable-text">شركة "كوداك" العملاقة تجاهلت تكنولوجيا التصوير الرقمي فكانت النتيجة إفلاسها وانهيارها.</p>
                         </div>
                     </div>
@@ -672,11 +690,11 @@
         </section>
 
         <!-- Section 7: Quiz -->
-        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+        <section id="quiz" class="min-h-screen pt-28 pb-16 px-5 md:px-12 bg-gray-50">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold text-emerald-700 mb-5 searchable-text">اختبر نفسك (بنك الأسئلة)</h2>
-                    <p class="text-xl text-gray-700 font-medium searchable-text">مجموعة أسئلة لقياس مستوى الفهم والقدرة على التحليل العميق.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-emerald-700 mb-5 searchable-text">اختبر نفسك (بنك الأسئلة)</h2>
+                    <p class="text-lg md:text-xl text-gray-700 font-medium searchable-text">مجموعة أسئلة لقياس مستوى الفهم والقدرة على التحليل العميق.</p>
                 </div>
                 <div class="space-y-5" id="quizContainer"></div>
             </div>
@@ -753,13 +771,13 @@
             const container = document.getElementById('quizContainer');
             quizData.forEach((item, index) => {
                 const quizBox = document.createElement('div');
-                quizBox.className = "bg-white p-8 rounded-2xl shadow-sm border-2 border-gray-100 hover:border-emerald-300 transition-all searchable-item cursor-pointer";
+                quizBox.className = "bg-white p-6 md:p-8 rounded-2xl shadow-sm border-2 border-gray-100 hover:border-emerald-300 transition-all searchable-item cursor-pointer";
                 quizBox.onclick = function(e) { if(e.target.tagName !== 'BUTTON') toggleDetails(this.querySelector('button')); };
                 quizBox.innerHTML = `
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 searchable-text">${item.q}</h3>
-                    <button class="bg-emerald-50 text-emerald-800 px-6 py-3 rounded-lg text-base font-bold hover:bg-emerald-100 transition-colors" onclick="event.stopPropagation(); toggleDetails(this)">إظهار الإجابة والتعليل</button>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-4 searchable-text">${item.q}</h3>
+                    <button class="bg-emerald-50 text-emerald-800 px-6 py-3 rounded-lg text-sm md:text-base font-bold hover:bg-emerald-100 transition-colors" onclick="event.stopPropagation(); toggleDetails(this)">إظهار الإجابة والتعليل</button>
                     <div class="academic-details w-full cursor-text" onclick="event.stopPropagation()">
-                        <p class="text-emerald-800 font-bold text-xl mb-3 mt-5 searchable-text">${item.a}</p>
+                        <p class="text-emerald-800 font-bold text-lg md:text-xl mb-3 mt-5 searchable-text">${item.a}</p>
                         <p class="text-gray-700 text-base leading-relaxed font-medium bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 searchable-text">${item.r}</p>
                     </div>
                 `;
@@ -799,7 +817,36 @@
             }
         }
 
-        // --- NEW: Intersection Observer for perfectly accurate Active Nav State ---
+        // --- Toggle Mobile Navigation Menu ---
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            const icon = document.getElementById('menuToggleIcon');
+            if (nav.classList.contains('hidden')) {
+                nav.classList.remove('hidden');
+                nav.classList.add('flex');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                nav.classList.add('hidden');
+                nav.classList.remove('flex');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+
+        // Helper to close menu when an item is selected on mobile
+        function closeMobileMenuIfOpen() {
+            if (window.innerWidth < 768) {
+                const nav = document.getElementById('mainNav');
+                const icon = document.getElementById('menuToggleIcon');
+                nav.classList.add('hidden');
+                nav.classList.remove('flex');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
+
+        // --- Intersection Observer for perfectly accurate Active Nav State ---
         function initScrollSpy() {
             const observerOptions = {
                 root: document.getElementById('mainContent'),
@@ -812,7 +859,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const currentId = entry.target.getAttribute('id');
-                        document.querySelectorAll('#desktopNav .nav-item').forEach(item => {
+                        document.querySelectorAll('#mainNav .nav-item').forEach(item => {
                             item.classList.remove('active');
                             if (item.getAttribute('onclick').includes(`'${currentId}'`)) {
                                 item.classList.add('active');
@@ -908,12 +955,15 @@
                 section.scrollIntoView({ behavior: 'smooth' });
                 
                 // Explicitly update the UI for immediate visual feedback
-                document.querySelectorAll('#desktopNav .nav-item').forEach(item => {
+                document.querySelectorAll('#mainNav .nav-item').forEach(item => {
                     item.classList.remove('active');
                     if (item.getAttribute('onclick').includes(`'${sectionId}'`)) {
                         item.classList.add('active');
                     }
                 });
+
+                // Auto-close menu on mobile after clicking
+                closeMobileMenuIfOpen();
             }
         }
     </script>
