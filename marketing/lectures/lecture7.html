@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التسويق - المحاضرة الأولى (المفهوم التسويقي الشامل)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        .nav-item.active {
+            background-color: #E0F2FE;
+            color: #0369A1;
+            border-right: 4px solid #0369A1;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Infographic & Zoom Effects */
+        .concept-card {
+            border-right: 4px solid #0369A1;
+            transition: all 0.3s ease;
+        }
+        .market-basis-card {
+            border-right: 4px solid #f59e0b;
+            transition: all 0.3s ease;
+        }
+        
+        .academic-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .academic-details.expanded {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        /* Search Dimming */
+        .search-dimmed {
+            opacity: 0.2;
+            filter: grayscale(100%);
+            transform: scale(0.98);
+        }
+        mark.highlight {
+            background-color: #fef08a;
+            color: #1e293b;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* CSS Tree Hierarchy */
+        .tree-line-v { width: 2px; background-color: #7dd3fc; margin: 0 auto; }
+        .tree-line-h { height: 2px; background-color: #7dd3fc; width: 100%; }
+        
+        .arrow-down {
+            width: 0; height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #3b82f6;
+            margin: 5px auto;
+        }
+
+        /* Mini Timeline */
+        .timeline-arrow {
+            position: relative;
+        }
+        .timeline-arrow::after {
+            content: '\f060';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #cbd5e1;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .timeline-arrow::after {
+                content: '\f063';
+                left: 50%;
+                top: auto;
+                bottom: -25px;
+                transform: translateX(-50%);
+            }
+        }
+        .timeline-arrow:last-child::after { display: none; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 bg-white shadow-xl flex flex-col z-20 md:h-full h-auto flex-shrink-0 relative">
+        <div class="p-6 border-b border-gray-100">
+            <div class="mb-6 text-center">
+                <a href="#" onclick="history.back()" class="inline-block bg-sky-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-sky-600 transition w-full shadow-lg shadow-sky-900/20">
+                    ⬅ الرجوع
+                </a>
+            </div>
+            <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
+            <p class="text-sm text-amber-600 font-semibold">الماجستير المهني - المحاضرة الأولى</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
+            <ul class="space-y-1">
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المفاهيم السبعة والجوهر</button></li>
+                <li><button onclick="scrollToSection('market_foundations')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أسس تحديد السوق</button></li>
+                <li><button onclick="scrollToSection('internal')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المزيج التسويقي (4Ps)</button></li>
+                <li><button onclick="scrollToSection('external')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مراحل تطور التسويق</button></li>
+                <li><button onclick="scrollToSection('reasons')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أهمية التسويق</button></li>
+                <li><button onclick="scrollToSection('goods_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع السلع</button></li>
+                <li><button onclick="scrollToSection('philosophies')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">تحديات القرن 21</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك (بنك الأسئلة الشامل)</button></li>
+            </ul>
+        </nav>
+        <div class="p-4 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 hidden md:block">
+            <p>أ.د/ ألفت إبراهيم جاد الرب</p>
+            <p>21 فبراير 2026</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative scroll-smooth flex flex-col" id="mainContent">
+        
+        <!-- Live Search Bar (Sticky) -->
+        <div class="sticky top-0 bg-white/90 backdrop-blur-md z-30 p-4 border-b border-gray-200 shadow-sm flex items-center justify-center">
+            <div class="relative w-full max-w-2xl">
+                <i class="fa-solid fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-sky-400"></i>
+                <input type="text" id="liveSearch" onkeyup="performSearch()" placeholder="ابحث في المحاضرة (مفاهيم، أمثلة، أسئلة)..." class="w-full bg-gray-100 border border-gray-200 text-gray-800 rounded-full py-3 pr-12 pl-4 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all font-medium shadow-inner">
+            </div>
+        </div>
+
+        <!-- Section 1: Intro & 7 Core Concepts -->
+        <section id="intro" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <!-- Header Info -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-sky-100 mb-8 relative overflow-hidden searchable-item">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 searchable-text">المفهوم التسويقي</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6 searchable-text">
+                        يتناول هذا الفصل دراسة أساسيات التسويق، أهميته لمنظمات الأعمال، عناصر المزيج التسويقي الأساسية، والتحديات المعاصرة في القرن الحادي والعشرين.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
+                        <div class="flex items-center gap-2"><span>📅</span> السبت 21 فبراير 2026م</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
+                        <div class="flex items-center gap-2"><span>📧</span> Dr.olfat@azhar.edu.eg</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>📘</span> المفاهيم الأساسية للتسويق (السبعة)</h3>
+                
+                <!-- Mini Visual Map -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 mb-10 bg-sky-50 p-6 rounded-2xl border border-sky-100 shadow-inner searchable-item">
+                    <div class="bg-white px-6 py-3 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center searchable-text">الحاجة <br><span class="text-xs text-gray-500 font-normal">نقص فطري</span></div>
+                    <div class="text-sky-400 font-bold text-sm text-center">← تتشكل لـ ←</div>
+                    <div class="bg-white px-6 py-3 rounded-xl shadow font-bold text-sky-800 border-r-4 border-sky-500 text-center searchable-text">الرغبة <br><span class="text-xs text-gray-500 font-normal">تأثير ثقافي</span></div>
+                    <div class="text-sky-400 font-bold text-sm text-center">← مع قدرة مالية ←</div>
+                    <div class="bg-white px-6 py-3 rounded-xl shadow font-bold text-sky-800 border-r-4 border-emerald-500 text-center searchable-text">الطلب <br><span class="text-xs text-gray-500 font-normal">شراء فعلي</span></div>
+                </div>
+
+                <!-- 7 Concepts Cards with Zoom into Knowledge -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">1. الحاجات (Needs)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">نقص في المتطلبات الأساسية للفرد.</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهي الشعور بالحرمان من المتطلبات الأساسية مثل الطعام، والكساء، والأمان، والانتماء.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">2. الرغبات (Wants)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">شكل الحاجة بعد تأثرها بالثقافة.</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهي مرحلة متقدمة من الحاجة، حيث تتشكل الرغبات وفقاً لثقافة الفرد وشخصيته (مثل الرغبة في نوع معين من الطعام لإشباع حاجة الجوع).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">3. الطلب (Demand)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">رغبة مدعومة بالمال والاستعداد.</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهو الرغبة في شراء منتج معين مدعومة بوجود قدرة شرائية فعلية لدى المستهلك.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">4. المنتجات (Products)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">ما يُعرض لإشباع الحاجات (سلع/خدمات).</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهي كل ما يمكن عرضه في السوق لإشباع حاجة أو رغبة، سواء كان شيئاً مادياً ملموساً (سلعة) أو غير ملموس (خدمة).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">5. التبادل (Exchange)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">جوهر التسويق: شيء مقابل شيء.</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">ويُعد جوهر العملية التسويقية، ويعني الحصول على شيء مرغوب من شخص مقابل تقديم شيء آخر له.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">6. المعاملات (Transactions)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">وحدة القياس لعملية التبادل (شروط وزمان).</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهي وحدة القياس في عملية التبادل، وتتم عندما يتفق طرفان على الشروط والزمان والمكان، وقد تكون معاملات مالية أو غير مالية.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl concept-card shadow-sm border border-gray-100 md:col-span-2 lg:col-span-1 searchable-item">
+                        <h4 class="font-bold text-sky-700 mb-2 searchable-text">7. الأسواق (Markets)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">مجموعة المشترين الحاليين والمرتقبين.</p>
+                        <button class="mt-3 text-xs font-bold text-sky-600 flex items-center gap-1 hover:text-sky-800" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-plus-circle"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded-lg searchable-text">وهي مجموعة من المشتريين الحاليين والمرتقبين الذين لديهم رغبة وقدرة على إتمام عملية التبادل لإشباع حاجاتهم.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-sky-800 mb-6 flex items-center gap-2"><span>🌟</span> ما هو جوهر العملية التسويقية؟</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 searchable-text">اكتشاف الحاجات</h4>
+                        <p class="text-gray-600 mb-3 searchable-text">شرح مبسط: التسويق يبدأ بالبحث عن ما يحتاجه الناس فعلاً قبل التفكير في تصنيع أي شيء.</p>
+                        <div class="bg-sky-50 p-3 rounded text-sm text-sky-800 border-r-2 border-sky-400 searchable-text"><strong>مثال:</strong> شركة أبل ابتكرت الآيفون لسد حاجة الجمع بين الهاتف والإنترنت.</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 searchable-text">إشباع الرغبات</h4>
+                        <p class="text-gray-600 mb-3 searchable-text">شرح مبسط: تقديم منتج تلبي هذه الحاجة بطريقة ترضي العميل وتشعره بالقيمة.</p>
+                        <div class="bg-amber-50 p-3 rounded text-sm text-amber-800 border-r-2 border-amber-400 searchable-text"><strong>مثال:</strong> مطاعم الوجبات السريعة تبيع "السرعة والراحة".</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 searchable-text">تحقيق الأهداف</h4>
+                        <p class="text-gray-600 mb-3 searchable-text">شرح مبسط: الربط بين رضاء العميل وتحقيق أرباح المنظمة.</p>
+                        <div class="bg-emerald-50 p-3 rounded text-sm text-emerald-800 border-r-2 border-emerald-400 searchable-text"><strong>مثال:</strong> شركة تويوتا تحقق أرباحاً لأنها تقدم سيارات اقتصادية.</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 searchable-item">
+                        <div class="text-4xl mb-4">🔄</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 searchable-text">نشاط مستمر</h4>
+                        <p class="text-gray-600 mb-3 searchable-text">شرح مبسط: التسويق يمتد لخدمات ما بعد البيع وبناء العلاقة.</p>
+                        <div class="bg-purple-50 p-3 rounded text-sm text-purple-800 border-r-2 border-purple-400 searchable-text"><strong>مثال:</strong> اتصال الشركة بك بعد الصيانة للتأكد من رضاك.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Market Foundations -->
+        <section id="market_foundations" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-600 mb-8 text-center searchable-text">الأسس التي يتم على أساسها تحديد السوق</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">أسواق الاحتياجات (Needs Markets)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">التقسيم بناءً على الحاجة المراد إشباعها.</p>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mt-2 searchable-text">يتم تحديد السوق هنا بناءً على نوع الحاجة التي يرغب المستهلك في إشباعها، مثل الرغبة في التسلية أو أداء تمارين رياضية.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">الأسواق الديموجرافية (Demographic)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">التقسيم وفقاً لخصائص السكان.</p>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mb-2 mt-2 searchable-text">تعتمد على تقسيم السوق وفقاً لخصائص السكان، ومن أمثلتها سوق الشباب، أو المرأة، أو الأطفال.</p>
+                            <div class="text-xs bg-white p-2 rounded border border-amber-200 text-amber-900 font-bold searchable-text">
+                                توضح الدكتورة ألفت أن هناك 5 عوامل أساسية لهذا التقسيم: (العمر، النوع، المستوى التعليمي، المنطقة الجغرافية، والدخل أو عدد سنوات الخبرة).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">الأسواق الجغرافية (Geographic)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">التقسيم حسب الموقع والمكان.</p>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mt-2 searchable-text">ويتم التقسيم فيها حسب الموقع المكانى، مثل سوق القاهرة أو أسواق الأقاليم.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">أسواق السلع (Goods Markets)</h4>
+                        <p class="text-gray-600 text-sm font-medium searchable-text">التقسيم بناءً على نوع المنتج المعروض.</p>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mt-2 searchable-text">يرتبط هذا الأساس بنوع السلعة المتداولة، مثل سوق الأطعمة، أو الملابس، أو الأدوات الصحية.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">أسواق المال (Financial Markets)</h4>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mt-2 searchable-text">وتشمل البورصات وكافة المعاملات المالية.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-5 rounded-xl market-basis-card shadow-sm searchable-item">
+                        <h4 class="font-bold text-amber-800 mb-2 searchable-text">أسواق العمل (Labor Markets)</h4>
+                        <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="toggleDetails(this)">
+                            <i class="fa-solid fa-list-ul"></i> <span>تفاصيل أكاديمية</span>
+                        </button>
+                        <div class="academic-details">
+                            <p class="text-gray-600 text-sm mt-2 searchable-text">وهي الأسواق التي تسعى إلى توظيف الكوادر البشرية وتلبية احتياجات الوظائف.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-600 p-6 rounded-2xl text-white text-center shadow-lg searchable-item">
+                    <h3 class="text-xl font-bold mb-2 searchable-text">المفهوم التسويقي الحديث للسوق</h3>
+                    <p class="text-lg searchable-text">مجموعة من المستهلكين المحتملين الذين لديهم <span class="underline decoration-amber-300">الرغبة والقدرة والاستعداد</span> لإتمام عملية التبادل لإشباع حاجاتهم.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Marketing Mix (Infographic Tree) -->
+        <section id="internal" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4 searchable-text">عناصر المزيج التسويقي ($4Ps$)</h2>
+                    <p class="text-lg text-gray-600 searchable-text">الهيكل التفاعلي الشامل لعناصر المنظومة الداخلية.</p>
+                </div>
+
+                <!-- CSS Infographic Tree -->
+                <div class="flex flex-col items-center">
+                    <!-- Root Node -->
+                    <div class="bg-sky-800 text-white font-bold text-xl px-8 py-4 rounded-full shadow-lg z-10 border-4 border-sky-200 searchable-item">
+                        <span class="searchable-text">المزيج التسويقي (Marketing Mix)</span>
+                    </div>
+                    
+                    <!-- Vertical Line -->
+                    <div class="tree-line-v h-8 md:h-12"></div>
+                    
+                    <!-- Horizontal Line connecting branches (hidden on very small screens, simulated via flex) -->
+                    <div class="w-full max-w-4xl border-t-2 border-sky-300 hidden md:block relative">
+                        <!-- Downward stubs -->
+                        <div class="absolute top-0 left-[12.5%] w-0.5 h-6 bg-sky-300"></div>
+                        <div class="absolute top-0 left-[37.5%] w-0.5 h-6 bg-sky-300"></div>
+                        <div class="absolute top-0 left-[62.5%] w-0.5 h-6 bg-sky-300"></div>
+                        <div class="absolute top-0 left-[87.5%] w-0.5 h-6 bg-sky-300"></div>
+                    </div>
+
+                    <!-- Leaves / Branches -->
+                    <div class="flex flex-col md:flex-row w-full max-w-5xl justify-between gap-4 mt-0 md:mt-6">
+                        
+                        <!-- Product -->
+                        <div class="flex-1 bg-white p-5 rounded-2xl shadow border-t-4 border-sky-500 searchable-item hover:-translate-y-1 transition-transform">
+                            <div class="text-3xl mb-2 text-center">📦</div>
+                            <h3 class="font-bold text-sky-800 text-center mb-2 searchable-text">المنتج (Product)</h3>
+                            <p class="text-xs text-gray-600 text-center mb-3 searchable-text">ما يتم عرضه لإشباع رغبة (سلعة/خدمة).</p>
+                            <button class="w-full bg-sky-50 text-sky-700 py-2 rounded-lg text-xs font-bold hover:bg-sky-100 transition" onclick="toggleDetails(this)">
+                                تفاصيل ومثال
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-sm text-gray-700 mt-2 searchable-text"><strong>التعريف:</strong> كل ما يمكن عرضه في السوق لإشباع حاجة أو رغبة، سواء كان شيئاً مادياً ملموساً (سلعة) أو غير ملموس (خدمة). يشمل الجودة، الخصائص، التصميم، التغليف، والضمان.</p>
+                                <p class="text-xs text-sky-900 bg-sky-50 p-2 mt-2 rounded border-r-2 border-sky-400 searchable-text"><strong>مثال:</strong> شركة "أبل" لا تبيع مجرد هاتف، بل تبيع نظام تشغيل متكامل، وتصميم أنيق، وبرمجيات حصرية، مع ضمان وخدمة عملاء فائقة، مما يشكل "المنتج" كحزمة منافع.</p>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="flex-1 bg-white p-5 rounded-2xl shadow border-t-4 border-emerald-500 searchable-item hover:-translate-y-1 transition-transform">
+                            <div class="text-3xl mb-2 text-center">💵</div>
+                            <h3 class="font-bold text-emerald-800 text-center mb-2 searchable-text">السعر (Price)</h3>
+                            <p class="text-xs text-gray-600 text-center mb-3 searchable-text">القيمة النقدية والمصدر الوحيد للإيرادات.</p>
+                            <button class="w-full bg-emerald-50 text-emerald-700 py-2 rounded-lg text-xs font-bold hover:bg-emerald-100 transition" onclick="toggleDetails(this)">
+                                تفاصيل ومثال
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-sm text-gray-700 mt-2 searchable-text"><strong>التعريف:</strong> القيمة النقدية التي يدفعها العميل مقابل الحصول على المنتج. وهو العنصر الوحيد في المزيج الذي يدر إيرادات للشركة، بينما باقي العناصر تمثل تكاليف.</p>
+                                <p class="text-xs text-emerald-900 bg-emerald-50 p-2 mt-2 rounded border-r-2 border-emerald-400 searchable-text"><strong>مثال:</strong> شركة "رولكس" تستخدم استراتيجية تسعير مرتفعة جداً ليس فقط لتغطية التكاليف، بل لخلق شعور بالتميز والفخامة (Prestige Pricing) لضمان القيمة المدركة.</p>
+                            </div>
+                        </div>
+
+                        <!-- Place -->
+                        <div class="flex-1 bg-white p-5 rounded-2xl shadow border-t-4 border-amber-500 searchable-item hover:-translate-y-1 transition-transform">
+                            <div class="text-3xl mb-2 text-center">🏪</div>
+                            <h3 class="font-bold text-amber-800 text-center mb-2 searchable-text">التوزيع (Place)</h3>
+                            <p class="text-xs text-gray-600 text-center mb-3 searchable-text">التغطية والوصول الجغرافي للعميل.</p>
+                            <button class="w-full bg-amber-50 text-amber-700 py-2 rounded-lg text-xs font-bold hover:bg-amber-100 transition" onclick="toggleDetails(this)">
+                                تفاصيل ومثال
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-sm text-gray-700 mt-2 searchable-text"><strong>التعريف:</strong> الأنشطة التي تجعل المنتج متاحاً ومتوفراً للعملاء المستهدفين في الوقت والمكان المناسبين. يشمل قنوات التوزيع، التغطية، النقل، والمخزون.</p>
+                                <p class="text-xs text-amber-900 bg-amber-50 p-2 mt-2 rounded border-r-2 border-amber-400 searchable-text"><strong>مثال:</strong> شركة "كوكاكولا" تهدف لأن تكون "على بعد خطوة من رغبة العميل" من خلال الانتشار الواسع في المتاجر، المطاعم، وحتى ثلاجات الشوارع، لضمان سهولة الوصول.</p>
+                            </div>
+                        </div>
+
+                        <!-- Promotion -->
+                        <div class="flex-1 bg-white p-5 rounded-2xl shadow border-t-4 border-purple-500 searchable-item hover:-translate-y-1 transition-transform">
+                            <div class="text-3xl mb-2 text-center">📢</div>
+                            <h3 class="font-bold text-purple-800 text-center mb-2 searchable-text">الترويج (Promotion)</h3>
+                            <p class="text-xs text-gray-600 text-center mb-3 searchable-text">الاتصال والإقناع بفوائد المنتج.</p>
+                            <button class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-xs font-bold hover:bg-purple-100 transition" onclick="toggleDetails(this)">
+                                تفاصيل ومثال
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-sm text-gray-700 mt-2 searchable-text"><strong>التعريف:</strong> أنشطة الاتصال التي تهدف لإخبار السوق بمزايا المنتج وإقناع العملاء بشرائه. يشمل الإعلانات، العلاقات العامة، تنشيط المبيعات، والبيع الشخصي.</p>
+                                <p class="text-xs text-purple-900 bg-purple-50 p-2 mt-2 rounded border-r-2 border-purple-400 searchable-text"><strong>مثال:</strong> حملات شركة "بيبسي" في رمضان تعتمد على العاطفة وربط المنتج بالذكريات، مع تقديم عروض (اشتر واحدة واحصل على الأخرى مجاناً) لتحفيز الطلب الفوري.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Evolution & Importance -->
+        <section id="external" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-8 text-center searchable-text">مراحل تطور الفكر التسويقي</h2>
+                
+                <!-- Timeline Infographic -->
+                <div class="flex flex-col md:flex-row gap-0 items-center justify-center mb-16 searchable-item">
+                    <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm">
+                        <h5 class="font-bold text-sky-800 mb-2 searchable-text">التوجه بالمنتج</h5>
+                        <p class="text-xs text-gray-600 searchable-text">التركيز على الإنتاج الضخم بأقل تكلفة (مثل: نظام هنري فورد للإنتاج).</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl w-full md:w-1/3 text-center timeline-arrow z-10 shadow-sm mt-8 md:mt-0">
+                        <h5 class="font-bold text-amber-600 mb-2 searchable-text">التوجه بالبيع</h5>
+                        <p class="text-xs text-gray-600 searchable-text">تكثيف الإعلانات والضغط لتصريف المخزون المكدس دون اهتمام بالاحتياج.</p>
+                    </div>
+                    
+                    <div class="bg-emerald-50 border-2 border-emerald-500 p-6 rounded-xl w-full md:w-1/3 text-center z-10 shadow-md mt-8 md:mt-0 transform md:scale-110">
+                        <h5 class="font-bold text-emerald-800 mb-2 text-lg searchable-text">التسويق الحديث</h5>
+                        <p class="text-sm text-gray-700 font-medium mb-2 searchable-text">"العميل هو الملك". دراسة السوق قبل الإنتاج.</p>
+                        <div class="inline-block bg-white px-3 py-1 rounded text-xs text-emerald-900 border border-emerald-200 searchable-text">أمثلة: أمازون وأوبر</div>
+                    </div>
+                </div>
+
+                <div id="reasons" class="text-center">
+                    <h2 class="text-3xl font-bold text-sky-800 mb-8 searchable-text">أسباب إدراك أهمية التسويق</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="mix-card bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm searchable-item">
+                            <h3 class="text-xl font-bold text-sky-700 mb-2 searchable-text">1. نشاط جوهري ورئيسي</h3>
+                            <button class="mt-2 text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center justify-center w-full gap-1" onclick="toggleDetails(this)">
+                                <i class="fa-solid fa-expand"></i> <span>تفاصيل</span>
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-gray-600 text-sm mt-3 searchable-text">يوازي أو يفوق الإنتاج والتمويل أهمية في الوقت الحالي، حيث لا فائدة من إنتاج متميز بدون قدرة على تسويقه.</p>
+                            </div>
+                        </div>
+                        <div class="mix-card bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm searchable-item">
+                            <h3 class="text-xl font-bold text-amber-700 mb-2 searchable-text">2. يبدأ قبل التشغيل والإنتاج</h3>
+                            <button class="mt-2 text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center justify-center w-full gap-1" onclick="toggleDetails(this)">
+                                <i class="fa-solid fa-expand"></i> <span>تفاصيل</span>
+                            </button>
+                            <div class="academic-details">
+                                <p class="text-gray-600 text-sm mt-3 searchable-text">يحدد مواصفات المنتج (اللون، الحجم، السعر المستهدف) قبل دوران عجلة المصنع لضمان تقبل السوق له.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Types of Goods -->
+        <section id="goods_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-10 text-center searchable-text">أنواع السلع الاستهلاكية</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-sky-300 transition-all searchable-item">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-sky-500"></div>
+                        <div class="text-4xl mb-4 text-center">🍞</div>
+                        <h3 class="text-xl font-bold text-sky-800 mb-2 text-center searchable-text">السلع الميسرة</h3>
+                        <p class="text-gray-500 text-xs text-center font-medium mb-3 searchable-text">شراء متكرر بأقل مجهود يومي.</p>
+                        
+                        <button class="w-full bg-gray-50 text-gray-600 py-2 rounded text-xs font-bold hover:bg-gray-100 transition border border-gray-200" onclick="toggleDetails(this)">تفاصيل أكاديمية</button>
+                        
+                        <div class="academic-details">
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4 searchable-text">وهي السلع التي يشتريها المستهلك بشكل متكرر وبأقل مجهود، وتتميز بارتفاع معدل دوران مبيعاتها مما يتطلب توفير تغطية شاملة لها في الأسواق.</p>
+                            <div class="pt-4 border-t border-gray-50">
+                                <h4 class="text-xs font-bold text-sky-600 mb-2 uppercase tracking-wider searchable-text">أمثلة واقعية:</h4>
+                                <ul class="text-xs text-gray-600 space-y-1 searchable-text">
+                                    <li>• المواد الغذائية (الخبز، الحليب)</li>
+                                    <li>• الصحف والمجلات</li>
+                                    <li>• المنظفات المنزلية البسيطة</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-amber-300 transition-all searchable-item">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-amber-500"></div>
+                        <div class="text-4xl mb-4 text-center">📺</div>
+                        <h3 class="text-xl font-bold text-amber-800 mb-2 text-center searchable-text">سلع التسوق</h3>
+                        <p class="text-gray-500 text-xs text-center font-medium mb-3 searchable-text">تتطلب مقارنة السعر والجودة.</p>
+                        
+                        <button class="w-full bg-gray-50 text-gray-600 py-2 rounded text-xs font-bold hover:bg-gray-100 transition border border-gray-200" onclick="toggleDetails(this)">تفاصيل أكاديمية</button>
+                        
+                        <div class="academic-details">
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4 searchable-text">وهي السلع التي يقارن المستهلك بين أنواعها المختلفة من حيث الجودة والسعر والطراز قبل اتخاذ قرار الشراء.</p>
+                            <div class="pt-4 border-t border-gray-50">
+                                <h4 class="text-xs font-bold text-amber-600 mb-2 uppercase tracking-wider searchable-text">أمثلة واقعية:</h4>
+                                <ul class="text-xs text-gray-600 space-y-1 searchable-text">
+                                    <li>• الملابس الجاهزة</li>
+                                    <li>• الأثاث المنزلي</li>
+                                    <li>• الأجهزة الكهربائية (ثلاجات، غسالات)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group hover:border-emerald-300 transition-all searchable-item">
+                        <div class="absolute top-0 right-0 w-1.5 h-full bg-emerald-500"></div>
+                        <div class="text-4xl mb-4 text-center">💎</div>
+                        <h3 class="text-xl font-bold text-emerald-800 mb-2 text-center searchable-text">السلع الخاصة</h3>
+                        <p class="text-gray-500 text-xs text-center font-medium mb-3 searchable-text">ولاء عالي ومجهود خاص للحصول عليها.</p>
+                        
+                        <button class="w-full bg-gray-50 text-gray-600 py-2 rounded text-xs font-bold hover:bg-gray-100 transition border border-gray-200" onclick="toggleDetails(this)">تفاصيل أكاديمية</button>
+                        
+                        <div class="academic-details">
+                            <p class="text-gray-700 text-sm leading-relaxed mb-4 searchable-text">وهي السلع التي يمتلك المستهلك ولاءً خاصاً لعلامتها التجارية ويبذل مجهوداً خاصاً للحصول عليها.</p>
+                            <div class="pt-4 border-t border-gray-50">
+                                <h4 class="text-xs font-bold text-emerald-600 mb-2 uppercase tracking-wider searchable-text">أمثلة واقعية:</h4>
+                                <ul class="text-xs text-gray-600 space-y-1 searchable-text">
+                                    <li>• ساعات رولكس الفاخرة</li>
+                                    <li>• السيارات الرياضية</li>
+                                    <li>• معدات التصوير الاحترافية</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Challenges -->
+        <section id="philosophies" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-6xl mx-auto w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12 text-center searchable-text">التحديات التسويقية في القرن الحادي والعشرين</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    <div class="order-1 lg:order-2">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2 searchable-text"><span>🌪️</span> ضغوط وتحديات العصر</h3>
+                        <div class="relative border-r-4 border-blue-100 pr-8 space-y-12">
+                            <!-- Challenge 1 -->
+                            <div class="relative searchable-item">
+                                <div class="absolute -right-[42px] top-0 bg-blue-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-extrabold text-gray-800 searchable-text">1. الاتجاه المتزايد نحو العولمة</h4>
+                                <p class="text-gray-600 mt-2 text-sm font-bold searchable-text">العالم أصبح قرية صغيرة.</p>
+                                <button class="mt-2 text-xs text-blue-600 font-bold underline" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="academic-details">
+                                    <p class="text-gray-600 mt-2 text-sm leading-relaxed searchable-text">ولم يعد السوق محلياً فقط، بل مفتوحاً للمنافسة العالمية.</p>
+                                    <div class="mt-2 bg-blue-50 p-3 rounded-lg border border-blue-100 text-xs text-blue-900 italic searchable-text">مثال: مصنع ملابس محلي ينافس Zara و H&M.</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Challenge 2 -->
+                            <div class="relative searchable-item">
+                                <div class="absolute -right-[42px] top-0 bg-red-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-extrabold text-gray-800 searchable-text">2. كبر حجم المنظمات (الاندماج)</h4>
+                                <p class="text-gray-600 mt-2 text-sm font-bold searchable-text">الشركات تندمج لتصبح كيانات عملاقة.</p>
+                                <button class="mt-2 text-xs text-red-600 font-bold underline" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="academic-details">
+                                    <div class="mt-2 bg-red-50 p-3 rounded-lg border border-red-100 text-xs text-red-900 italic searchable-text">مثال: استحواذ فيسبوك على واتساب وإنستجرام (Meta).</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Challenge 3 -->
+                            <div class="relative searchable-item">
+                                <div class="absolute -right-[42px] top-0 bg-emerald-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-extrabold text-gray-800 searchable-text">3. التكنولوجيا والبيانات الضخمة</h4>
+                                <p class="text-gray-600 mt-2 text-sm font-bold searchable-text">ظهور صناعات تعتمد على فهم وتحليل كم هائل من البيانات.</p>
+                                <button class="mt-2 text-xs text-emerald-600 font-bold underline" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="academic-details">
+                                    <div class="mt-2 bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-xs text-emerald-900 italic searchable-text">مثال: خوارزميات نتفليكس لتحليل البيانات.</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Challenge 4 -->
+                            <div class="relative searchable-item">
+                                <div class="absolute -right-[42px] top-0 bg-amber-500 w-5 h-5 rounded-full border-4 border-white shadow"></div>
+                                <h4 class="text-xl font-extrabold text-amber-600 searchable-text">4. المنافسة الشرسة</h4>
+                                <p class="text-gray-600 mt-2 text-sm font-bold searchable-text">ندرة ولاء العميل بسبب كثرة الخيارات.</p>
+                                <button class="mt-2 text-xs text-amber-600 font-bold underline" onclick="toggleDetails(this)">عرض المثال والشرح</button>
+                                <div class="academic-details">
+                                    <div class="mt-2 bg-amber-50 p-3 rounded-lg border border-amber-100 text-xs text-amber-900 italic searchable-text">مثال: حرب الأسعار بين شركات الاتصالات.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-2 lg:order-1 space-y-6">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-emerald-100 relative searchable-item">
+                            <div class="absolute top-4 left-4 text-2xl">🛡️</div>
+                            <h3 class="text-2xl font-bold text-emerald-600 mb-6 border-b pb-2 inline-block searchable-text">الخلاصة: حتمية التكيف</h3>
+                            <div class="bg-emerald-50 p-5 rounded-xl text-center mb-6">
+                                <h4 class="font-bold text-emerald-800 text-lg mb-2 searchable-text">البقاء للأكثر استجابة</h4>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm searchable-text">فهم التغيرات العالمية 🌏</div>
+                                <div class="arrow-down"></div>
+                                <div class="bg-white border-2 border-blue-100 p-3 rounded-lg text-center font-bold text-blue-800 text-sm shadow-sm searchable-text">تعديل الاستراتيجية التسويقية 📝</div>
+                                <div class="arrow-down"></div>
+                                <div class="bg-emerald-100 border-2 border-emerald-500 p-3 rounded-lg text-center font-bold text-emerald-800 text-sm shadow-md searchable-text">البقاء والنمو في السوق 🏆</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-xl border-r-8 border-slate-400 shadow-sm searchable-item">
+                            <h4 class="font-bold text-slate-800 mb-2 searchable-text">الدرس المستفاد من التحديات:</h4>
+                            <p class="text-xs text-slate-600 searchable-text">الشركات التي لا تراقب بيئتها مصيرها الخروج من السوق.</p>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-xl border-r-8 border-red-400 shadow-sm searchable-item">
+                            <h4 class="font-bold text-red-800 mb-2 searchable-text">مثال قاسي من الواقع:</h4>
+                            <p class="text-xs text-red-900 searchable-text">شركة "كوداك" تجاهلت التكنولوجيا فكانت النتيجة إفلاسها.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quiz -->
+        <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 searchable-text">اختبر نفسك </h2>
+                    <p class="text-gray-600 searchable-text">مجموعة أسئلة لقياس مستوى الفهم والقدرة على التحليل.</p>
+                </div>
+                <div class="space-y-4" id="quizContainer"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Quiz Data - Preserved Exactly
+        const quizData = [
+            { q: "س: التسويق يعني بيع المنتج وتحقيق الربح فقط.", a: "خطأ", r: "التعليل: التسويق يشمل فهم احتياجات العميل وإشباعها وليس مجرد البيع." },
+            { q: "س: كل رغبة يمكن أن تتحول إلى طلب.", a: "خطأ", r: "التعليل: تتحول الرغبة إلى طلب فقط إذا توفرت القدرة الشرائية." },
+            { q: "س: الحاجات الإنسانية تختلف من مجتمع لآخر.", a: "خطأ", r: "التعليل: الحاجات ثابتة نسبياً، بينما الرغبات تختلف حسب الثقافة." },
+            { q: "س: التبادل يتطلب وجود طرفين على الأقل.", a: "صح", r: "التعليل: لا يمكن أن تتم عملية التبادل بدون طرفين." },
+            { q: "س: الإعلان يمثل جوهر التسويق.", a: "خطأ", r: "التعليل: الإعلان جزء من الترويج وليس التسويق بالكامل." },
+            { q: "س: المفهوم التسويقي يبدأ من المنتج.", a: "خطأ", r: "التعليل: يبدأ من العميل واحتياجاته." },
+            { q: "س: السوق يتكون فقط من المشترين الحاليين.", a: "خطأ", r: "التعليل: يشمل المشترين الحاليين والمحتملين." },
+            { q: "س: كل طلب يعبر عن حاجة.", a: "صح", r: "التعليل: الطلب هو رغبة مدعومة بالقدرة الشرائية." },
+            { q: "س: التبادل لا يحتاج إلى قيمة متبادلة.", a: "خطأ", r: "التعليل: لا يتم التبادل بدون وجود قيمة لكل طرف." },
+            { q: "س: المفهوم التسويقي يركز على الربح قصير المدى.", a: "خطأ", r: "التعليل: يركز على رضا العميل والربح طويل المدى." },
+            { 
+                q: "س: ما الفرق الجوهري بين الحاجة والرغبة والطلب؟", 
+                a: "ج: الحاجة: شعور بالنقص أو الحرمان الأساسي (مثل الجوع). الرغبة: شكل الحاجة حسب الثقافة (مثل الرغبة في بيتزا). الطلب: رغبة مدعومة بقدرة شرائية (شراء البيتزا فعلياً).", 
+                r: "التعليل: العلاقة: الحاجة تتحول إلى رغبة ثم إلى طلب إذا توفر المال." 
+            },
+            { 
+                q: "س: هل التسويق يخلق الحاجة أم يخلق الرغبة؟ وضّح.", 
+                a: "ج: التسويق لا يخلق الحاجة لأنها فطرية، لكنه يؤثر على الرغبات ويوجهها.", 
+                r: "التعليل: مثال: الحاجة = الأكل، الرغبة = ماكدونالدز أو كشري. إذن التسويق يعيد تشكيل الاختيارات وليس خلق الاحتياج." 
+            },
+            { 
+                q: "س: اشرح مفهوم التبادل وشروط نجاحه.", 
+                a: "ج: التبادل هو عملية الحصول على شيء مقابل تقديم شيء آخر ذو قيمة.", 
+                r: "شروطه: 1- وجود طرفين على الأقل، 2- وجود قيمة لكل طرف، 3- حرية الاختيار، 4- القدرة على التواصل والتنفيذ. بدون هذه الشروط يفشل التبادل." 
+            },
+            { 
+                q: "س: لماذا يعتبر المستهلك محور العملية التسويقية؟", 
+                a: "ج: لأن جميع القرارات التسويقية (منتج – سعر – ترويج – توزيع) تبنى على احتياجاته.", 
+                r: "التعليل: تجاهله يؤدي إلى فشل المنتج حتى لو كان جيداً تقنياً." 
+            },
+            { 
+                q: "س: قارن بين المفهوم البيعي والمفهوم التسويقي.", 
+                a: "ج: البيعي: يركز على تصريف المنتج وزيادة المبيعات بأي وسيلة. التسويقي: يركز على فهم العميل وإشباع احتياجاته بشكل أفضل من المنافسين.", 
+                r: "الفرق الجوهري: البيعي يبدأ من المصنع، التسويقي يبدأ من العميل." 
+            },
+            { 
+                q: "س: شركة تبيع موبايلات فلاجشيب غالية، حلل (حاجة – رغبة – طلب).", 
+                a: "ج: الحاجة: التواصل والتكنولوجيا. الرغبة: امتلاك موبايل فخم ببراند معين. الطلب: يظهر فقط عند من يملك القدرة المالية.", 
+                r: "الاستنتاج: ليس كل من يرغب يشتري." 
+            },
+            { 
+                q: "س: هل المياه المعدنية منتج يعتمد على الحاجة أم الرغبة؟", 
+                a: "ج: الأساس حاجة (الشرب)، لكن المنافسة تكون على مستوى الرغبة (نقاء – براند – شكل).", 
+                r: "التعليل: لذلك الشركات تميز نفسها في الرغبات وليس الحاجة." 
+            },
+            { 
+                q: "س: إعلان يجعل الناس تشتري منتج غير ضروري، هل هذا نجاح تسويقي؟", 
+                a: "ج: جزئياً نعم لأنه نجح في التأثير، لكنه قد يكون غير مستدام إذا لم يحقق قيمة حقيقية.", 
+                r: "التعليل: النجاح الحقيقي = رضا العميل واستمرارية الشراء." 
+            },
+            { 
+                q: "س: شركة ركزت على المنتج فقط وفشلت، لماذا؟", 
+                a: "ج: لأنها تجاهلت احتياجات العميل واعتمدت على منطق 'المنتج الجيد سيبيع نفسه'.", 
+                r: "التعليل: وهو عكس المفهوم التسويقي." 
+            },
+            { 
+                q: "س: ناقش: 'التركيز على العميل فقط قد يضر الشركة'.", 
+                a: "ج: صحيح جزئياً، لأن التركيز المبالغ فيه على العميل قد يؤدي إلى: زيادة التكاليف، تلبية رغبات غير مربحة، وإهمال أهداف الشركة.", 
+                r: "التعليل: لذلك يجب تحقيق توازن بين رضا العميل وربحية الشركة." 
+            }
+        ];
+
+        function initQuiz() {
+            const container = document.getElementById('quizContainer');
+            quizData.forEach((item, index) => {
+                const quizBox = document.createElement('div');
+                quizBox.className = "bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-emerald-200 transition-all searchable-item";
+                quizBox.innerHTML = `
+                    <h3 class="text-lg font-bold text-gray-800 mb-3 searchable-text">${item.q}</h3>
+                    <button onclick="toggleDetails(this)" class="bg-emerald-50 text-emerald-800 px-5 py-2 rounded-lg text-xs font-bold hover:bg-emerald-100 transition-colors">إظهار الإجابة والتعليل</button>
+                    <div class="academic-details w-full">
+                        <p class="text-emerald-700 font-bold text-lg mb-2 mt-4 searchable-text">${item.a}</p>
+                        <p class="text-gray-600 text-sm leading-relaxed searchable-text">${item.r}</p>
+                    </div>
+                `;
+                container.appendChild(quizBox);
+            });
+        }
+
+        // --- Infographic Expansion Logic (Zoom into Knowledge) ---
+        function toggleDetails(btnElement) {
+            const container = btnElement.parentElement;
+            const detailsDiv = container.querySelector('.academic-details');
+            const isExpanded = detailsDiv.classList.contains('expanded');
+            
+            if (isExpanded) {
+                detailsDiv.classList.remove('expanded');
+                if(btnElement.innerHTML.includes('إخفاء')) {
+                     btnElement.innerHTML = btnElement.innerHTML.replace('إخفاء', 'إظهار');
+                } else if(btnElement.innerHTML.includes('إغلاق')) {
+                     btnElement.innerHTML = btnElement.innerHTML.replace('إغلاق', 'تفاصيل أكاديمية');
+                }
+                
+                const icon = btnElement.querySelector('.fa-minus-circle');
+                if(icon) { icon.classList.replace('fa-minus-circle', 'fa-plus-circle'); }
+            } else {
+                detailsDiv.classList.add('expanded');
+                if(btnElement.innerHTML.includes('إظهار')) {
+                     btnElement.innerHTML = btnElement.innerHTML.replace('إظهار', 'إخفاء');
+                } else if(btnElement.innerHTML.includes('تفاصيل أكاديمية')) {
+                     btnElement.innerHTML = btnElement.innerHTML.replace('تفاصيل أكاديمية', 'إغلاق التفاصيل');
+                }
+                
+                const icon = btnElement.querySelector('.fa-plus-circle');
+                if(icon) { icon.classList.replace('fa-plus-circle', 'fa-minus-circle'); }
+            }
+        }
+
+        // --- Live Search Logic ---
+        // Store original HTML mapping to avoid breaking nodes when un-highlighting
+        const searchNodesMap = new Map();
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            
+            // Map original text blocks for safe search replacement
+            document.querySelectorAll('.searchable-text').forEach(node => {
+                searchNodesMap.set(node, node.innerHTML);
+            });
+        });
+
+        function performSearch() {
+            const query = document.getElementById('liveSearch').value.trim().toLowerCase();
+            const items = document.querySelectorAll('.searchable-item');
+
+            if (query === '') {
+                // Reset styling
+                items.forEach(item => {
+                    item.classList.remove('search-dimmed', 'hidden');
+                    // Collapse expanded details if they were auto-opened by search
+                    const details = item.querySelector('.academic-details');
+                    if (details && details.dataset.autoOpened === "true") {
+                        details.classList.remove('expanded');
+                        delete details.dataset.autoOpened;
+                    }
+                });
+                
+                // Reset text highlights safely
+                document.querySelectorAll('.searchable-text').forEach(node => {
+                    if(searchNodesMap.has(node)) {
+                        node.innerHTML = searchNodesMap.get(node);
+                    }
+                });
+                return;
+            }
+
+            // Escape regex chars
+            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(${safeQuery})`, 'gi');
+
+            items.forEach(item => {
+                const textNodes = item.querySelectorAll('.searchable-text');
+                let hasMatch = false;
+
+                textNodes.forEach(node => {
+                    const originalText = searchNodesMap.get(node) || "";
+                    // Strip HTML tags for clean search logic
+                    const plainText = document.createElement('div');
+                    plainText.innerHTML = originalText;
+                    
+                    if (plainText.textContent.toLowerCase().includes(query)) {
+                        hasMatch = true;
+                        // Apply Highlight keeping original internal HTML safe (simplified replace)
+                        node.innerHTML = originalText.replace(regex, `<mark class="highlight">$1</mark>`);
+                    } else {
+                        node.innerHTML = originalText;
+                    }
+                });
+
+                if (hasMatch) {
+                    item.classList.remove('search-dimmed', 'hidden');
+                    // Automatically open accordion if match is hidden inside
+                    const details = item.querySelector('.academic-details');
+                    if (details && !details.classList.contains('expanded')) {
+                        details.classList.add('expanded');
+                        details.dataset.autoOpened = "true"; // flag to close when search clears
+                    }
+                } else {
+                    // Dim or hide non-matching elements based on their size/role to keep the layout map intact
+                    item.classList.add('search-dimmed');
+                }
+            });
+        }
+
+        // Scroll utility
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                document.getElementById('mainContent').scrollTo({
+                    top: section.offsetTop - 80, // Offset for sticky search bar
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
