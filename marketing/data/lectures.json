@@ -26,4 +26,9 @@
   "file": "lectures/lectures6.html"
 }
   ]
-}
+},
+{
+  "lectures": [
+    { "title": "المحاضرة الأولى",
+      "desc": "المفهوم التسويقي وأهميته",
+      "file": "lectures/lecture7.html" }
