@@ -33,29 +33,29 @@
         /* Infographic & Zoom Effects */
         .concept-card {
             border-right: 4px solid #0369A1;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .market-basis-card {
             border-right: 4px solid #f59e0b;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
-        /* Fixed expansion logic to prevent overlap */
+        /* Foolproof expansion logic to prevent ANY overlap */
         .academic-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease, opacity 0.4s ease, margin-top 0.4s ease, padding-top 0.4s ease;
+            display: none; /* Immediately removes from layout to prevent bugs */
             opacity: 0;
-            margin-top: 0;
-            padding-top: 0;
-            border-top: 1px dashed transparent;
-        }
-        .academic-details.expanded {
-            max-height: 3000px;
-            opacity: 1;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top-color: #e2e8f0;
+            border-top: 1px dashed #e2e8f0;
+        }
+        .academic-details.expanded {
+            display: block; /* Instantly triggers full layout recalculation */
+            animation: fadeInDetails 0.4s ease forwards;
+        }
+
+        @keyframes fadeInDetails {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Search Dimming */
@@ -156,8 +156,8 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto bg-gray-50 relative flex flex-col z-10" id="mainContent" style="scroll-padding-top: 100px; scroll-behavior: smooth;">
+    <!-- Main Content (Removed flex flex-col to enforce strict block layout stacking) -->
+    <main class="flex-1 overflow-y-auto bg-gray-50 relative z-10" id="mainContent" style="scroll-padding-top: 100px; scroll-behavior: smooth;">
         
         <!-- Live Search Bar (Sticky) -->
         <div class="sticky top-0 bg-white/95 backdrop-blur-md z-40 p-4 border-b border-gray-200 shadow-sm flex items-center justify-center min-h-[88px] shrink-0">
