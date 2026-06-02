@@ -9,14 +9,14 @@
   {
     "id": 2,
     "courseId": "marketing",
-    "title": "المحاضرة الثانية",
+    "title": "المحاضرة الثانية -البيئة التسويقية",
     "file": "marketing/lectures/lecture2.html",
     "pdf": "assets/pdfs/marketing/2.pdf"
   },
   {
     "id": 3,
     "courseId": "marketing",
-    "title": "المحاضرة الثالثة",
+    "title": "المحاضرة الثالثه-التخطيط الإستراتيجي",
     "file": "marketing/lectures/lecture3.html",
     "pdf": "assets/pdfs/marketing/3.pdf"
   },
