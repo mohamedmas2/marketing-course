@@ -30,7 +30,7 @@
   {
       "id": 5,
     "courseId": "marketing",
-    "title": "المحاضرة السابعه -سلوك المستهلك",
+    "title": "المحاضرة الخامسة -المزيج التسويقي",
     "file": "marketing/lectures/lectures5.html",
     "pdf": "assets/pdfs/marketing/5.pdf"
   },
@@ -101,7 +101,7 @@
   {
     "id": 15,
     "courseId": "marketing",
-    "title": "المحاضرة السابعه - المفهوم التسويقي",
+    "title": "المحاضرة السابعه -سلوك المستهلك",
     "file": "marketing/lectures/lecture7.html",
     "pdf": "assets/pdfs/marketing/1.pdf"
   }
