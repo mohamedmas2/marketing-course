@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة التسويق - المحاضرة الخامسة (المزيج التسويقي)</title>
+    <title>إدارة التسويق - المحاضرة السابعة (دراسة سلوك المستهلك)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
@@ -42,15 +42,15 @@
             transition: max-height 0.5s ease-out, padding 0.3s ease;
         }
         .quiz-answer.show {
-            max-height: 2500px; /* تم زيادته ليستوعب الإجابات المقالية الطويلة */
+            max-height: 2500px;
             padding-top: 1rem;
             border-top: 1px solid #e5e7eb;
             margin-top: 1rem;
         }
         /* Custom Table Styling */
         .custom-table th {
-            background-color: #f3e8ff; /* purple-50 */
-            color: #581c87; /* purple-900 */
+            background-color: #f3e8ff;
+            color: #581c87;
         }
         .custom-table tr:hover td {
             background-color: #fafafa;
@@ -69,34 +69,32 @@
                 </a>
             </div>
             <h1 class="text-2xl font-bold text-sky-800 mb-1">إدارة التسويق</h1>
-            <p class="text-sm text-amber-600 font-semibold">المحاضرة الخامسة-المزيج التسويقي</p>
+            <p class="text-sm text-amber-600 font-semibold">المحاضرة السابعة-سلوك المستهلك</p>
         </div>
         <nav class="flex-1 overflow-y-auto py-4 hidden md:block" id="desktopNav">
             <ul class="space-y-1 text-sm lg:text-base">
-                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مقدمة المزيج التسويقي</button></li>
-                <li><button onclick="scrollToSection('mix_elements')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">عناصر المزيج التسويقي</button></li>
-                <li><button onclick="scrollToSection('lifecycle')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مراحل دورة حياة المنتج</button></li>
-                <li><button onclick="scrollToSection('product_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">المنتج وتقسيماته</button></li>
-                <li><button onclick="scrollToSection('pricing_factors')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التسعير وعوامله</button></li>
-                <li><button onclick="scrollToSection('place_factors')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التوزيع وأنواعه</button></li>
-                <li><button onclick="scrollToSection('promo_views')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">الترويج</button></li>
-                <li><button onclick="scrollToSection('challenges')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">التحديات</button></li>
-                <li><button onclick="scrollToSection('remembers')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-amber-600">خلاصة (تذكر أن)</button></li>
-                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">اختبر نفسك</button></li>
+                <li><button onclick="scrollToSection('intro')" class="nav-item active w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">مقدمة وتحليل السلوك</button></li>
+                <li><button onclick="scrollToSection('buyers_types')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أنواع المشترين (B2C & B2B)</button></li>
+                <li><button onclick="scrollToSection('consumer_steps')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium"> قرار الشراء الاستهلاكي الفرد</button></li>
+                <li><button onclick="scrollToSection('factors')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">العوامل المؤثرة فى سلوك المشترى</button></li>
+                <li><button onclick="scrollToSection('participants')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">أدوار الشراء (من يصنع القرار؟)</button></li>
+                <li><button onclick="scrollToSection('org_buying_steps')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">الشراء المؤسسي (المنظمات)</button></li>
+                <li><button onclick="scrollToSection('market_diff')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-medium">خصائص سوق الأعمال</button></li>
+                <li><button onclick="scrollToSection('remembers')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-amber-600">تذكر ان مهمة</button></li>
+                <li><button onclick="scrollToSection('quiz')" class="nav-item w-full text-right px-6 py-3 hover:bg-gray-50 transition-colors font-bold text-emerald-600">التدقيق والتحليل (بنك الأسئلة)</button></li>
             </ul>
         </nav>
         <div class="md:hidden p-4 border-b border-gray-200 bg-gray-50">
             <select id="mobileNav" onchange="scrollToSection(this.value)" class="w-full p-2 border border-gray-300 rounded text-gray-700 font-bold">
-                <option value="intro">مقدمة المزيج التسويقي</option>
-                <option value="mix_elements">عناصر المزيج التسويقي</option>
-                <option value="lifecycle">مراحل دورة حياة المنتج</option>
-                <option value="product_types">المنتج وتقسيماته</option>
-                <option value="pricing_factors">التسعير وعوامله</option>
-                <option value="place_factors">التوزيع وأنواعه</option>
-                <option value="promo_views">الترويج ووجهات النظر</option>
-                <option value="challenges">التحديات والقاعدة الذهبية</option>
-                <option value="remembers">خلاصة (تذكر أن)</option>
-                <option value="quiz">اختبر نفسك</option>
+                <option value="intro">مقدمة وتحليل السلوك</option>
+                <option value="buyers_types">أنواع المشترين (B2C & B2B)</option>
+                <option value="consumer_steps">دورة قرار الشراء</option>
+                <option value="factors">العوامل المؤثرة فى سلوك المشترى</option>
+                <option value="participants">أدوار الشراء</option>
+                <option value="org_buying_steps">الشراء المؤسسي</option>
+                <option value="market_diff">خصائص سوق الأعمال</option>
+                <option value="remembers">الخلاصة الاستراتيجية</option>
+                <option value="quiz">التدقيق والتحليل</option>
             </select>
         </div>
     </aside>
@@ -108,527 +106,319 @@
             <div class="max-w-4xl mx-auto w-full">
                 <div class="bg-gray-50 rounded-xl p-5 md:p-6 shadow-sm border border-sky-100 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-2 h-full bg-sky-600"></div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">المزيج التسويقي (Marketing Mix)</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">دراسة سلوك المستهلك (Consumer Behavior)</h2>
                     <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-4">
-                        يهدف هذا المحتوى إلى إمداد الباحث بالمفاهيم الأساسية ليكون على علم ودراية وإلمام بعناصر المزيج التسويقي (4Ps)، والذي يُعد أساس إدارة التسويق وعصب الاستدامة المالية في أي منظمة. بدون مزيج متوازن، تتحول ميزانية التسويق إلى هدر نقدي.
+                        لا يقتصر التسويق على الدعاية؛ بل هو <strong>علم تحليل السلوك الاقتصادي والنفسي</strong> للمشتري. إن الفشل في فهم "لماذا يشتري العميل؟" يؤدي مباشرة إلى هدر ميزانية الاستحواذ (CAC) وتطوير منتجات لا تلبي احتياجاً حقيقياً في السوق. التحليل الدقيق للسلوك هو حجر الزاوية لتحقيق الإيرادات.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm text-gray-600">
                         <div class="flex items-center gap-2"><span>👤</span> أ.د/ ألفت إبراهيم جاد الرب</div>
-                        <div class="flex items-center gap-2"><span>📅</span> السبت 28 مارس 2026م</div>
-                        <div class="flex items-center gap-2"><span>🎓</span> العميد الأسبق وعضو لجنة الترقيات</div>
+                        <div class="flex items-center gap-2"><span>📅</span> المحاضرة السابعة</div>
+                        <div class="flex items-center gap-2"><span>🎓</span> أستاذ إدارة الأعمال والعميد الأسبق</div>
                         <div class="flex items-center gap-2"><span>📧</span> Dr.olfat@azhar.edu.eg</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 1- Marketing Mix Elements -->
-        <section id="mix_elements" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+        <!-- 1- Types of Buyers -->
+        <section id="buyers_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">عناصر المزيج التسويقي (4Ps)</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">العناصر الأربعة التي تتلاعب بها الإدارة للسيطرة على السوق. ثلاثة منها تعتبر تكاليف، وواحد فقط يولد الإيرادات.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">أنواع المشترين للسلع والخدمات</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">فهم نوع المشتري يحدد استراتيجية التسعير والتوزيع. الخلط بين السوقين هو خطأ استراتيجي قاتل.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Consumer Market -->
+                    <div class="bg-gradient-to-br from-white to-sky-50 p-8 rounded-2xl shadow-sm border border-sky-100 hover:shadow-md transition-shadow">
+                        <div class="text-5xl mb-4 text-center">🛒</div>
+                        <h4 class="text-2xl font-bold text-sky-900 mb-4 text-center">1. الأفراد والأسرة (السوق الاستهلاكي B2C)</h4>
+                        <p class="text-gray-700 leading-relaxed text-sm mb-4">الشراء هنا يكون بهدف الإشباع المباشر للحاجات الشخصية. قراراتهم غالباً أسرع وتتأثر بالعاطفة والإعلانات الجماهيرية.</p>
+                        <div class="bg-white p-4 rounded text-sm border-r-4 border-rose-500 shadow-sm">
+                            <strong class="text-rose-800">تحليل مالي ونقدي:</strong> 
+                            في سوق الـ B2C، يتم الاعتماد على <span class="font-bold">حجم المبيعات (Volume)</span>. هامش الربح للوحدة قد يكون قليلاً، لذلك استدامة الإيرادات تعتمد على تقليل تكلفة العميل (CAC) عبر الإعلانات الشاملة، ورفع معدل دوران المخزون.
+                        </div>
+                    </div>
+
+                    <!-- Organizational Market -->
+                    <div class="bg-gradient-to-br from-white to-amber-50 p-8 rounded-2xl shadow-sm border border-amber-100 hover:shadow-md transition-shadow">
+                        <div class="text-5xl mb-4 text-center">🏢</div>
+                        <h4 class="text-2xl font-bold text-amber-900 mb-4 text-center">2. المنظمات (سوق الأعمال B2B)</h4>
+                        <p class="text-gray-700 leading-relaxed text-sm mb-3">يختلف الدافع هنا جذرياً، فالشراء لا يتم للاستهلاك الشخصي، بل لتحقيق غايات تشغيلية أو ربحية. وينقسم مشترو المنظمات إلى ثلاثة أنواع رئيسية:</p>
+                        
+                        <ul class="space-y-3 mb-5">
+                            <li class="bg-white p-3 rounded-lg shadow-sm border-r-4 border-amber-300">
+                                <strong class="text-amber-900 block text-sm mb-1">أ. المشتري الصناعي:</strong>
+                                <span class="text-xs text-gray-600">يشتري المواد والآلات لإنتاج سلع وخدمات أخرى. <strong>(الهدف: تعظيم كفاءة الإنتاج وتقليل تكلفة المكونات لتوليد أرباح).</strong></span>
+                            </li>
+                            <li class="bg-white p-3 rounded-lg shadow-sm border-r-4 border-amber-300">
+                                <strong class="text-amber-900 block text-sm mb-1">ب. المشتري الوسيط:</strong>
+                                <span class="text-xs text-gray-600">مثل تجار الجملة والتجزئة؛ يشترون السلع تامة الصنع بغرض إعادة بيعها. <strong>(الهدف: سرعة دوران المخزون واللعب على هوامش الربح التجاري).</strong></span>
+                            </li>
+                            <li class="bg-white p-3 rounded-lg shadow-sm border-r-4 border-amber-300">
+                                <strong class="text-amber-900 block text-sm mb-1">ج. المؤسسات الحكومية:</strong>
+                                <span class="text-xs text-gray-600">الأجهزة والهيئات التي لا تهدف للربح التجاري، تشتري لتسيير المرافق والخدمات العامة. <strong>(الهدف: الالتزام بالميزانيات المرصودة عبر مناقصات وإجراءات بيروقراطية صارمة).</strong></span>
+                            </li>
+                        </ul>
+
+                        <div class="bg-white p-4 rounded text-sm border-r-4 border-amber-500 shadow-sm">
+                            <strong class="text-amber-800">تحليل مالي ونقدي:</strong>
+                            هنا <span class="font-bold">حجم الصفقة (Ticket Size)</span> ضخم جداً. القرار يُبنى على العائد على الاستثمار (ROI) وتقليل التكاليف التشغيلية (OpEx). الدعاية العاطفية هنا لا تعمل؛ ما يعمل هو البيع الشخصي والمفاوضات المالية.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2- Consumer Buying Steps -->
+        <section id="consumer_steps" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">خطواط قرار الشراء الاستهلاكي (5 خطوات)</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">المستهلك لا يشتري فجأة، بل يمر بسلسلة من العمليات الإدراكية. تجاهل أي خطوة يهدد بخسارة العميل لصالح المنافس.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="mix-card bg-white p-6 rounded-2xl border border-sky-100 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-sky-50 rounded-full z-0 group-hover:scale-150 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl font-bold text-sky-200 mb-2">01</div>
+                            <h3 class="text-xl font-bold text-sky-900 mb-2">الشعور بالحاجة</h3>
+                            <p class="text-gray-600 text-sm">إدراك وجود فجوة بين الوضع الحالي والوضع المرغوب (جوع، الحاجة للأمان، الرغبة في التميز). <br><strong class="text-sky-700 mt-2 block">دور التسويق:</strong> خلق أو تضخيم هذا الإدراك.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="mix-card bg-white p-6 rounded-2xl border border-amber-100 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-amber-50 rounded-full z-0 group-hover:scale-150 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl font-bold text-amber-200 mb-2">02</div>
+                            <h3 class="text-xl font-bold text-amber-900 mb-2">جمع المعلومات</h3>
+                            <p class="text-gray-600 text-sm">البحث الداخلي (الذاكرة) أو الخارجي (الإنترنت، الأصدقاء) عن بدائل. <br><strong class="text-amber-700 mt-2 block">دور التسويق:</strong> التواجد القوي في محركات البحث والإعلانات (SEO/SEM) لتكون ضمن الخيارات.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="mix-card bg-white p-6 rounded-2xl border border-emerald-100 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-emerald-50 rounded-full z-0 group-hover:scale-150 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl font-bold text-emerald-200 mb-2">03</div>
+                            <h3 class="text-xl font-bold text-emerald-900 mb-2">تقييم البدائل</h3>
+                            <p class="text-gray-600 text-sm">مقارنة السعر، الجودة، والمنافع ولها 4 معاير 1- فنية 2- اقتصادية 3- اجتماعية 4- شخصية. <br><strong class="text-emerald-700 mt-2 block">تحليل مالي:</strong> العميل يقيم "القيمة" مقابل "المال". إذا كان سعرك أعلى، يجب أن يكون التبرير (الجودة/المكانة) واضحاً جداً لتجنب رفض السعر.</p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="mix-card bg-white p-6 rounded-2xl border border-purple-100 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-purple-50 rounded-full z-0 group-hover:scale-150 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl font-bold text-purple-200 mb-2">04</div>
+                            <h3 class="text-xl font-bold text-purple-900 mb-2">قرار الشراء الفعلي</h3>
+                            <p class="text-gray-600 text-sm">الالتزام المالي ودفع النقود. <br><strong class="text-purple-700 mt-2 block">خطر تنفيذي:</strong> سوء التوزيع (عدم توفر المنتج) أو تعقيد طرق الدفع قد يجهض هذه الخطوة تماماً فتضيع المبيعات.</p>
+                        </div>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="mix-card bg-white p-6 rounded-2xl border border-rose-100 transition-all duration-300 relative overflow-hidden group md:col-span-2 lg:col-span-1">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-rose-50 rounded-full z-0 group-hover:scale-150 transition-transform"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl font-bold text-rose-200 mb-2">05</div>
+                            <h3 class="text-xl font-bold text-rose-900 mb-2">سلوك ما بعد الشراء</h3>
+                            <p class="text-gray-600 text-sm">تحديد مستوى الرضا أو الإحباط (Cognitive Dissonance). <br><strong class="text-rose-700 mt-2 block">تحليل نقدي:</strong> أهم مرحلة. العميل الراضي يولد قيمة مدى الحياة (LTV) ويخفض تكلفة تسويقك بـ Word of Mouth. العميل المحبط يدمر سمعتك المكتسبة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3- Factors Affecting Behavior -->
+        <section id="factors" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">محركات السلوك الشرائي (لماذا يختار العميل س بدلاً من ص؟)</h2>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-sky-300 transition-colors">
-                        <div class="text-4xl mb-4">📦</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">1. المنتج (Product)</h4>
-                        <p class="text-gray-600 mb-3 text-sm">مجموعة المواصفات والمعايير للحصول على منافع تشبع حاجات ورغبات المستهلكين (سلعة أو خدمة).</p>
-                        <div class="bg-white p-3 rounded text-sm border-r-2 border-sky-400">
-                            <strong class="text-sky-700">مثال واقعي:</strong> شركة Apple تبيع "هاتف الآيفون" كمنتج مادي يحل مشكلة التواصل والتصوير، وتستثمر مليارات في تطويره كأصل رئيسي للشركة.
-                        </div>
+                    <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-sky-400">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>🌍</span> 1. العوامل الثقافية</h4>
+                        <p class="text-gray-600 text-sm mb-2">القيم والمعتقدات المكتسبة من المجتمع. تحدد ما هو مقبول وما هو غير مقبول للإنفاق.</p>
+                        <p class="text-xs bg-white p-2 rounded border border-gray-200"><strong class="text-sky-700">تطبيق:</strong> فشل بعض المطاعم العالمية في الشرق الأوسط في البداية لعدم موائمة المنيو (الخنزير/الكحول) مع الثقافة والدين.</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-amber-300 transition-colors">
-                        <div class="text-4xl mb-4">💵</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">2. التسعير (Price)</h4>
-                        <p class="text-gray-600 mb-3 text-sm">القيمة النقدية المتبادلة. <strong>تحليل نقدي:</strong> هو العنصر الوحيد الذي يدر عائداً للمنظمة، أي تسعير خاطئ يدمر هوامش الربح فوراً.</p>
-                        <div class="bg-white p-3 rounded text-sm border-r-2 border-amber-400">
-                            <strong class="text-amber-700">مثال واقعي:</strong> ستاربكس تُسعر كوب القهوة بـ 150 جنيهاً، ليس بناءً على تكلفة البن فقط، بل بناءً على "القيمة والرفاهية" لتعظيم هامش الربح.
-                        </div>
+                    <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-amber-400">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>👥</span> 2. العوامل الاجتماعية</h4>
+                        <p class="text-gray-600 text-sm mb-2">الطبقة الاجتماعية، الجماعات المرجعية (الأصدقاء)، والعائلة. الفرد يشتري ما يجعله مقبولاً في طبقته.</p>
+                        <p class="text-xs bg-white p-2 rounded border border-gray-200"><strong class="text-amber-700">تطبيق:</strong> شراء المراهقين لأحذية رياضية معينة فقط لأن المؤثرين (Influencers) وأصدقاءهم يرتدونها، بغض النظر عن الجودة الفعلية.</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-emerald-300 transition-colors">
-                        <div class="text-4xl mb-4">🚚</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">3. التوزيع (Place)</h4>
-                        <p class="text-gray-600 mb-3 text-sm">الأنشطة التي تضمن توفر المنتج في المكان والزمان المناسبين. غياب المنتج وقت الطلب يعني خسارة البيعة للمنافس.</p>
-                        <div class="bg-white p-3 rounded text-sm border-r-2 border-emerald-400">
-                            <strong class="text-emerald-700">مثال واقعي:</strong> توفر ثلاجات شركة كوكاكولا في كل كشك وشارع يضمن عدم لجوء العميل لمشروب بديل عند الشعور بالعطش.
-                        </div>
+                    <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-emerald-400">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>👤</span> 3. العوامل الشخصية</h4>
+                        <p class="text-gray-600 text-sm mb-2">العمر، المهنة، الظروف الاقتصادية، ونمط الحياة. قدرة الفرد المالية تحجم رغباته.</p>
+                        <p class="text-xs bg-white p-2 rounded border border-gray-200"><strong class="text-emerald-700">نقد مالي:</strong> تسويق سيارة فارهة لشاب حديث التخرج هو استهداف خاطئ يحرق ميزانية الترويج لغياب "القدرة الشرائية".</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 hover:border-purple-300 transition-colors">
-                        <div class="text-4xl mb-4">📣</div>
-                        <h4 class="text-xl font-bold text-gray-800 mb-2">4. الترويج (Promotion)</h4>
-                        <p class="text-gray-600 mb-3 text-sm">(الاعلان - البيع الشخصي- تنشيط المبيعات- العلاقات العامة- النشر)-عملية الاتصال لتحريك سلوك المستهلك (الإخبار والإقناع والتذكير). <strong>تحليل نقدي:</strong> هو تكلفة استحواذ العميل (CAC).</p>
-                        <div class="bg-white p-3 rounded text-sm border-r-2 border-purple-400">
-                            <strong class="text-purple-700">مثال واقعي:</strong> حملات نون وأمازون الإعلانية المكثفة في الـ "بلاك فرايداي" لإقناعك بفتح التطبيق والشراء الفوري.
-                        </div>
+                    <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-purple-400">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2"><span>🧠</span> 4. العوامل السيكولوجية(الاهم)</h4>
+                        <p class="text-gray-600 text-sm mb-2">الدوافع، الإدراك، التعلم، والاتجاهات والمواقف. كيف يدرك المستهلك علامتك التجارية؟</p>
+                        <p class="text-xs bg-white p-2 rounded border border-gray-200"><strong class="text-purple-700">تطبيق:</strong> بيع منتجات العناية بالبشرة لا يتم بالحديث عن التركيبة الكيميائية، بل باللعب على دافع "الجمال والثقة بالنفس".</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2- Product Life Cycle -->
-        <section id="lifecycle" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- 4- Participants in Buying -->
+        <section id="participants" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">مراحل دورة حياة المنتج</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">المنتج يمر بـ 4 مراحل، وعلى المنظمة تغيير المزيج التسويقي بالكامل حسب كل مرحلة لتجنب الخسائر .</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">أدوار الشراء (من يصنع القرار؟)</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">الخطأ الأكثر شيوعاً هو افتراض أن المستخدم هو نفسه المشتري أو متخذ القرار.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <!-- Intro -->
-                    <div class="mix-card bg-gradient-to-br from-white to-sky-50 p-8 rounded-2xl border border-sky-100 transition-all duration-300 cursor-pointer group">
-                        <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">1</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة التقديم (Introduction)</h3>
-                        <p class="text-gray-600 mb-3 text-sm">مرحلة إطلاق المنتج. المبيعات بطيئة والأرباح معدومة (حرق نقدي). التركيز على الإعلان للتعريف به.</p>
-                        <div class="text-sm bg-white p-3 rounded shadow-sm border-r-2 border-sky-600">
-                            <strong class="text-sky-700">مثال واقعي:</strong> نظارات الواقع الافتراضي Apple Vision Pro عند إطلاقها؛ مبيعات قليلة وميزانية تسويق عملاقة لشرح فائدتها للجمهور.
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-sky-400 transition-colors">
+                        <div class="text-3xl mb-3">🗣️</div>
+                        <h4 class="font-bold text-gray-800 mb-2">المؤثر (Influencer)</h4>
+                        <p class="text-xs text-gray-600">شخص يقترح أو يوجه الفكرة (مثل الطفل الذي يطلب لعبة).</p>
                     </div>
-                    
-                    <!-- Growth -->
-                    <div class="mix-card bg-gradient-to-br from-white to-amber-50 p-8 rounded-2xl border border-amber-100 transition-all duration-300 cursor-pointer group">
-                        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-amber-500 group-hover:text-white transition-colors">2</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة النمو (Growth)</h3>
-                        <p class="text-gray-600 mb-3 text-sm">قبول السوق للمنتج. الأرباح تقفز والمنافسون يدخلون. المنظمة قد تخفض السعر تدريجياً لكسب حصة سوقية.</p>
-                        <div class="text-sm bg-white p-3 rounded shadow-sm border-r-2 border-amber-500">
-                            <strong class="text-amber-700">مثال واقعي:</strong> سوق السيارات الكهربائية الصينية حالياً؛ مبيعات تتضاعف بسرعة، والمنافسة تشتعل بحرب أسعار شرسة لكسب العملاء.
-                        </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-amber-400 transition-colors">
+                        <div class="text-3xl mb-3">⚖️</div>
+                        <h4 class="font-bold text-gray-800 mb-2">متخذ القرار (Decider)</h4>
+                        <p class="text-xs text-gray-600">من يملك المال والصلاحية لقول "نعم" أو "لا" (مثل الأب).</p>
                     </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-emerald-400 transition-colors">
+                        <div class="text-3xl mb-3">💳</div>
+                        <h4 class="font-bold text-gray-800 mb-2">المشتري (Buyer)</h4>
+                        <p class="text-xs text-gray-600">من يقوم بالعملية التنفيذية ودفع النقود فعلياً.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-purple-400 transition-colors">
+                        <div class="text-3xl mb-3">🍽️</div>
+                        <h4 class="font-bold text-gray-800 mb-2">مسنهلك السلعه او مستعملها (User)</h4>
+                        <p class="text-xs text-gray-600">من يستهلك السلعة في النهاية.</p>
+                    </div>
+                </div>
 
-                    <!-- Maturity -->
-                    <div class="mix-card bg-gradient-to-br from-white to-emerald-50 p-8 rounded-2xl border border-emerald-100 transition-all duration-300 cursor-pointer group">
-                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors">3</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة النضوج (Maturity)</h3>
-                        <p class="text-gray-600 mb-3 text-sm">ذروة المبيعات واستقرارها. المنافسة في أقصاها، والاعتماد يكون على العروض والخصومات للحفاظ على العملاء (بقرة حلوب).</p>
-                        <div class="text-sm bg-white p-3 rounded shadow-sm border-r-2 border-emerald-500">
-                            <strong class="text-emerald-700">مثال واقعي:</strong> أجهزة الهواتف الذكية الحالية (مثل سامسونج S24)؛ لا يوجد نمو انفجاري، بل استقرار والاعتماد الكلي على الترويج للاحتفاظ بالعميل.
-                        </div>
-                    </div>
-
-                    <!-- Decline -->
-                    <div class="mix-card bg-gradient-to-br from-white to-purple-50 p-8 rounded-2xl border border-purple-100 transition-all duration-300 cursor-pointer group">
-                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">4</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">مرحلة التدهور (Decline)</h3>
-                        <p class="text-gray-600 mb-3 text-sm">انهيار المبيعات بسبب تغير الأذواق أو التكنولوجيا. يتم تخفيض النفقات الترويجية جذرياً أو تصفية المنتج.</p>
-                        <div class="text-sm bg-white p-3 rounded shadow-sm border-r-2 border-purple-500">
-                            <strong class="text-purple-700">مثال واقعي:</strong> شرائط الكاسيت وأجهزة الـ DVD؛ تم وقف الإنتاج وتقليل النفقات للصفر بسبب ظهور الإنترنت ومنصات البث.
-                        </div>
-                    </div>
+                <div class="bg-rose-50 p-6 rounded-xl border border-rose-200 text-sm">
+                    <strong class="text-rose-900 block mb-2">⚠️ نقد وتحليل استراتيجي للتوجيه المالي:</strong>
+                    <p class="text-gray-800 leading-relaxed">
+                        توجيه ميزانية الدعاية بالكامل نحو "المستعمل" هو فشل إداري إذا لم يكن هو "متخذ القرار". <br>
+                        <strong>مثال قاطع:</strong> في تسويق حفاضات الأطفال، الطفل هو "المستعمل"، لكن الأم هي "المؤثر ومتخذ القرار والمشتري". لذلك كل الرسائل الإعلانية تتوجه للأم وتركز على الحماية والأمان. في أنظمة برامج الشركات (B2B)، الموظف هو "المستعمل"، لكن المدير المالي (CFO) هو "متخذ القرار"، لذا يجب أن تكون الرسالة التسويقية موجهة للأخير مبنية على <strong>العائد لخفض التكاليف</strong>، وليس سهولة الاستخدام فقط.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- 3- Product Categories -->
-        <section id="product_types" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
-            <div class="max-w-5xl mx-auto w-full">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-sky-800 mb-2">المنتج وتقسيماته</h2>
-                    <p class="text-base text-gray-600">ينقسم المنتج إلى تصنيفات تحدد معدل الدوران وحساسية السعر.</p>
-                </div>
-
-                <!-- Main 3 Categories (Compacted) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <div class="text-2xl mb-2 text-center">⏱️</div>
-                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">1. وفقاً للزمن</h4>
-                        <ul class="text-xs text-gray-600 space-y-2">
-                            <li><strong class="text-sky-700">معمرة:</strong> تشبع الحاجات لمدى طويل (سيارات، ثلاجات). هامش ربحها مرتفع.</li>
-                            <li><strong class="text-sky-700">غير معمرة:</strong> تستهلك سريعاً (مخبوزات، عصائر). تعتمد على سرعة دوران المخزون.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <div class="text-2xl mb-2 text-center">⭐</div>
-                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">2. وفقاً للأهمية</h4>
-                        <ul class="text-xs text-gray-600 space-y-2">
-                            <li><strong class="text-amber-700">ضرورية:</strong> لا يُستغنى عنها (أدوية، خبز). الطلب غير مرن للسعر.</li>
-                            <li><strong class="text-amber-700">كمالية:</strong> يمكن الاستغناء عنها (حقائب فاخرة). شديدة التأثر بالأزمات الاقتصادية.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <div class="text-2xl mb-2 text-center">🛒</div>
-                        <h4 class="text-sm font-bold text-gray-800 mb-2 text-center border-b pb-1">3. وفقاً لغرض الشراء</h4>
-                        <ul class="text-xs text-gray-600 space-y-2">
-                            <li><strong class="text-purple-700">استهلاكية:</strong> للاستخدام المباشر (تفصيلها بالأسفل).</li>
-                            <li><strong class="text-purple-700">إنتاجية (صناعية):</strong> تُشترى لتصنيع منتجات أخرى (مثل شراء مصنع لأقمشة ومعدات).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Added Detailed Note for Consumer Goods -->
-                <div class="bg-white p-6 rounded-xl border border-sky-100 shadow-sm">
-                    <h3 class="text-lg font-bold text-sky-900 mb-3 flex items-center gap-2"><span>📌</span> ملاحظة هامة: تصنيف السلع الاستهلاكية النهائية</h3>
-                    <p class="text-sm text-gray-700 mb-4">نقسم السلع الاستهلاكية النهائية وفقاً للتصنيف التسويقي إلى ثلاثة أنواع أساسية تختلف في خصائصها وأسلوب عرضها وسلوك المستهلك الشرائي تجاهها :</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Convenience -->
-                        <div class="bg-sky-50 p-4 rounded border-t-4 border-sky-500">
-                            <h4 class="font-bold text-sky-800 text-sm mb-2">1. السلع الميسرة (Convenience Goods)</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed mb-2">سلع نمطية سهلة المنال يشتريها المستهلك بمجرد شعوره بالحاجة دون مجهود في البحث [50، 51، 141].</p>
-                            <p class="text-xs text-gray-800 mb-2"><strong class="text-sky-700">أمثلة:</strong> الخبز، اللبن، الزبادي، الصحف، الصابون، مساحيق الغسيل [51، 90، 142].</p>
-                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-sky-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> رخص ثمنها، شراء بكميات صغيرة على فترات متقاربة. <span class="text-emerald-700 font-bold">التحليل:</span> تتسم بسرعة دوران المخزون العالية وانتشارها الواسع؛ الهامش قليل لكن الربح يأتي من الحجم [51، 54، 90، 142].</p>
-                        </div>
-
-                        <!-- Shopping -->
-                        <div class="bg-amber-50 p-4 rounded border-t-4 border-amber-500">
-                            <h4 class="font-bold text-amber-800 text-sm mb-2">2. سلع التسوق (Shopping Goods)</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed mb-2">يرتكز قرار شرائها على المقارنة بين الأنواع المتاحة من حيث الجودة، السعر، العلامة، والملاءمة [52، 89، 142].</p>
-                            <p class="text-xs text-gray-800 mb-2"><strong class="text-amber-700">أمثلة:</strong> الملابس الجاهزة، الأحذية، الساعات، الأثاث، والأجهزة (ثلاجات، غسالات) [52، 90، 142].</p>
-                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-amber-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> تُشترى على فترات متباعدة بتخطيط مسبق. <span class="text-emerald-700 font-bold">التحليل:</span> دوران المخزون أبطأ وتُخزن لفترات أطول لعدم استقرار الطلب، مما يتطلب دراسة تكلفة التخزين بعناية [52، 55، 90، 142].</p>
-                        </div>
-
-                        <!-- Specialty -->
-                        <div class="bg-purple-50 p-4 rounded border-t-4 border-purple-500">
-                            <h4 class="font-bold text-purple-800 text-sm mb-2">3. السلع الخاصة (Specialty Goods)</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed mb-2">تمتلك مواصفات فريدة أو علامات متميزة، ويبذل المستهلك مجهوداً وتكلفة للحصول عليها ولا يقبل بديلاً [53، 143].</p>
-                            <p class="text-xs text-gray-800 mb-2"><strong class="text-purple-700">أمثلة:</strong> الآلات الموسيقية، أدوات الصيد، السيارات الفارهة، المجوهرات، العطور [53، 89، 90، 143].</p>
-                            <p class="text-xs text-gray-600 bg-white p-2 rounded border border-purple-100"><strong class="text-gray-800">الخصائص المادية والمالية:</strong> ارتفاع ثمنها الشديد وندرة مشتريها ومعدل الدوران البطيء جداً. <span class="text-emerald-700 font-bold">التحليل:</span> تحقق هامش ربح مرتفعاً جداً للمنظمة لتعويض بطء البيع [53، 54، 90].</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 4- Pricing -->
-        <section id="pricing_factors" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- 5- Org Buying & Steps -->
+        <section id="org_buying_steps" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">التسعير والعوامل المؤثرة عليه</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">تخفيض السعر بنسبة 5% قد يمحو 25% من أرباحك الصافية. التسعير هو أخطر قرارات المزيج التسويقي وهو الوحيد الذي يدر ايرادات بينما باقي عناصر المزيج تعتبر تكلفه.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">عملية الشراء في المنظمات (B2B)</h2>
+                    <p class="text-lg text-gray-600">عملية معقدة، روتينها طويل، وتستند على الرشد الاقتصادي.</p>
                 </div>
 
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 mb-8">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>⚖️</span> العوامل التي تؤثر على قرارات وسياسات التسعير:</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">1.</span>
-                            <span class="text-gray-700 text-sm"><strong>عناصر المزيج وسمات السلعة:</strong> الجودة العالية تفرض سعراً مرتفعاً.</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">2.</span>
-                            <span class="text-gray-700 text-sm"><strong>قوى العرض والطلب:</strong> الندرة ترفع السعر، والوفرة تخفضه.</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">3.</span>
-                            <span class="text-gray-700 text-sm"><strong>مرحلة دورة حياة السلعة:</strong> السعر في النضوج أقل منه في مرحلة التقديم.</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">4.</span>
-                            <span class="text-gray-700 text-sm"><strong>العوامل الديموجرافية:</strong> مستوى دخل الفئة المستهدفة يحكم سقف السعر.</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">5.</span>
-                            <span class="text-gray-700 text-sm"><strong>أهداف المنظمة والأخلاق:</strong> تعظيم ربح أم اختراق سوق سريع ومراعاة المجتمع؟</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2">
-                            <span class="text-purple-600 font-bold">6.</span>
-                            <span class="text-gray-700 text-sm"><strong>درجة المنافسة وأسعار الخدمات:</strong> أسعار المنافسين تشكل حاجزاً للأسعار.</span>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 flex items-start gap-2 md:col-span-2">
-                            <span class="text-purple-600 font-bold">7.</span>
-                            <span class="text-gray-700 text-sm"><strong>السياسات الاقتصادية لدولة والاعتبارات الأخلاقية:</strong> الضرائب والتشريعات.</span>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Steps -->
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                        <h3 class="text-xl font-bold text-sky-900 mb-4 border-b pb-2">خطوات الشراء (8 خطوات متسلسلة):</h3>
+                        <div class="grid grid-cols-1 gap-2 text-sm text-gray-800 font-medium">
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">1</span> تحديد الحاجة للشراء (إدراك النقص)</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">2</span> تحديد وتوصيف الحاجة بدقة</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">3</span> تحديد المواصفات الفنية (دفتر الشروط)</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">4</span> البحث عن مصادر التوريد وتقييمها</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">5</span> استلام العروض والمناقصات</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">6</span> التقييم المالي والفني للعروض (الترسية)</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">7</span> استلام البضائع والفحص والمطابقة</div>
+                            <div class="bg-white p-3 rounded shadow-sm flex gap-3"><span class="bg-sky-100 text-sky-800 px-2 rounded">8</span> التقييم اللاحق لأداء المورد (Feedback)</div>
                         </div>
                     </div>
 
-                    <div class="mt-6 bg-purple-50 p-5 rounded-lg border-r-4 border-purple-500">
-                        <p class="text-sm text-purple-900 mb-2"><strong>تحليل سياسات التسعير (قطاع خاص ضد حكومي):</strong> الحكومة قد تتدخل وتفرض مستويات أسعار للسلع الأساسية (أقل من التكلفة) لدعم محدودي الدخل، متجاهلة الربح التجاري.</p>
-                        <p class="text-sm bg-white p-2 inline-block rounded border border-purple-200"><strong class="text-purple-700">مثال واقعي:</strong> تسعير تذاكر مترو الأنفاق مُدعم حكومياً ليتناسب مع الظروف الاقتصادية للمواطنين، بينما شركة النقل الخاص (أوبر) تُسعر بالخوارزميات لتعظيم الربح حسب الزحام.</p>
-                    </div>
-                </div>
-
-                <!-- جدول استراتيجيات التسعير -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 overflow-x-auto">
-                    <h4 class="text-xl font-bold text-purple-800 mb-3 flex items-center gap-2"><span>📊</span> جدول (استراتجيات التسعير ): استراتيجيات التسعير الخمسة ومفاهيمها [108، 109، 110]</h4>
-                    <p class="text-sm text-gray-600 mb-4">يوضح هذا الجدول التوجهات المختلفة للمنظمات عند وضع السعر بناءً على الطلب أو المنافسة أو الحالة النفسية للمستهلك:</p>
-                    
-                    <table class="w-full text-right border-collapse custom-table min-w-[700px]">
-                        <thead>
-                            <tr>
-                                <th class="p-3 border border-purple-200 font-bold rounded-tr-lg w-10 text-center">م</th>
-                                <th class="p-3 border border-purple-200 font-bold w-1/4">الاستراتيجية</th>
-                                <th class="p-3 border border-purple-200 font-bold w-1/3">المفهوم</th>
-                                <th class="p-3 border border-purple-200 font-bold rounded-tl-lg">أمثلة توضيحية</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm text-gray-700">
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">1</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير الموجه بالطلب (كشط الأسعار)</td>
-                                <td class="p-3 border border-gray-200">وضع سعر مرتفع في البداية للحصول على أعلى ربح، ثم ينخفض تدريجياً مع مرور الوقت.</td>
-                                <td class="p-3 border border-gray-200">أجهزة التلفزيون تنزل بأسعار مرتفعة ثم تنخفض.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">2</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">تسعير الاختراق</td>
-                                <td class="p-3 border border-gray-200">تحديد أسعار أقل من المنافسين للحصول على زيادة سريعة في المبيعات والاستحواذ على السوق.</td>
-                                <td class="p-3 border border-gray-200">المقاهي الجديدة في المدينة تبدأ بأسعار منخفضة ثم ترفعها بعد شهرتها [108، 109].</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">3</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير التنافسي (سعر السوق)</td>
-                                <td class="p-3 border border-gray-200">يتم التسعير بناءً على سعر السوق الحالي، سواء مساوياً له أو أقل بقليل لكسب العملاء.</td>
-                                <td class="p-3 border border-gray-200">جميع المنتجات التي تسوق عبر الإنترنت والسلع الاستهلاكية.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">4</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير المتميز</td>
-                                <td class="p-3 border border-gray-200">تحديد أسعار أعلى من الأسعار المماثلة في السوق للرغبة في إشعار العميل بالجودة العالية والقيمة.</td>
-                                <td class="p-3 border border-gray-200">الانتيكات والسلع النادرة والفاخرة.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">5</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير بالخسارة</td>
-                                <td class="p-3 border border-gray-200">يدفع المستهلك للشراء بأسعار رخيصة لمنتجات معينة لجذبه لشراء منتجات أخرى بسعر كامل [109، 110].</td>
-                                <td class="p-3 border border-gray-200">بعض المحلات التي تضع عروض (Sale) والمخابز في نهاية اليوم [109، 110].</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-200 text-center font-bold">6</td>
-                                <td class="p-3 border border-gray-200 font-bold text-purple-700">التسعير النفسي</td>
-                                <td class="p-3 border border-gray-200">إجراء تغييرات بسيطة في السعر لجعله يبدو أقل (الأسعار الانكسارية).</td>
-                                <td class="p-3 border border-gray-200">وضع سعر 49.99 بدلاً من 50.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 5- Place -->
-        <section id="place_factors" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
-            <div class="max-w-5xl mx-auto w-full">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">التوزيع (قنوات التوزيع)</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">التوزيع يحل مشكلة الزمان والمكان. وهو مقايضة استراتيجية بين التخلي عن جزء من أرباحك للوسطاء، وبين الانتشار السريع لتقليل تكلفة المخزون.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Factors -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hover:shadow-sm transition-shadow">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">عوامل اختيار قناة التوزيع:</h3>
-                        <ul class="space-y-4 text-sm text-gray-700">
-                            <li class="flex gap-2 items-start">
-                                <span class="mt-1">▪️</span> 
-                                <div><strong>طبيعة السلعة:</strong> الاستهلاكية تمر بوسطاء كثر (غير مباشر)، بينما الصناعية تتطلب اتصالاً مباشراً.</div>
-                            </li>
-                            <li class="flex gap-2 items-start">
-                                <span class="mt-1">▪️</span> 
-                                <div><strong>قيمة السلعة:</strong> السلع الثمينة غالباً ما توزع عبر قنوات مباشرة (لتقليل العمولات والحفاظ على الهامش).</div>
-                            </li>
-                            <li class="flex gap-2 items-start">
-                                <span class="mt-1">▪️</span> 
-                                <div><strong>نمطية السلعة:</strong> النمطية تباع بوسطاء، والسلع المخصصة تباع مباشرة.</div>
-                            </li>
-                            <li class="flex gap-2 items-start">
-                                <span class="mt-1">▪️</span> 
-                                <div><strong>درجة قبول السوق:</strong> القبول العالي يجعلك لا تحتاج لوكلاء (توزع بنفسك)، ولو القبول منخفض ستحتاج وسطاء لدفعها للسوق.</div>
-                            </li>
-                            <li class="flex gap-2 items-start">
-                                <span class="mt-1">▪️</span> 
-                                <div><strong>إمكانيات المنظمة:</strong> مالياً وسمعة؛ المنظمة القوية يمكنها فتح فروعها الخاصة.</div>
-                            </li>
-                        </ul>
-                        <div class="mt-4 text-sm bg-white p-3 rounded border border-gray-200">
-                            <strong class="text-teal-700">مثال واقعي:</strong> طائرات بوينج (سلعة رأسمالية، عالية القيمة، غير نمطية) تباع مباشرة من المصنع لشركات الطيران بدون تجار تجزئة لضمان المواصفات وعدم دفع عمولات ضخمة.
+                    <!-- Characteristics & Timing -->
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100 flex-1">
+                            <h3 class="text-xl font-bold text-amber-900 mb-3">السلوك الشرائى فى المنظمات:</h3>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                <li><strong>معقده الشراء:</strong> شراء بمبالغ كبيره وتمر بمستويات مختلفه ولها تاثير عظيم</li>
+                                <li><strong>لاتتاثر بالعواطف :</strong> معتمده علي خصائص فنية واقتصادية ولا تتاثر بالعاطفة.</li>
+                                <li><strong> محفوفة بالمخاطر:</strong> تتعرض الأسواق الصناعية أحياناً إلى مخاطر فى توريد أو شراء السلع الأمر الذى يمثل مشكلة لمتخذ القرار الشرائى فى هذه المنظمات</li>
+                                <li><strong>تحديد الاحتياجات:</strong> مدى تأثير الصنف على جودة وتكلفة المنتج النهائي للمنظمة.</li>
+                                <li><strong>  الطلب علي الشراء مشتق:</strong>  لانه مشتق من عميلات وسلع نهائية اخري</li>
+                                <li><strong>مفاوضه الموردين  :</strong> للتاكد من موثقية المورد في التوريد</li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <!-- Types -->
-                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 hover:shadow-sm transition-shadow">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">أنواع قنوات التوزيع:</h3>
-                        <div class="space-y-5">
-                            <div class="bg-white p-4 rounded-lg shadow-sm border-r-4 border-teal-500">
-                                <h4 class="font-bold text-teal-800 mb-1">1. التوزيع الشامل (Intensive)</h4>
-                                <p class="text-sm text-gray-600 mb-2">يتلاءم مع السلع الاستهلاكية الميسرة التي تحتاج تواجد مكثف في كل مكان.</p>
-                                <p class="text-xs bg-gray-50 p-2 rounded"><strong class="text-teal-700">مثال واقعي:</strong> توفر المشروبات الغازية والشيبسي في كل كشك، صيدلية، وسوبر ماركت.</p>
-                            </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm border-r-4 border-sky-500">
-                                <h4 class="font-bold text-sky-800 mb-1">2. التوزيع الانتقائي (Selective)</h4>
-                                <p class="text-sm text-gray-600 mb-2">يتلاءم مع سلع التسوق، حيث يتم اختيار موزعين محددين ومعينين لعرض السلعة.</p>
-                                <p class="text-xs bg-gray-50 p-2 rounded"><strong class="text-sky-700">مثال واقعي:</strong> ماركات الماكياج الراقية تُباع فقط في صيدليات كبرى أو مولات متخصصة.</p>
-                            </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm border-r-4 border-amber-500">
-                                <h4 class="font-bold text-amber-800 mb-1">3. التوكيلات الحصرية (Exclusive)</h4>
-                                <p class="text-sm text-gray-600 mb-2">موزع وحيد في منطقة جغرافية. يتناسب مع السيارات والأجهزة لضمان جودة خدمة ما بعد البيع.</p>
-                                <p class="text-xs bg-gray-50 p-2 rounded"><strong class="text-amber-700">مثال واقعي:</strong> توكيل غبور الحصري لسيارات هيونداي لضمان الصيانة والصورة الذهنية.</p>
-                            </div>
+                        <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 flex-1">
+                            <h3 class="text-xl font-bold text-emerald-900 mb-3">توقيت الشراء يعتمد على:</h3>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                <li>سياسات التخزين والميزانية.</li>
+                                <li><strong>نقطة إعادة الطلب:</strong> سرعة نفاد المخزون.</li>
+                                <li>الظروف الطارئة أو استغلال خصومات الكمية بشرط توفر <strong>السيولة النقدية (Liquidity)</strong>.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6- Promotion Views & Elements -->
-        <section id="promo_views" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- 6- Market Characteristics (Interactive) -->
+        <section id="market_diff" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">الترويج ووجهات نظر مختلفة</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">الترويج هو وسيلة الاتصال والربط بين المنظمة والمجتمع. ويتكون من أدوات متعددة تختلف وجهات النظر حولها.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-4">خصائص سوق المنظمات (مقارنة بالمستهلك)</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">ثماني خصائص اقتصادية وبيعية تفرق تماماً بين الـ B2B والـ B2C.</p>
                 </div>
 
-                <!-- Interactive Promo Mix inside this section -->
+                <!-- Interactive Section -->
                 <div class="mb-12 bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center border-b pb-4">عناصر المزيج الترويجي (انقر للاكتشاف)</h3>
-                    <div class="flex flex-wrap justify-center gap-3 mb-6" id="promoMixButtons">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center border-b pb-4">انقر على الخاصية لاكتشاف التحليل الاستراتيجي</h3>
+                    <div class="flex flex-wrap justify-center gap-3 mb-6" id="interactiveButtons">
                         <!-- Buttons generated by JS -->
                     </div>
-                    <div id="promoMixDetail" class="bg-sky-50 rounded-xl p-6 text-center flex flex-col justify-center items-center transition-all duration-300 border border-sky-100 min-h-[180px]">
-                        <p class="text-gray-500 font-bold text-lg">اختر إحدى الأدوات أعلاه لعرض التفاصيل والتحليل المالي والمثال الواقعي.</p>
+                    <div id="interactiveDetail" class="bg-slate-50 rounded-xl p-6 text-center flex flex-col justify-center items-center transition-all duration-300 border border-slate-200 min-h-[220px]">
+                        <p class="text-gray-500 font-bold text-lg">اختر إحدى الخصائص أعلاه لعرض الشرح والتحليل.</p>
                     </div>
-                </div>
-
-                <h3 class="text-2xl font-bold text-sky-800 mb-6 text-center">وجهات نظر مختلفة للترويج</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow flex flex-col h-full">
-                        <div class="text-5xl mb-4">🌍</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">وجهة نظر المجتمع</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed text-right mb-4 flex-grow">يرى البعض أن أساليب الجذب قد تخرج عن الإطار الأخلاقي، وتخلق أنماطاً استهلاكية لا تتناسب مع متطلبات التنمية وتستنزف موارد الأفراد.</p>
-                        <p class="text-xs bg-gray-50 p-3 rounded border text-right mt-auto"><strong class="text-rose-700">مثال واقعي:</strong> انتقاد إعلانات الوجبات السريعة الموجهة للأطفال لأنها تشجع على السمنة وتضر بالصحة العامة.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow flex flex-col h-full">
-                        <div class="text-5xl mb-4">🏢</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">وجهة نظر المنظمة</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed text-right mb-4 flex-grow">الترويج أداة حتمية لزيادة الحصة السوقية. الهدف المالي هنا هو تحويل "الطلب المرتقب" إلى "طلب فعال" لحصد الإيرادات وتغطية التكاليف.</p>
-                        <p class="text-xs bg-gray-50 p-3 rounded border text-right mt-auto"><strong class="text-rose-700">مثال واقعي:</strong> إنفاق شركة فودافون ملايين في رمضان ليس للرفاهية، بل لجذب عملاء المنافسين وتحويلهم لطلب فعال.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center hover:shadow-md transition-shadow flex flex-col h-full">
-                        <div class="text-5xl mb-4">🛒</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">وجهة نظر المستهلك</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed text-right mb-4 flex-grow">الترويج هو المصدر الرئيسي للمعلومات؛ يساعده في عقد مقارنات بين البدائل واتخاذ قرار شراء رشيد، وهو الطريقة التي تحاول بها الشركات الاحتفاظ به.</p>
-                        <p class="text-xs bg-gray-50 p-3 rounded border text-right mt-auto"><strong class="text-rose-700">مثال واقعي:</strong> بحث المستهلك عن إعلانات كارفور الأسبوعية لمعرفة أين توجد التخفيضات ومقارنتها بالهايبر ماركت الأخرى.</p>
-                    </div>
-                </div>
-                <div class="mt-6 p-4 bg-rose-50 rounded-lg text-sm text-rose-800 text-center border border-rose-200">
-                    <strong class="text-rose-900 block mb-1">ملاحظة تحليلية هامة:</strong>
-                    طبيعة النشاط تؤثر في الأسلوب المالي للترويج؛ <strong>الإعلان (مدفوع ومكثف)</strong> يصلح للسلع الاستهلاكية واسعة الانتشار، بينما <strong>البيع الشخصي (عمولات ورواتب)</strong> هو الأنسب تماماً للسلع الصناعية والأدوية حيث قيمة الصفقة تبرر التكلفة العالية للمندوب.
                 </div>
             </div>
         </section>
 
-        <!-- 7- Challenges & Golden Rule (Timeline layout) -->
-        <section id="challenges" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
-            <div class="max-w-5xl mx-auto w-full">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-sky-800 mb-12">التحديات التسويقية  التي تواجهة الترويج </h2>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2"><span>⚠️</span> التحديات التي تواجه الترويج</h3>
-                        <div class="relative border-r-4 border-sky-200 pr-6 space-y-8">
-                            <div class="relative">
-                                <div class="absolute -right-[34px] bg-gray-400 w-6 h-6 rounded-full border-4 border-white shadow"></div>
-                                <h4 class="text-xl font-bold text-gray-800">1. اختلاف الأذواق والولاء</h4>
-                                <p class="text-gray-600 mt-1 text-sm">تعدد الأذواق ودرجة الولاء العالية للعلامات التجارية يصعب عملية اختراق السوق.<br><span class="text-emerald-600 font-bold block mt-1">الحل: كلما تنوعت المنتجات كلما تضمن المنظمة الاستمرارية.</span></p>
-                                <p class="text-xs bg-white p-2 mt-2 inline-block rounded border shadow-sm"><strong class="text-sky-700">مثال واقعي:</strong> صعوبة بالغة في إقناع مستخدم منتمي بشدة لـ Apple بالتحول لأندرويد مهما كان الإعلان مغرياً.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -right-[34px] bg-amber-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
-                                <h4 class="text-xl font-bold text-gray-800">2. التغييرات الديموجرافية</h4>
-                                <p class="text-gray-600 mt-1 text-sm">التغيرات المستمرة في الخصائص السكانية (النوع، الدخل، والمؤهل والتعليم-المنطقة الجغرافية- اخري) تفرض تحديات لتعديل الرسائل.</p>
-                                <p class="text-xs bg-white p-2 mt-2 inline-block rounded border shadow-sm"><strong class="text-sky-700">مثال واقعي:</strong> الإعلان الموجه للمراهقين على "تيك توك" بلغتهم يختلف جذرياً عن إعلان عقاري لكبار السن في التلفزيون.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -right-[34px] bg-emerald-500 w-6 h-6 rounded-full border-4 border-white shadow"></div>
-                                <h4 class="text-xl font-bold text-gray-800">3. إرتفاع المنافسة</h4>
-                                <p class="text-gray-600 mt-1 text-sm">المنافسة الشرسة بين المنظمات لكسب رضا المستهلك للإتصال المستمر به ومحاولة جذبه باستمرار.</p>
-                                <p class="text-xs bg-white p-2 mt-2 inline-block rounded border shadow-sm"><strong class="text-sky-700">مثال واقعي:</strong> صراع شركات الاتصالات اليومي بإرسال رسائل عروض تنافسية لمنعك من التحويل لشبكة أخرى.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -right-[34px] bg-sky-700 w-6 h-6 rounded-full border-4 border-white shadow animate-pulse"></div>
-                                <h4 class="text-xl font-bold text-sky-700">4. تطور طرق الشراء والدفع</h4>
-                                <p class="text-gray-600 mt-1 text-sm">أدت الطرق الجديدة إلى ضرورة العمل على إيجاد أساليب أحدث (غير تقليدية) لإعادة النظر في الجهود الترويجية.</p>
-                                <p class="text-xs bg-white p-2 mt-2 inline-block rounded border border-sky-200 shadow-sm"><strong class="text-sky-700">مثال واقعي:</strong> الاعتماد على الإنفلونسرز بكود خصم مخصص للدفع بالفيزا إلكترونياً، وتجاهل الإعلانات المطبوعة.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-200 sticky top-10">
-                        <h3 class="text-2xl font-bold text-emerald-600 mb-6 flex items-center gap-2"><span>🏆</span> القاعدة الذهبية (معادلة الاستدامة)</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="p-4 bg-emerald-50 rounded-lg border-2 border-emerald-200 text-center shadow-sm">
-                                <h4 class="font-bold text-emerald-800 text-xl mb-6">التكامل بين الـ 4Ps</h4>
-                                
-                                <div class="flex justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-6 flex-wrap">
-                                    <div class="bg-white p-3 rounded shadow-sm border border-blue-200 text-blue-800">المنتج + السعر</div>
-                                    <div class="text-2xl">🟰</div>
-                                    <div class="bg-white p-3 rounded shadow-sm border text-gray-700">إرضاء العملاء الحاليين</div>
-                                </div>
-                                <div class="flex justify-center items-center gap-2 text-sm font-bold text-gray-800 mb-4 flex-wrap">
-                                    <div class="bg-white p-3 rounded shadow-sm border border-amber-200 text-amber-800">التوزيع + الترويج</div>
-                                    <div class="text-2xl">🟰</div>
-                                    <div class="bg-white p-3 rounded shadow-sm border text-gray-700">زيادة عدد العملاء المتوقع مستقبلاً</div>
-                                </div>
-                            </div>
-                            
-                            <div class="p-5 bg-white rounded-lg border-l-4 border-emerald-500 shadow-sm">
-                                <h4 class="font-bold text-gray-800 mb-2">نظره مبسطه:</h4>
-                                <p class="text-sm text-gray-600 mb-3 leading-relaxed">الجودة (المنتج) والتسعير العادل يحافظان على إيراداتك من العملاء القدامى (يمنع التسرب Retention). أما فتح فروع جديدة (التوزيع) والإنفاق الإعلاني (الترويج) فهما ميزانية استثمارية (Acquisition Cost) لجلب إيرادات وتوسيع قاعدة العملاء.</p>
-                                <p class="text-xs bg-gray-50 p-2 rounded border"><strong class="text-emerald-700">مثال واقعي:</strong> مطعم يقدم طعاماً لذيذاً بسعر مناسب؛ سيحتفظ بزبائنه الحاليين (إرضاء). لكن ليزيد أرباحه وحجمه، يفتتح فرعاً بمدينة أخرى (توزيع) ويطلق إعلانات لجذب سكانها (ترويج).</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 8- Remember Notes -->
-        <section id="remembers" class="min-h-screen p-8 md:p-12 border-b border-gray-200 flex flex-col justify-center">
+        <!-- 7- Remember Notes -->
+        <section id="remembers" class="min-h-screen p-8 md:p-12 border-b border-gray-200 bg-white flex flex-col justify-center">
             <div class="max-w-4xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-amber-600 mb-4">خلاصة (تذكر أن)</h2>
-                    <p class="text-lg text-gray-600">تجميع لأهم الملاحظات الجوهرية (تذكر أن) المذكورة في المحاضرة .</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-amber-600 mb-4">الخلاصة الاستراتيجية (تذكر أن)</h2>
+                    <p class="text-lg text-gray-600">قواعد إدارية صارمة مبنية على المحاضرة.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 تقسيمات المنتج:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">تقسيمات المنتج الي ثلاث تقسيمات 1. وفقاً للزمن 2. وفقاً للأهمية 3. وفقاً لغرض الشراء.</p>
+                    <div class="bg-gray-50 p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 نقاط الاتفاق (B2C & B2B):</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">كلاهما سلوك إنساني يعتمد على عملية "صنع القرار" بواسطة "أفراد" في النهاية، حتى وإن كان الفرد يمثل منظمة، فهو يتأثر ببيئته.</p>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 طبيعة الدورة (تذكر):</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">•كل مرحلة فى دورة حياة المنتج تختلف من سلعة استهالكية إلى سللعة معملرة فلى الفتلرة الزمنيلة التلى تسلتغرقها ملن وقلت آلخلر وعلى المنظمة اتباع السياسات التسلويقية المناسلبة للفتلرة الزمنيلة خلللالل دورة حيلللاة المنلللتج بالسياسلللة السلللعرية ومنافلللذ التوزيلللع والترويج والتشكيل مع اإلضافة والتجديد والتطوير فى المنتج.</p>
+                    <div class="bg-gray-50 p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 نقاط الاختلاف الفنية:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">المنظمات تشتري سلعاً معقدة، بكميات ضخمة، بأسلوب المبادلة أحياناً، والأهم أن طلبها <strong>مشتق</strong> من طلب المستهلك النهائي.</p>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 المزيج التسويقي:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">تذكر أن المزيج التسويقي هو أساس إدارة التسويق في أي منظمة.</p>
+                    <div class="bg-gray-50 p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 أبعاد قرار الشراء:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">القرار الاستهلاكي هو رحلة تبدأ من "الشعور بالحاجة" وتنتهي بـ "سلوك ما بعد الشراء" (الرضا أو عدم الرضا).</p>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 مراحل الدورة:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">تذكر أن مراحل دورة حياة المنتج أربعة 4Ps (تقديم، نمو، نضوج، تدهور).</p>
+                    <div class="bg-gray-50 p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
+                        <p class="text-gray-800 font-bold mb-1">💡 العوامل التى تؤثر فى السلوك الشرائى فى المنظمات:</p>
+                        <p class="text-gray-600 text-sm leading-relaxed">1- صفه الشراء 2- نوعيه السلعه المشتراه 3- اهمية الاصناف المشتراه بالنسبة للمنظمة</p>
                     </div>
                     
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 اهم التحديات التي تواجة كل عنصر من عناصر المزيج التسويقي:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">تحديات المنتج (عدم مطابقة المواصفات) تحديات السعر (ارتفاع سعر المنتج)تحديات التوزيع (التوقيت او المكان)تحديات الترويج (نقص البيانات علي المنتج).</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 مكونات الترويج:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">يتكون المزيج الترويجي من: الإعلان، النشر، تنشيط المبيعات، البيع الشخصي، العلاقات العامة.</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow">
-                        <p class="text-gray-800 font-bold mb-1">💡 تباين الترويج:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed">الترويج في سلع مثل الأدوية والسلع الصناعية يُعد البيع الشخصي أكثر ملائمة لها، عكس الاستهلاكية التي يناسبها الإعلان.</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-r-4 border-amber-500 hover:shadow-md transition-shadow md:col-span-2">
-                        <p class="text-gray-800 font-bold mb-1 text-center">💡 معادلة المزيج:</p>
-                        <p class="text-gray-600 text-sm leading-relaxed text-center">تذكر أن المزيج التسويقي يظهر أن (المنتج والسعر) يساعدوا على إرضاء العملاء، أما (التوزيع والترويج) لزيادة عدد العملاء المتوقع مستقبلاً.</p>
+                    <div class="bg-amber-50 p-5 rounded-xl shadow-sm border-r-4 border-amber-600 hover:shadow-md transition-shadow md:col-span-2 text-center">
+                        <p class="text-amber-900 font-bold mb-2">💡 الوقت المناسب للشراء فى المنظمات </p>
+                        <p class="text-amber-800 text-sm leading-relaxed max-w-2xl mx-auto">
+                          العوامل الأربعة  التى تؤثر على وقت المشترى فى المنظمات: 
+-1 سياسات الشراء والتخزين
+2 معدلات الإستخدام للصنف فى المنظمة
+3 الغرض من إستخدام الأصناف المشتراة فى المنظمة
+4 القدرة المالية للمنظمة
+<strong>للموثوقية واستقرار التوريد</strong>، والتواصل يجب أن يكون مباشراً لتقليل التكاليف. أي استراتيجية تسويقية تتجاهل الأرقام والـ ROI في هذا السوق محكوم عليها بالفشل.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 9- Quiz (Comprehensive from Document) -->
+        <!-- 8- Quiz (Comprehensive & Analytical) -->
         <section id="quiz" class="min-h-screen p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
             <div class="max-w-5xl mx-auto w-full">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>📊</span> التدقيق والتحليل (بنك الأسئلة الشامل)</h2>
-                    <p class="text-lg text-gray-600">يحتوي هذا القسم على جميع الأسئلة (صح/خطأ والمقالية) مع تحليل مالي وإداري معمق لفهم أبعاد الإجابة.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-emerald-600 mb-4 flex items-center justify-center gap-3"><span>الاسئلة</span>(بنك الأسئلة)</h2>
+                    <p class="text-lg text-gray-600">لا تحفظ الإجابات، اقرأ <strong>التحليل المالي والنقدي</strong> أسفل كل سؤال لتفهم المنطق الاقتصادي والإداري وراءه.</p>
                 </div>
 
                 <!-- أولاً: العبارات -->
@@ -638,160 +428,81 @@
                         
                         <!-- 1 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">1. تصنَّف المنتجات في مجال التسويق وفقًا لمجموعة متكاملة من المعايير التي تحدد طبيعة المنتج واستخدامه وأسلوب تسويقه في السوق.</h3>
-                            <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">1. تتسم عمليات الشراء الاستهلاكية والصناعية بمزيج من التشابهات والاختلافات.</h3>
+                            <button onclick="toggleAnswer('ans1', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans1" class="quiz-answer">
                                 <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> التصنيف (استهلاكي، صناعي، ميسر، خاص) يحدد "هيكل التكاليف" ومعدل دوران المخزون. الخطأ في تصنيف منتجك يعني وضع ميزانية تسويق وقناة توزيع خاطئة، مما يستنزف السيولة النقدية.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل الخبير:</strong> التشابه يكمن في "الأساس البشري" لاتخاذ القرار. الاختلاف يكمن في "الهدف". المستهلك يشتري ليستهلك، المنظمة تشتري لتربح. من لا يدرك هذا الاختلاف سيحاول بيع معدات مصانع باستخدام إعلانات التيك توك العاطفية، وهو غباء تسويقي.</p>
                             </div>
                         </div>
 
                         <!-- 2 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">2. تتمتع السلع الكمالية بنفس درجة الأهمية في جميع البيئات والمستويات الاقتصادية، إذ لا تتأثر بعوامل الدخل أو التقدم.</h3>
-                            <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">2. تُعتبَر مرحلة تقييم البدائل نقطة الانطلاق الأولى في مسار اتخاذ القرار الشرائي للمستهلك.</h3>
+                            <button onclick="toggleAnswer('ans2', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans2" class="quiz-answer">
                                 <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> أهمية السلع الكمالية تتغير بتغير القوة الشرائية والمحيط الاقتصادي (مرونة طلب دخلية عالية). فما يعتبر كمالياً في أسواق نامية قد يكون ضرورياً في أسواق متقدمة (كخدمات الإنترنت). توحيد الاستراتيجية عبر أسواق متباينة الدخل قرار مالي خاطئ.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل الخبير:</strong> مستحيل منطقياً أن تقيم بدائل لمشكلة لا تدرك وجودها. البداية دائماً هي "الشعور بالحاجة/المشكلة". المسوق الناجح هو من يخلق هذه المشكلة في ذهن العميل (مثال: إقناع العميل أن هاتفه الذي يعمل جيداً أصبح بطيئاً مقارنة بالجيل الجديد).</p>
                             </div>
                         </div>
 
                         <!-- 3 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">3. يُقبل المستهلك على شراء السلع الاستهلاكية عادةً بدافع تحقيق أرباح مستقبلية من إعادة بيعها في السوق.</h3>
-                            <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">3. تعد العوامل الثقافية هي القوة الدافعة الوحيدة وراء قرارات الشراء للمستهلك.</h3>
+                            <button onclick="toggleAnswer('ans3', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans3" class="quiz-answer">
                                 <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> السلع الاستهلاكية تُشترى للاستهلاك المباشر. أما "السلع الصناعية" فهي الأصول الرأسمالية التي تُشترى لتوليد تدفقات نقدية مستقبلية. الخلط بينهما يفسد توجيه الرسالة الإعلانية.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل الخبير:</strong> السلوك البشري معقد ولا يقاد بعامل واحد. هناك تفاعل بين عوامل ثقافية، اجتماعية، نفسية (الدوافع)، وشخصية (الدخل). الاعتماد على بعد واحد في تحليل السوق يؤدي لتقديرات خاطئة في دراسة الجدوى.</p>
                             </div>
                         </div>
 
                         <!-- 4 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">4. يُبدي المستهلك اهتمامًا محدودًا عند شراء سلع التسوق لأنها تُشترى بشكل متكرر ودون تخطيط مسبق.</h3>
-                            <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">4. تتعدد الأطراف التي تساهم في تشكيل قرار الشراء ولكل منها تأثير مختلف على القرار.</h3>
+                            <button onclick="toggleAnswer('ans4', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans4" class="quiz-answer">
-                                <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> سلع التسوق (كالأجهزة والملابس) تتطلب تفكيراً ومقارنة. مالياً: هذا يعني أن دورة المبيعات أبطأ، ويتطلب الأمر استثماراً ترويجياً أكبر لإقناع العميل بـ "القيمة" مقابل السعر.</p>
+                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل مالي:</strong> في المنظمات، المهندس (المؤثر/المستخدم) يطلب أعلى جودة، والمحاسب (متخذ القرار) يطلب أقل سعر. مندوب المبيعات الناجح يجب أن يرضي الاثنين: يقنع المهندس بالكفاءة، ويقنع المحاسب بالتوفير (ROI).</p>
                             </div>
                         </div>
 
                         <!-- 5 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">5. تتميز السلع الخاصة باتباع استراتيجية تسويقية تقوم على الإتاحة الواسعة والتركيز على الجوانب العقلانية في الإعلان.</h3>
-                            <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">5. تعتبر خطوة تحديد مواصفات عناصر المشتريات الخطوة الأولى في خطوات عملية الشراء في المنظمات.</h3>
+                            <button onclick="toggleAnswer('ans5', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans5" class="quiz-answer">
                                 <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> السلع الخاصة (كالساعات الفاخرة) تعتمد على الندرة والتوزيع الحصري والجانب النفسي. مالياً: الإتاحة الواسعة تدمر قيمتها الرمزية مما يهبط بالسعر، وبذلك نفقد هامش الربح المرتفع الذي يعوض بطء المبيعات.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل الخبير:</strong> الخطوة الأولى هي إدراك "الحاجة للشراء" (مثال: تعطل الماكينة الحالية). تحديد المواصفات الفنية يأتي في المرحلة الثالثة، ولا يمكن صياغته قبل التأكد من الحاجة الحقيقية ومبرراتها المالية للرقابة على التكاليف.</p>
                             </div>
                         </div>
 
                         <!-- 6 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">6. تحافظ المبيعات على معدلاتها المرتفعة طوال دورة حياة المنتج دون أن تتأثر بمراحل التقديم أو النمو أو النضج أو التراجع.</h3>
-                            <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">6. يعتبر الطلب على المنتج النهائي للمستهلك محركًا أساسيًا للطلب على المشتريات الصناعية.</h3>
+                            <button onclick="toggleAnswer('ans6', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans6" class="quiz-answer">
-                                <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> دورة الحياة ديناميكية وتمر بمنحنى جرس (Bell Curve). التدفقات النقدية تكون سلبية في البداية، وتصل للذروة في النضوج، ثم تنهار في التراجع. تجاهل هذا يخلق عجزاً مالياً للمنظمة.</p>
+                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل اقتصادي (الطلب المشتق):</strong> مصانع الصلب لا تبيع الحديد للناس، بل لمصانع السيارات. إذا توقف الناس عن شراء السيارات، انهار طلب مصنع السيارات للصلب. سلسلة الإمداد (Supply Chain) كلها تابعة لجيب المستهلك الأخير.</p>
                             </div>
                         </div>
 
                         <!-- 7 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">7. تشهد مرحلة النضج في دورة حياة المنتج استقرارًا نسبيًا في المبيعات نتيجة تشبع السوق واشتداد المنافسة بين العلامات التجارية.</h3>
-                            <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">7. هناك عدة عوامل تقلل من مرونة الطلب في مشتريات المنظمات.</h3>
+                            <button onclick="toggleAnswer('ans7', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans7" class="quiz-answer">
                                 <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> هذه مرحلة جني الأرباح (بقرة حلوب). مالياً، يتم توجيه أرباح هذه المرحلة لتمويل البحث والتطوير (R&D) لمنتجات جديدة قبل أن يدخل هذا المنتج في مرحلة التدهور.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل مالي:</strong> مرونة الطلب (Elasticity) منخفضة في الأجل القصير. ارتفاع سعر "البلاستيك" بنسبة 10% لن يجعل مصنع عبوات المياه يخفض إنتاجه فوراً، لأن تكلفة البلاستيك هي جزء صغير من تكلفة العبوة الكلية، ولديه عقود توريد يجب الوفاء بها.</p>
                             </div>
                         </div>
 
                         <!-- 8 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">8. يتميز عنصر السعر في المزيج التسويقي بمرونة عالية تُمكِّن المنظمة من تعديله بسرعة وفقًا لتغيرات السوق والمنافسة.</h3>
-                            <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">8. يمكن تجاهل دور نوعية السلع المطلوبة في تشكيل وتوجيه سلوك الشراء في مختلف أنواع المنظمات.</h3>
+                            <button onclick="toggleAnswer('ans8', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors outline-none">إظهار الإجابة والتحليل</button>
                             <div id="ans8" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> السعر هو الأسرع استجابة. تغيير المنتج يحتاج شهور، بينما تغيير السعر يحتاج ثوانٍ. هذه المرونة تجعله أداة رئيسية للإدارة الفورية للسيولة وتكتيكات الاستحواذ السريع (كعروض التخفيض).</p>
-                            </div>
-                        </div>
-
-                        <!-- 9 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">9. يتطلب تخطيط السعر دراسة العوامل البيئية والاقتصادية والتكنولوجية وسلوك المستهلك، لضمان وضع سياسة سعرية ملائمة.</h3>
-                            <button onclick="toggleAnswer('ans9', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans9" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> التسعير المبني على التكلفة فقط هو خطأ فادح؛ يجب أن يبنى التسعير على مدى "استعداد العميل للدفع" (Willingness to Pay) المتأثر ببيئته الاقتصادية للحصول على أقصى هامش ممكن.</p>
-                            </div>
-                        </div>
-
-                        <!-- 10 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">10. تتبنى جميع المنظمات أسلوباً تسعيرياً واحداً يضمن تحقيق الربح دون الحاجة لتنوع استراتيجيات التسعير.</h3>
-                            <button onclick="toggleAnswer('ans10', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans10" class="quiz-answer">
                                 <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> التمسك بسياسة تسعير واحدة يعتبر انتحاراً مالياً. المنتج التكنولوجي الجديد يتطلب (تسعير كشط)، بينما المقهى الجديد يتطلب (تسعير اختراق). الاستراتيجية تتغير حسب المنافسة لدعم (العائد على الاستثمار ROI).</p>
-                            </div>
-                        </div>
-
-                        <!-- 11 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">11. ترتبط قرارات التسعير في المنظمات بعوامل متعددة تجعل من عملية تحديد السعر قرارًا استراتيجيًا أكثر من كونه قرارًا ماليًا فقط.</h3>
-                            <button onclick="toggleAnswer('ans11', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans11" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> السعر لا يعكس التكلفة فحسب، بل يعكس صورة العلامة التجارية، ويستخدم كأداة لردع المنافسين (حرب الأسعار)، وتوجيه إدراك العميل عن الجودة.</p>
-                            </div>
-                        </div>
-
-                        <!-- 12 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">12. يتوقف اختيار قنوات التوزيع على عدد من العوامل التي تحدد الأسلوب الأنسب لتوصيل المنتج إلى المستهلك.</h3>
-                            <button onclick="toggleAnswer('ans12', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans12" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                            </div>
-                        </div>
-
-                        <!-- 13 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">13. تعتمد المنظمة دائمًا في التوزيع على توصيل المنتج للمستهلك النهائي مباشرة دون استخدام أي وسطاء، بغض النظر عن نوع السلعة.</h3>
-                            <button onclick="toggleAnswer('ans13', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans13" class="quiz-answer">
-                                <p class="text-rose-700 font-bold mb-2">❌ (×) العبارة خاطئة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> البيع المباشر يستهلك نفقات تشغيل (OpEx) هائلة لفتح فروع ومخازن. استخدام الوسطاء (قنوات غير مباشرة) هو قرار تنازل عن جزء من الربح لصالح الوسطاء مقابل توفير النفقات الرأسمالية والوصول السريع للسوق.</p>
-                            </div>
-                        </div>
-
-                        <!-- 14 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">14. تمثل منافذ التوزيع عنصرًا أساسيًا في العملية التسويقية، حيث تؤدي وظائف متعددة لضمان وصول المنتجات بكفاءة وفاعلية.</h3>
-                            <button onclick="toggleAnswer('ans14', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans14" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> القنوات تحل العوائق الزمانية والمكانية، وتقلل من عدد الصفقات المطلوبة للوصول للسوق (تقليل تكاليف المعاملات Transaction Costs).</p>
-                            </div>
-                        </div>
-
-                        <!-- 15 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">15. يهدف الترويج إلى تحريك سلوك المستهلك، ويعتمد اختيار عناصر المزيج الترويجي على مجموعة من الاعتبارات التي تؤثر في فعاليته.</h3>
-                            <button onclick="toggleAnswer('ans15', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans15" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> الترويج مالياً هو "تكلفة الاستحواذ على العميل" (CAC). كلما استهدفنا تحريك سلوك شراء فوري (مبيعات قصيرة الأجل)، اعتمدنا على تنشيط المبيعات، وإذا كنا نبني ولاء طويل الأجل (LTV)، اعتمدنا على العلاقات العامة.</p>
-                            </div>
-                        </div>
-
-                        <!-- 16 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-sky-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">16. يواجه الترويج التسويقي عدة تحديات تؤثر على فاعليته وتستلزم تبني استراتيجيات جديدة لمواكبة تغيرات السوق وسلوك المستهلك.</h3>
-                            <button onclick="toggleAnswer('ans16', this)" class="bg-sky-100 text-sky-800 px-3 py-1 rounded text-sm font-bold hover:bg-sky-200 transition-colors">إظهار الإجابة والتحليل</button>
-                            <div id="ans16" class="quiz-answer">
-                                <p class="text-emerald-700 font-bold mb-2">✅ (√) العبارة صحيحة.</p>
-                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تعليق المحلل:</strong> التغيرات التكنولوجية وزيادة المنافسة ترفع باستمرار من تكلفة الإعلان وتقلل من انتباه المستهلك، مما يجبر المنظمات على الاستثمار في قواعد البيانات لتحسين استهداف العملاء.</p>
+                                <p class="text-gray-600 text-sm bg-gray-50 p-3 rounded"><strong>🔍 تحليل إداري:</strong> نوعية السلعة تحدد مستوى المخاطرة. شراء ورق طابعات بـ 1000 جنيه (سلعة نمطية) يتخذ قراره موظف مشتريات. أما شراء خط إنتاج بـ 10 مليون دولار (سلعة استراتيجية/رأسمالية) يتطلب قرار مجلس إدارة ولجان فنية ومناقصات طويلة.</p>
                             </div>
                         </div>
 
@@ -805,69 +516,37 @@
                         
                         <!-- Essay 1 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-amber-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">س1: تعد دورة حياة المنتج بمثابة المسار الذي يسلكه المنتج... اشرحي بالتفصيل مراحل دورة حياة المنتج.</h3>
-                            <button onclick="toggleAnswer('ans_essay1', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors">إظهار التحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">س1: تمثل عملية اتخاذ القرار الشرائي للمستهلك رحلة معقدة ومتعددة الأوجه.. اشرحي خطوات اتخاذ القرار مع تقديم تحليل لتأثير كل مرحلة على التسويق؟</h3>
+                            <button onclick="toggleAnswer('ans_essay1', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors outline-none">إظهار التحليل</button>
                             <div id="ans_essay1" class="quiz-answer">
                                 <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 space-y-3">
-                                    <p><strong>1. التقديم (Introduction):</strong> المبيعات بطيئة. <span class="text-rose-600 font-bold">التأثير المالي:</span> تدفقات نقدية سلبية (حرق كاش) بسبب الإنفاق الإعلاني الضخم للاختراق وتثقيف المستهلك.</p>
-                                    <p><strong>2. النمو (Growth):</strong> قبول السوق للمنتج. <span class="text-emerald-600 font-bold">التأثير المالي:</span> بدء تسجيل أرباح، وتخفيض تدريجي للسعر مع زيادة حجم المبيعات (Economies of Scale).</p>
-                                    <p><strong>3. النضوج (Maturity):</strong> استقرار المبيعات. <span class="text-blue-600 font-bold">التأثير المالي:</span> المنافسة في أقصاها. المنتج أصبح "بقرة حلوب" (Cash Cow). يتم الاعتماد على العروض والخصومات للحفاظ على حصة السوق.</p>
-                                    <p><strong>4. التدهور (Decline):</strong> هبوط المبيعات بشدة. <span class="text-rose-800 font-bold">التأثير المالي:</span> يجب تصفية المنتج فوراً أو تقليص النفقات للصفر لخفض الخسائر وحماية رأس المال للإصدارات الجديدة.</p>
+                                    <p>خمس مراحل حتمية لا يختزلها المستهلك العقلاني:</p>
+                                    <p><strong>1. الشعور بالحاجة:</strong> نقطة البداية لتوليد الطلب. <span class="font-bold text-rose-700">التحليل:</span> إذا فشلت في إقناع العميل بوجود مشكلة لديه، فإن منتجك لن يُباع أبداً مهما كان رخيصاً.</p>
+                                    <p><strong>2. جمع المعلومات:</strong> استطلاع السوق. <span class="font-bold text-rose-700">التحليل:</span> الغياب هنا يعني التنازل عن الحصة السوقية للمنافسين المتواجدين في محركات البحث.</p>
+                                    <p><strong>3. تقييم البدائل:</strong> الفلترة والتسعير. <span class="font-bold text-rose-700">التحليل:</span> يجب أن تبرر ميزتك التنافسية؛ لماذا يدفع العميل سعراً أعلى لمنتجك؟</p>
+                                    <p><strong>4. قرار الشراء:</strong> التنفيذ الفعلي. <span class="font-bold text-rose-700">التحليل:</span> هنا تبرز أهمية التوزيع. إذا اقتنع العميل ولم يجد السلعة في المتجر أو واجه صعوبة في الدفع، فقدت إيراداً شبه مضمون.</p>
+                                    <p><strong>5. التقييم اللاحق:</strong> <span class="font-bold text-rose-700">التحليل المالي الأهم:</span> تكلفة جذب عميل جديد (CAC) تعادل 5 أضعاف الاحتفاظ بعميل حالي. التقييم الإيجابي هو ما يضمن الربحية المستدامة (LTV).</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Essay 2 -->
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-amber-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">س2: ناقشي مفهوم السعر وأهميته في المزيج التسويقي، وحللي استراتيجيات التسعير المختلفة، مع تقييم العوامل المؤثرة عليه.</h3>
-                            <button onclick="toggleAnswer('ans_essay2', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors">إظهار التحليل</button>
+                            <h3 class="text-base font-bold text-gray-800 mb-3">س2: يختلف سوق المستهلك النهائي عن سوق المشتري الصناعي.. اشرحي بالتفصيل خصائص كل منهما من منظور اقتصادي وإداري.</h3>
+                            <button onclick="toggleAnswer('ans_essay2', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors outline-none">إظهار التحليل</button>
                             <div id="ans_essay2" class="quiz-answer">
                                 <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 space-y-3">
-                                    <p><strong>المفهوم والأهمية:</strong> هو القيمة النقدية للسلعة. خطورته تكمن في أنه <strong>العنصر الوحيد المولد للإيرادات</strong> بينما بقية عناصر المزيج (تكاليف). أي خطأ في السعر يمحو هامش الربح التشغيلي.</p>
-                                    <p><strong>استراتيجيات التسعير الأساسية:</strong></p>
+                                    <p><strong>سوق المستهلك النهائي (B2C):</strong></p>
+                                    <p>يتكون من ملايين الأفراد. حجم الصفقة صغير، وتلعب العاطفة والإعلانات الجماهيرية الدور الأبرز. القرار فردي وسريع، ومخاطرة الشراء منخفضة. <span class="text-sky-700 font-bold">نموذج الربح:</span> بيع كميات هائلة بهوامش ربح صغيرة لتغطية تكاليف التوزيع والترويج الشاملة.</p>
+                                    
+                                    <p class="mt-4 border-t pt-2"><strong>سوق المنظمات والصناعي (B2B):</strong></p>
+                                    <p>يتكون من عدد محدود من المشترين ذوي الحجم الضخم. يتميز بـ:</p>
                                     <ul class="list-disc list-inside space-y-1">
-                                        <li><strong>الكشط (Skimming):</strong> تسعير مرتفع جداً في البداية لاسترداد تكاليف البحث والتطوير سريعاً، ثم تخفيضه. (كالآيفون).</li>
-                                        <li><strong>الاختراق (Penetration):</strong> تسعير منخفض للتضحية بهامش الربح مقابل حصد حجم مبيعات ضخم (Volume) وإقصاء المنافسين.</li>
-                                        <li><strong>النفسي (Psychological):</strong> 99.99 لإعطاء إيحاء بصري بالرخص.</li>
-                                        <li><strong>الخسارة الاستراتيجية (Loss-leader):</strong> بيع منتج بخسارة لجذب العميل لمتجرك ليشتري منتجات أخرى بربح عالي.</li>
-                                    </ul>
-                                    <p><strong>العوامل المؤثرة:</strong> تتوقف على (دورة حياة السلعة، قوة الطلب والعرض، القوة الشرائية الديموغرافية، وتكلفة عناصر الإنتاج).</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Essay 3 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-amber-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">س3: وضحي مفهوم التوزيع وأهميته في المزيج التسويقي، واذكري العوامل المؤثرة في اختيار قنواته وأنواعه.</h3>
-                            <button onclick="toggleAnswer('ans_essay3', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors">إظهار التحليل</button>
-                            <div id="ans_essay3" class="quiz-answer">
-                                <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 space-y-3">
-                                    <p><strong>المفهوم:</strong> الإجراءات التي تضمن وصول المنتج من المُصنع للمستهلك في الزمان والمكان المناسبين. <span class="text-teal-700 font-bold">مالياً:</span> هو مقايضة (Trade-off) بين الاستثمار في بناء فروع الشركة (الاحتفاظ بالربح كامل) وبين دفع عمولات لوسطاء (للتخلص من عبء المخزون وسرعة الانتشار).</p>
-                                    <p><strong>العوامل المؤثرة:</strong> قيمة السلعة، حجمها، طبيعتها (استهلاكية أم رأسمالية)، وإمكانيات المنظمة المالية لفتح فروع.</p>
-                                    <p><strong>الأنواع الأساسية:</strong></p>
-                                    <ul class="list-disc list-inside space-y-1">
-                                        <li><strong>شامل (Intensive):</strong> لكل منافذ البيع (كالسلع الميسرة/المشروبات).</li>
-                                        <li><strong>انتقائي (Selective):</strong> لعدد محدد من المتاجر الكبرى (كسلع التسوق والملابس).</li>
-                                        <li><strong>حصري (Exclusive):</strong> وكيل وحيد للمحافظة على الصورة الذهنية ولضمان جودة خدمة ما بعد البيع (كالسيارات).</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Essay 4 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 border-r-4 border-r-amber-500">
-                            <h3 class="text-base font-bold text-gray-800 mb-3">س4: وضحي الاعتبارات الأساسية التي يقوم عليها المزيج الترويجي والتحديات التسويقية التي تواجهه.</h3>
-                            <button onclick="toggleAnswer('ans_essay4', this)" class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-sm font-bold hover:bg-amber-200 transition-colors">إظهار التحليل</button>
-                            <div id="ans_essay4" class="quiz-answer">
-                                <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 space-y-3">
-                                    <p><strong>الاعتبارات لاختيار الأداة:</strong> تختلف باختلاف الميزانية، وطبيعة السلعة (استهلاكية تحتاج إعلان مكثف، بينما صناعية/أدوية تحتاج بيع شخصي مكلف)، ودرجة المنافسة في السوق.</p>
-                                    <p><strong>الهدف المالي للترويج:</strong> هو تحويل الطلب الكامن لدى المستهلك إلى طلب فعال ينتج عنه تدفقات نقدية تسدد تكاليف الاستحواذ (CAC).</p>
-                                    <p><strong>أهم التحديات:</strong></p>
-                                    <ul class="list-disc list-inside space-y-1">
-                                        <li><strong>تعدد الأذواق والولاء الأعمى للعلامات المنافسة:</strong> يتطلب ميزانيات ضخمة لاختراقه.</li>
-                                        <li><strong>الخصائص الديموغرافية:</strong> تغير الفئة العمرية يتطلب تغيير وسيلة الإعلان جذرياً (من تلفزيون إلى منصات التواصل).</li>
-                                        <li><strong>المنافسة الشرسة:</strong> التي تؤدي إلى تآكل قيمة الرسالة الإعلانية بسبب التشويش الإعلاني المستمر على المستهلك.</li>
-                                        <li><strong>تطور طرق الدفع والشراء:</strong> الذي يفرض التخلي عن الأساليب التقليدية والاعتماد على قواعد البيانات التسويقية.</li>
+                                        <li><strong>الطلب المشتق:</strong> يعتمد كلياً على حركة الـ B2C.</li>
+                                        <li><strong>العقلانية الصارمة:</strong> القرار يبنى على مواصفات فنية ودراسات جدوى (OpEx & CapEx) وتغيب عنه العاطفة.</li>
+                                        <li><strong>تعدد متخذي القرار:</strong> لجان مشتريات ولجان فنية تطيل دورة المبيعات.</li>
+                                        <li><strong>الاتصال المباشر:</strong> لتجنب هوامش الوسطاء بسبب ضخامة المبالغ.</li>
+                                        <li><strong>الولاء المبني على الثقة والأداء:</strong> تأخير التوريد يوم واحد قد يكبد المصنع المشتري خسائر بملايين، لذا الولاء يكون "للموثوقية" وليس لاسم العلامة.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -882,39 +561,42 @@
 
     <!-- Interactive Scripts -->
     <script>
-        const promoMixData = [
-            { id: 1, name: 'الإعلان (Advertising)', icon: '📺', desc: 'وسيلة اتصال غير شخصية ومدفوعة الأجر للوصول لأعداد ضخمة من الجمهور.', example: '<strong class="text-sky-700">مثال واقعي:</strong> إعلانات بيبسي وشيبسي في الفواصل الإعلانية بالتلفزيون. <br><strong class="text-gray-800 mt-2 block">التحليل المالي:</strong> إنفاق نقدي ضخم (OpEx). يجب قياس العائد وإلا تحول لهدر مالي.' },
-            { id: 2, name: 'تنشيط المبيعات', icon: '🎁', desc: 'حوافز قصيرة الأجل (خصومات، عينات مجانية، البيع بالتقسيط) تُشجع على الشراء الفوري.', example: '<strong class="text-sky-700">مثال واقعي:</strong> عروض "اشتري قطعة والثانية مجاناً" للجمهور. <br><strong class="text-gray-800 mt-2 block">التحليل المالي:</strong> أداة فعالة لحقن السيولة وتخفيض المخزون، لكنها تأكل هامش الربح.' },
-            { id: 3, name: 'البيع الشخصي', icon: '🤝', desc: 'اتصال مباشر بين المندوب والعميل، مهم جداً للسلع الصناعية والأدوية.', example: '<strong class="text-sky-700">مثال واقعي:</strong> مندوب الدعاية الطبية الذي يشرح للأطباء مزايا عقار جديد. <br><strong class="text-gray-800 mt-2 block">التحليل المالي:</strong> تكلفة استحواذ عالية بالعمولات، لكن العائد الضخم لكل صفقة (B2B) يبررها.' },
-            { id: 4, name: 'العلاقات العامة', icon: '🏛️', desc: 'بناء علاقات وصورة إيجابية للمنظمة مع المجتمع والتعامل مع الأزمات والإشاعات.', example: '<strong class="text-sky-700">مثال واقعي:</strong> رعاية بطولة رياضية أو تبرع لمستشفى. <br><strong class="text-gray-800 mt-2 block">التحليل المالي:</strong> صمام أمان لاستثمار سمعة المنظمة ومنع انهيار أسهمها أوقات الأزمات.' },
-            { id: 5, name: 'النشر (Publicity)', icon: '📰', desc: 'تغطية إخبارية مجانية وإيجابية عن الشركة أو منتجاتها في وسائل الإعلام.', example: '<strong class="text-sky-700">مثال واقعي:</strong> مقال غير مدفوع في جريدة يتحدث عن ابتكار تقنية صديقة للبيئة للشركة. <br><strong class="text-gray-800 mt-2 block">التحليل المالي:</strong> أفضل عائد استثماري نظراً لتكلفتها الصفرية والمصداقية المرتفعة.' }
+        const interactiveData = [
+            { id: 1, name: 'الطلب المشتق (Derived Demand)', icon: '🔗', desc: 'طلب المنظمات لا يستقل بذاته؛ طلب مصنع الأثاث للأخشاب مشتق كلياً من طلب العميل النهائي للأثاث.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> في أوقات الكساد، إذا توقف الأفراد عن شراء الشقق والأثاث، تتوقف فوراً التدفقات النقدية والطلبات لموردي الأخشاب والمسامير. التنبؤ بالطلب في الـ B2B يتطلب دراسة سوق الـ B2C أولاً.' },
+            { id: 2, name: 'تمركز وقلة المشترين', icon: '👥', desc: 'الأسواق الصناعية تتكون من عدد محدد من المنظمات الكبرى مقارنة بملايين المستهلكين الأفراد (مثال: 5 شركات اتصالات كبرى مقابل 100 مليون مستخدم).', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> نظراً لقلة العدد، فقدان عميل واحد يمثل ضربة قاصمة للإيرادات السنوية. يتم التعويض عن قلة العدد برفع (حجم وقيمة) الصفقة الواحدة لملايين.' },
+            { id: 3, name: 'تعقيد وتعدد متخذي القرار', icon: '⚖️', desc: 'القرار لا يتخذه شخص بل لجنة (مهندس الجودة يراجع المواصفات، المالي يراجع التكلفة، القانوني يراجع العقد).', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> هذا يطيل جداً من "دورة المبيعات" (Sales Cycle) لشهور، مما يستنزف ميزانية إدارة المبيعات في الزيارات والعروض التوضيحية قبل إتمام الصفقة.' },
+            { id: 4, name: 'الرشد الاقتصادي التام', icon: '🧠', desc: 'تغلب الدوافع العقلانية القائمة على (التكلفة، العمر الافتراضي للمعدة، استهلاك الطاقة) وتنعدم الاندفاعات العاطفية.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> إذا لم يكن عرضك الترويجي يحتوي على حسابات دقيقة توضح متى يسترد العميل أمواله (Payback Period)، سيتم رفض العرض فوراً. لا مجال للحديث عن "الشكل الجمالي" هنا.' },
+            { id: 5, name: 'الاتصال والتوزيع المباشر', icon: '🤝', desc: 'يتم الشراء غالباً بالتفاوض المباشر بين الشركة المصنعة والمنظمة المشترية بدون وسطاء وتجار جملة.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> وسطاء التوزيع يأخذون هامش ربح (Markup). في صفقة بـ 50 مليون، عمولة الوسيط قد تكون 5 مليون، ولتجنب هذا الهدر، تتعامل المنظمات مع بعضها مباشرة لخفض التكلفة الإجمالية للاستحواذ (TCO).' },
+            { id: 6, name: 'انخفاض مرونة الطلب', icon: '📉', desc: 'تغير أسعار المكونات الصناعية بشكل طفيف لا يغير حجم الطلب فوراً، لعدم وجود بدائل سريعة وارتباط المكونات بعقود توريد.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> زيادة سعر الإطارات 5% لن توقف شركة مرسيدس عن صناعة سياراتها غداً. ستتحمل التكلفة مؤقتاً، مما يثبت صلابة الطلب الصناعي في الأجل القصير.' },
+            { id: 7, name: 'الاحتراف والمواصفات الفنية', icon: '📋', desc: 'المشتري الصناعي هو خبير ومحترف، يطلب السلع بناءً على "كراسة شروط ومواصفات" دقيقة جداً ومكتوبة.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> لا يمكن التلاعب بهذا المشتري بتغليف جذاب. إذا اختلف سُمك الحديد ملليمتراً واحداً عن العقد، ترفض الصفقة بالكامل وتُوقع الشروط الجزائية التي تدمر أرباح المورد.' },
+            { id: 8, name: 'الولاء للموثوقية (لا للعلامة)', icon: '🔄', desc: 'الولاء هنا يكون للصيانة السريعة والتوريد المنتظم (Just in Time)، وليس لاسم الماركة.', example: '<strong class="text-sky-700 block mt-1">التحليل المالي للخبير:</strong> تأخير توريد المواد الخام يوماً واحداً قد يوقف خط إنتاج المصنع وتكليفه أجور عمالة مهدرة بالملايين. سيقوم بتغيير المورد فوراً حتى لو كان المورد علامة تجارية عالمية.' }
         ];
 
         function initInternalSection() {
-            const container = document.getElementById('promoMixButtons');
+            const container = document.getElementById('interactiveButtons');
             if(!container) return;
-            promoMixData.forEach(item => {
+            interactiveData.forEach(item => {
                 const btn = document.createElement('button');
-                btn.className = 'px-5 py-2 m-1 bg-white border border-sky-200 text-sky-800 rounded-full font-bold hover:bg-sky-50 hover:border-sky-400 transition-all shadow-sm focus:ring-2 focus:ring-sky-300 outline-none';
-                btn.innerHTML = `${item.name.split(' (')[0]}`;
-                btn.onclick = () => showPromoMixDetail(item);
+                btn.className = 'px-4 py-2 m-1 bg-white border border-slate-300 text-slate-800 rounded-lg font-bold hover:bg-slate-800 hover:text-white transition-all shadow-sm focus:ring-2 focus:ring-slate-400 outline-none';
+                btn.innerHTML = `${item.name}`;
+                btn.onclick = () => showInteractiveDetail(item);
                 container.appendChild(btn);
             });
         }
 
-        function showPromoMixDetail(item) {
-            const detailContainer = document.getElementById('promoMixDetail');
+        function showInteractiveDetail(item) {
+            const detailContainer = document.getElementById('interactiveDetail');
             detailContainer.style.opacity = '0';
             
             setTimeout(() => {
                 detailContainer.innerHTML = `
-                    <div class="text-5xl mb-4">${item.icon}</div>
+                    <div class="text-5xl mb-3">${item.icon}</div>
                     <div class="flex items-center gap-3 mb-2 justify-center">
-                        <h3 class="text-2xl font-bold text-sky-800">${item.name}</h3>
+                        <h3 class="text-2xl font-bold text-slate-900">${item.name}</h3>
                     </div>
-                    <p class="text-gray-700 text-base max-w-2xl mx-auto leading-relaxed mt-2 bg-white p-3 rounded border-b-2 border-gray-200 shadow-sm">${item.desc}</p>
-                    <div class="mt-4 bg-sky-100 p-4 rounded-xl border-r-4 border-sky-500 shadow-sm text-right w-full max-w-3xl mx-auto transition-all">
-                        <p class="text-gray-800 text-sm leading-relaxed">${item.example}</p>
+                    <p class="text-slate-700 text-base max-w-2xl mx-auto leading-relaxed mt-1 bg-white p-3 rounded border-b-2 border-slate-200 shadow-sm">${item.desc}</p>
+                    <div class="mt-3 bg-slate-100 p-4 rounded-xl border-r-4 border-slate-700 shadow-sm text-right w-full max-w-3xl mx-auto transition-all">
+                        <p class="text-slate-800 text-sm leading-relaxed">${item.example}</p>
                     </div>
                 `;
                 detailContainer.style.opacity = '1';
@@ -970,11 +652,15 @@
             
             if (answerDiv.classList.contains('show')) {
                 answerDiv.classList.remove('show');
-                btnElement.innerText = "إظهار التحليل والإجابة";
-                btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
-                btnElement.classList.replace('text-gray-700', 'text-sky-800');
-                btnElement.classList.replace('bg-amber-200', 'bg-amber-100');
-                btnElement.classList.replace('text-amber-900', 'text-amber-800');
+                btnElement.innerText = "إظهار الإجابة والتحليل";
+                
+                if(btnElement.classList.contains('bg-gray-200')){
+                    btnElement.classList.replace('bg-gray-200', 'bg-sky-100');
+                    btnElement.classList.replace('text-gray-700', 'text-sky-800');
+                } else if (btnElement.classList.contains('bg-amber-200')){
+                    btnElement.classList.replace('bg-amber-200', 'bg-amber-100');
+                    btnElement.classList.replace('text-amber-900', 'text-amber-800');
+                }
             } else {
                 answerDiv.classList.add('show');
                 btnElement.innerText = "إخفاء التحليل";
@@ -996,3 +682,4 @@
     </script>
 </body>
 </html>
+```
