@@ -30,7 +30,7 @@
   {
       "id": 5,
     "courseId": "marketing",
-    "title": "المحاضرة الخامسة",
+    "title": "المحاضرة الخامسة -المزيج التسويقي",
     "file": "marketing/lectures/lectures5.html",
     "pdf": "assets/pdfs/marketing/5.pdf"
   },
@@ -99,9 +99,9 @@
     "pdf": "assets/pdfs/hr/8.pdf"  
   },
   {
-    "id": 1,
+    "id": 15,
     "courseId": "marketing",
-    "title": "المحاضرة الاولي - المفهوم التسويقي",
+    "title": "المحاضرة السابعه - المفهوم التسويقي",
     "file": "marketing/lectures/lecture7.html",
     "pdf": "assets/pdfs/marketing/1.pdf"
   }
