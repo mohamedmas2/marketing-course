@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مراجعه الثقافة الإسلامية</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        serif: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        emerald: { 800: '#065F46', 900: '#064E3B' },
+                        navy: { 800: '#1e3a8a', 900: '#0f172a' },
+                        gold: { 400: '#FBBF24', 500: '#D4AF37', 600: '#B45309' },
+                        beige: { 100: '#fdfbf7', 200: '#f4f1ea' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .font-serif-custom {
+            font-family: 'Amiri', serif;
+        }
+        
+        /* تحسين شريط التمرير الافتراضي وتنعيمه */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col md:flex-row bg-slate-100 text-gray-800">
+
+    <!-- الهاتف المحمول: شريط علوي للهيدر -->
+    <header class="bg-navy-900 text-white p-4 shadow-md flex justify-between items-center md:hidden z-50">
+        <button onclick="toggleSidebar()" class="text-white text-2xl focus:outline-none">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </button>
+        <div class="text-center">
+            <h1 class="font-serif-custom text-xl font-bold text-gold-400"> المنهج كله بالصلاه علي النبي</h1>
+        </div>
+        <div class="w-8"></div>
+    </header>
+
+    <!-- القائمة الجانبية (Sidebar) -->
+    <aside id="sidebar" class="fixed inset-y-0 right-0 transform translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 w-80 bg-navy-900 text-white p-5 flex flex-col shadow-2xl h-full md:relative">
+        <div class="mb-6 pt-2 md:pt-0 border-b border-gray-700 pb-4">
+            <h2 class="font-serif-custom text-2xl font-bold text-gold-400"><i class="fa-solid fa-graduation-cap ml-2"></i>أبواب المنهج</h2>
+            <p class="text-xs text-gray-400 mt-1">الثقافة التنظيمية ووظائف الإدارة في الإسلام</p>
+        </div>
+        
+        <!-- خانة البحث -->
+        <div class="mb-4 relative">
+            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="بحث في المحتوى..." 
+                   class="w-full pr-10 pl-3 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-emerald-800 focus:ring-1 focus:ring-emerald-800 text-sm transition">
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <nav id="sidebarMenu" class="space-y-1.5 flex-1 overflow-y-auto pr-1">
+            <!-- سيتم توليد الأزرار هنا عبر الجافاسكريبت -->
+        </nav>
+    </aside>
+
+    <!-- غطاء خلفي للموبايل عند فتح القائمة الجانبية -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-30 hidden md:hidden"></div>
+
+    <!-- منطقة العرض المركزية (المنتصف) مصممة لتجنب أي قص رأسي نهائياً -->
+    <main class="flex-1 flex flex-col overflow-y-auto bg-slate-100">
+        <div class="max-w-4xl w-full mx-auto px-4 py-6 md:py-10">
+            
+            <div id="contentWorkspace" class="bg-white p-6 md:p-10 rounded-2xl shadow-xl w-full border-t-8 border-emerald-800 transition-all duration-300">
+                
+                <!-- حاوية المحتوى النشط -->
+                <div id="activeContent">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-5 mb-6 gap-4">
+                        <div class="flex items-center gap-4">
+                            <div id="contentIcon" class="w-14 h-14 rounded-full bg-beige-200 text-gold-600 flex items-center justify-center text-2xl shadow-inner shrink-0"></div>
+                            <div>
+                                <h2 id="contentTitle" class="text-2xl md:text-3xl font-serif-custom font-bold text-navy-900 leading-normal py-1"></h2>
+                                <p id="contentSubtitle" class="text-sm text-emerald-800 font-bold mt-1"></p>
+                            </div>
+                        </div>
+                        <span id="contentStep" class="bg-gray-100 text-gray-700 text-xs px-3 py-1.5 rounded-full font-bold shadow-sm border border-gray-200 whitespace-nowrap"></span>
+                    </div>
+
+                    <!-- متن المحتوى الشامل غير المبتور -->
+                    <div id="contentBody" class="text-gray-800 leading-relaxed text-base font-sans">
+                        <!-- Content injected via JS -->
+                    </div>
+
+                    <!-- أزرار التنقل (التالي / السابق) -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex flex-row justify-between items-center">
+                        <button id="prevBtn" onclick="navigateContent('prev')" class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-bold transition text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-arrow-right"></i> السابق
+                        </button>
+                        <button id="nextBtn" onclick="navigateContent('next')" class="flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white px-4 py-2 rounded-lg font-bold transition text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+                            التالي <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // قاعدة البيانات الشاملة خالية 100% من الأخطاء التنسيقية وتم إغلاق كافة الوسوم المبتورة
+        const modalData = {
+            intro: {
+                step: "1 من 8",
+                icon: "fa-book-quran",
+                title: "1. مفهوم الإدارة ومصادرها",
+                subtitle: "الإطار المفاهيمي للإدارة في الإسلام",
+                content: `
+                    <div class="space-y-5">
+                        <div class="bg-emerald-50 p-4 rounded-lg border-r-4 border-emerald-600">
+                            <h3 class="font-bold text-emerald-900 mb-2">تعريف الإدارة الاسلامية:</h3>
+                            <p>عملية تخطيط وتنظيم وتوجيه ورقابة جهود أعضاء المنظمة وفقاً لتعاليم القرآن الكريم والسنة النبوية لتحقيق الأهداف بكفاءة وفاعلية.</p>
+                            <p class="mt-2 text-sm text-emerald-700 font-bold">الهدف الأساسي: إرضاء الله + إعمار الأرض + تحقيق الكفاءة المادية.</p>
+                        </div>
+                        
+                        <h3 class="font-bold text-navy-900 text-lg border-b pb-2">مصادر الفكر الإداري الإسلامي:</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-1"></i> القرآن والسنة</h4>
+                                <p class="text-sm mt-1">المصدر الأساسي الذي يحوي قواعد العدل، الشورى، والأمانة.</p>
+                            </div>
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-2"></i> الفقه الإسلامي</h4>
+                                <p class="text-sm mt-1">فقه المعاملات المالية، العقود، وضبط العلاقات في السوق.</p>
+                            </div>
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-3"></i> السيرة والتاريخ</h4>
+                                <p class="text-sm mt-1">الممارسة العملية للإدارة في عصر النبوة والخلفاء الراشدين.</p>
+                            </div>
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-4"></i> كتابات العلماء</h4>
+                                <p class="text-sm mt-1">اجتهادات العلماء المسلمين وغير المسلمين بما لا يخالف الشرع (الحكمة ضالة المؤمن).</p>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-bold text-navy-900 text-lg border-b pb-2">عوامل الضعف:</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-1"></i> عوامل داخلية  </h4>
+                                <p class="text-sm mt-1">الصراعات السياسيه - فساد سياسات الحكام - ضعف الخلفاء والتفرق والتشتت.</p>
+                            </div>
+                            <div class="border border-gray-200 p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gold-600"><i class="fa-solid fa-2"></i> عوامل خارجية  </h4>
+                                <p class="text-sm mt-1">الهجمات الاوربيه علي الدولة الاسلامية.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            culture: {
+                step: "2 من 8",
+                icon: "fa-building-user",
+                title: "2. الثقافة التنظيمية الإسلامية",
+                subtitle: "بيئة العمل من منظور شرعي",
+                content: `
+                    <div class="space-y-5">
+                        <p>الثقافة التنظيمية هي :نظام من القيم والمعتقدات والمعايير والافتراضات السلوكية المشتركة بين أفراد المنظمة والمستمدة من الشريعة الإسلامية، والتي توجه سلوك الأفراد وتصوراتهم داخل المنظمة بهدف تحقيق أهداف تنظيمية مشروعة. وتتكون من 3 جوانب رئيسية:</p>
+
+                        <div class="space-y-4">
+                            <!-- الجوانب المعنوية -->
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3 border-b pb-2">
+                                    <div class="w-8 h-8 rounded bg-navy-100 text-navy-700 flex items-center justify-center font-bold">1</div>
+                                    <h4 class="font-bold text-navy-900 text-lg">الجوانب المعنوية (حجر الزاوية والاساس)</h4>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2 pr-2">
+                                    <li><strong>التوحيد والعبودية:</strong> إخلاص العمل لله.</li>
+                                    <li><strong>الاستقلالية والمسؤولية:</strong> والمحاسبة والمراقبة الذاتية.</li>
+                                    <li><strong>العدل والمساواة:</strong> في الحقوق والواجبات وتقييم الأداء.</li>
+                                </ul>
+                            </div>
+
+                            <!-- الجوانب السلوكية -->
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3 border-b pb-2">
+                                    <div class="w-8 h-8 rounded bg-navy-100 text-navy-700 flex items-center justify-center font-bold">2</div>
+                                    <h4 class="font-bold text-navy-900 text-lg">الجوانب السلوكية</h4>
+                                </div>
+                                <div class="space-y-4 pr-2">
+                                    <div>
+                                        <strong class="text-emerald-800 text-sm"><i class="fa-regular fa-square-check text-emerald-600 ml-1"></i>السلوكيات والممارسات والأعراف:</strong>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                            <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> الإتقان والإحسان.</li>
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> التعاون والتكافل.</li>
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> الشورى.</li>
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> الكفاءة في إنفاق المال.</li>
+                                            </ul>
+                                            <ul class="list-none text-sm text-gray-700 space-y-1 pr-4 md:pr-0">
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> الاهتمام بالوقت.</li>
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> الحرص على طلب العلم وتعلم المهارات.</li>
+                                                <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> إظهار البشاشة والتحية عند اللقاء.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <strong class="text-emerald-800 text-sm"><i class="fa-regular fa-square-check text-emerald-600 ml-1"></i> القصص المؤثرة والداعمة للقيم.</strong>
+                                    </div>
+                                    <div>
+                                        <strong class="text-emerald-800 text-sm"><i class="fa-regular fa-square-check text-emerald-600 ml-1"></i> الطقوس والمراسم والشعائر.</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الجوانب المادية -->
+                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3 border-b pb-2">
+                                    <div class="w-8 h-8 rounded bg-navy-100 text-navy-700 flex items-center justify-center font-bold">3</div>
+                                    <h4 class="font-bold text-navy-900 text-lg">الجوانب المادية (المظاهر)</h4>
+                                </div>
+                                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2 pr-2 grid grid-cols-1 md:grid-cols-2">
+                                    <li>النظافة والنظام.</li>
+                                    <li>تصميم مكان العمل.</li>
+                                    <li>مرافق الصلاة والعبادة.</li>
+                                    <li>الزي وحسن المظهر والسلوك.</li>
+                                    <li>الأدوات والمعدات ذات الجودة العالية.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="my-6 flex items-center">
+                            <div class="flex-1 border-t border-gray-300"></div>
+                            <span class="px-3 text-xs text-gray-500">◆</span>
+                            <div class="flex-1 border-t border-gray-300"></div>
+                        </div>
+
+                        <!-- الاسس في التعامل مع التعددية الدينية -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="mb-4 border-b-2 border-navy-200 pb-2">
+                                <h3 class="font-bold text-xl text-navy-900">الأسس في التعامل مع التعددية الدينية</h3>
+                            </div>
+                            <div class="space-y-4 pr-0">
+                                <div>
+                                    <strong class="text-emerald-800 text-sm"><i class="fa-regular fa-square-check text-emerald-600 ml-1"></i> االاسس الي بناء عليها ظبطتنا الناس الي مني غير دينا:</strong>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                        <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> التكريم الانساني.</li>
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> مبدا التعارف وسنه التنوع - احنا مش زي بعض.</li>
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> حرية المعتقدات.</li>
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> العدل والقسط.</li>
+                                        </ul>
+                                        <ul class="list-none text-sm text-gray-700 space-y-1 pr-4 md:pr-0">
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> البر والمعاملة الحسنة.</li>
+                                            <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i> حفظ الحقوق.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            planning: {
+                step: "3 من 8",
+                icon: "fa-bullseye",
+                title: "3. وظيفة التخطيط",
+                subtitle: "النظرة المستقبلية والأخذ بالأسباب",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-bold text-navy-900">التخطيط هو: عملية منهجية تتضمن تحليل الوضع الحالي والتنبؤ بالاتجاهات المستقبلية لتحديد أهداف مشروعة ووضع خطط وسياسات وإجراءات تتفق مع ضوابط الشريعة الإسلامية لتحقيق تلك الأهداف مع مراعاة الموارد المتاحة والظروف المتوقعةه.</p>
+                        <p class="font-bold text-navy-900">اما الخطة  هي: سلوب أو طريقة للعمل يتم إعدادها على هيئة بيان أو تقرير لعمل مستقبلي محدد يستهدف تحقيق هدف أو مجموعة أهداف معينة في وقت محدد، بحيث يوضح بالتفصيل ما يجب فعله ومتى وكيف سيتم ذلك ومن سيقوم به.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mt-4">
+                            <div class="bg-white border-2 border-gold-300 p-4 rounded-xl shadow-sm">
+                                <h4 class="font-bold text-gold-700 mb-2 border-b pb-1">متطلبات التخطيط:</h4>
+                                <ul class="space-y-2">
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i> الاخذ بالاسباب والتوكل علي الله.</li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i> الدراسه المتانية لظروف البيئة المحطية .</li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i> تطبيق مبدا الشوري .</li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i> تحديد الموارد ومصادرها هنجيب فلوس منين.</li>
+                                    <li><i class="fa-solid fa-check text-emerald-500"></i> جمع المعلومات المرتبطه بالخطة وتحليلها.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-emerald-50 border-2 border-emerald-200 p-4 rounded-xl shadow-sm">
+                                <h4 class="font-bold text-emerald-800 mb-2 border-b border-emerald-200 pb-1">خطواط التخطيط الاستراتيجي نموذج (الهجرة النبوية):</h4>
+                                <ul class="space-y-2">
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong>تحليل الواقع واستشراف المستقبل :</strong>  تحليل الواقع بص حوليك وشوف الوضع الحالي فيه خطر ايه ولا مين معاك ولا مين عليك.</li>
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong>تحديد الرؤية :</strong>  يري نجاح دعوته وانتشاهرا في كل الارض.</li>
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong>  دعوة الناس الي الاسلام :</strong> تحديد الرساله.</li>
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong>  تحديد الاهداف:</strong>ايه الفايده من الي بنعملة ده - هنوصل لايه .</li>
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong>وضع الاجراءات التنفيذية:</strong> توفير الموارد والمصادر و اجراءات العمل ونشوف هنعمل ايه علي الارض.</li>
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong> اختيار فريق العمل وتوزيع الادوار:</strong>نشوف كل واحد شغلته ايه ودورة ونهتم بمعلومات ومتابعه التنفيذ للخطة .</li>                      
+                                    <li><i class="fa-solid fa-arrow-left text-gold-500"></i> <strong> التخطيط مع التوكل علي الله:</strong> التوكل علي الله هو اصل كل شئ مع الاخذ بكل الاسباب المتاحة.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            organizing: {
+                step: "4 من 8",
+                icon: "fa-sitemap",
+                title: "4. وظيفة التنظيم",
+                subtitle: "توزيع المهام والمسؤوليات",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-bold text-gray-800">التنظيم هو:  عملية إدارية تعنى بتحديد وتجميع المهام والأنشطة اللازمة لتحقيق أهداف المنظمة في وحدات إدارية، وتحديد السلطات والمسؤوليات بها، وتنسيق العلاقات الرسمية بين العاملين لضمان سير العمل وتحقيق الأهداف بكفاءة وفعالية مع مراعاة ضوابط الشريعة الإسلامية وهم 13 مبدا .</p>
+                        
+                        <h4 class="font-bold text-navy-900 border-b pb-2 mt-4">مبادئ التنظيم الإداري في الإسلام:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">1.مشروعية التنظيم:</strong><br>
+                                <span class="text-sm"> المثال: شركة ترفض بيع منتجات محرمة حتى لو كانت مربحة.</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">2. التخصيص وتقسيم العمل:</strong><br>
+                                <span class="text-sm">تقسيم المهام وتوزيع الأدوار للوصول للتخصص والكفاءة العالية.</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">3. وحدة التوجة الهدف:</strong><br>
+                                <span class="text-sm">خطة واحده هدف واحد قائد واحد -كل الاقسام تعمل لاجل مصلحة واحده بدون تشتيت للجهود.</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">4. تكافؤ السلطة والمسؤولية:</strong><br>
+                                <span class="text-sm">لا يمكن محاسبة موظف دون إعطائه الصلاحيات الكافية لأداء عمله.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">5. وحده القيادة:</strong><br>
+                                <span class="text-sm">الموظف يأخذ أوامره من رئيس واحد فقط "المثال: حديث "إذا خرج ثلاثة في سفر فليؤمروا أحدهم.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">6. التدرج الوظيفي:</strong><br>
+                                 <span class="text-sm">المثال: الأوامر تسير في خط واضح-مدير عام-مدير اداره-رئيس قسم -موظف بالترتيب كدا.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">7. تعويض العاملين:</strong><br>
+                                <span class="text-sm">إعطاء العامل حقه مادياً ومعنوياً مش كوسه كدا وناكل حق الناس.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">8. المركزية واللامركزية:</strong><br>
+                                <strong class="text-sm block">المركزية:</strong>
+                                <span class="text-sm block mb-1">كل القرارات من الإدارة العليا.</span>
+                                <strong class="text-sm block">اللامركزية:</strong>
+                                <span class="text-sm block">تفويض الصلاحيات للمستويات الأدنى.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">9. الاتصال الفعال:</strong><br>
+                                <span class="text-sm">وصول المعلومات بشكل صحيح وسريع - مثلا نستخدم الايملات واتساب او اتصال مثلا مش اشاعات وخلاص.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">10. التعاون البناء:</strong><br>
+                                <span class="text-sm">الادارات تساعد بعضها مش كل واحد في وادي  - مبيعات شغاله كتير - يبقي ننتج كتير ونشتغل اضافي.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">11. إخضاع المصلحة الفردية للمصلحة العامة:</strong><br>
+                                <span class="text-sm">مصلحة المنظمة أهم من المصلحة الشخصية- مش نشتري من قريبك عشان انا مدير وانفع قريبي .</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">12. ضبط الالتزام والتحفيز للعمل:</strong><br>
+                                <span class="text-sm">الثواب والعقاب معاً - مش كوسه كدا ونكافاء الناس النايمة وندفن الناس الشغاله.</span>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded border border-slate-200">
+                                <strong class="text-emerald-700">13. المرونة:</strong><br>
+                                <span class="text-sm">قدرة المنظمة على التكيف مع التغيرات- وقت الكرونا الناس اشتغلت اولاين عادي .</span>
+                            </div>
+                        </div>
+
+                        <div class="my-6 flex items-center">
+                            <div class="flex-1 border-t border-gray-300"></div>
+                            <span class="px-3 text-xs text-gray-500">◆</span>
+                            <div class="flex-1 border-t border-gray-300"></div>
+                        </div>
+
+                        <!-- قواعد بناء نظام اتصال فعال -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="mb-4 border-b-2 border-navy-200 pb-2">
+                                <h3 class="font-bold text-xl text-navy-900">قواعد بناء نظام اتصال فعال هي 8 حجات </h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>1- التواصل الثنائي.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>2-الانصات الجيد اسمع عدل .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>3- استخدم لغه مفهومه بلاش كلام بالالغاز .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>4- اختيار وسيله اتصال.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>5- االتاكد من مصدر المعلومات.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>6- التغيذية الراجعه-Feedback- لما تكلم حد اتاكد اسمع رده .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>7- تحليل ودراسه المعلومات.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>8- استخدم اسلوب مهذب مش تزعق وتهلل.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            directing: {
+                step: "5 من 8",
+                icon: "fa-compass",
+                title: "5. وظيفة التوجيه",
+                subtitle: "نقل الخطط من الورق إلى الواقع",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-bold text-gray-800">التوجيه ترجمة الخطط إلى واقع عملي يؤدي إلى تحقيق الأهداف في ظل التزام كامل بمبادئ وقيم الشريعة الإسلامية." 
+                        ويمكن تعريفه أيضاً بأنه:
+                        جميع الأعمال الإدارية اللازمة لإرشاد العاملين وتحفيزهم نحو تحقيق أهداف المنظمة مع الالتزام بالمبادئ الأخلاقية والقيم الإسلامية.</p>
+
+                        <div class="bg-gradient-to-l from-navy-50 to-white p-5 rounded-xl border border-navy-100">
+                            <h4 class="font-bold text-navy-900 mb-3"><i class="fa-solid fa-list-check text-gold-500 ml-2"></i> متطلبات التوجيه الفعال:</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong>  القدوة الحسنة:</strong> القائد الفعال هو الذي يبدأ بنفسه. (مشاركة النبي ﷺ في حفر الخندق).</div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong>الرحمة والرفق:</strong> الإدارة ليست تسلطاً بل توجيه برفق. "ولو كنت فظاً غليظ القلب لانفضوا من حولك".</div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong>الرقابه الذاتية:</strong> الحفاظ علي تقوي الله -راجع نفسك وراقبها.</div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong> توضيح مهام العمل واصدار الاوامر:</strong>اشرح للموظفين انت عايز ايه وبعدين اصدر التعليمات .</div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong>  حل المشكلات ومناقشتها مع المرؤوسين:</strong> اقعد فكر مع الناس في المشكلة والحل مش تقعد في جزيرة منعزله.</div>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <div class="mt-1 bg-emerald-600 w-2 h-2 rounded-full"></div>
+                                    <div><strong>الاستماع للمرؤوسين:</strong> قبول النصح والاقتراحات، وتجنب التجريح والتشهير عند النقد.</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="my-6 flex items-center">
+                            <div class="flex-1 border-t border-gray-300"></div>
+                            <span class="px-3 text-xs text-gray-500">◆</span>
+                            <div class="flex-1 border-t border-gray-300"></div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="mb-4 border-b-2 border-navy-200 pb-2">
+                                <h3 class="font-bold text-xl text-navy-900">عناصر التوجية في الاسلام هي 4</h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>1- القيادة.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>2- التحفيز.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>3- الاتصال  .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>4-  الاشراف والمتابعه  .</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            controlling: {
+                step: "6 من 8",
+                icon: "fa-magnifying-glass-chart",
+                title: "6. وظيفة الرقابة",
+                subtitle: "التأكد من سير العمل وحماية المنظمة",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-bold text-gray-800">الرقابة عملية إدارية أساسية تهدف إلى التأكد من أن الأداء الفعلي للمنظمة يتماشى مع الخطط والمعايير المتوافقة مع أحكام الشريعة الإسلامية التي تم تحديدها مسبقاً لتحقيق الأهداف المرجوة، وذلك من خلال قياس الأداء ومقارنته بالمعايير واتخاذ الإجراءات التصحيحية اللازمة:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+                            <div class="bg-gold-50 p-4 rounded-xl border border-gold-200 relative overflow-hidden">
+                                <div class="absolute -top-4 -right-4 text-6xl text-gold-200 opacity-30"><i class="fa-solid fa-eye"></i></div>
+                                <h4 class="font-bold text-gold-800 mb-2">1. الرقابة  (الربانية)</h4>
+                                <p class="text-sm">هي حجر الزاوية والأهم. تعني استشعار رقابة الله في السر والعلن-الله رقيب علينا-  تمنع الفساد حتى في غياب المدير.</p>
+                                <div class="mt-3 bg-white p-2 text-xs rounded border-r-2 border-gold-500">
+                                    <strong>قصة بائعة اللبن:</strong> "إذا كان عمر لا يرانا، فإن رب عمر يرانا".
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 relative overflow-hidden">
+                                <div class="absolute -top-4 -right-4 text-6xl text-gray-200 opacity-30"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <h4 class="font-bold text-gray-800 mb-2">2. الرقابة الذاتية</h4>
+                                <p class="text-sm">(مقام الإحسان).أن يراقب الإنسان نفسه بنفسه دون الحاجة لرقيب خارجي.</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 relative overflow-hidden">
+                                <div class="absolute -top-4 -right-4 text-6xl text-gray-200 opacity-30"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <h4 class="font-bold text-gray-800 mb-2">3. الرقابة الرئاسية </h4>
+                                <p class="text-sm">رقابة الرئيس أو المدير على العاملين للتأكد من حسن الأداء.مدير المبيعات يراجع تقارير الموظفين كل أسبوع.</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 relative overflow-hidden">
+                                <div class="absolute -top-4 -right-4 text-6xl text-gray-200 opacity-30"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <h4 class="font-bold text-gray-800 mb-2">4. الرقابة العامة (الحسبة)</h4>
+                                <p class="text-sm">(هم اشخاص يراقبون الاسواق و الناس للرقابة على الأسواق لمنع الغش والاحتكار ولها نوعان( المحتسب المتطوع - والمحتسب الرسمي.</p>
+                            </div>
+                        </div>
+
+                        <div class="my-6 flex items-center">
+                            <div class="flex-1 border-t border-gray-300"></div>
+                            <span class="px-3 text-xs text-gray-500">◆</span>
+                            <div class="flex-1 border-t border-gray-300"></div>
+                        </div>
+
+                        <!-- طرق الرقابة -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="mb-4 border-b-2 border-navy-200 pb-2">
+                                <h3 class="font-bold text-xl text-navy-900">طرق الرقابه في عهد الخلفاء الراشدين</h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>1- الزيارات التفقدية.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>2- مراقبه الذمة المالية للولاه.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>3- تعين المراقبين (المحتسب)  .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>4-  التفتيش وتقصي الحقائق والشكاوي .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>5- الاجتماع السنوي بولاه الامصار .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>6- تقبل النقد من التابعين.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="my-6 flex items-center">
+                            <div class="flex-1 border-t border-gray-300"></div>
+                            <span class="px-3 text-xs text-gray-500">◆</span>
+                            <div class="flex-1 border-t border-gray-300"></div>
+                        </div>
+
+                        <!-- مشكلات ضعف الرقابة -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="mb-4 border-b-2 border-navy-200 pb-2">
+                                <h3 class="font-bold text-xl text-navy-900">مشكلات ضعف الرقابه</h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                                <ul class="list-none text-sm text-gray-700 space-y-1 pr-4">
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>1- الفساد الاداري.</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>2- تراخي الانضباط .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>3- تولية غير الاكفاء للمناصب الهامة ومحاباه الاقارب .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>4- اهمال الثغور والدفاع عن البلاد .</li>
+                                    <li><i class="fa-solid fa-circle-notch text-xs text-gold-500 ml-1"></i>5- الانحراف  عن المبادئ الاساسية والعدل وانتشار المظالم .</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            growth: {
+                step: "7 من 8",
+                icon: "fa-arrow-trend-up",
+                title: "7. عوامل الازدهار",
+                subtitle: "الركائز الـ 7 التي بنت حضارة قوية",
+                content: `
+                    <p class="mb-4 font-bold text-navy-900 text-base">بناءً على التميز الإداري، ازدهرت الدولة الإسلامية تاريخياً بفضل 7 عوامل استراتيجية (اضغط للتفاصيل):</p>
+                    
+                    <div class="space-y-3">
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-map-location-dot text-gold-500 w-5 text-center"></i> 1. الموقع الجغرافي</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                توسعت الدولة الإسلامية لتربط بين قارات العالم القديم (آسيا، أفريقيا، أوروبا)، مما جعلها مركزاً حيوياً للاتصال الحضاري والتحكم في أهم الطرق التجارية عالمياً.
+                            </div>
+                        </details>
+                        
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-ship text-gold-500 w-5 text-center"></i> 2. التجارة والأسواق</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                تأمين الطرق التجارية البرية والبحرية، وبناء الأسواق الحرة، وتنشيط حركة التبادل التجاري مع مختلف الأمم، مما ضخ ثروات هائلة وعزز القوة الاقتصادية للدولة.
+                            </div>
+                        </details>
+
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-wheat-awn text-gold-500 w-5 text-center"></i> 3. التطور الزراعي والصناعي</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                الاهتمام البالغ باستصلاح الأراضي، شق الترع وتطوير نظم الري، إلى جانب التنوع والازدهار في الصناعات الكبرى كصناعة النسيج، الورق، والسفن.
+                            </div>
+                        </details>
+
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-coins text-gold-500 w-5 text-center"></i> 4. امتلاك نظام مالي مستقل</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                تأسيس مؤسسات مالية محكمة (مثل بيت المال)، وسك عملة إسلامية مستقلة، وتطبيق نظام مالي عادل يعتمد على الزكاة والخراج.
+                            </div>
+                        </details>
+
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-users-gear text-gold-500 w-5 text-center"></i> 5. تنوع القوى العاملة</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                استقطاب الكفاءات والمهارات من مختلف الشعوب والثقافات التي انضوت تحت راية الإسلام، مما أثرى الفكر الإداري والمهني بخبرات وقدرات متنوعة.
+                            </div>
+                        </details>
+
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-microscope text-gold-500 w-5 text-center"></i> 6. التقدم في البحث العلمي</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                تشجيع العلم والعلماء، إنشاء دور الحكمة ومراكز الترجمة، والتفوق والابتكار في مختلف العلوم التجريبية كالطب والهندسة وغيرها.
+                            </div>
+                        </details>
+
+                        <details class="group bg-white border border-sky-200 rounded-lg shadow-sm">
+                            <summary class="flex items-center justify-between p-3 font-bold cursor-pointer text-sky-900 group-open:bg-sky-50 transition-colors rounded-t-lg list-none [&::-webkit-details-marker]:hidden">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-shield-halved text-gold-500 w-5 text-center"></i> 7. الأمن ودمج الأقليات</div>
+                                <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180 text-gray-400"></i>
+                            </summary>
+                            <div class="p-4 text-sm text-gray-700 border-t border-sky-100 leading-relaxed bg-gray-50">
+                                إرساء قواعد العدل والمساواة، توفير الأمن الشامل، ونجاح الدولة في دمج الأقليات غير المسلمة في المجتمع والإدارة وحفظ حقوقهم بناءً على الكفاءة.
+                            </div>
+                        </details>
+                    </div>
+                `
+            },
+            decline: {
+                step: "8 من 8",
+                icon: "fa-arrow-trend-down",
+                title: "8. أسباب الضعف والانهيار",
+                subtitle: "تراجع المنظمات والدول (غياب الرقابة)",
+                content: `
+                    <div class="space-y-4">
+                        <p class="font-bold text-gray-800">سنن الله في الكون لا تحابي أحداً، عندما يتم تجاهل وظائف الإدارة (خاصة الرقابة والتنظيم الصحيح) يبدأ الانهيار.</p>
+                        
+                        <div class="bg-red-50 p-5 rounded-xl border border-red-200">
+                            <h4 class="font-bold text-red-900 mb-3 border-b border-red-200 pb-2">عوامل السقوط والتراجع الإداري:</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <div class="bg-red-100 text-red-700 p-1 rounded mt-1"><i class="fa-solid fa-xmark w-4 h-4 text-center"></i></div>
+                                    <div><strong>ضعف الرقابة الرئاسية:</strong> عدم وجود نظام لمحاسبة المسؤولين ومتابعة الانحرافات.</div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="bg-red-100 text-red-700 p-1 rounded mt-1"><i class="fa-solid fa-xmark w-4 h-4 text-center"></i></div>
+                                    <div><strong>الفساد الإداري:</strong> استغلال المناصب لتحقيق مصالح شخصية، والمحسوبية في التعيينات.</div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="bg-red-100 text-red-700 p-1 rounded mt-1"><i class="fa-solid fa-xmark w-4 h-4 text-center"></i></div>
+                                    <div><strong>تراخي الانضباط:</strong> انشغال المسؤولين عن واجباتهم وإهمال مصالح الرعية أو الموظفين.</div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="bg-red-100 text-red-700 p-1 rounded mt-1"><i class="fa-solid fa-xmark w-4 h-4 text-center"></i></div>
+                                    <div><strong>تولية غير الأكفاء:</strong> الانحراف عن المبادئ الأساسية للعدل وتولية المناصب لغير المستحقين، مما أدى لتفكك المنظومة وضعف الأداء العام.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        const dataKeys = Object.keys(modalData);
+        let currentActiveKey = null;
+
+        // توليد أزرار القائمة الجانبية
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        dataKeys.forEach((key, index) => {
+            const item = modalData[key];
+            const btn = document.createElement('button');
+            btn.id = `btn-${key}`;
+            btn.className = "w-full text-right px-4 py-3 rounded-lg flex items-center gap-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all text-sm focus:outline-none font-medium";
+            btn.innerHTML = `
+                <span class="w-6 h-6 rounded-full bg-gray-800 text-gold-400 flex items-center justify-center text-xs font-bold shrink-0">${index + 1}</span>
+                <span class="truncate">${item.title.split('.')[1] || item.title}</span>
+            `;
+            btn.onclick = () => {
+                showContent(key);
+                if (window.innerWidth < 768) toggleSidebar();
+            };
+            sidebarMenu.appendChild(btn);
+        });
+
+        // عرض المحتوى بالتفصيل
+        function showContent(key) {
+            currentActiveKey = key;
+            const data = modalData[key];
+            
+            // تحديث ستايل الأزرار الجانبية والنشط منها
+            dataKeys.forEach(k => {
+                const el = document.getElementById(`btn-${k}`);
+                if (k === key) {
+                    el.classList.add('bg-emerald-800', 'text-white', 'font-bold');
+                    el.classList.remove('text-gray-300', 'hover:bg-gray-800');
+                } else {
+                    el.classList.remove('bg-emerald-800', 'text-white', 'font-bold');
+                    el.classList.add('text-gray-300', 'hover:bg-gray-800');
+                }
+            });
+
+            // تعبئة البيانات
+            document.getElementById('contentIcon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+            document.getElementById('contentTitle').innerText = data.title;
+            document.getElementById('contentSubtitle').innerText = data.subtitle;
+            document.getElementById('contentStep').innerText = "المحور: " + data.step;
+            
+            // حقن النص الأصلي بالكامل
+            document.getElementById('contentBody').innerHTML = data.content;
+
+            // تطبيق وظيفة البحث والتمييز في حال وجود نص بخانة البحث
+            handleSearch();
+
+            // إعداد أزرار التالي والسابق
+            const currentIndex = dataKeys.indexOf(key);
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === dataKeys.length - 1;
+
+            // التمرير لأعلى الصفحة بسلاسة عند تغيير القسم
+            document.querySelector('main').scrollTop = 0;
+        }
+
+        // دالة التحكم في أزرار التنقل
+        function navigateContent(direction) {
+            if (!currentActiveKey) return;
+            const currentIndex = dataKeys.indexOf(currentActiveKey);
+            let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+            
+            if (nextIndex >= 0 && nextIndex < dataKeys.length) {
+                showContent(dataKeys[nextIndex]);
+            }
+        }
+
+        // محرك البحث المتقدم لتلوين الكلمات بالأصفر دون إتلاف وسوم الـ HTML نهائياً
+        function handleSearch() {
+            if (!currentActiveKey) return;
+            
+            const searchInput = document.getElementById('searchInput');
+            const term = searchInput.value.trim();
+            const bodyEl = document.getElementById('contentBody');
+            
+            // إعادة المحتوى لأصله النظيف قبل البدء بالفلترة
+            bodyEl.innerHTML = modalData[currentActiveKey].content;
+
+            if (!term) return;
+
+            // بناء التعبير المنتظم للبحث بشكل آمن
+            const regex = new RegExp('(' + term.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&') + ')', 'gi');
+            
+            // دالة التنقل داخل العقد النصية فقط
+            function highlightNode(node, rx) {
+                if (node.nodeType === 3) { // العقد النصية فقط Text node
+                    const text = node.nodeValue;
+                    if (rx.test(text)) {
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = text.replace(rx, '<mark class="bg-yellow-300 text-black font-semibold px-0.5 rounded">$&</mark>');
+                        const fragment = document.createDocumentFragment();
+                        while (tempDiv.firstChild) {
+                            fragment.appendChild(tempDiv.firstChild);
+                        }
+                        node.parentNode.replaceChild(fragment, node);
+                    }
+                } else if (node.nodeType === 1 && node.nodeName !== 'MARK' && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+                    // تجنب العبث بوسوم التنسيق
+                    const children = Array.from(node.childNodes);
+                    for (let i = 0; i < children.length; i++) {
+                        highlightNode(children[i], rx);
+                    }
+                }
+            }
+            
+            highlightNode(bodyEl, regex);
+        }
+
+        // إظهار وإخفاء القائمة الجانبية (شاشات الهواتف)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            if (sidebar.classList.contains('translate-x-full')) {
+                sidebar.classList.remove('translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        // تشغيل الباب الأول فور تحميل الصفحة للحصول على تجربة تصفح فورية ممتازة
+        window.onload = () => {
+            showContent('intro');
+        };
+    </script>
+</body>
+</html>
