@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تجميع محاضرات التسويق - أسئلة وأجوبة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.8;
+            overflow: hidden; /* Prevent body scroll, handle scroll in flex children */
+        }
+        
+        /* Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: #ffffff;
+            border-left: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            width: 320px;
+            flex-shrink: 0;
+            z-index: 50;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* Main Content Styling */
+        .main-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding: 1rem;
+            position: relative;
+        }
+
+        /* Mobile Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Mobile Toggle */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                transform: translateX(100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+
+        /* Component Styles */
+        .section-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .qa-group {
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .question {
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .question::before {
+            content: "س:";
+            color: #ef4444;
+            font-weight: 800;
+        }
+        .answer {
+            background-color: #f0fdf4;
+            border-right: 4px solid #22c55e;
+            padding: 1rem;
+            border-radius: 0.375rem;
+        }
+        .answer strong {
+            color: #166534;
+        }
+        ul, ol {
+            padding-right: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ul { list-style-type: disc; }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th {
+            background-color: #1e40af;
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: right;
+            font-weight: 700;
+        }
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        
+        /* Diagram Styles */
+        .diagram-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+        }
+        .segment-box, .mix-box {
+            border: 2px solid #334155;
+            padding: 1rem;
+            text-align: center;
+            background: white;
+            font-weight: 700;
+            min-width: 120px;
+        }
+        .segment-group { display: flex; flex-direction: column; }
+        .segment-group .segment-box { border-bottom: none; }
+        .segment-group .segment-box:last-child { border-bottom: 2px solid #334155; }
+        .arrow-line {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            height: 2px;
+            background-color: #334155;
+            position: relative;
+            min-width: 100px;
+        }
+        .arrow-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 10px solid #334155;
+        }
+        .diagram-caption {
+            text-align: center;
+            font-weight: bold;
+            color: #b91c1c;
+            margin-top: 1rem;
+        }
+
+        /* Search Highlights/Helpers */
+        .hidden-item {
+            display: none !important;
+        }
+        
+        /* Custom Scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar { width: 6px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <aside id="sidebar" class="sidebar shadow-xl md:shadow-none">
+            <!-- Sidebar Header -->
+            <div class="p-4 border-b border-gray-200 bg-blue-50 flex justify-between items-center shrink-0">
+                <h2 class="text-xl font-extrabold text-blue-900">المحتويات والبحث</h2>
+                <button onclick="toggleSidebar()" class="md:hidden text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Search Box -->
+            <div class="p-4 border-b border-gray-200 shrink-0 bg-white">
+                <div class="relative">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="ابحث عن كلمة أو مصطلح..." class="block w-full pr-10 pl-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                </div>
+                <p id="searchStats" class="text-xs text-gray-500 mt-2 hidden">جاري عرض النتائج...</p>
+            </div>
+
+            <!-- Table of Contents Links -->
+            <div class="sidebar-scroll overflow-y-auto flex-grow p-4">
+                <ul class="space-y-3 text-sm font-medium text-gray-700 list-none p-0 m-0" id="tocList">
+                    <li><a href="#ch1" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الأول (المفهوم التسويقي)</a></li>
+                    <li><a href="#ch2" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الثاني (البيئة التسويقية)</a></li>
+                    <li><a href="#ch3" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الثالث (التخطيط الاستراتيجي)</a></li>
+                    <li><a href="#ch4" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الرابع (بحوث التسويق)</a></li>
+                    <li><a href="#ch5" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الخامس (المزيج التسويقي)</a></li>
+                    <li><a href="#ch6" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل السادس (حماية المستهلك)</a></li>
+                    <li><a href="#ch8" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل الثامن (سلوك المستهلك)</a></li>
+                    <li><a href="#ch10" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل العاشر (شرائح المستهلك)</a></li>
+                    <li><a href="#ch11" onclick="closeSidebarOnMobile()" class="block p-2 rounded hover:bg-blue-100 hover:text-blue-800 transition">الفصل العاشر (فن البيع)</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content md:p-8" id="mainContent">
+            
+            <!-- Mobile Header with Hamburger -->
+            <div class="md:hidden flex items-center mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <button onclick="toggleSidebar()" class="text-blue-900 hover:text-blue-700 focus:outline-none ml-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <h1 class="text-xl font-bold text-blue-900">دليل المفاهيم التسويقية</h1>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Main Title -->
+                <header class="text-center mb-10 hidden md:block">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4">تجميع محاضرات التسويق</h1>
+                    <p class="text-lg text-gray-600 font-medium">أسئلة وأجوبة</p>
+                </header>
+
+                <!-- No Results State -->
+                <div id="noResultsMsg" class="hidden text-center py-10 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">لا توجد نتائج</h3>
+                    <p class="mt-1 text-sm text-gray-500">لم نتمكن من العثور على أي سؤال أو إجابة تطابق كلمة البحث.</p>
+                </div>
+
+                <!-- CH1 -->
+                <section id="ch1" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">أولاً: الفصل الأول (المفهوم التسويقي)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">ما الفرق بين الحاجات، الرغبات، الطلب، المنتجات، التبادل، المعاملات، والأسواق؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> هي العناصر السبعة الأساسية للمفهوم التسويقي؛ <strong>الحاجات</strong> هي نقطة البداية، <strong>الرغبات</strong> تشكلها الثقافة، <strong>الطلب</strong> رغبات مدعومة بقدرة شرائية، <strong>المنتجات</strong> هي وسيلة الإشباع، <strong>التبادل</strong> هو جوهر التسويق، <strong>المعاملات</strong> هي وحدة قياسه، و <strong>الأسواق</strong> هي تجمع المشترين الحاليين والمرتقبين.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي الأسس التي يتم على أساسها تحديد السوق؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> يتم التحديد بناءً على أسواق الاحتياجات، الأسواق الديموغرافية، الأسواق الجغرافية، أسواق السلع، بالإضافة لأسواق المال والعمل.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما الفرق بين السلعة والخدمة?</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> <strong>السلعة</strong> شيء مادي ملموس يمكن تخزينه واستهلاكه لاحقاً، أما <strong>الخدمة</strong> فهي شيء غير مادي وغير ملموس، لا يمكن تخزينه وتستهلك بمجرد إنتاجها.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">قارن بين أنواع السلع الاستهلاكية (الميسرة، التسوق، والخاصة)؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> <strong>الميسرة</strong> تُشترى بأقل جهد وتكرار، <strong>التسوق</strong> يقارن فيها المستهلك بين الجودة والسعر، <strong>الخاصة</strong> لها خصائص فريدة ويبذل المستهلك جهداً كبيراً للحصول عليها.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">هل يوجد اختلاف بين عناصر المزيج التسويقي باختلاف طبيعة المنتجات؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> نعم، تختلف الأهمية النسبية للعناصر تبعاً لطبيعة السلعة أو الخدمة المقدمة: فالمزيج التسويقي للسلع المادية يختلف عن الخدمات؛ كما أن السلع الاستهلاكية (كالملابس) تتطلب مزيجاً يختلف عن السلع الإنتاجية أو الرأسمالية (كالآلات).
+                            <ul class="mt-2">
+                                <li><strong>المناخ أو الطقس:</strong> تؤثر الظروف البيئية والجوية في كيفية تقديم وتوزيع وتسعير المنتجات.</li>
+                                <li><strong>دوافع الشراء للمستهلك:</strong> تختلف الاستراتيجية المتبعة باختلاف الأسباب التي تدفع العميل للشراء (سواء كانت دوافع عقلية أو عاطفية).</li>
+                                <li><strong>طبيعة السوق:</strong> يختلف المزيج التسويقي بناءً على نوع السوق المستهدف وخصائصه.</li>
+                                <li><strong>في الترويج:</strong> ينجح الإعلان بشكل كبير في ترويج السلع الاستهلاكية، بينما يعد البيع الشخصي أكثر ملائمة وفعالية في السلع الصناعية والأدوية.</li>
+                                <li><strong>في التوزيع:</strong> السلع الاستهلاكية الميسرة تتطلب عدداً كبيراً من الوسطاء وتوزيعاً شاملاً، بينما السلع الرأسمالية أو ذات القيمة المرتفعة غالباً ما تباع مباشرة من المنتج للمشتري أو عبر عدد قليل جداً من الوسطاء.</li>
+                                <li><strong>في التسعير:</strong> تتأثر قرارات التسعير بعوامل مثل دورة حياة السلعة وسماتها، والظروف الاقتصادية، والأهداف الخاصة بكل منظمة.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">اذكر أسباب إدراك منظمات الأعمال لأهمية التسويق، والتحديات التسويقية في القرن الـ 21؟</div>
+                        <div class="answer">
+				 <ul>
+                        <li><strong>الإجابة (الأسباب):</strong> السعي لزيادة المبيعات والأرباح والحصة السوقية.تحول التسويق لنشاط يبدأ قبل الإنتاج، واعتباره المحور الذي تدور حوله باقي  الوظائف.</li>
+			<li><strong> 1-زيادة حدة المنافسة :</strong> ازيادة حدة المنافسة بين المنظمات.</li>
+			<li><strong> 2- اتساع الأسواق :</strong> اتساع الأسواق وتنوع احتياجات العملاء.</li>
+			<li><strong> 3-زيادة وعي المستهلكين :</strong> زيادة وعي المستهلكين وارتفاع توقعاتهم.</li>
+			<li><strong> 4- تغير وعي المستهلك :</strong>التغير المستمر في أذواق ورغبات المستهلكين.</li>
+			<li><strong> 5- التقدم التكنولوجي :</strong> التقدم التكنولوجي وظهور أساليب حديثة للإنتاج والتسويق.</li>
+			<li><strong> 6- تحقيق رضا العملاء :</strong> الحاجة إلى تحقيق رضا العملاء والمحافظة عليهم.</li>
+			<li><strong> 7-زياده المبيعات  :</strong>السعي لزيادة المبيعات والأرباح والحصة السوقية. </li>
+                        <strong>الإجابة (التحديات):</strong> العولمة، كبر حجم المنظمات والاندماج، المنافسة الشرسة، التكنولوجيا المتقدمة، الاقتصاد العالمي المتغير، والمسؤولية الاجتماعية.<br>
+				</ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH2 -->
+                <section id="ch2" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">ثانياً: الفصل الثاني (البيئة التسويقية)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">"لا توجد استراتيجية تسويقية تصلح لكل المنظمات"، ناقش ذلك.</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> العبارة صحيحة؛ فكل منظمة تختار الاستراتيجية التي تتناسب مع قدراتها وحجمها ووضعها في السوق بالقياس لمنافسيها، تختلف المنظمات في <strong>حجم الموارد المتاحة</strong> لها، سواء كانت موارد مالية، أو بشرية، أو تكنولوجية، وهذا التباين يفرض على كل إدارة تسويق تصميم خطة تتوافق مع إمكانياتها المتاحة لتحقيق أهدافها، تأثير <strong>البيئة التسويقية:</strong> تعمل كل منظمة في ظل <strong>قيود ومتغيرات بيئية</strong> مختلفة؛ حيث تتأثر بالبيئة الداخلية والخارجية.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">كيف تؤثر القوى الخارجية الخمس للبيئة التسويقية على المنظمة / وممكن الداخلية؟</div>
+                        <div class="answer">
+                            <strong>الإجابة للبيئة الخارجية:</strong> تؤثر من خلال خمسة عوامل: اقتصادية، ديموغرافية، اجتماعية وثقافية، سياسية وقانونية، وتكنولوجية.<br>
+                            <strong>الإجابة للبيئة الداخلية:</strong> الشركة - المنافسون - العملاء - الموردون - وسطاء التسويق - التنظيم الحكومي.
+</div>
+                    </div>
+<div class="qa-group">
+                        <div class="question">اذكر أسباب الاهتمام بالبيئة التسويقية؟</div>
+                        <div class="answer">
+				 <ul>
+                      
+			<li><strong> 1-اكتشاف الفرص :</strong> اكتشاف الفرص التسويقية الجديدة والاستفادة منها.</li>
+			<li><strong> 2- التعرف على التهديدات والمخاطر :</strong> التعرف على التهديدات والمخاطر التي قد تواجه المنظمة والاستعداد لها.</li>
+			<li><strong> 3- مواجهة المنافسين:</strong> زيادة القدرة على مواجهة المنافسة في الأسواق. </li>
+			<li><strong> 4- فهم احتياجات ورغبات العملاء :</strong>فهم احتياجات ورغبات العملاء والتغيرات التي تطرأ عليها..</li>
+			<li><strong> 5- اتخاذ قرارات تسويقية سليمة :</strong> اتخاذ قرارات تسويقية سليمة تعتمد على معلومات واقعية عن البيئة المحيطة. </li>
+			<li><strong> 6- التكيف مع المتغيرات   :</strong> التكيف مع المتغيرات الاقتصادية والاجتماعية والثقافية والتكنولوجية والقانونية.</li>
+				</ul>
+                        </div>
+                    </div>
+
+
+                    <div class="qa-group">
+                        <div class="question">علل عدم وجود اتفاق علي بين الكتاب علي مفهوم محدد للبيئة ؟</div>
+                        <div class="answer">
+                            <strong>الإجابة صحيحه  :</strong> العبارة  صحيحة، لأن البيئة مفهوم واسع اختلف الباحثون في تعريفه، لذلك لا يوجد اتفاق على تعريف محدد لها، إلا أنهم يتفقون على أنها مجموعة من الظروف والعوامل المحيطة بالمنظمة والمؤثرة في نشاطها.<br>
+                       
+
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي فلسفات منظمات الأعمال نحو التسويق؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong>
+                            <ul>
+                                <li>المفهوم الإنتاجي (الكفاءة والتركيز على العرض)</li>
+                                <li>المفهوم السلعي (الجودة)</li>
+                                <li>المفهوم البيعي (تصريف المخزون)</li>
+                                <li>المفهوم التسويقي (إشباع رغبات العملاء)</li>
+                                <li>المفهوم الاجتماعي (المسؤولية تجاه المجتمع)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH3 -->
+                <section id="ch3" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">ثالثاً: الفصل الثالث (التخطيط الاستراتيجي)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">ما هي أسباب الاهتمام بالتخطيط الاستراتيجي التسويقي، وما متطلبات نجاحه؟</div>
+                        <div class="answer">
+                            <strong>الإجابة (الأسباب):</strong> شدة المنافسة، اتساع الأسواق، التقدم التكنولوجي، وتعقد البيئة.<br>
+                            <strong>الإجابة (المتطلبات):</strong> تحديد واضح للأهداف، التكامل بينها، تحليل SWOT، المتابعة المستمرة للمستهلك، وتبني خطط للتفوق التنافسي.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH4 -->
+                <section id="ch4" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">رابعاً: الفصل الرابع (بحوث التسويق)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">عرف نظام المعلومات التسويقية تعريفها ايه؟</div>
+                        <div class="answer">
+                            يُعرّف <strong>نظام المعلومات التسويقية (MIS)</strong> بأنه عملية <strong>مستمرة ومنظمة</strong> لجمع وتسجيل وتبويب وحفظ وتحليل البيانات الماضية والحالية والمستقبلية، بالإضافة إلى العناصر المؤثرة فيها.<br>
+                            وتتمثل الغاية من هذا النظام في القدرة على استرجاع هذه البيانات والحصول على المعلومات اللازمة <strong>لاتخاذ القرارات التسويقية</strong> في الوقت والشكل والجودة والتكلفة المناسبة.<br>
+                            ويعتبر هذا النظام <strong>جوهر العملية التسويقية</strong>؛ إذ لا يمكن اتخاذ أي قرار تسويقي دون الاعتماد على معلومة موثقة تساعد في التركيز على الفرص المتاحة والتقليل من المخاطر المحتملة. وقد أكدت الأستاذة الدكتورة في مراجعتها أن هذا النظام هو الأساس الذي يبين للمنظمة وضعها في الماضي والحاضر وما يتوقع أن يكون عليه المستقبل.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ان بحوث التسويق جزء من نظام المعلومات التسويقية؟</div>
+                        <div class="answer">
+                            <ul>
+                                <li><strong>نظام المعلومات التسويقية هو المظلة الكبرى:</strong> يُنظر إليه على أنه النظام الأساسي والشامل الذي يتسم بالاستمرارية في جمع البيانات وتحليلها لتبين وضع المنظمة في الماضي والحاضر والمستقبل.</li>
+                                <li><strong>بحوث التسويق هي الجزء التنفيذي:</strong> تمثل بحوث التسويق الجزئية التي تمد المنظمة بالمعلومات النوعية والمحددة التي تمكنها من اتخاذ قرارات في مشكلات تسويقية معينة.</li>
+                                <li><strong>تكامل الأدوار:</strong> بينما يمثل نظام المعلومات التسويقية العملية التنظيمية المستمرة، تقوم بحوث التسويق بجمع وتسجيل وتشغيل وتحليل البيانات المتعلقة بالمشاكل التسويقية أو عناصر المزيج التسويقي لخدمة هذا النظام.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي العناصر الأساسية لنظام المعلومات التسويقية؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> المعلومات الداخلية، المعلومات الخارجية، تشغيل المعلومات، نظم التسجيل، ومخرجات النظام.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">لماذا أصبحت الحاجة للمعلومات التسويقية ضرورية في اتخاذ القرار؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> بسبب الانتقال من الأسواق المحلية للدولية.<br>
+                            التحول من إشباع الحاجات لإشباع الرغبات.<br>
+                            والتحول من المنافسة السعرية للمنافسة غير السعرية.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH5 -->
+                <section id="ch5" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">خامساً: الفصل الخامس (المزيج التسويقي)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">اذكر تقسيمات المنتج الثلاثة، ومراحل دورة حياة المنتج.</div>
+                        <div class="answer">
+                            <strong>الإجابة (التقسيمات):</strong> وفقاً للزمن (معمرة/غير معمرة)، وفقاً للأهمية (ضرورية/كمالية)، ووفقاً للغرض (استهلاكية/إنتاجية).<br>
+                            <strong>الإجابة (المراحل):</strong> التقديم، النمو، النضوج، والتدهور.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">"السعر هو العنصر الوحيد الذي يمثل عائداً للمنظمة"، علق على هذه العبارة.</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> العبارة صحيحة؛ فالسعر ينتج عائداً، بينما تمثل باقي العناصر (منتج، توزيع، ترويج) تكلفة على المنظمة.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما الفرق بين المزيج التسويقي والمزيج الترويجي؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> المزيج التسويقي هو (4Ps) تسعير وهو العنصر الوحيد الذي يمثل عائد للمنظمة وباقي العناصر التكلفة - ترويج - منتج - توزيع.<br>
+                            بإلاضافة إلى أن المزيج الترويجي هو جزء منه يتكون من الإعلان، النشر، تنشيط المبيعات، البيع الشخصي، والعلاقات العامة.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي اهم العوامل اللي تأثر في اختيار القنوات التوزيع؟</div>
+                        <div class="answer">
+                            طبيعة السلعة - قيمة السلعة – نمطية السلعة - زيادة درجة قبول السوق - إمكانيات المنظمة.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">هناك وجهات نظر مختلفة للمزيج الترويجي؟</div>
+                        <div class="answer">
+                            وجهة نظر المجتمع – وجهة نظر المنظمة – وجهة نظر المستهلك<br>
+                            حيث إن البعض يركز على المجتمع والبعض الآخر على المنظمة وفئة ثالثة تركز على المستهلك؛ لأن بعض الآراء تشير إلى أن الترويج يهدف في النهاية لدفع المستهلك للشراء فقط، وهو ما يراه البعض يتعارض مع مبادئ الادخار والترشيد الاستهلاكي.
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي اهم التحديات التسويقية اللي بتواجه الترويج؟</div>
+                        <div class="answer">
+                            <ul>
+                                <li>اختلاف أذواق المستهلكين</li>
+                                <li>التغيرات الديموغرافية</li>
+                                <li>ارتفاع حدة المنافسة</li>
+                                <li>تطور طرق الشراء والدفع</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH6 -->
+                <section id="ch6" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">سادساً: الفصل السادس (حماية المستهلك)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">تقع مسؤوليه حماية المستهلك على سته أطراف؟</div>
+                        <div class="answer">
+                            <ul>
+                                <li>الحكومة</li>
+                                <li>الافراد</li>
+                                <li>المصارف والبنوك</li>
+                                <li>التنظيمات الشعبية والمهنية</li>
+                                <li>المنظمات الموزعة او المنتجة</li>
+                                <li>أجهزة الاعلام</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي اساليب توفير حمايه المستهلك؟</div>
+                        <div class="answer">
+                            أساليب التوعية – أساليب تكفل التزام البائع والمنتج بوصف المنتج وجودته وسعره – أساليب رسمية وقانونية (جهاز حماية المستهلك).
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما الفرق بين التسويق الأسود والتسويق الرمادي؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> <strong>التسويق الأسود</strong> يتعلق بأسواق خفية ومحرمة قانوناً أو أخلاقاً كالأعضاء والسلاح، بينما <strong>التسويق الرمادي</strong> هو توفير منتجات أصلية وقانونية ولكن عبر قنوات توزيع غير معتمدة أو في غير الأسواق المصرح لها.<br>
+                            أما دور الدولة للحد من ذلك فيتمثل في مراجعة وتشديد الرقابة على سلاسل التوريد والتوزيع.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH8 -->
+                <section id="ch8" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">سابعاً: الفصل الثامن (سلوك المستهلك)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">هناك اختلاف بين الشراء الاستهلاكي والشراء بواسطة المنظمات؟ مع شرح أنواع المشترين؟</div>
+                        <div class="answer">
+                            كلا الطرفين يتخذان قرارات شرائية، ولكن السلع الصناعية أكثر تعقيداً ولها علامات تجارية متعددة، ويختلف أسلوب المبادلة، كما أن الطلب على السلع الصناعية يعد طلباً مشتقاً.<br>
+                            <strong>أنواع المشترين:</strong>
+                            <ul class="mt-2">
+                                <li>أفراد (الأسرة)</li>
+                                <li>منظمات (مشتري صناعي – مشتري وسيط – مشتري حكومي)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ارسم الشكل الذي يوضح الفرق بين سلوك الشراء الصناعي والمستهلك النهائي؟</div>
+                        <div class="answer">
+                            <div class="overflow-x-auto my-4">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>المستهلك النهائي</th>
+                                            <th>العنصر</th>
+                                            <th>المشتري الصناعي</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>مباشر</td><td>الطلب</td><td>مشتق</td></tr>
+                                        <tr><td>فردي</td><td>قرار الشراء</td><td>جماعي</td></tr>
+                                        <tr><td>فردية</td><td>مصدر التوريد</td><td>جماعي</td></tr>
+                                        <tr><td>عاطفية</td><td>دوافع الشراء</td><td>عقلية</td></tr>
+                                        <tr><td>بسيطة</td><td>عملية الشراء</td><td>معقدة</td></tr>
+                                        <tr><td>صغير</td><td>حجم الصفقة</td><td>كبير</td></tr>
+                                        <tr><td>كبير جدًا</td><td>عدد العملاء</td><td>صغير</td></tr>
+                                        <tr><td>مشتت</td><td>تركز السوق</td><td>مركز</td></tr>
+                                        <tr><td>غير مباشر</td><td>منافذ السوق</td><td>مباشر</td></tr>
+                                        <tr><td>قد تكون غير مطلوبة</td><td>خدمة ما بعد البيع</td><td>مطلوبة في العادة</td></tr>
+                                        <tr><td>قد تكون عالية</td><td>مرونة الطلب</td><td>منخفضة</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي خطوات اتخاذ القرار الشرائي للمستهلك النهائي وللمنظمات؟</div>
+                        <div class="answer">
+                            <strong>الإجابة (المستهلك النهائي):</strong> 5 خطوات (شعور بالحاجة، جمع معلومات، تقييم بدائل، قرار شراء، تقييم القرار)<br>
+                            <strong>الإجابة (المنظمات):</strong> 8 خطوات متسلسلة:
+                            <ol class="list-decimal list-inside mt-2 space-y-1">
+                                <li><strong>تحديد الحاجة للشراء:</strong> وتتمثل في إدراك النقص أو الحاجة لمنتج أو خدمة معينة.</li>
+                                <li><strong>تحديد الحاجة الحقيقية للشراء:</strong> أي التحديد الدقيق وتوصيف ما تحتاج إليه المنظمة فعلياً.</li>
+                                <li><strong>تحديد مواصفات عناصر المشتريات:</strong> وضع المواصفات الفنية الدقيقة (دفتر الشروط).</li>
+                                <li><strong>تحديد مصادر التوريد:</strong> البحث عن الموردين المحتملين وتقييم قدرتهم على التوريد.</li>
+                                <li><strong>استلام العروض من الموردين:</strong> استقبال المناقصات والعروض المالية والفنية.</li>
+                                <li><strong>تقييم العروض:</strong> إجراء التقييم المالي والفني للمفاضلة بين الموردين (مرحلة الترسية).</li>
+                                <li><strong>استلام المواد:</strong> فحص البضائع المستلمة ومطابقتها للمواصفات المتفق عليها.</li>
+                                <li><strong>تقييم الأداء:</strong> التقييم اللاحق لأداء المورد ولجودة السلعة بعد استخدامها (التغذية العكسية).</li>
+                            </ol>
+                            <p class="mt-2 text-gray-700">تتميز هذه العملية في المنظمات بأنها <strong>أكثر تعقيداً</strong> من الشراء الفردي، حيث تتعامل مع مبالغ كبيرة وتمر بمستويات إدارية متعددة، وتعتمد بشكل أساسي على <strong>الخصائص الفنية والاقتصادية</strong> بعيداً عن العواطف.</p>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي العوامل التي تؤثر في سلوك المشتري؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> عوامل ثقافية، اجتماعية، شخصية، وسيكولوجية.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH10 -->
+                <section id="ch10" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">ثامناً: الفصل العاشر (شرائح المستهلك)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">العوامل المؤثرة في تحديد شرائح المستهلك؟</div>
+                        <div class="answer">
+                            <ul>
+                                <li>وجود احتياجات لمنتج معين</li>
+                                <li>توفر القدرة الشرائية</li>
+                                <li>وجود الرغبة في الشراء</li>
+                                <li>التمتع بالسلطة القانونية للشراء</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">قارن بين استراتيجية التركيز واستراتيجية التمييز؟</div>
+                        <div class="answer mb-4">
+                            <!-- Diagram 1: Concentration Strategy -->
+                            <div class="diagram-container">
+                                <div class="segment-group">
+                                    <div class="segment-box">شريحة 1</div>
+                                    <div class="segment-box bg-blue-100">شريحة 2</div>
+                                    <div class="segment-box">شريحة 3</div>
+                                </div>
+                                <div class="arrow-line"></div>
+                                <div class="flex flex-col border-2 border-slate-700 p-2 text-center bg-white">
+                                    <span class="font-bold mb-2">المزيج</span>
+                                    <span class="font-bold mb-2">التسويقي</span>
+                                    <span class="font-bold">الشركة</span>
+                                </div>
+                            </div>
+                            <div class="diagram-caption">شكل (13) استراتيجية التركيز</div>
+
+                            <div class="mt-4 mb-8 p-4 bg-yellow-50 border-r-4 border-yellow-400">
+                                <strong>الإجابة:</strong> <strong>التركيز</strong> هو تقسيم السوق غير المتجانس وتوجيه كل طاقات الشركة لإشباع شريحة واحدة، بينما <strong>التمييز</strong> يعتمد على تقديم مزيج تسويقي مختلف لكل شريحة.
+                            </div>
+
+                            <!-- Diagram 2: Differentiation Strategy -->
+                            <div class="diagram-container">
+                                <div class="segment-group">
+                                    <div class="segment-box">شريحة 1</div>
+                                    <div class="segment-box">شريحة 2</div>
+                                    <div class="segment-box">شريحة 3</div>
+                                </div>
+                                <div class="flex flex-col justify-around h-full gap-4 w-full px-4">
+                                    <div class="arrow-line w-full"></div>
+                                    <div class="arrow-line w-full"></div>
+                                    <div class="arrow-line w-full"></div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <div class="segment-box">المزيج التسويقي للشركة (1)</div>
+                                    <div class="segment-box">المزيج التسويقي للشركة (2)</div>
+                                    <div class="segment-box">المزيج التسويقي للشركة (3)</div>
+                                </div>
+                            </div>
+                            <div class="diagram-caption">شكل (14) استراتيجية التمييز</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CH11 (New Section: Art of Selling) -->
+                <section id="ch11" class="section-card content-section">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900 border-b pb-2">تاسعاً: الفصل العاشر (فن البيع)</h2>
+                    
+                    <div class="qa-group">
+                        <div class="question">تعريف فن البيع؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> هي القواعد والأصول التي يلتزم بها البائعون لمعرفتها وتطبيقها في كل وقت .
+                        </div>
+                    </div>
+	 <div class="qa-group">
+                        <div class="question">ما هي سمات رجل البيع؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> تتمثل السمات الأساسية في النقاط التالية:
+                            <ol class="list-decimal list-inside mt-2 space-y-1">
+                                <li>الطيبه</li>
+                                <li>الصدق والأمانة الكاملة في عرض المنتج ومزاياه.</li>
+                                <li>الالتزام بالامانه.</li>
+                                <li>الثقه.</li>
+                                <li>المهارة في عرض المنتج.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="qa-group">
+                        <div class="question">ما هي ضوابط الالتزام بالمنافسة الشريفة؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> تتمثل الضوابط الأساسية في النقاط التالية:
+                            <ol class="list-decimal list-inside mt-2 space-y-1">
+                                <li>الالتزام التام بالقواعد والأصول المهنية للبيع.</li>
+                                <li>الصدق والأمانة الكاملة في عرض المنتج ومزاياه.</li>
+                                <li>الالتزام بمواصفات الجودة المحددة والمعلنة دون تلاعب.</li>
+                                <li>تجنب تضليل العميل أو إخفاء العيوب التسويقية عنه.</li>
+				<li> ان يكون الاعلان او المحتوي معبر .</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما الفرق بين أساليب البيع المعاصرة والقديمة؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> يوضح الجدول التالي المقارنة التفصيلية بين الأسلوبين:
+                            <div class="overflow-x-auto my-4">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>أساليب البيع القديمة</th>
+                                            <th>أساليب البيع الحديثة (المعاصرة)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>الوقوف أمام المحلات لجذب الانتباه.</td>
+                                            <td>البيع الآلي والذكي باستخدام الكروت الممغنطة (ATM).</td>
+                                        </tr>
+                                        <tr>
+                                            <td>جذب العملاء بصورة عشوائية للدخول للمتجر.</td>
+                                            <td>البيع والتسويق المباشر عبر الهاتف وقنوات الاتصال الذكية.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>الاعتماد التام على الإرشاد والتوجيه المباشر داخل المكان.</td>
+                                            <td>استخدام الكتالوجات الإلكترونية التفاعلية عبر وسائل التواصل الاجتماعي.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>البيع التقليدي وجهًا لوجه فقط.</td>
+                                            <td>عرض المنتجات المتكامل عبر الإنترنت بصورة جذابة وسهلة الوصول والشراء.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qa-group">
+                        <div class="question">ما هي خطوات البيع الفعال؟</div>
+                        <div class="answer">
+                            <strong>الإجابة:</strong> يتكون البيع الفعال من 5 خطوات رئيسية متسلسلة ومتكاملة:
+                            <ol class="list-decimal list-inside mt-2 space-y-1">
+                                <li><strong>البحث عن العملاء المرتقبين:</strong> تحديد واستهداف المشترين المحتملين بدقة.</li>
+                                <li><strong>الاتصال بالعملاء:</strong> فتح قنوات الاتصال الفعالة والتمهيد للمقابلة البيعية.</li>
+                                <li><strong>التقديم والحديث البيعي الجذاب:</strong> عرض السلعة/الخدمة بطريقة مثيرة للاهتمام تبرز الفوائد الحقيقية وتلبي رغبات العميل.</li>
+                                <li><strong>توقيع العقد وإتمام البيع:</strong> إغلاق الصفقة بنجاح ومعالجة الاعتراضات للوصول للاتفاق النهائي.</li>
+                                <li><strong>الخدمة بعد التعاقد:</strong> تقديم خدمات ما بعد البيع لضمان بناء علاقة مستمرة وزيادة رضا العميل وولائه للمنظمة.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Toggle for Mobile Devices
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebarOnMobile() {
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+        }
+
+        // دوال مساعدة لتمييز النصوص المبحوث عنها باللون الأصفر بأمان
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function removeHighlights(container) {
+            const marks = container.querySelectorAll('mark.search-highlight');
+            marks.forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize(); // دمج النصوص المنفصلة بعد إزالة التمييز
+            });
+        }
+
+        function applyHighlights(container, text) {
+            if (!text) return;
+            const regex = new RegExp(`(${escapeRegExp(text)})`, 'gi');
+            // استخدام TreeWalker للمرور على النصوص فقط دون تخريب الـ HTML (كالجداول والقوائم)
+            const treeWalker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+            const nodes = [];
+            
+            while(treeWalker.nextNode()) {
+                nodes.push(treeWalker.currentNode);
+            }
+
+            nodes.forEach(node => {
+                if (node.parentNode && node.parentNode.nodeName !== 'MARK') {
+                    const match = node.nodeValue.match(regex);
+                    if (match) {
+                        const span = document.createElement('span');
+                        // إضافة التلوين باللون الأصفر من خلال كلاسات Tailwind
+                        span.innerHTML = node.nodeValue.replace(regex, '<mark class="search-highlight bg-yellow-300 text-black px-1 rounded shadow-sm transition-all duration-300">$1</mark>');
+                        while (span.firstChild) {
+                            node.parentNode.insertBefore(span.firstChild, node);
+                        }
+                        node.parentNode.removeChild(node);
+                    }
+                }
+            });
+        }
+
+        // Live Search Filter Function
+        function filterContent() {
+            const input = document.getElementById('searchInput');
+            // Normalize Arabic text (remove accents/tashkeel if needed, simple lowercase here)
+            const filter = input.value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.content-section');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+            const searchStats = document.getElementById('searchStats');
+            
+            let anySectionVisible = false;
+            let matchCount = 0;
+
+            sections.forEach(section => {
+                const qaGroups = section.querySelectorAll('.qa-group');
+                let sectionHasMatch = false;
+
+                qaGroups.forEach(group => {
+                    // إزالة أي تمييز أصفر سابق قبل تنفيذ الفلترة الجديدة
+                    removeHighlights(group);
+
+                    const text = group.textContent.toLowerCase();
+                    
+                    if (filter === "") {
+                        // إذا كان البحث فارغاً، إظهار كل شيء بدون تلوين
+                        group.classList.remove('hidden-item');
+                    } else if (text.includes(filter)) {
+                        // إذا كان هناك تطابق، إظهار العنصر وتلوين الكلمة
+                        group.classList.remove('hidden-item');
+                        sectionHasMatch = true;
+                        matchCount++;
+                        applyHighlights(group, filter);
+                    } else {
+                        // إذا لم يكن هناك تطابق، إخفاء العنصر
+                        group.classList.add('hidden-item');
+                    }
+                });
+
+                // If filter is empty, show everything. If not, toggle sections based on matches
+                if (filter === "") {
+                    section.classList.remove('hidden-item');
+                    anySectionVisible = true;
+                } else {
+                    if (sectionHasMatch) {
+                        section.classList.remove('hidden-item');
+                        anySectionVisible = true;
+                    } else {
+                        section.classList.add('hidden-item');
+                    }
+                }
+            });
+
+            // Update UI for No Results
+            if (!anySectionVisible) {
+                noResultsMsg.classList.remove('hidden');
+                searchStats.classList.add('hidden');
+            } else {
+                noResultsMsg.classList.add('hidden');
+                
+                // Show Quick Stats if searching
+                if (filter !== "") {
+                    searchStats.textContent = `تم العثور على (${matchCount}) نتيجة`;
+                    searchStats.classList.remove('hidden');
+                } else {
+                    searchStats.classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
