@@ -104,5 +104,12 @@
     "title": "المحاضرة السابعه -سلوك المستهلك",
     "file": "marketing/lectures/lecture7.html",
     "pdf": "assets/pdfs/marketing/8.pdf"
+  },
+  {
+    "id": 16,
+    "courseId": "Islamic",
+    "title": "ملخص المادة",
+    "file": "Islamic/lectures/lecture6.html",
+    "pdf": "assets/pdfs/Islamic/6.pdf"
   }
 ]
